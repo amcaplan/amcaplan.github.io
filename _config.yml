@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: ariel.caplan@mail.yu.edu
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -98,3 +98,16 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+social:
+  title: # Defaults to "Follow me!" if not present
+  adn: # App.net
+  dribbble:
+  facebook:
+  github: amcaplan
+  googleplus:
+  linkedin:
+  pinterest:
+  stackoverflow:
+  twitter: amcaplan
+  youtube:
