@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://amcaplan.github.io
-title: Ariel++
+title: "Ariel Caplan, Code Ninja"
 subtitle: Constantly Improving Programming Skills.
 author: Ariel Caplan
 simple_search: https://www.google.com/search
@@ -63,7 +63,7 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: amcaplan
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
@@ -100,8 +100,8 @@ google_analytics_tracking_id:
 facebook_like: false
 
 social:
-  title: # Defaults to "Follow me!" if not present
-  adn: # App.net
+  title: Connect With Me
+  adn: 
   dribbble:
   facebook:
   github: amcaplan
