@@ -13,15 +13,17 @@ Helpers are a pretty nifty feature of Rails. And I'm not just talking about the 
 
 
 	
-  1. <
+  1. &lt;
 
 	
-  2. >
+  2. &gt;
 
 
 Yup, Rails isn't a big fan of HTML markup, unless it's generated directly from the HTML in a view, or by one of the built-in Rails helper methods.
 
 No, no, don't get angry at Rails!!!  It's for your own good, to make sure that you don't accidentally run some sort of evil, malicious script that a user input into a form or submitted in some other way.
+
+<!-- more -->
 
 Luckily, Rails has a method called `raw` which will convert a String into an ActiveSupport::SafeBuffer object (this is the equivalent of typing `"string-contents".html_safe`).  The object is marked such that Rails knows not to escape its contents.  (See [Henning Koch's explanation](http://makandracards.com/makandra/2579-everything-you-know-about-html_safe-is-wrong) for more details.)
 
@@ -77,20 +79,19 @@ And the helper method, also in MealsHelper:
 
 What's happening here is a little complicated, so let's isolate one case:
 
-    
-    <div class="medium-4 small-12 columns">
-      Name: <%= ff.text_field :name, name: "person[][name]" %>
-    </div>
+``` erb    
+<div class="medium-4 small-12 columns">
+  Name: <%= ff.text_field :name, name: "person[][name]" %>
+</div>
+```
 
 
 
 turns into
 
-
-    
-    <%= person_field("Name:#{ff.text_field :name, name: "person[][name]"}") %>
-
-
+``` erb
+<%= person_field("Name:#{ff.text_field :name, name: "person[][name]"}") %>
+```
 
 So we've assumed each person_field will have a bunch of the same classes (for CSS purposes), and just isolate the unique things for each field.  The helper method fills in the classes.  This way, if I ever want to change the look of the person fields, I have one address to do it from!
 

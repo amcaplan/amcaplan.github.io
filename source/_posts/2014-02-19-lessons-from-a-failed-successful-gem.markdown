@@ -20,6 +20,7 @@ I recently published a Ruby Gem called CheckEverything (the source code is [here
 
 Over the course of creating this gem, I've made some mistakes, and learned a few lessons:
 
+<!-- more -->
 
 ## 1. Abstract and Keep it DRY
 

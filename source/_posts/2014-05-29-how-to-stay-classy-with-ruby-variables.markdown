@@ -18,7 +18,11 @@ Ruby provides a number of options for non-instance-specific variables - class va
 
 Constants are meant to be - well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.
 
-Now let's examine some use cases and see where things start to get tricky.  To make things fun, let's go to the zoo! In this case, I have an `Animal` class, which will be at the top of the hierarchy and have animal classes that descend from it.  Here are my requirements:
+Now let's examine some use cases and see where things start to get tricky.  To make things fun, let's go to the zoo!
+
+<!-- more -->
+
+In this case, I have an `Animal` class, which will be at the top of the hierarchy and have animal classes that descend from it.  Here are my requirements:
 
 
 1) Since most of my animals are quadrupeds, I decide it makes sense for the class's instances to default to 4 legs, and any subclass (let's say `Octopus`) with a difference number of legs should change the default.

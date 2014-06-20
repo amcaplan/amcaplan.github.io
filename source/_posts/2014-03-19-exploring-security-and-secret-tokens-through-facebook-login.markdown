@@ -24,6 +24,8 @@ Security is really scary.  How scary?  Well, according to [this very pretty in
 
 I've been working on a project for my upcoming presentation (next week!) at the [Flatiron School](http://flatironschool.com), and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don't have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.
 
+<!-- more -->
+
 First, I registered a new app with Facebook.  The process was pretty simple - took me about 3 minutes - and I had an app ID and secret key ready to go.  Then I followed the steps on [this fantastic blog post](https://coderwall.com/p/bsfitw) to integrate Facebook login with my app using OmniAuth and the Facebook OmniAuth gem.  Et voilà, I can seamlessly bring in Facebook users!
 
 However, there was something that still needed to be taken care of to avoid security vulnerabilities popping up.  My config/initializers folder now included 2 files which would be dangerous to expose in public by posting to Github.  These files are:
@@ -42,15 +44,20 @@ Well, one solution is to just regenerate the secret key every time you deploy; t
 
 New Zealander David Fone [suggests an alternative solution](http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/#comment-902646816): set the secret key manually in testing and development, and set it on the server in production!  How does this look in practice?  Here's your secret_token.rb (updated by me for Rails 4):
 
-`if Rails.env.development? or Rails.env.test?
-MyApp::Application.config.secret_key_base = ('x' * 30)
+``` ruby
+if Rails.env.development? or Rails.env.test?
+  MyApp::Application.config.secret_key_base = ('x' * 30)
 else
-MyApp::Application.config.secret_key_base = ENV['SECRET_TOKEN']
-end`
+  MyApp::Application.config.secret_key_base = ENV['SECRET_TOKEN']
+end
+```
 
 So whenever you're working on your own computer, the secret token is just a string of 30 'x'es. That seems kinda stupid, but it definitely reminds you, the developer, that whatever secret key you would be using in testing/development just isn't secure. When you move your application to the production environment, you have to then use the host's tools to input or produce a secret token. In the case of Heroku, this is done with one command:
 
-`heroku config:set SECRET_TOKEN=3eb6db5a9026c54...` (fill in a full-length secret token, you get the idea)
+``` bash
+$ heroku config:set SECRET_TOKEN=3eb6db5a9026c54...
+```
+(fill in a full-length secret token, you get the idea)
 
 So now the production code is secure and unexposed, and you can keep developing with your 30x token.
 

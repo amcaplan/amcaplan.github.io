@@ -17,7 +17,11 @@ Let's say you have Player and BasketballTeam classes that are defined and used a
 
 In this case, since there are always exactly 5 players, I don't want to pull out an array every time and write `team.players[0]`, and instead I've chosen to use 5 similarly named instance variables, so I can do `team.player1`.  This looks nice, but also isn't ideal.  If I want to access player n, this starts to get ugly: `team.send("player#{n}")`.
 
-Well, here's the good news: as usual, Ruby has a better way for you to do it.  Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:
+Well, here's the good news\: as usual, Ruby has a better way for you to do it.
+
+<!-- more -->
+
+Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:
 
 <script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
 
@@ -37,7 +41,8 @@ An examination of Struct's instance methods reveals its similarity to Array and 
   
   <tbody >
     <tr >
-<td >`#members`
+<td >
+  `#members`
 </td>
 <td >like `Hash#keys`, returns an array containing the instance variable names
 </td></tr>
@@ -103,14 +108,14 @@ P.P.S. Robert Klemme [helpfully notes](http://blog.rubybestpractices.com/posts/r
 
 P.P.P.S. Here's the output from the code above (using structs or regular classes), if you're desperately interested:
 
-`Ladies and Gentlemen, here is the starting lineup!
+    Ladies and Gentlemen, here is the starting lineup!
 
-#15, Magic Johnson!
+    #15, Magic Johnson!
 
-#9, Michael Jordan!
+    #9, Michael Jordan!
 
-#7, Larry Bird!
+    #7, Larry Bird!
 
-#14, Charles Barkley!
+    #14, Charles Barkley!
 
-#6, Patrick Ewing!`
+    #6, Patrick Ewing!
