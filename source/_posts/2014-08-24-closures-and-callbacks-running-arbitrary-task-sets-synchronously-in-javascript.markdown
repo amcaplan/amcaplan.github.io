@@ -188,7 +188,7 @@ in line.
 
 The logic is pretty complex, so here's a visual representation of what all this
 code is accomplishing.  We will consider a case of 3 apps to keep it simple.
-First, we build the function:
+First, we build the function inside out:
 
 ``` coffeescript
 1.  callback = ->
@@ -229,4 +229,4 @@ job done.  In the future, if we add apps to `robot.brain.PROJECTS`, the
 to the nested function we've built.
 
 Using closures and callbacks, we've managed to build a function that will run
-an arbitrary number of tasks asynchronously.  Sweet!
+an arbitrary number of tasks synchronously.  Sweet!
