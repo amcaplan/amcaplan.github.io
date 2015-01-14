@@ -6,10 +6,12 @@ alias: '/blog'
 <div class="blog-index">
   {% assign index = true %}
   {% for post in paginator.posts %}
-  {% assign content = post.content %}
-    <article>
-      {% include article.html %}
-    </article>
+    {% unless post.categories contains talks %}
+      {% assign content = post.content %}
+        <article>
+          {% include article.html %}
+        </article>
+    {% endunless %}
   {% endfor %}
   <div class="pagination">
     {% if paginator.next_page %}
