@@ -51,15 +51,46 @@ The first is pretty straightforward. More code lumped into a single method call 
 
 Let's illustrate with a couple of examples. In the first, we have a form with a bunch of tabs. I wanted to consolidate the code for the tabs, because there's lots of repeating pieces. Here's what I did:
 
-<script src="https://gist.github.com/amcaplan/6abca8b624e062938ead.js"></script>
+``` html+erb
+<div class="content active" id="guests">
+  <%= render partial: 'guests_form', locals: {f: f} %>
+</div>
+<div class="content" id="topic">
+  <%= render partial: 'topics_form', locals: {f: f} %>
+</div>
+<div class="content" id="food">
+  <%= render partial: 'menu_form', locals: {f: f} %>
+</div>
+<div class="content" id="message">
+  <%= render partial: 'message_form', locals: {f: f} %>
+</div>
+<div class="content" id="time">
+  <%= render partial: 'time_form', locals: {f: f} %>
+</div>
+```
 
 became
 
-<script src="https://gist.github.com/amcaplan/fe6e47b5d774d4833da2.js"></script>
+``` html+erb
+<%= content_div("guests", "guests_form", "active", f) %>
+<%= content_div("topic", "topics_form", f) %>
+<%= content_div("food", "menu_form", f) %>
+<%= content_div("message", "message_form", f) %>
+<%= content_div("time", "time_form", f) %>
+```
 
 using the helper method
 
-<script src="https://gist.github.com/amcaplan/4c382886cc1e67904291.js"></script>
+``` ruby
+module MealsHelper
+ 
+  def content_div(id, partial_name, extra_class = nil, f)
+    content_tag :div, (render partial: partial_name, locals: {f: f}),
+      class: "content #{extra_class}", id: id
+  end
+ 
+end
+```
 
 Now let's break it down. I used `content_tag`, which takes 3 arguments: tag type (`div` in this case), content (render etc.), and an options hash. It generates a string of HTML that fits the criteria and marks off the contents as HTML-safe. Hence, I don't have to `raw` it. I also didn't have to call `raw` on the second argument, since `render` also returns an ActiveSupport::SafeBuffer object.
 
@@ -67,19 +98,67 @@ One could argue that the short form is less semantic than the long form. In trut
 
 Here's another example, from one of the partials of the above form, where the user chooses guests to invite. Here's the original code:
 
-<script src="https://gist.github.com/amcaplan/698d2c5258d0b3980be9.js"></script>
+``` html+erb
+<% @people.each_with_index do |person, index| %>
+  <div class="row">
+  <%= f.fields_for(person) do |ff| %>
+    <div class="medium-4 small-12 columns">
+      Name: <%= ff.text_field :name, name: "person[][name]" %>
+    </div>
+    <div class="medium-4 small-12 columns">
+      Email: <%= ff.text_field :email, name: "person[][email]" %>
+    </div>
+    <div class="medium-4 small-12 columns">
+      <% mp = person.meal_people.where(meal: @meal).first %>
+      Relationship: <%= select_tag(:host_relationship,
+        options_for_select(['friend','relative','neighbor',
+          'coworker', 'student','teacher','clergy', 'other'],
+            [(mp.host_relationship if mp)]),
+          name: "person[][host_relationship]",
+          prompt: "Who is s/he to you?") %><br>
+    </div>
+    <%= raw("<hr>") unless index == @people.length - 1 %>
+  <% end %>
+  </div>
+<% end %>
+```
 
 The modified code:
 
-<script src="https://gist.github.com/amcaplan/d34f0b701ffa566c15dc.js"></script>
+``` html+erb
+<% @people.each_with_index do |person, index| %>
+  <div class="row">
+  <%= f.fields_for(person) do |ff| %>
+    <%= person_field("Name:#{ff.text_field :name, name: "person[][name]"}") %>
+    <%= person_field("Email:#{ff.text_field :email, name: "person[][email]"}") %>
+    <% mp = person.meal_people.where(meal: @meal).first %>
+    <%= person_field do %>
+        Relationship:
+        <%= select_tag(:host_relationship,
+          options_for_select(['friend','relative','neighbor',
+            'coworker', 'student','teacher','clergy', 'other'],
+            [(mp.host_relationship if mp)]),
+          name: "person[][host_relationship]",
+          prompt: "Who is s/he to you?") %>
+    <% end %>
+    <br>
+    <%= tag(:hr) unless index == @people.length - 1 %>
+  <% end %>
+  </div>
+<% end %>
+```
 
 And the helper method, also in MealsHelper:
 
-<script src="https://gist.github.com/amcaplan/e92498fb5f59b584f9fe.js"></script>
+``` ruby
+def person_field(text = nil, &block)
+  content_tag(:div, raw(text), class: "medium-4 small-12 columns", &block)
+end
+```
 
 What's happening here is a little complicated, so let's isolate one case:
 
-``` erb    
+``` html+erb
 <div class="medium-4 small-12 columns">
   Name: <%= ff.text_field :name, name: "person[][name]" %>
 </div>

@@ -35,7 +35,57 @@ In this case, I have an `Animal` class, which will be at the top of the hierarch
 
 Let's get to work.  Following Sandi Metz's recommendation, we're going to build an `Animal` parent class with a post-initialization hook.  Hence, the `Animal` class's initialize method will append the new item to an animals array, and then call an `after_initialize` method which will be accessible to the child classes.  We'll start with just 2 animal types, octopus and llama:
 
-<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+``` ruby
+class Animal
+  @@animals = []
+  @@legs = 4
+ 
+  def initialize(args={})
+    @@animals << self
+    after_initialize(args)
+  end
+ 
+  def after_initialize(args)
+  end
+ 
+  def legs
+    @@legs
+  end
+  
+  def self.all
+    @@animals
+  end
+end
+ 
+ 
+class Octopus < Animal
+  @@octopi = []
+  @@legs = 8
+ 
+  def after_initialize(args={})
+    @@octopi << self
+  end
+  
+  def self.all
+    @@octopi
+  end
+end
+ 
+ 
+class Llama < Animal
+  @@llamas = []
+ 
+  def after_initialize(args={})
+    @@llamas << self
+  end
+  
+  def self.all
+    @@llamas
+  end
+end
+ 
+Llama.new.legs # => 8
+```
 
 Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?
 
@@ -55,7 +105,45 @@ Class variables, it seems, are really best for situations when you want to have 
 
 
 
-<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+``` ruby
+class Animal
+  @@config = {}
+  
+  def self.config
+    @@config
+  end
+  
+  def speak
+    if self.class.config[:verbose] == true
+      verbose_speech
+    else
+      brief_speech
+    end
+  end
+  
+  def verbose_speech
+    ''
+  end
+  
+  def brief_speech
+    ''
+  end
+end
+ 
+class Dog < Animal
+  def verbose_speech
+    "WOOF! WOOF WOOF WOOF!"
+  end
+  
+  def brief_speech
+    "WOOF!"
+  end
+end
+ 
+Dog.new.speak # => "WOOF!"
+Animal.config[:verbose] = true
+Dog.new.speak # => "WOOF! WOOF WOOF WOOF!"
+```
 
 
 
@@ -65,7 +153,29 @@ So that works great.  But we need to do something about `@@legs`.  So here's t
 
 
 
-<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+``` ruby
+# IRRELEVANT CODE FOR THIS EXAMPLE HAS BEEN REMOVED
+ 
+class Animal
+  LEGS = 4
+ 
+  def legs
+    self.class::LEGS
+  end
+end
+ 
+ 
+class Octopus < Animal
+  LEGS = 8
+end
+ 
+ 
+class Llama < Animal
+end
+ 
+Octopus.new.legs # => 8
+Llama.new.legs # => 4
+```
 
 
 
@@ -120,7 +230,42 @@ So what's the right answer?  Well, let's remind ourselves for a moment that ev
 
 
 
-<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+``` ruby
+# IRRELEVANT CODE EXCISED
+ 
+class Animal
+  @animals = []
+  def self.animals
+    @animals
+  end
+ 
+  def initialize(args={})
+    Animal.animals << self
+    after_initialize(args)
+  end
+ 
+  def after_initialize(args)
+  end
+ 
+  def self.all
+    self.animals
+  end
+end
+ 
+class Lion < Animal
+  @animals = []
+  
+  def after_initialize(args)
+    self.class.animals << self
+  end
+end
+ 
+Lion.new
+Animal.all # => [#<Lion:0x0000010187de60>]
+Animal.all.object_id # => 2160486800
+Lion.all # [#<Lion:0x0000010187de60>]
+Lion.all.object_id # => 2160342160
+```
 
 
 
@@ -140,7 +285,54 @@ Alright, dear readers.  The time has come to leave you with the final, comprehe
 
 
 
-<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+``` ruby
+class Animal
+  @animals = []
+  LEGS = 4
+  
+  class << self
+    attr_reader :animals
+    alias :all :animals
+  end
+ 
+  def initialize(args={})
+    Animal.animals << self
+    after_initialize(args)
+  end
+ 
+  def after_initialize(args)
+  end
+ 
+  def legs
+    self.class::LEGS
+  end
+end
+ 
+ 
+class Octopus < Animal
+  @animals = []
+  LEGS = 8
+ 
+  def after_initialize(args={})
+    self.class.animals << self
+  end
+end
+ 
+ 
+class Llama < Animal
+  @animals = []
+ 
+  def after_initialize(args={})
+    self.class.animals << self
+  end
+end
+ 
+Octopus.new.legs # => 8
+Llama.new.legs # => 4
+Animal.all # => [#<Octopus:0x000001010ef220>,#<Llama:0x000001010a6868>]
+Octopus.all # => [#<Octopus:0x000001010ef220>]
+Llama.all # => [#<Llama:0x000001010a6868>]
+```
 
 
 

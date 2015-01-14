@@ -13,7 +13,44 @@ categories:
 
 Let's say you have Player and BasketballTeam classes that are defined and used as follows:
 
-<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+``` ruby
+class Player
+  attr_accessor :name, :number
+  
+  def initialize(name, number)
+    @name = name
+    @number = number
+  end
+end
+ 
+ 
+class BasketballTeam
+  attr_accessor :player1, :player2, :player3, :player4, :player5
+  
+  def initialize(player1, player2, player3, player4, player5)
+    @player1 = player1
+    @player2 = player2
+    @player3 = player3
+    @player4 = player4
+    @player5 = player5
+  end
+  
+  def starting_lineup
+    str = "Ladies and Gentlemen, here is the starting lineup!\n"
+    5.times do |num|
+      player = self.send("player#{num + 1}")
+      str += "\n##{player.number}, #{player.name}!\n"
+    end
+    str
+  end
+end
+ 
+ 
+team = BasketballTeam.new(Player.new("Magic Johnson", 15), Player.new("Michael Jordan", 9),
+  Player.new("Larry Bird", 7),Player.new("Charles Barkley", 14),Player.new("Patrick Ewing", 6))
+ 
+puts team.starting_lineup
+```
 
 In this case, since there are always exactly 5 players, I don't want to pull out an array every time and write `team.players[0]`, and instead I've chosen to use 5 similarly named instance variables, so I can do `team.player1`.  This looks nice, but also isn't ideal.  If I want to access player n, this starts to get ugly: `team.send("player#{n}")`.
 
@@ -23,7 +60,21 @@ Well, here's the good news\: as usual, Ruby has a better way for you to do it.
 
 Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:
 
-<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+``` ruby
+Player = Struct.new(:name, :number)
+ 
+BasketballTeam = Struct.new(:player1, :player2, :player3, :player4, :player5) do
+  def starting_lineup
+    "Ladies and Gentlemen, here is the starting lineup!\n" +
+      self.collect {|player| "\n##{player.number}, #{player.name}!\n"}.join
+  end
+end
+ 
+team = BasketballTeam.new(Player.new("Magic Johnson", 15), Player.new("Michael Jordan", 9),
+  Player.new("Larry Bird", 7),Player.new("Charles Barkley", 14),Player.new("Patrick Ewing", 6))
+ 
+puts team.starting_lineup
+```
 
 Huh?  Where did all the code go?
 
