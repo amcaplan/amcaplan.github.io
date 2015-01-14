@@ -112,17 +112,73 @@
 
 <p>Let&rsquo;s illustrate with a couple of examples. In the first, we have a form with a bunch of tabs. I wanted to consolidate the code for the tabs, because there&rsquo;s lots of repeating pieces. Here&rsquo;s what I did:</p>
 
-<script src="https://gist.github.com/amcaplan/6abca8b624e062938ead.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content active&quot;</span> <span class="na">id=</span><span class="s">&quot;guests&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;guests_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;topic&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;topics_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;food&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;menu_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;message&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;message_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;time_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>became</p>
 
-<script src="https://gist.github.com/amcaplan/fe6e47b5d774d4833da2.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;guests&quot;</span><span class="p">,</span> <span class="s2">&quot;guests_form&quot;</span><span class="p">,</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="s2">&quot;topics_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;food&quot;</span><span class="p">,</span> <span class="s2">&quot;menu_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;message_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;time_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>using the helper method</p>
 
-<script src="https://gist.github.com/amcaplan/4c382886cc1e67904291.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">MealsHelper</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">content_div</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">partial_name</span><span class="p">,</span> <span class="n">extra_class</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">content_tag</span> <span class="ss">:div</span><span class="p">,</span> <span class="p">(</span><span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="n">partial_name</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}),</span>
+</span><span class='line'>      <span class="ss">class</span><span class="p">:</span> <span class="s2">&quot;content </span><span class="si">#{</span><span class="n">extra_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">id</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Now let&rsquo;s break it down. I used <code>content_tag</code>, which takes 3 arguments: tag type (<code>div</code> in this case), content (render etc.), and an options hash. It generates a string of HTML that fits the criteria and marks off the contents as HTML-safe. Hence, I don&rsquo;t have to <code>raw</code> it. I also didn&rsquo;t have to call <code>raw</code> on the second argument, since <code>render</code> also returns an ActiveSupport::SafeBuffer object.</p>
@@ -131,17 +187,107 @@
 
 <p>Here&rsquo;s another example, from one of the partials of the above form, where the user chooses guests to invite. Here&rsquo;s the original code:</p>
 
-<script src="https://gist.github.com/amcaplan/698d2c5258d0b3980be9.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%</span> <span class="vi">@people</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">fields_for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ff</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      Name: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      Email: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:email</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][email]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="cp">&lt;%</span> <span class="n">mp</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">meal_people</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">meal</span><span class="p">:</span> <span class="vi">@meal</span><span class="p">)</span><span class="o">.</span><span class="n">first</span> <span class="cp">%&gt;</span>
+</span><span class='line'>      Relationship: <span class="cp">&lt;%=</span> <span class="n">select_tag</span><span class="p">(</span><span class="ss">:host_relationship</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">options_for_select</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;friend&#39;</span><span class="p">,</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span><span class="s1">&#39;neighbor&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s1">&#39;coworker&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span><span class="s1">&#39;teacher&#39;</span><span class="p">,</span><span class="s1">&#39;clergy&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>            <span class="o">[</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">host_relationship</span> <span class="k">if</span> <span class="n">mp</span><span class="p">)</span><span class="o">]</span><span class="p">),</span>
+</span><span class='line'>          <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][host_relationship]&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">prompt</span><span class="p">:</span> <span class="s2">&quot;Who is s/he to you?&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;br&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">raw</span><span class="p">(</span><span class="s2">&quot;&lt;hr&gt;&quot;</span><span class="p">)</span> <span class="k">unless</span> <span class="n">index</span> <span class="o">==</span> <span class="vi">@people</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The modified code:</p>
 
-<script src="https://gist.github.com/amcaplan/d34f0b701ffa566c15dc.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%</span> <span class="vi">@people</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">fields_for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ff</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Name:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Email:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:email</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][email]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%</span> <span class="n">mp</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">meal_people</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">meal</span><span class="p">:</span> <span class="vi">@meal</span><span class="p">)</span><span class="o">.</span><span class="n">first</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+</span><span class='line'>        Relationship:
+</span><span class='line'>        <span class="cp">&lt;%=</span> <span class="n">select_tag</span><span class="p">(</span><span class="ss">:host_relationship</span><span class="p">,</span>
+</span><span class='line'>          <span class="n">options_for_select</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;friend&#39;</span><span class="p">,</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span><span class="s1">&#39;neighbor&#39;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s1">&#39;coworker&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span><span class="s1">&#39;teacher&#39;</span><span class="p">,</span><span class="s1">&#39;clergy&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>            <span class="o">[</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">host_relationship</span> <span class="k">if</span> <span class="n">mp</span><span class="p">)</span><span class="o">]</span><span class="p">),</span>
+</span><span class='line'>          <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][host_relationship]&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">prompt</span><span class="p">:</span> <span class="s2">&quot;Who is s/he to you?&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;br&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">tag</span><span class="p">(</span><span class="ss">:hr</span><span class="p">)</span> <span class="k">unless</span> <span class="n">index</span> <span class="o">==</span> <span class="vi">@people</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>And the helper method, also in MealsHelper:</p>
 
-<script src="https://gist.github.com/amcaplan/e92498fb5f59b584f9fe.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">person_field</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">content_tag</span><span class="p">(</span><span class="ss">:div</span><span class="p">,</span> <span class="n">raw</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="ss">class</span><span class="p">:</span> <span class="s2">&quot;medium-4 small-12 columns&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>What&rsquo;s happening here is a little complicated, so let&rsquo;s isolate one case:</p>
@@ -149,9 +295,9 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;div class=&quot;medium-4 small-12 columns&quot;&gt;</span>
-</span><span class='line'><span class="x">  Name: </span><span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">&lt;/div&gt;</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  Name: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

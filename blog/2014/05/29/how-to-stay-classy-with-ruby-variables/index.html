@@ -93,7 +93,105 @@
 
 <p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
 
-<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vc">@@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="vc">@@legs</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="vc">@@legs</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vc">@@octopi</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="vc">@@legs</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@octopi</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@octopi</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vc">@@llamas</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@llamas</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@llamas</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
@@ -104,12 +202,128 @@
 
 <p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
 
-<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vc">@@config</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">config</span>
+</span><span class='line'>    <span class="vc">@@config</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">speak</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:verbose</span><span class="o">]</span> <span class="o">==</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="n">verbose_speech</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">brief_speech</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">verbose_speech</span>
+</span><span class='line'>    <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">brief_speech</span>
+</span><span class='line'>    <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Dog</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">verbose_speech</span>
+</span><span class='line'>    <span class="s2">&quot;WOOF! WOOF WOOF WOOF!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">brief_speech</span>
+</span><span class='line'>    <span class="s2">&quot;WOOF!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dog</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">speak</span> <span class="c1"># =&gt; &quot;WOOF!&quot;</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:verbose</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="no">Dog</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">speak</span> <span class="c1"># =&gt; &quot;WOOF! WOOF WOOF WOOF!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
 
-<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># IRRELEVANT CODE FOR THIS EXAMPLE HAS BEEN REMOVED</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">::</span><span class="no">LEGS</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 4</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
@@ -132,7 +346,75 @@
 
 <p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
 
-<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># IRRELEVANT CODE EXCISED</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">animals</span>
+</span><span class='line'>    <span class="vi">@animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="no">Animal</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Lion</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Lion:0x0000010187de60&gt;]</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; 2160486800</span>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">all</span> <span class="c1"># [#&lt;Lion:0x0000010187de60&gt;]</span>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; 2160342160</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
@@ -141,7 +423,99 @@
 
 <p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
 
-<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="kp">attr_reader</span> <span class="ss">:animals</span>
+</span><span class='line'>    <span class="k">alias</span> <span class="ss">:all</span> <span class="ss">:animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="no">Animal</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">::</span><span class="no">LEGS</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 4</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Octopus:0x000001010ef220&gt;,#&lt;Llama:0x000001010a6868&gt;]</span>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Octopus:0x000001010ef220&gt;]</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Llama:0x000001010a6868&gt;]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T01:14:52-05:00</updated>
+  <updated>2015-01-14T01:31:13-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -86,8 +86,76 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 
 <p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
 
-<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+<p>``` ruby
+class Animal
+  @@animals = []
+  @@legs = 4</p>
 
+<p>  def initialize(args={})</p>
+
+<pre><code>@@animals &lt;&lt; self
+after_initialize(args)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def after_initialize(args)
+  end</p>
+
+<p>  def legs</p>
+
+<pre><code>@@legs
+</code></pre>
+
+<p>  end</p>
+
+<p>  def self.all</p>
+
+<pre><code>@@animals
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Octopus &lt; Animal
+  @@octopi = []
+  @@legs = 8</p>
+
+<p>  def after_initialize(args={})</p>
+
+<pre><code>@@octopi &lt;&lt; self
+</code></pre>
+
+<p>  end</p>
+
+<p>  def self.all</p>
+
+<pre><code>@@octopi
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Llama &lt; Animal
+  @@llamas = []</p>
+
+<p>  def after_initialize(args={})</p>
+
+<pre><code>@@llamas &lt;&lt; self
+</code></pre>
+
+<p>  end</p>
+
+<p>  def self.all</p>
+
+<pre><code>@@llamas
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Llama.new.legs # => 8
+```</p>
 
 <p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
 
@@ -97,13 +165,91 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 
 <p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
 
-<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+<p>``` ruby
+class Animal
+  @@config = {}</p>
 
+<p>  def self.config</p>
+
+<pre><code>@@config
+</code></pre>
+
+<p>  end</p>
+
+<p>  def speak</p>
+
+<pre><code>if self.class.config[:verbose] == true
+  verbose_speech
+else
+  brief_speech
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  def verbose_speech</p>
+
+<pre><code>''
+</code></pre>
+
+<p>  end</p>
+
+<p>  def brief_speech</p>
+
+<pre><code>''
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Dog &lt; Animal
+  def verbose_speech</p>
+
+<pre><code>"WOOF! WOOF WOOF WOOF!"
+</code></pre>
+
+<p>  end</p>
+
+<p>  def brief_speech</p>
+
+<pre><code>"WOOF!"
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Dog.new.speak # => &ldquo;WOOF!&rdquo;
+Animal.config[:verbose] = true
+Dog.new.speak # => &ldquo;WOOF! WOOF WOOF WOOF!&rdquo;
+```</p>
 
 <p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
 
-<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+<p>``` ruby</p>
 
+<h1>IRRELEVANT CODE FOR THIS EXAMPLE HAS BEEN REMOVED</h1>
+
+<p>class Animal
+  LEGS = 4</p>
+
+<p>  def legs</p>
+
+<pre><code>self.class::LEGS
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Octopus &lt; Animal
+  LEGS = 8
+end</p>
+
+<p>class Llama &lt; Animal
+end</p>
+
+<p>Octopus.new.legs # => 8
+Llama.new.legs # => 4
+```</p>
 
 <p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
 
@@ -125,8 +271,55 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 
 <p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
 
-<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+<p>``` ruby</p>
 
+<h1>IRRELEVANT CODE EXCISED</h1>
+
+<p>class Animal
+  @animals = []
+  def self.animals</p>
+
+<pre><code>@animals
+</code></pre>
+
+<p>  end</p>
+
+<p>  def initialize(args={})</p>
+
+<pre><code>Animal.animals &lt;&lt; self
+after_initialize(args)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def after_initialize(args)
+  end</p>
+
+<p>  def self.all</p>
+
+<pre><code>self.animals
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Lion &lt; Animal
+  @animals = []</p>
+
+<p>  def after_initialize(args)</p>
+
+<pre><code>self.class.animals &lt;&lt; self
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Lion.new
+Animal.all # => [#&lt;Lion:0x0000010187de60>]
+Animal.all.object_id # => 2160486800
+Lion.all # [#&lt;Lion:0x0000010187de60>]
+Lion.all.object_id # => 2160342160
+```</p>
 
 <p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
 
@@ -134,8 +327,67 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 
 <p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
 
-<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+<p>``` ruby
+class Animal
+  @animals = []
+  LEGS = 4</p>
 
+<p>  class &lt;&lt; self</p>
+
+<pre><code>attr_reader :animals
+alias :all :animals
+</code></pre>
+
+<p>  end</p>
+
+<p>  def initialize(args={})</p>
+
+<pre><code>Animal.animals &lt;&lt; self
+after_initialize(args)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def after_initialize(args)
+  end</p>
+
+<p>  def legs</p>
+
+<pre><code>self.class::LEGS
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Octopus &lt; Animal
+  @animals = []
+  LEGS = 8</p>
+
+<p>  def after_initialize(args={})</p>
+
+<pre><code>self.class.animals &lt;&lt; self
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Llama &lt; Animal
+  @animals = []</p>
+
+<p>  def after_initialize(args={})</p>
+
+<pre><code>self.class.animals &lt;&lt; self
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Octopus.new.legs # => 8
+Llama.new.legs # => 4
+Animal.all # => [#&lt;Octopus:0x000001010ef220>,#&lt;Llama:0x000001010a6868>]
+Octopus.all # => [#&lt;Octopus:0x000001010ef220>]
+Llama.all # => [#&lt;Llama:0x000001010a6868>]
+```</p>
 
 <p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
 ]]></content>
@@ -148,8 +400,51 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
     <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
     <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
 
-<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+<p>``` ruby
+class Player
+  attr_accessor :name, :number</p>
 
+<p>  def initialize(name, number)</p>
+
+<pre><code>@name = name
+@number = number
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class BasketballTeam
+  attr_accessor :player1, :player2, :player3, :player4, :player5</p>
+
+<p>  def initialize(player1, player2, player3, player4, player5)</p>
+
+<pre><code>@player1 = player1
+@player2 = player2
+@player3 = player3
+@player4 = player4
+@player5 = player5
+</code></pre>
+
+<p>  end</p>
+
+<p>  def starting_lineup</p>
+
+<pre><code>str = "Ladies and Gentlemen, here is the starting lineup!\n"
+5.times do |num|
+  player = self.send("player#{num + 1}")
+  str += "\n##{player.number}, #{player.name}!\n"
+end
+str
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>team = BasketballTeam.new(Player.new(&ldquo;Magic Johnson&rdquo;, 15), Player.new(&ldquo;Michael Jordan&rdquo;, 9),
+  Player.new(&ldquo;Larry Bird&rdquo;, 7),Player.new(&ldquo;Charles Barkley&rdquo;, 14),Player.new(&ldquo;Patrick Ewing&rdquo;, 6))</p>
+
+<p>puts team.starting_lineup
+```</p>
 
 <p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
 
@@ -160,8 +455,24 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 
 <p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
 
-<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+<p>``` ruby
+Player = Struct.new(:name, :number)</p>
 
+<p>BasketballTeam = Struct.new(:player1, :player2, :player3, :player4, :player5) do
+  def starting_lineup</p>
+
+<pre><code>"Ladies and Gentlemen, here is the starting lineup!\n" +
+  self.collect {|player| "\n##{player.number}, #{player.name}!\n"}.join
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>team = BasketballTeam.new(Player.new(&ldquo;Magic Johnson&rdquo;, 15), Player.new(&ldquo;Michael Jordan&rdquo;, 9),
+  Player.new(&ldquo;Larry Bird&rdquo;, 7),Player.new(&ldquo;Charles Barkley&rdquo;, 14),Player.new(&ldquo;Patrick Ewing&rdquo;, 6))</p>
+
+<p>puts team.starting_lineup
+```</p>
 
 <p>Huh?  Where did all the code go?</p>
 

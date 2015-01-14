@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T01:14:52-05:00</updated>
+  <updated>2015-01-14T01:31:13-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -26,6 +26,9 @@
 <p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of rollout and degrade, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James&#8217; gems.</p>
 
 <p>Links:</p>
+
+<!-- more -->
+
 
 <p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
 <a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
@@ -410,7 +413,105 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
 
-<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vc">@@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="vc">@@legs</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="vc">@@legs</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vc">@@octopi</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="vc">@@legs</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@octopi</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@octopi</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vc">@@llamas</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="vc">@@llamas</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="vc">@@llamas</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
@@ -421,12 +522,128 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
 
-<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vc">@@config</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">config</span>
+</span><span class='line'>    <span class="vc">@@config</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">speak</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:verbose</span><span class="o">]</span> <span class="o">==</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="n">verbose_speech</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">brief_speech</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">verbose_speech</span>
+</span><span class='line'>    <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">brief_speech</span>
+</span><span class='line'>    <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Dog</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">verbose_speech</span>
+</span><span class='line'>    <span class="s2">&quot;WOOF! WOOF WOOF WOOF!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">brief_speech</span>
+</span><span class='line'>    <span class="s2">&quot;WOOF!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dog</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">speak</span> <span class="c1"># =&gt; &quot;WOOF!&quot;</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:verbose</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="no">Dog</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">speak</span> <span class="c1"># =&gt; &quot;WOOF! WOOF WOOF WOOF!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
 
-<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># IRRELEVANT CODE FOR THIS EXAMPLE HAS BEEN REMOVED</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">::</span><span class="no">LEGS</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 4</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
@@ -449,7 +666,75 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
 
-<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># IRRELEVANT CODE EXCISED</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">animals</span>
+</span><span class='line'>    <span class="vi">@animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="no">Animal</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Lion</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Lion:0x0000010187de60&gt;]</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; 2160486800</span>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">all</span> <span class="c1"># [#&lt;Lion:0x0000010187de60&gt;]</span>
+</span><span class='line'><span class="no">Lion</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; 2160342160</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
@@ -458,7 +743,99 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
 
-<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="kp">attr_reader</span> <span class="ss">:animals</span>
+</span><span class='line'>    <span class="k">alias</span> <span class="ss">:all</span> <span class="ss">:animals</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="no">Animal</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">legs</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">::</span><span class="no">LEGS</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Octopus</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="no">LEGS</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Llama</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>  <span class="vi">@animals</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">after_initialize</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">animals</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 8</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">legs</span> <span class="c1"># =&gt; 4</span>
+</span><span class='line'><span class="no">Animal</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Octopus:0x000001010ef220&gt;,#&lt;Llama:0x000001010a6868&gt;]</span>
+</span><span class='line'><span class="no">Octopus</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Octopus:0x000001010ef220&gt;]</span>
+</span><span class='line'><span class="no">Llama</span><span class="o">.</span><span class="n">all</span> <span class="c1"># =&gt; [#&lt;Llama:0x000001010a6868&gt;]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
@@ -659,17 +1036,73 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Let&rsquo;s illustrate with a couple of examples. In the first, we have a form with a bunch of tabs. I wanted to consolidate the code for the tabs, because there&rsquo;s lots of repeating pieces. Here&rsquo;s what I did:</p>
 
-<script src="https://gist.github.com/amcaplan/6abca8b624e062938ead.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content active&quot;</span> <span class="na">id=</span><span class="s">&quot;guests&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;guests_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;topic&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;topics_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;food&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;menu_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;message&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;message_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span> <span class="na">id=</span><span class="s">&quot;time&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="s1">&#39;time_form&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>became</p>
 
-<script src="https://gist.github.com/amcaplan/fe6e47b5d774d4833da2.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;guests&quot;</span><span class="p">,</span> <span class="s2">&quot;guests_form&quot;</span><span class="p">,</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="s2">&quot;topics_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;food&quot;</span><span class="p">,</span> <span class="s2">&quot;menu_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;message_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">content_div</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;time_form&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>using the helper method</p>
 
-<script src="https://gist.github.com/amcaplan/4c382886cc1e67904291.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">MealsHelper</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">content_div</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">partial_name</span><span class="p">,</span> <span class="n">extra_class</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">content_tag</span> <span class="ss">:div</span><span class="p">,</span> <span class="p">(</span><span class="n">render</span> <span class="ss">partial</span><span class="p">:</span> <span class="n">partial_name</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">f</span><span class="p">:</span> <span class="n">f</span><span class="p">}),</span>
+</span><span class='line'>      <span class="ss">class</span><span class="p">:</span> <span class="s2">&quot;content </span><span class="si">#{</span><span class="n">extra_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">id</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Now let&rsquo;s break it down. I used <code>content_tag</code>, which takes 3 arguments: tag type (<code>div</code> in this case), content (render etc.), and an options hash. It generates a string of HTML that fits the criteria and marks off the contents as HTML-safe. Hence, I don&rsquo;t have to <code>raw</code> it. I also didn&rsquo;t have to call <code>raw</code> on the second argument, since <code>render</code> also returns an ActiveSupport::SafeBuffer object.</p>
@@ -678,17 +1111,107 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Here&rsquo;s another example, from one of the partials of the above form, where the user chooses guests to invite. Here&rsquo;s the original code:</p>
 
-<script src="https://gist.github.com/amcaplan/698d2c5258d0b3980be9.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%</span> <span class="vi">@people</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">fields_for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ff</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      Name: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      Email: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:email</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][email]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="cp">&lt;%</span> <span class="n">mp</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">meal_people</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">meal</span><span class="p">:</span> <span class="vi">@meal</span><span class="p">)</span><span class="o">.</span><span class="n">first</span> <span class="cp">%&gt;</span>
+</span><span class='line'>      Relationship: <span class="cp">&lt;%=</span> <span class="n">select_tag</span><span class="p">(</span><span class="ss">:host_relationship</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">options_for_select</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;friend&#39;</span><span class="p">,</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span><span class="s1">&#39;neighbor&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s1">&#39;coworker&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span><span class="s1">&#39;teacher&#39;</span><span class="p">,</span><span class="s1">&#39;clergy&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>            <span class="o">[</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">host_relationship</span> <span class="k">if</span> <span class="n">mp</span><span class="p">)</span><span class="o">]</span><span class="p">),</span>
+</span><span class='line'>          <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][host_relationship]&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">prompt</span><span class="p">:</span> <span class="s2">&quot;Who is s/he to you?&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;br&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">raw</span><span class="p">(</span><span class="s2">&quot;&lt;hr&gt;&quot;</span><span class="p">)</span> <span class="k">unless</span> <span class="n">index</span> <span class="o">==</span> <span class="vi">@people</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The modified code:</p>
 
-<script src="https://gist.github.com/amcaplan/d34f0b701ffa566c15dc.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="cp">&lt;%</span> <span class="vi">@people</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="p">,</span> <span class="n">index</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">fields_for</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ff</span><span class="o">|</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Name:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Email:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:email</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][email]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%</span> <span class="n">mp</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">meal_people</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">meal</span><span class="p">:</span> <span class="vi">@meal</span><span class="p">)</span><span class="o">.</span><span class="n">first</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">person_field</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+</span><span class='line'>        Relationship:
+</span><span class='line'>        <span class="cp">&lt;%=</span> <span class="n">select_tag</span><span class="p">(</span><span class="ss">:host_relationship</span><span class="p">,</span>
+</span><span class='line'>          <span class="n">options_for_select</span><span class="p">(</span><span class="o">[</span><span class="s1">&#39;friend&#39;</span><span class="p">,</span><span class="s1">&#39;relative&#39;</span><span class="p">,</span><span class="s1">&#39;neighbor&#39;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s1">&#39;coworker&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span><span class="s1">&#39;teacher&#39;</span><span class="p">,</span><span class="s1">&#39;clergy&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>            <span class="o">[</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">host_relationship</span> <span class="k">if</span> <span class="n">mp</span><span class="p">)</span><span class="o">]</span><span class="p">),</span>
+</span><span class='line'>          <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][host_relationship]&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">prompt</span><span class="p">:</span> <span class="s2">&quot;Who is s/he to you?&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;br&gt;</span>
+</span><span class='line'>    <span class="cp">&lt;%=</span> <span class="n">tag</span><span class="p">(</span><span class="ss">:hr</span><span class="p">)</span> <span class="k">unless</span> <span class="n">index</span> <span class="o">==</span> <span class="vi">@people</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>And the helper method, also in MealsHelper:</p>
 
-<script src="https://gist.github.com/amcaplan/e92498fb5f59b584f9fe.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">person_field</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">content_tag</span><span class="p">(</span><span class="ss">:div</span><span class="p">,</span> <span class="n">raw</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="ss">class</span><span class="p">:</span> <span class="s2">&quot;medium-4 small-12 columns&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>What&rsquo;s happening here is a little complicated, so let&rsquo;s isolate one case:</p>
@@ -696,9 +1219,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;div class=&quot;medium-4 small-12 columns&quot;&gt;</span>
-</span><span class='line'><span class="x">  Name: </span><span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x">&lt;/div&gt;</span>
+</pre></td><td class='code'><pre><code class='html+erb'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;medium-4 small-12 columns&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  Name: <span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -792,7 +1315,79 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
     <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
     <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
 
-<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Player</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:number</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'>    <span class="vi">@number</span> <span class="o">=</span> <span class="n">number</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">BasketballTeam</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:player1</span><span class="p">,</span> <span class="ss">:player2</span><span class="p">,</span> <span class="ss">:player3</span><span class="p">,</span> <span class="ss">:player4</span><span class="p">,</span> <span class="ss">:player5</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">,</span> <span class="n">player3</span><span class="p">,</span> <span class="n">player4</span><span class="p">,</span> <span class="n">player5</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@player1</span> <span class="o">=</span> <span class="n">player1</span>
+</span><span class='line'>    <span class="vi">@player2</span> <span class="o">=</span> <span class="n">player2</span>
+</span><span class='line'>    <span class="vi">@player3</span> <span class="o">=</span> <span class="n">player3</span>
+</span><span class='line'>    <span class="vi">@player4</span> <span class="o">=</span> <span class="n">player4</span>
+</span><span class='line'>    <span class="vi">@player5</span> <span class="o">=</span> <span class="n">player5</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">starting_lineup</span>
+</span><span class='line'>    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Ladies and Gentlemen, here is the starting lineup!</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">player</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;player</span><span class="si">#{</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">#</span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">str</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">team</span> <span class="o">=</span> <span class="no">BasketballTeam</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Magic Johnson&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Michael Jordan&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
+</span><span class='line'>  <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Larry Bird&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Charles Barkley&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Patrick Ewing&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">team</span><span class="o">.</span><span class="n">starting_lineup</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
@@ -804,7 +1399,33 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 <p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
 
-<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Player</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:number</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">BasketballTeam</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:player1</span><span class="p">,</span> <span class="ss">:player2</span><span class="p">,</span> <span class="ss">:player3</span><span class="p">,</span> <span class="ss">:player4</span><span class="p">,</span> <span class="ss">:player5</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">starting_lineup</span>
+</span><span class='line'>    <span class="s2">&quot;Ladies and Gentlemen, here is the starting lineup!</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">collect</span> <span class="p">{</span><span class="o">|</span><span class="n">player</span><span class="o">|</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">#</span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">join</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">team</span> <span class="o">=</span> <span class="no">BasketballTeam</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Magic Johnson&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Michael Jordan&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
+</span><span class='line'>  <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Larry Bird&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Charles Barkley&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Patrick Ewing&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">team</span><span class="o">.</span><span class="n">starting_lineup</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Huh?  Where did all the code go?</p>
