@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2015-01-13T19:44:38-05:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/"/>
+    <updated>2015-01-13T19:29:40-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade</id>
+    <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>; blog post coming soon.</p>
+
+<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
+    <updated>2014-08-24T16:25:29-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
+    <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
+
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
+
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
+
+<!-- more -->
+
+
+<p><em>[Note: code examples have been simplified for readability, and proprietary
+secrets have been removed.]</em></p>
+
+<h3>Step 1: Implement callbacks for the deploy script</h3>
+
+<p>Initially, groundwork needed to be laid for post-deploy callbacks.  This was
+relatively simple to implement (all examples in CoffeeScript):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deploy = </span><span class="nf">(app, env, callback) -&gt;</span>
+</span><span class='line'>  <span class="c1"># code to deploy the app, including spawning a Shell script, abstracted</span>
+</span><span class='line'>  <span class="c1"># in JavaScript by an object held in the variable &#39;script&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">script</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;close&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">callback</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Step 2: Create a function for each app</h3>
+
+<p>After quickly setting up a <code>robot.respond</code> function (which is how Hubot
+responds to a particular chat command), calling a <code>deployAll</code> function, I
+turned to the hard problem of setting up a series of functions to deploy all
+apps, one after the other.  I had a variable accessible as
+<code>robot.brain.PROJECTS</code>, which was a collection of all the app names, so I
+thought to iterate through all the apps, each time capturing the previous
+function as a callback of the new function.  This would effectively create
+a stack of functions that would be executed one by one, exactly as I described.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deployAll = </span><span class="nf">(env, msg)-&gt;</span>
+</span><span class='line'>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">app</span> <span class="k">in</span> <span class="nx">robot</span><span class="p">.</span><span class="nx">brain</span><span class="p">.</span><span class="nx">PROJECTS</span>
+</span><span class='line'>    <span class="c1"># Reassign `callback` to a new function...</span>
+</span><span class='line'>    <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="c1"># which passes the current `callback` as a callback to `deploy`</span>
+</span><span class='line'>      <span class="nx">deploy</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span> <span class="c1"># Start the chain!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It all seemed to make sense, until I actually tested it.  For some reason,
+it just tried to deploy the last app again and again.  What gives?</p>
+
+<h3>Step 2.5: Grokking Scope and Lazy Function Evaluation</h3>
+
+<p>It turns out that in the loop, when I redefined <code>callback</code>, it associated the
+<code>callback</code> variable with a new function, but within the function, it didn&rsquo;t
+yet do anything with the line <code>deploy(app, env, callback)</code>.  This is because
+functions exist within a particular closure; they will be evaluated as though
+they were run in the place where they were defined, with access to all local
+variables, but those variables are accessed when the function is actually run,
+NOT when the function is defined.</p>
+
+<p>Here&rsquo;s a simpler example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">i = </span><span class="mi">0</span>
+</span><span class='line'><span class="nv">logger = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">i</span><span class="o">++</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 2</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="nf">(i) =&gt;</span> <span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can see that <code>i</code> is defined in the outer scope, modified in the inner scope,
+and that change persists in the outer scope.</p>
+
+<p>Let&rsquo;s now look at an example closer to our situation:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">i = </span><span class="mi">0</span>
+</span><span class='line'><span class="nv">logger = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="nv">i = </span><span class="mi">7</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As we can see, the <code>i</code> inside the function is not fixed, but rather depends on
+what happens in its closure at any point before the function is actually
+called.</p>
+
+<p>Here&rsquo;s one last example, with a nested function like we had:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">callbackRunner = </span><span class="nf">(callback) -&gt;</span>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span>
+</span><span class='line'><span class="nv">onePrinter = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">callbackRunner</span><span class="p">(</span><span class="nx">onePrinter</span><span class="p">)</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">cbRoP = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">callbackRunner</span><span class="p">(</span><span class="nx">onePrinter</span><span class="p">)</span>
+</span><span class='line'><span class="nx">cbRoP</span><span class="p">()</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">onePrinter = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nx">cbRoP</span><span class="p">()</span> <span class="c1"># =&gt; &quot;one&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By redefining <code>onePrinter</code> in the outer scope, we changed what <code>cbRoP</code> does.
+This is because inside <code>cbRoP</code>, where <code>onePrinter</code> is referenced, that variable
+is evaluated only when <code>cbRoP</code> is actually called.  The first time, <code>onePrinter</code>
+prints out 1, but the second time, it prints out &ldquo;one&rdquo;.  Even within <code>cbRoP</code>,
+<code>onePrinter</code> has been redefined.</p>
+
+<h3>Step 3: Create a Custom Scope</h3>
+
+<p>The solution to our problem was to create a scope where the callback wouldn&rsquo;t
+change.  Here&rsquo;s the code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deployAll = </span><span class="nf">(env, msg)-&gt;</span>
+</span><span class='line'>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">deployFunctionFactory = </span><span class="nf">(app, callback) -&gt;</span>
+</span><span class='line'>    <span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">app</span> <span class="k">in</span> <span class="nx">robot</span><span class="p">.</span><span class="nx">brain</span><span class="p">.</span><span class="nx">PROJECTS</span>
+</span><span class='line'>    <span class="nv">callback = </span><span class="nx">deployFunctionFactory</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a bit of a mind-bender, so let&rsquo;s explain piece by piece.</p>
+
+<ul>
+<li><p><code>deployFunctionFactory</code> takes in a reference to an app and a function to
+use as a callback.  It returns a function which, when called, will deploy
+the app passed in, and use the callback that is passed in.  Since <code>callback</code>
+is one of <code>deployFunctionFactory</code>&rsquo;s arguments, it has been captured in the
+scope of the function, and nothing outside can change it in the future.</p></li>
+<li><p>The <code>for</code> loop reassigns <code>callback</code> each time to a new function which is
+produced on the spot by <code>deployFunctionFactory</code>.  The right side of the equals
+sign is evaluated immediately, so <code>callback</code> is passed into
+<code>deployFunctionFactory</code>, a new function is returned, and that new function is
+assigned to <code>callback</code>.</p></li>
+<li><p>The cycle repeats for each app, ultimately generating what is effectively
+a stack of functions to be called, one after the other.</p></li>
+<li><p>When the stack of functions is resolved on the last line, it starts by
+running the anonymous function returned by <code>deployFunctionFactory</code> for the last
+app in <code>robot.brain.PROJECTS</code>, since that&rsquo;s the last function that has been
+added to the virtual stack.  That function calls <code>deploy</code> with the second-to-last
+function (which deploys the second-to-last app) as a callback.  When the first
+app deployed is done deploying, this callback is run, deploying the next app
+in line.</p></li>
+</ul>
+
+
+<p>The logic is pretty complex, so here&rsquo;s a visual representation of what all this
+code is accomplishing.  We will consider a case of 3 apps to keep it simple.
+First, we build the function inside out:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="mi">1</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">2</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">3</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app2&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>          <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">4</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app3&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">deploy</span> <span class="s">&quot;app2&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>          <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>            <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, when we call <code>callback</code>, the functions will be run outside in.  First,
+app3 will be deployed.  When that&rsquo;s done, our <code>deploy</code> function knows to call
+the callback, i.e. the next function, deploying app2.  When app2 finishes being
+deployed, app1 will be deployed.  At the end, a message will be sent letting
+you know all the apps have been deployed.</p>
+
+<h3>Concluding Thoughts</h3>
+
+<p>Using closures and callbacks properly can be a mentally exhausting endeavor.
+However, when these factors are properly considered and utilized, you can
+accomplish some pretty powerful stuff.</p>
+
+<p>I personally had to try a few iterations before I came up with a workable
+solution in this case, but the results were quite satisfying, and it got the
+job done.  In the future, if we add apps to <code>robot.brain.PROJECTS</code>, the
+<code>deployAll</code> function won&rsquo;t have to be changed; it will just add more layers
+to the nested function we&rsquo;ve built.</p>
+
+<p>Using closures and callbacks, we&rsquo;ve managed to build a function that will run
+an arbitrary number of tasks synchronously.  Sweet!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
+    <updated>2014-07-17T13:04:57-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
+    <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+<!-- More -->
+
+
+<h3>The Case</h3>
+
+<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
+
+<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
+
+<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
+
+<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
+
+<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
+
+<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
+
+<h3>The Explanation</h3>
+
+<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
+
+<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">page</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">synchronize</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a.edit-link&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+</span><span class='line'>  <span class="n">textarea</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span> <span class="s2">&quot;textarea&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
+
+<p>When I added the block, the test passed.  Presto!</p>
+
+<h3>A Word of Caution</h3>
+
+<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
+
+<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
+    <updated>2014-05-29T18:09:56-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
+    <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
+
+<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
+
+<p>Now let&#8217;s examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
+
+<!-- more -->
+
+
+<p>In this case, I have an <code>Animal</code> class, which will be at the top of the hierarchy and have animal classes that descend from it.  Here are my requirements:</p>
+
+<p>1) Since most of my animals are quadrupeds, I decide it makes sense for the class&rsquo;s instances to default to 4 legs, and any subclass (let&rsquo;s say <code>Octopus</code>) with a difference number of legs should change the default.</p>
+
+<p>2) Both the <code>Animal</code> class and the individual animal-type classes should keep track of how many of each type of animal exists, so I can check <code>Animal.all</code> or <code>Octopus.all</code>.</p>
+
+<p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
+
+<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+
+
+<p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
+
+<p><a href="https://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg"><img src="http://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg?w=245" alt="8-legged llama" /></a></p>
+
+<p>Well, it turns out that Ruby class variables don&rsquo;t play very nicely with inheritance.  Essentially, they are shared by any class in an inheritance chain.  So when we defined <code>@@legs</code> in <code>Octopus</code>, it changed <code>@@legs</code> in <code>Animal</code> and, by extension, <code>@@legs</code> in <code>Llama</code>.  (Technically, if <code>Animal</code> doesn&rsquo;t define a class variable, <code>Llama</code> and <code>Octopus</code> won&rsquo;t share that variable.  But going down that path is just begging for trouble, because you never know when someone down the road will add <code>@@legs</code> to Animal and open up a huge can of worms.)  I have heard this described as &ldquo;leaky inheritance,&rdquo; though I have yet to see it in writing.</p>
+
+<p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
+
+<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+
+
+<p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
+
+<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+
+
+<p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
+
+<p>Alright, we&rsquo;ve taken care of legs, but let&rsquo;s consider another issue.  What about our tallying object?  Right now, <code>Animal</code> has an <code>@@animals</code> variable which contains all the animals in our zoo.  This presents 2 problems:</p>
+
+<p>1) What if a later programmer decides to call the container <code>@@animals</code> in the <code>Elephant</code> class?  Suddenly we&rsquo;ve entered a world of hurt.</p>
+
+<p>2) On a more fundamental level &ndash; does it make sense for <code>Octopus</code> to have access to <code>@@animals</code>, even theoretically?  It should be blissfully unaware of the <code>Lion</code>s and <code>Tiger</code>s and <code>Bear</code>s throughout the zoo, and just know about the 8-legged ocean critters.  How can we make this happen?</p>
+
+<p>We can solve problem 1 by simply replacing the array <code>@@animals</code> with a constant, <code>ANIMALS</code>.  Hence, subclasses that define their own array of animals won&rsquo;t generate a conflict.  However, despite seeing others advocate for it, I don&rsquo;t like that solution either, for 3 reasons:</p>
+
+<p>1) Now we have a different problem.  If the designer of the <code>Elephant</code> class neglects to define an <code>ANIMALS</code> constant but still adds to the <code>ANIMALS</code> array, the parent class&rsquo;s array will be affected.  This may be difficult to debug.</p>
+
+<p>2) It&rsquo;s true that Ruby doesn&rsquo;t complain about changing the contents of a constant array, because the object hasn&rsquo;t been fundamentally redefined.  That doesn&rsquo;t mean it&rsquo;s the right thing to do.  Others will disagree (and in fact Rails apparently does this all the time), but I maintain that constants should be constant and predictable.</p>
+
+<p>3) Constants are easily accessible from outside the class.  Now, I know that everything in Ruby, even private methods, is accessible, but there&rsquo;s a semantic point here.  Where in the Ruby core classes do you find constants?  My first thought is in the <code>Math</code> module, which contains the constants <code>PI</code> and <code>E</code>.  In other words, constants are meant to be values which are definitional to the class and/or should never change once defined.  <code>PI</code> and <code>E</code> are not going anywhere.  Similarly, it makes sense to say that <code>Llama::LEGS</code> is 4 and <code>Octopus::LEGS</code> is 8, since those are attributes that should apply in all but the most exceptional cases.  (My apologies to Larry the 3-legged llama.)</p>
+
+<p>The animals array, on the other hand, is not at all fundamental.  It&rsquo;s a variable that is changed frequently, and should be associated with the class, but not easily accessible from outside, and not shared with subclasses.</p>
+
+<p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
+
+<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+
+
+<p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
+
+<p>On the other hand, we&rsquo;ve essentially established the animal-tracking system in the parent class, and we can take advantage of it in children by giving each its own <code>@animals</code> array as a class instance variable.</p>
+
+<p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
+
+<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+
+
+<p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CoffeeScript 101]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
+    <updated>2014-05-01T19:40:43-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
+    <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
+
+<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
+
+<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
+
+<!-- more -->
+
+
+<p>Essentially, CoffeeScript is a language that compiles 1-to-1 to JavaScript, but is more clear and less error-prone. Forget the dreaded <code>var</code> keyword; it has no place in the wonderful world of CoffeeScript, because it&rsquo;s added automatically.  I like semicolons in English sentences; however, in the world of JavaScript, it&rsquo;s difficult to remember every semicolon.  Thankfully, Automatic Semicolon Insertion will usually take care of it, but it can lead to unexpected results.  With CoffeeScript, no more semicolons!  And those pesky braces (<code>{}</code>) appearing all over the place?  Gone!</p>
+
+<p>Now, some would say, &ldquo;Hey, what are you doing with my beautiful JavaScript?  It was so precise, so explicit!&rdquo;  I would tell them to go try Ruby and understand that <code>extraBoilerplate !== greaterPrecision</code> (I wrote that in JS so they would understand).  Or, as you would write it in CoffeeScript, <code>extraBoilerplate isnt greaterPrecision</code>.  (Yes, the &lsquo; was left out of isnt on purpose &ndash; that&rsquo;s how it&rsquo;s spelled in CoffeeScript.)</p>
+
+<p>Just to demonstrate how awesome CoffeeScript is, I&rsquo;m going to write the rest of this post in CoffeeScript to show that it&rsquo;s really much simpler.</p>
+
+<figure class='code'><figcaption><span>coffeescript_demo.js.coffee</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="k">class</span> <span class="nx">Reader</span>
+</span><span class='line'>  <span class="nv">inAttendance: </span><span class="kc">yes</span>
+</span><span class='line'>  <span class="nv">payAttention: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">alert</span> <span class="s">&#39;Wake up and pay attention!&#39;</span>
+</span><span class='line'><span class="nv">you = </span><span class="k">new</span> <span class="nx">Reader</span>
+</span><span class='line'><span class="nx">you</span><span class="p">.</span><span class="nx">payAttention</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nx">DemoOfCoolThingsAboutCoffeeScript</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">functions: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;As you can see, functions are defined without &#39;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&#39;&quot;function()&quot; or &quot;{}&quot;s. Just a simple &quot;-&gt;&quot; - but make sure&#39;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&#39; to keep track of your indentations!&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">classes: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;It has classes. No more awkward JS inheritance!&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">punctuation: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;Have you noticed that I&#39;ve been leaving out commas&quot;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&quot; and semicolons and braces? Indentation is way more natural...&quot;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&quot;\nAlso, see how parentheses are unnecessary on the &quot;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&quot;outermost function call?&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">splats: </span><span class="nf">(params...)-&gt;</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;I can splat arguments, in both function definitions &quot;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&quot;and function calls. In this case, I used </span><span class="si">#{</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="s"> params.&quot;</span> <span class="o">+</span>
+</span><span class='line'>    <span class="s">&quot; Oh, did we mention string interpolation?&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">conditionals: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nv">switchVar = </span><span class="kc">on</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nx">switchVar</span>
+</span><span class='line'>      <span class="nx">@showHowThisWorks</span><span class="p">(</span><span class="kc">yes</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;The switch is off!&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">showHowThisWorks: </span><span class="nf">(comingFromSwitch...)-&gt;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nx">comingFromSwitch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;This function was called from switch using &quot;@&quot;, &#39;</span> <span class="o">+</span>
+</span><span class='line'>      <span class="s">&#39;which is a handy substitute for &quot;this&quot;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">makingObjects: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nv">aboutMe =</span>
+</span><span class='line'>      <span class="nv">name: </span><span class="s">&quot;Ariel Caplan&quot;</span>
+</span><span class='line'>      <span class="nv">twitter: </span><span class="s">&quot;@amcaplan&quot;</span>
+</span><span class='line'>      <span class="nv">field: </span><span class="s">&quot;software development&quot;</span>
+</span><span class='line'>      <span class="nv">enjoysLongWalksOnTheBeach: </span><span class="kc">yes</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nx">aboutMe</span><span class="p">.</span><span class="nx">enjoysLongWalksOnTheBeach</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">aboutMe</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">, what is this, a personals ad?&quot;</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">aboutMe</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">, do you have no heart?&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">implicitReturns: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nv">returningFunction = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="s">&quot;Hey, I never explicitly returned anything! How did you get this string?&quot;</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">returningFunction</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="nv">runEverything: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">@</span><span class="p">[</span><span class="nx">propName</span><span class="p">]()</span> <span class="k">for</span> <span class="nx">propName</span> <span class="k">of</span> <span class="k">this</span> <span class="k">when</span> <span class="nx">propName</span> <span class="o">isnt</span> <span class="s">&#39;runEverything&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">d = </span><span class="k">new</span> <span class="nx">DemoOfCoolThingsAboutCoffeeScript</span>
+</span><span class='line'><span class="nx">d</span><span class="p">.</span><span class="nx">runEverything</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Still JS-y syntax (it&rsquo;s just impossible to escape), but isn&rsquo;t it at least a bit clearer?</p>
+
+<p>Hopefully this has been a pleasant little introduction to CoffeeScript.  You can run the code <a href="http://goo.gl/ixtsO7">on CoffeeScript&rsquo;s website here</a>.  (Click &ldquo;run&rdquo; on the top-right, and watch what happens in your console!)  And while you&rsquo;re there, read up on the language and all its features, try writing some of your own in the &ldquo;Try CoffeeScript&rdquo; modal, and maybe even take <a href="https://www.codeschool.com/courses/coffeescript">the CodeSchool course</a>.  You won&rsquo;t regret it!</p>
+
+<p>P.S. Bonus extra life!!! Check out some real-life jQuery/CoffeeScript action in the code for the Flatiron Showcase website.  I have some simple DOM manipulation stuff that I just converted to CoffeeScript yesterday.  <a href="https://github.com/amcaplan/flatiron_showcase/blob/d952882068f13231cd3272a71f992ffcf3e25076/app/assets/javascripts/images.js.coffee">Check it out on Github!</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Helper Methods to DRY Up Rails Forms]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/"/>
+    <updated>2014-04-02T00:59:32-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms</id>
+    <content type="html"><![CDATA[<p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
+
+<ol>
+<li><p> &lt;</p></li>
+<li><p> &gt;</p></li>
+</ol>
+
+
+<p>Yup, Rails isn&rsquo;t a big fan of HTML markup, unless it&rsquo;s generated directly from the HTML in a view, or by one of the built-in Rails helper methods.</p>
+
+<p>No, no, don&rsquo;t get angry at Rails!!!  It&rsquo;s for your own good, to make sure that you don&rsquo;t accidentally run some sort of evil, malicious script that a user input into a form or submitted in some other way.</p>
+
+<!-- more -->
+
+
+<p>Luckily, Rails has a method called <code>raw</code> which will convert a String into an ActiveSupport::SafeBuffer object (this is the equivalent of typing <code>"string-contents".html_safe</code>).  The object is marked such that Rails knows not to escape its contents.  (See <a href="http://makandracards.com/makandra/2579-everything-you-know-about-html_safe-is-wrong">Henning Koch&rsquo;s explanation</a> for more details.)</p>
+
+<p>So this makes sense so far.  And now we understand how Rails&rsquo;s built-in helpers don&rsquo;t have the HTML-escaping problem: they mark their contents as HTML-safe.</p>
+
+<p>Bottom line of Part 1: You can use <code>raw("string")</code> to allow unescaped HTML into your view.  But make sure there&rsquo;s nothing in the String that&rsquo;s input by the user.  If there&rsquo;s a piece that needs sanitizing but the rest needs to be raw to work, first <code>sanitize("user input")</code> and then <code>raw("&lt;HTML-element&gt;sanitized user input&lt;/HTML-element&gt;")</code>.  Another method that may occasionally come in handy is <code>escape_once("html stuff")</code>, which will recognize sanitized pieces and not sanitize them again, but will sanitize the rest.  Hence, <code>&amp;amp;</code> won&rsquo;t end up multiplied to <code>&amp;amp;amp;</code> (because, y&#8217;know, we&rsquo;ve all been there).</p>
+
+<p>OK, so now you know how to make sure the right strings, and only the right strings, are sanitized.  But when are custom helpers going to actually be useful in putting together a page?</p>
+
+<p>I recently refactored a project I&rsquo;ve been working on, to try DRYing up my code using custom helpers.  I found 3 major benefits:</p>
+
+<ol>
+<li><p> Write less code</p></li>
+<li><p> Avoid repeating class assignments</p></li>
+<li><p> Easier standardization of the look of the page</p></li>
+</ol>
+
+
+<p>The first is pretty straightforward. More code lumped into a single method call means less code overall. The second is a matter of making it easier for the developer to change the classes of lots of DOM elements just by modifying the helper. The third is the result for the user: a page which, by repeatedly calling on a single helper method, is more likely to have elements that properly resemble each other.</p>
+
+<p>Let&rsquo;s illustrate with a couple of examples. In the first, we have a form with a bunch of tabs. I wanted to consolidate the code for the tabs, because there&rsquo;s lots of repeating pieces. Here&rsquo;s what I did:</p>
+
+<script src="https://gist.github.com/amcaplan/6abca8b624e062938ead.js"></script>
+
+
+<p>became</p>
+
+<script src="https://gist.github.com/amcaplan/fe6e47b5d774d4833da2.js"></script>
+
+
+<p>using the helper method</p>
+
+<script src="https://gist.github.com/amcaplan/4c382886cc1e67904291.js"></script>
+
+
+<p>Now let&rsquo;s break it down. I used <code>content_tag</code>, which takes 3 arguments: tag type (<code>div</code> in this case), content (render etc.), and an options hash. It generates a string of HTML that fits the criteria and marks off the contents as HTML-safe. Hence, I don&rsquo;t have to <code>raw</code> it. I also didn&rsquo;t have to call <code>raw</code> on the second argument, since <code>render</code> also returns an ActiveSupport::SafeBuffer object.</p>
+
+<p>One could argue that the short form is less semantic than the long form. In truth, I&rsquo;m inclined to agree. I grew up on HTML, and it looks much cleaner to my eyes than using the helper. However, I have to admit that using the helper makes it less likely for elements to end up differing from each other in ways that could break the layout or cause a JavaScript bug. Ultimately, I&rsquo;m not sure there&rsquo;s one right answer. But it&rsquo;s good to be aware of multiple tools, and actively choose between them.</p>
+
+<p>Here&rsquo;s another example, from one of the partials of the above form, where the user chooses guests to invite. Here&rsquo;s the original code:</p>
+
+<script src="https://gist.github.com/amcaplan/698d2c5258d0b3980be9.js"></script>
+
+
+<p>The modified code:</p>
+
+<script src="https://gist.github.com/amcaplan/d34f0b701ffa566c15dc.js"></script>
+
+
+<p>And the helper method, also in MealsHelper:</p>
+
+<script src="https://gist.github.com/amcaplan/e92498fb5f59b584f9fe.js"></script>
+
+
+<p>What&rsquo;s happening here is a little complicated, so let&rsquo;s isolate one case:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;div class=&quot;medium-4 small-12 columns&quot;&gt;</span>
+</span><span class='line'><span class="x">  Name: </span><span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>turns into</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Name:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So we&rsquo;ve assumed each person_field will have a bunch of the same classes (for CSS purposes), and just isolate the unique things for each field.  The helper method fills in the classes.  This way, if I ever want to change the look of the person fields, I have one address to do it from!</p>
+
+<p>Also note that the method takes the block and passes it in as the final parameter to <code>content_tag</code>.  This is a built-in feature of <code>content_tag</code> &ndash; it will take a string or a block and stick whichever one between the tags it builds.  Hence, in the last form element (relationship), the method gets a block rather than a string, and it works just fine.</p>
+
+<p>One final useful note: look at line 17 of the updated version.  See <code>tag(:hr)</code>?  That&rsquo;s another helper offered by Rails, and it totally beats the alternative: <code>raw("&lt;hr&gt;")</code>.  It&rsquo;s nice to not have to raw things up.  Whether you love or hate view helpers, it&rsquo;s still important to recognize and know how to use the built-in helper methods, because they will come in handy in plain old views for avoiding the problems caused by Rails&#8217; automatic sanitization.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Exploring Security and Secret Tokens Through Facebook Login]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/"/>
+    <updated>2014-03-18T20:56:00-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login</id>
+    <content type="html"><![CDATA[<p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
+
+<p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
+
+<!-- more -->
+
+
+<p>First, I registered a new app with Facebook.  The process was pretty simple &ndash; took me about 3 minutes &ndash; and I had an app ID and secret key ready to go.  Then I followed the steps on <a href="https://coderwall.com/p/bsfitw">this fantastic blog post</a> to integrate Facebook login with my app using OmniAuth and the Facebook OmniAuth gem.  Et voilà, I can seamlessly bring in Facebook users!</p>
+
+<p>However, there was something that still needed to be taken care of to avoid security vulnerabilities popping up.  My config/initializers folder now included 2 files which would be dangerous to expose in public by posting to Github.  These files are:</p>
+
+<p>omniauth.rb - added for use with OmniAuth, it includes the App ID and Secret Key for Facebook)</p>
+
+<p>secret_token.rb &ndash; included in a standard Rails app, used to authenticate the session sent by the user</p>
+
+<p>I checked the initialize directory out of version control, since it&rsquo;s mostly standard files, and these were the non-standard files and needed to be secret, there was nothing that desperately needed to be pushed to Github.</p>
+
+<p>But this wasn&rsquo;t ideal either.  Let me explain.</p>
+
+<p>Interestingly, the default code for secret_token.rb includes the following comment: &#8221;Make sure your secret_key_base is kept private if you&rsquo;re sharing your code publicly.&ldquo;  So they tell you to hide it, but don&rsquo;t hide it by default.  Why is that?  According to <a href="https://groups.google.com/forum/#!topic/rubyonrails-core/N2EFnf6X_i4">this Google Groups discussion</a> (and it makes sense when you think about it), hiding the file would then break upload to Heroku or any other service that uses Git for deployment.  So the key is to keep it in .gitignore while you&rsquo;re developing, then add to Git on a deploy.  But then if you continue development, the secret token will be in the commit history, and that will be available on Github!  Major problem.</p>
+
+<p>Well, one solution is to just regenerate the secret key every time you deploy; there is a Rake task for that.  So you could regenerate the secret key, move the master branch ahead by one commit and deploy that, then keep working from the previous commit with the old secret key, so the current secret key doesn&rsquo;t get to Github.  But this is a pain, and an extra step to remember!</p>
+
+<p>New Zealander David Fone <a href="http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/#comment-902646816">suggests an alternative solution</a>: set the secret key manually in testing and development, and set it on the server in production!  How does this look in practice?  Here&rsquo;s your secret_token.rb (updated by me for Rails 4):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="ow">or</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+</span><span class='line'>  <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span><span class="err"> </span><span class="p">(</span><span class="s1">&#39;x&#39;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span><span class="err"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SECRET_TOKEN&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So whenever you&rsquo;re working on your own computer, the secret token is just a string of 30 &lsquo;x&#8217;es. That seems kinda stupid, but it definitely reminds you, the developer, that whatever secret key you would be using in testing/development just isn&rsquo;t secure. When you move your application to the production environment, you have to then use the host&rsquo;s tools to input or produce a secret token. In the case of Heroku, this is done with one command:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>heroku config:set <span class="nv">SECRET_TOKEN</span><span class="o">=</span>3eb6db5a9026c54...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(fill in a full-length secret token, you get the idea)</p>
+
+<p>So now the production code is secure and unexposed, and you can keep developing with your 30x token.</p>
+
+<p>Finally, one important question. Why is all this secret token stuff so important anyway?  By default, Rails stores sessions on the client&rsquo;s computer.  This means that the user can access the session&rsquo;s content, decipher it easily from Base 64 (since it&rsquo;s not encrypted in any way), and potentially modify it before the next request!  Rails avoids this pitfall by having every session end with a digest that is calculated using the session data and the secret token.  So if the user changes the session data, the digest no longer matches the session data, and Rails knows something is fishy.  It&rsquo;s highly unlikely that a user will be able to guess the secret token and create a new digest, so your session is ultimately safe, as long as your secret token hasn&rsquo;t been compromised.  But if someone else finds out the secret token, they can easily modify their sessions and create new digests (though the process to modify a session is still somewhat difficult, but ultimately it&rsquo;s doable).</p>
+
+<p>Either way, it&rsquo;s worth noting that the user is able to see the session information; Rails secret tokens just prevent the user from modifying the session information (e.g. changing the user id) and getting away with it.  So don&rsquo;t store information in the session that you don&rsquo;t want users to see!  In any situation where you might put sensitive information into a session &ndash; don&rsquo;t!  Keep it in a database with an easy way to access it based on the information contained in the session.</p>
+
+<p>So the ultimate take-aways are:</p>
+
+<p>1) Authenticating with services that use OmniAuth is very straightforward (though see <a href="http://webstersprodigy.net/2013/05/09/common-oauth-issue-you-can-use-to-take-over-accounts/">here</a> for a terrifying blog post about how an attacker can use CSRF to take over an account that has internal login plus Facebook login, or any other OmniAuth login)</p>
+
+<p>2) Don&rsquo;t commit your actual production secret token to Github or anywhere else; there are ways to avoid it without too much hassle.</p>
+
+<p>3) Don&rsquo;t store information in the session if having a user see it would constitute a security breach.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Struct: Ruby's Quickie Class]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/"/>
+    <updated>2014-03-04T19:32:48-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+
+<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+
+
+<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
+
+<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+
+<!-- more -->
+
+
+<p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
+
+<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+
+
+<p>Huh?  Where did all the code go?</p>
+
+<p>Struct.new is a really cool method that takes symbols as arguments and returns &ndash; no, it&rsquo;s not an object, it&rsquo;s a class!!!  (Well, technically all Ruby classes are objects too, but we&rsquo;re going to deliberately ignore that for now.)  It takes each symbol, makes it an instance variable, gives it setter and getter methods, and adds it to the initialize method in the order specified.  So it&rsquo;s doing a lot of work for you, just for adding the symbol there.  The optional block at the end (see how <code>BasketballTeam</code> is created with a block but <code>Player</code> isn&rsquo;t?) specifies any methods you want to add to the struct.  If you have a lot of these, Struct probably isn&rsquo;t for you.  But if it&rsquo;s just one or two simple methods, then Struct may still be a good idea.</p>
+
+<p>An examination of Struct&rsquo;s instance methods reveals its similarity to Array and Hash.  Here are my favorites:</p>
+
+<table >
+  
+    
+<td >Method
+</td>
+<td >Description and Correlatives
+</td>
+  
+  <tbody >
+    <tr >
+<td >
+  `#members`
+</td>
+<td >like `Hash#keys`, returns an array containing the instance variable names
+</td></tr>
+    <tr >
+<td >`#values`
+</td>
+<td >like `Hash#values`, returns an array containing the instance variable values
+</td></tr>
+    <tr >
+<td >`#length`, `#size`
+</td>
+<td >like `Hash#size` or `Array#size`, the number of instance variables
+</td></tr>
+    <tr >
+<td >`#each`
+</td>
+<td >similar to `Hash#each`, goes through each instance variable&#8217;s value
+</td></tr>
+    <tr >
+<td >`#[member]`  
+(e.g. `team[&#8220;player1&#8221;]` or `team[:player1]`)
+</td>
+<td >similar to `Hash#[]`, access by instance variable name
+</td></tr>
+    <tr >
+<td >`#[index]`  
+(e.g. `team[0])`
+</td>
+<td >similar to `Array#[]`, access by variable index in `#members`
+</td></tr>
+  </tbody>
+</table>
+
+
+<p>NOTE: You can also write <code>team[0] = Player.new("Magic Johnson", 15)</code></p>
+
+<p>Of course, you are also able to get <code>team.player1</code> because it attr_accessor&#8217;ed everything for you.</p>
+
+<p>Because Struct defines an <code>#each</code> method and includes Enumerable, you can use any of the Enumerable methods on its properties.  So you can <code>cycle</code>, check if <code>team.any? {|player| player.name == "Michael Jordan"}</code>, <code>inject</code>, or find the <code>team.max_by(&amp;:number)</code>, among others.  You can also modify all contained values pretty easily: <code>team.each{|player| player.number += 1}</code> (in case you needed to bump up everyone&rsquo;s number for some reason).  And if the IOC is insisting you sort your players by jersey number, just <code>team.sort_by(&amp;:number)</code> and you&rsquo;re all set!  Patrick Ewing, with jersey #6, is now <code>team[0]</code>, a.k.a. <code>team.player1</code>.</p>
+
+<p>One downside of Struct as opposed to Arrays is that you can&rsquo;t push/pop/unshift/shift, because the size is fixed from the beginning.</p>
+
+<p><strong>TL;DR</strong> A struct is somewhere between a regular object and a hash/array.  It&rsquo;s an awesome data structure when you</p>
+
+<ul>
+<li><p>know exactly what it needs to hold</p></li>
+<li><p>want to be able to access your data in a variety of useful ways</p></li>
+<li><p>need to define just a small number of custom methods (or none at all)</p></li>
+<li><p>and just don&rsquo;t want to write much boilerplate code while doing it!</p></li>
+</ul>
+
+
+<p>P.S. Check out <a href="http://blog.steveklabnik.com/posts/2012-09-01-random-ruby-tricks--struct-new">this post</a> from Steve Klabnik about how incorporating structs into your regular class definitions can make your debugging much easier due to Struct&rsquo;s handy <code>#to_s</code> method.</p>
+
+<p>P.P.S. Robert Klemme <a href="http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html">helpfully notes</a> that, unlike hashes, struct[&ldquo;something&rdquo;] will raise an error if there is no @something variable.  This can be helpful if you want to detect certain types of input problems.</p>
+
+<p>P.P.P.S. Here&rsquo;s the output from the code above (using structs or regular classes), if you&rsquo;re desperately interested:</p>
+
+<pre><code>Ladies and Gentlemen, here is the starting lineup!
+
+#15, Magic Johnson!
+
+#9, Michael Jordan!
+
+#7, Larry Bird!
+
+#14, Charles Barkley!
+
+#6, Patrick Ewing!
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons from a Failed Successful Gem]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem/"/>
+    <updated>2014-02-18T19:55:54-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem</id>
+    <content type="html"><![CDATA[<p>One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about trying something, making it work, and then improving on it.</p>
+
+<p>I recently published a Ruby Gem called CheckEverything (the source code is <a href="http://github.com/amcaplan/check_everything">here</a> and the gem can be installed by typing &lsquo;<code>gem install check_everything</code>&rsquo; into your Bash console).</p>
+
+<p>Over the course of creating this gem, I&rsquo;ve made some mistakes, and learned a few lessons:</p>
+
+<!-- more -->
+
+
+<h2>1. Abstract and Keep it DRY</h2>
+
+<p>This one I always knew, but it&rsquo;s more apparent from working on a larger project.  Make methods for any of three reasons:</p>
+
+<p>a) Don&rsquo;t Repeat Yourself: don&rsquo;t unnecessarily write the same code multiple times
+b) abstract to keep your code clean and understandable
+c) reference values through a method so one change to the method will be reflected in many places in your code</p>
+
+<p>I&rsquo;ve learned that as methods get longer, they become less understandable and require more comments.  Names of helper methods essentially comment themselves, and add clarity to the method calling the helper method.</p>
+
+<p>Having lots of methods is often helpful in debugging.  When you create a new method, or modify it, it is usually much easier to isolate where something went wrong.  You will often be able to figure out a few options for where the error is creeping in, and it&rsquo;s pretty easy to check the output of a particular method.  If they&rsquo;re well-named, you should be able to locate functionality quickly and perform a surgical strike on the problem.</p>
+
+<h2><strong>2. Test Early and Test Often</strong></h2>
+
+<p>Tests are really important.  I&rsquo;m going to say it again ten times to emphasize this.</p>
+
+<blockquote>Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.</blockquote>
+
+
+<p>Do we get the idea?  The point of testing is clear.  But to a novice programmer, the idea of testing frequently is far from obvious.  Here&rsquo;s why it makes sense to test ALL. THE. TIME.</p>
+
+<p>Let&rsquo;s say you write a program that&rsquo;s 200 lines long, and then you test it.  You get this feedback as soon as you run it:</p>
+
+<blockquote>rub:200: syntax error, unexpected $end, expecting keyword_end</blockquote>
+
+
+<p>This is a major problem.  Sure, Ruby thinks the &ldquo;end&rdquo; is missing way down, but it turns out you have a block on line 36 that wasn&rsquo;t properly &ldquo;end&#8221;ed.  And you probably first made the mistake because you didn&rsquo;t indent properly, so it will be impossible to find.</p>
+
+<p>Let&rsquo;s say, however, that you were smart and tested every time you added a new method or made any significant (not necessarily major) modification.  That&rsquo;s great!  You&rsquo;ll have a narrow window to search for the problem, and you won&rsquo;t have to spend hours looking for the missing keyword.  (This is even more true in languages like Java where semicolons are required at the end of every line; finding that missing semicolon can be a nightmare.)</p>
+
+<p>If your error is more complex, this is even more important.  In short:</p>
+
+<blockquote>Build up your program bit by bit, so you can understand what each part actually does - not just what you thought it would do.</blockquote>
+
+
+<h2>3. Ruby Gems Rock!</h2>
+
+<p>If there&rsquo;s a complex task you want to perform, especially if it&rsquo;s a common need, search a bit and try to find out if there&rsquo;s a Ruby Gem that will take care of it for you.  I used <a href="http://nokogiri.org">Nokogiri</a> to scrape the Ruby website for class names.  I probably could have done it on my own, but why bother, if Nokogiri does it for me?  A little practice with scraping, and it was fairly straightforward.</p>
+
+<p>Luckily, the Ruby community seems to have taken up the <a href="http://en.wikipedia.org/wiki/Principle_of_least_astonishment">Principle of Least Astonishment</a>, so a good gem will hopefully be fairly easy to learn to use.  Invest a few minutes in checking out pre-existing tools before you decide to build your own.</p>
+
+<h2>4. Ruby Gems Aren&rsquo;t a Panacea</h2>
+
+<p>Unfortunately, there isn&rsquo;t a gem for everything.  So if you don&rsquo;t see a gem that you think should exist, make one!  Which brings me to&hellip;</p>
+
+<h2>5. Split Up Functionality!</h2>
+
+<p>If there&rsquo;s something in your gem that could be used in ways aside from what you want to do, split up the gem.  If you&rsquo;re publishing a gem for general use, divide the functionality into classes which can be used independently of each other.  Nokogiri is, I think, a fantastic example of this.  It includes multiple classes for parsing different file types.</p>
+
+<p>On the other hand, if your gem is specialized, but some of the code could be used in a variety of ways, consider publishing 2 gems &ndash; one for the basic code, and one for your specialized program.  For example, let&rsquo;s say you are publishing a gem that finds pictures of cats online and turns them into pictures of exploding cats.  You can probably split up the gem into a PictureExploder gem which turns pictures into pictures of explosions, and a CatExploder gem which webcrawls for lolcats and invokes the PictureExploder class to turn them into explosions.  Then, if someone wants to make a TypewriterExploder gem to make exploding typewriter pictures, half the work is done already!</p>
+
+<p>This of course leads to&hellip;</p>
+
+<h2>6. Be Open-Minded</h2>
+
+<p>Don&rsquo;t be afraid to change directions.  This is certainly true on the small scale, in terms of the &ldquo;how&rdquo; &ndash; the way your gem accomplishes its goal, the objects and methods and iterations.  However, it&rsquo;s also true in terms of the &ldquo;what&rdquo; &ndash; what your gem can accomplish.</p>
+
+<p>Initially, I intended to write a gem that would store a user&rsquo;s favorite websites and launch them all with a single command.  (For example, <code>check_everything morning</code> would launch any website the user had included in the category &lsquo;morning&rsquo;.)  Then I realized I could add much more practical functionality with a few additions:</p>
+
+<p>a) scrape the Ruby website for class names
+b) store the class names in a file that could be cross-checked
+c) allow the user to input a Ruby class, recognize the class name, and spit out the website for that class</p>
+
+<p>I then let things develop further, and at this point it will accept input like <code>check_everything array#map</code> and launch the page for that class, targeting the id associated with the method.</p>
+
+<p>So at this point, it&rsquo;s a pretty awesome gem.  Now, here&rsquo;s the problem: I like having both of those features.  But a gem shouldn&rsquo;t really have that sort of dual functionality.  So the answer at this point is probably to split off into 2 gems, and possibly 3 if they share enough code.  Am I going to do it?  Maybe, maybe not.  After all, the Flatiron School is keeping me pretty busy.</p>
+
+<p>But this problem is associated with tip #5 &ndash; splitting up functionality.  The more each function is separated, the easier it is to tease everything apart.  Luckily, thanks to tip #1 (abstracting), much of that has already been done.  Most of the code is either applicable to both Ruby Doc links and user-specific links, or has a separate method for each group where the logic diverges.  So when that task comes, it will be easier to do &ndash; just make 2 copies, and remove logic specific to each set of links from one or the other.  The hard part is going into shared methods that include logic for each set of links, but if that work is mostly done, the task shouldn&rsquo;t be impossible.</p>
+
+<p>Finally&hellip;</p>
+
+<h2>7. Be Inspired!</h2>
+
+<p>I would really like to add another bit of functionality to my gem: you can choose to either launch the documentation, or just display it in your command line.  Unfortunately, there doesn&rsquo;t seem to be a gem that displays web pages.  So now I have a new dream: build a text-based browser written in Ruby!  At least sophisticated enough to display a page and then return to your previously running program.  (When?  I&rsquo;m not sure, but I will need a lot of help!)</p>
+
+<p>In short, while writing gems, you may discover a great idea for a gem that would be super-useful, and no one has done before.  Be bold!  Be that person who takes the next step!</p>
+]]></content>
+  </entry>
+  
+</feed>

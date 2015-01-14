@@ -1,0 +1,319 @@
+<!doctype html>
+  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+  <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+  
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Asynchronous JavaScript - Without Failing Capybara Tests - AMC: Aspiring Master of Code</title>
+    <meta name="author" content="Ariel Caplan">
+    
+    <meta name="description" content="Asynchronous JavaScript - Without Failing Capybara Tests Jul 17th, 2014 Experiences JavaScript Programming Ruby Recently at work, I spent over a day &hellip;">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="canonical" href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests">
+    
+    <link href="/favicon.png" rel="icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
+    <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  </head>
+
+
+  <body >
+
+    <header>
+      <div class="grid-wrapper">
+  <div class="grid">
+
+    <div class="grid__item two-fifths lap-four-sixths palm-one-whole">
+  <a href="/" class="site-title">AMC: Aspiring Master of Code</a>
+</div>
+
+<div class="grid__item three-fifths lap-two-sixths palm-one-whole">
+  <nav>
+    <input type="checkbox" id="toggle">
+<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
+<ul class="menu pull-right">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">Blog</a></li>
+</ul>
+  </nav>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+    <div class="grid-wrapper">
+      <div class="grid grid-center">
+        
+        <div class="grid__item two-thirds lap-one-whole palm-one-whole">
+        
+
+          <article class="post">
+  <header>
+  
+  <h1 class="title indent">Asynchronous JavaScript - Without Failing Capybara Tests</h1>
+  
+
+  
+  <div class="meta clearfix">
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time class="pull-left" datetime="2014-07-17T13:04:57-04:00" pubdate data-updated="true"><i class="icon-calendar"></i> Jul 17<span>th</span>, 2014</time>
+    
+
+  <div class="pull-left">
+    <i class="icon-tags"></i>
+    <ul class="tags unstyled">
+    
+      
+        <li><a class='category' href='/blog/categories/experiences/'>Experiences</a></li>
+      
+        <li><a class='category' href='/blog/categories/javascript/'>JavaScript</a></li>
+      
+        <li><a class='category' href='/blog/categories/programming/'>Programming</a></li>
+      
+        <li><a class='category' href='/blog/categories/ruby/'>Ruby</a></li>
+      
+    
+    </ul>
+  </div>
+
+    
+  </div>
+  
+</header>
+
+
+
+
+  <p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+<!-- More -->
+
+
+<h3>The Case</h3>
+
+<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
+
+<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
+
+<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
+
+<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
+
+<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
+
+<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
+
+<h3>The Explanation</h3>
+
+<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
+
+<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">page</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">synchronize</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a.edit-link&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+</span><span class='line'>  <span class="n">textarea</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">find</span> <span class="s2">&quot;textarea&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
+
+<p>When I added the block, the test passed.  Presto!</p>
+
+<h3>A Word of Caution</h3>
+
+<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
+
+<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
+
+
+</article>
+
+ 
+<section id="disqus">
+  <h1 class="indent title">Comments</h1>
+  <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+
+        </div>
+
+        
+        <aside id="sidebar" class="grid__item one-third lap-one-whole palm-one-whole">
+          <div class="grid">
+
+  
+<section class="social aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    Connect With Me
+  </h1>
+  <ul class="unstyled">
+    
+    
+    <li><a class="github" href="//github.com/amcaplan"><i class="icon-github"></i> Github</a></li>
+    
+    
+    
+    
+    
+    <li><a class="twitter" href="//twitter.com/amcaplan"><i class="icon-twitter"></i> Twitter</a></li>
+    
+  </ul>
+</section>
+
+
+  <section id="recent-posts" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">Recent Posts</h1>
+  <ul class="divided">
+    
+      <li class="post">
+        <a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section id="github-repos" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    GitHub Repos
+    
+    <small class="pull-right">
+      <a class="btn" href="//github.com/amcaplan" title="@amcaplan on GitHub" target="_blank">
+        <i class="icon-external-link"></i>
+      </a>
+    </small>
+    
+  </h1>
+  <ul id="gh_repos" class="divided">
+    <li class="loading">
+      <i class="icon-spinner icon-spin"></i>
+    </li>
+  </ul>
+</section>
+
+
+
+
+</div>
+
+        </aside>
+        
+      </div>
+    </div>
+
+    <footer>
+      <div class="grid-wrapper">
+  <div class="grid">
+    <div class="grid__item">
+      <p class="copyright">
+  All content by Ariel Caplan and licensed under <a href="//creativecommons.org/licenses/by-nc-sa/3.0/ie/">Creative Commons</a>.<br>
+  Code under <a href="//github.com/coogie/oscailte/blob/master/README.md">MIT License</a>.
+</p>
+    </div>
+  </div>
+</div>
+
+    </footer>
+
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script defer src="/javascripts/octopress.js"></script>
+
+
+
+
+<script>
+  var disqus_shortname = 'amcaplan';
+  
+    
+    // var disqus_developer = 1;
+    var disqus_identifier = 'http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/';
+    var disqus_url = 'http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/';
+    var disqus_script = 'embed.js';
+  
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    if (!window.jXHR){
+      var jxhr = document.createElement('script');
+      jxhr.type = 'text/javascript';
+      jxhr.src = '/javascripts/libs/jXHR.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+      user: 'amcaplan',
+      count: 0,
+      skip_forks: true,
+      target: '#gh_repos'
+    });
+  });
+</script>
+<script src="/javascripts/github.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

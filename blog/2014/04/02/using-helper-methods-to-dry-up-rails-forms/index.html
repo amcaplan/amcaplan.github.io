@@ -1,0 +1,344 @@
+<!doctype html>
+  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+  <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+  
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using Helper Methods to DRY Up Rails Forms - AMC: Aspiring Master of Code</title>
+    <meta name="author" content="Ariel Caplan">
+    
+    <meta name="description" content="Using Helper Methods to DRY Up Rails Forms Apr 2nd, 2014 Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built &hellip;">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="canonical" href="http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms">
+    
+    <link href="/favicon.png" rel="icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
+    <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  </head>
+
+
+  <body >
+
+    <header>
+      <div class="grid-wrapper">
+  <div class="grid">
+
+    <div class="grid__item two-fifths lap-four-sixths palm-one-whole">
+  <a href="/" class="site-title">AMC: Aspiring Master of Code</a>
+</div>
+
+<div class="grid__item three-fifths lap-two-sixths palm-one-whole">
+  <nav>
+    <input type="checkbox" id="toggle">
+<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
+<ul class="menu pull-right">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">Blog</a></li>
+</ul>
+  </nav>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+    <div class="grid-wrapper">
+      <div class="grid grid-center">
+        
+        <div class="grid__item two-thirds lap-one-whole palm-one-whole">
+        
+
+          <article class="post">
+  <header>
+  
+  <h1 class="title indent">Using Helper Methods to DRY Up Rails Forms</h1>
+  
+
+  
+  <div class="meta clearfix">
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time class="pull-left" datetime="2014-04-02T00:59:32-04:00" pubdate data-updated="true"><i class="icon-calendar"></i> Apr 2<span>nd</span>, 2014</time>
+    
+
+    
+  </div>
+  
+</header>
+
+
+
+
+  <p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
+
+<ol>
+<li><p> &lt;</p></li>
+<li><p> &gt;</p></li>
+</ol>
+
+
+<p>Yup, Rails isn&rsquo;t a big fan of HTML markup, unless it&rsquo;s generated directly from the HTML in a view, or by one of the built-in Rails helper methods.</p>
+
+<p>No, no, don&rsquo;t get angry at Rails!!!  It&rsquo;s for your own good, to make sure that you don&rsquo;t accidentally run some sort of evil, malicious script that a user input into a form or submitted in some other way.</p>
+
+<!-- more -->
+
+
+<p>Luckily, Rails has a method called <code>raw</code> which will convert a String into an ActiveSupport::SafeBuffer object (this is the equivalent of typing <code>"string-contents".html_safe</code>).  The object is marked such that Rails knows not to escape its contents.  (See <a href="http://makandracards.com/makandra/2579-everything-you-know-about-html_safe-is-wrong">Henning Koch&rsquo;s explanation</a> for more details.)</p>
+
+<p>So this makes sense so far.  And now we understand how Rails&rsquo;s built-in helpers don&rsquo;t have the HTML-escaping problem: they mark their contents as HTML-safe.</p>
+
+<p>Bottom line of Part 1: You can use <code>raw("string")</code> to allow unescaped HTML into your view.  But make sure there&rsquo;s nothing in the String that&rsquo;s input by the user.  If there&rsquo;s a piece that needs sanitizing but the rest needs to be raw to work, first <code>sanitize("user input")</code> and then <code>raw("&lt;HTML-element&gt;sanitized user input&lt;/HTML-element&gt;")</code>.  Another method that may occasionally come in handy is <code>escape_once("html stuff")</code>, which will recognize sanitized pieces and not sanitize them again, but will sanitize the rest.  Hence, <code>&amp;amp;</code> won&rsquo;t end up multiplied to <code>&amp;amp;amp;</code> (because, y&#8217;know, we&rsquo;ve all been there).</p>
+
+<p>OK, so now you know how to make sure the right strings, and only the right strings, are sanitized.  But when are custom helpers going to actually be useful in putting together a page?</p>
+
+<p>I recently refactored a project I&rsquo;ve been working on, to try DRYing up my code using custom helpers.  I found 3 major benefits:</p>
+
+<ol>
+<li><p> Write less code</p></li>
+<li><p> Avoid repeating class assignments</p></li>
+<li><p> Easier standardization of the look of the page</p></li>
+</ol>
+
+
+<p>The first is pretty straightforward. More code lumped into a single method call means less code overall. The second is a matter of making it easier for the developer to change the classes of lots of DOM elements just by modifying the helper. The third is the result for the user: a page which, by repeatedly calling on a single helper method, is more likely to have elements that properly resemble each other.</p>
+
+<p>Let&rsquo;s illustrate with a couple of examples. In the first, we have a form with a bunch of tabs. I wanted to consolidate the code for the tabs, because there&rsquo;s lots of repeating pieces. Here&rsquo;s what I did:</p>
+
+<script src="https://gist.github.com/amcaplan/6abca8b624e062938ead.js"></script>
+
+
+<p>became</p>
+
+<script src="https://gist.github.com/amcaplan/fe6e47b5d774d4833da2.js"></script>
+
+
+<p>using the helper method</p>
+
+<script src="https://gist.github.com/amcaplan/4c382886cc1e67904291.js"></script>
+
+
+<p>Now let&rsquo;s break it down. I used <code>content_tag</code>, which takes 3 arguments: tag type (<code>div</code> in this case), content (render etc.), and an options hash. It generates a string of HTML that fits the criteria and marks off the contents as HTML-safe. Hence, I don&rsquo;t have to <code>raw</code> it. I also didn&rsquo;t have to call <code>raw</code> on the second argument, since <code>render</code> also returns an ActiveSupport::SafeBuffer object.</p>
+
+<p>One could argue that the short form is less semantic than the long form. In truth, I&rsquo;m inclined to agree. I grew up on HTML, and it looks much cleaner to my eyes than using the helper. However, I have to admit that using the helper makes it less likely for elements to end up differing from each other in ways that could break the layout or cause a JavaScript bug. Ultimately, I&rsquo;m not sure there&rsquo;s one right answer. But it&rsquo;s good to be aware of multiple tools, and actively choose between them.</p>
+
+<p>Here&rsquo;s another example, from one of the partials of the above form, where the user chooses guests to invite. Here&rsquo;s the original code:</p>
+
+<script src="https://gist.github.com/amcaplan/698d2c5258d0b3980be9.js"></script>
+
+
+<p>The modified code:</p>
+
+<script src="https://gist.github.com/amcaplan/d34f0b701ffa566c15dc.js"></script>
+
+
+<p>And the helper method, also in MealsHelper:</p>
+
+<script src="https://gist.github.com/amcaplan/e92498fb5f59b584f9fe.js"></script>
+
+
+<p>What&rsquo;s happening here is a little complicated, so let&rsquo;s isolate one case:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;div class=&quot;medium-4 small-12 columns&quot;&gt;</span>
+</span><span class='line'><span class="x">  Name: </span><span class="cp">&lt;%=</span> <span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>turns into</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="cp">&lt;%=</span> <span class="n">person_field</span><span class="p">(</span><span class="s2">&quot;Name:</span><span class="si">#{</span><span class="n">ff</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;person[][name]&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So we&rsquo;ve assumed each person_field will have a bunch of the same classes (for CSS purposes), and just isolate the unique things for each field.  The helper method fills in the classes.  This way, if I ever want to change the look of the person fields, I have one address to do it from!</p>
+
+<p>Also note that the method takes the block and passes it in as the final parameter to <code>content_tag</code>.  This is a built-in feature of <code>content_tag</code> &ndash; it will take a string or a block and stick whichever one between the tags it builds.  Hence, in the last form element (relationship), the method gets a block rather than a string, and it works just fine.</p>
+
+<p>One final useful note: look at line 17 of the updated version.  See <code>tag(:hr)</code>?  That&rsquo;s another helper offered by Rails, and it totally beats the alternative: <code>raw("&lt;hr&gt;")</code>.  It&rsquo;s nice to not have to raw things up.  Whether you love or hate view helpers, it&rsquo;s still important to recognize and know how to use the built-in helper methods, because they will come in handy in plain old views for avoiding the problems caused by Rails&#8217; automatic sanitization.</p>
+
+
+</article>
+
+ 
+<section id="disqus">
+  <h1 class="indent title">Comments</h1>
+  <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+
+        </div>
+
+        
+        <aside id="sidebar" class="grid__item one-third lap-one-whole palm-one-whole">
+          <div class="grid">
+
+  
+<section class="social aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    Connect With Me
+  </h1>
+  <ul class="unstyled">
+    
+    
+    <li><a class="github" href="//github.com/amcaplan"><i class="icon-github"></i> Github</a></li>
+    
+    
+    
+    
+    
+    <li><a class="twitter" href="//twitter.com/amcaplan"><i class="icon-twitter"></i> Twitter</a></li>
+    
+  </ul>
+</section>
+
+
+  <section id="recent-posts" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">Recent Posts</h1>
+  <ul class="divided">
+    
+      <li class="post">
+        <a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section id="github-repos" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    GitHub Repos
+    
+    <small class="pull-right">
+      <a class="btn" href="//github.com/amcaplan" title="@amcaplan on GitHub" target="_blank">
+        <i class="icon-external-link"></i>
+      </a>
+    </small>
+    
+  </h1>
+  <ul id="gh_repos" class="divided">
+    <li class="loading">
+      <i class="icon-spinner icon-spin"></i>
+    </li>
+  </ul>
+</section>
+
+
+
+
+</div>
+
+        </aside>
+        
+      </div>
+    </div>
+
+    <footer>
+      <div class="grid-wrapper">
+  <div class="grid">
+    <div class="grid__item">
+      <p class="copyright">
+  All content by Ariel Caplan and licensed under <a href="//creativecommons.org/licenses/by-nc-sa/3.0/ie/">Creative Commons</a>.<br>
+  Code under <a href="//github.com/coogie/oscailte/blob/master/README.md">MIT License</a>.
+</p>
+    </div>
+  </div>
+</div>
+
+    </footer>
+
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script defer src="/javascripts/octopress.js"></script>
+
+
+
+
+<script>
+  var disqus_shortname = 'amcaplan';
+  
+    
+    // var disqus_developer = 1;
+    var disqus_identifier = 'http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/';
+    var disqus_url = 'http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/';
+    var disqus_script = 'embed.js';
+  
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    if (!window.jXHR){
+      var jxhr = document.createElement('script');
+      jxhr.type = 'text/javascript';
+      jxhr.src = '/javascripts/libs/jXHR.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+      user: 'amcaplan',
+      count: 0,
+      skip_forks: true,
+      target: '#gh_repos'
+    });
+  });
+</script>
+<script src="/javascripts/github.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

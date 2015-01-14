@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Experiences | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/blog/categories/experiences/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2015-01-13T19:44:38-05:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
+    <updated>2014-07-17T13:04:57-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
+    <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+<!-- More -->
+
+
+<h3>The Case</h3>
+
+<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
+
+<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
+
+<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
+
+<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
+
+<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
+
+<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
+
+<h3>The Explanation</h3>
+
+<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
+
+<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:
+<code>ruby
+page.document.synchronize do
+  element.find("a.edit-link").click
+  textarea = element.find "textarea"
+end
+</code>
+The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
+
+<p>When I added the block, the test passed.  Presto!</p>
+
+<h3>A Word of Caution</h3>
+
+<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
+
+<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Exploring Security and Secret Tokens Through Facebook Login]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/"/>
+    <updated>2014-03-18T20:56:00-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login</id>
+    <content type="html"><![CDATA[<p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
+
+<p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
+
+<!-- more -->
+
+
+<p>First, I registered a new app with Facebook.  The process was pretty simple &ndash; took me about 3 minutes &ndash; and I had an app ID and secret key ready to go.  Then I followed the steps on <a href="https://coderwall.com/p/bsfitw">this fantastic blog post</a> to integrate Facebook login with my app using OmniAuth and the Facebook OmniAuth gem.  Et voilà, I can seamlessly bring in Facebook users!</p>
+
+<p>However, there was something that still needed to be taken care of to avoid security vulnerabilities popping up.  My config/initializers folder now included 2 files which would be dangerous to expose in public by posting to Github.  These files are:</p>
+
+<p>omniauth.rb - added for use with OmniAuth, it includes the App ID and Secret Key for Facebook)</p>
+
+<p>secret_token.rb &ndash; included in a standard Rails app, used to authenticate the session sent by the user</p>
+
+<p>I checked the initialize directory out of version control, since it&rsquo;s mostly standard files, and these were the non-standard files and needed to be secret, there was nothing that desperately needed to be pushed to Github.</p>
+
+<p>But this wasn&rsquo;t ideal either.  Let me explain.</p>
+
+<p>Interestingly, the default code for secret_token.rb includes the following comment: "Make sure your secret_key_base is kept private if you&rsquo;re sharing your code publicly.&ldquo;  So they tell you to hide it, but don&rsquo;t hide it by default.  Why is that?  According to <a href="https://groups.google.com/forum/#!topic/rubyonrails-core/N2EFnf6X_i4">this Google Groups discussion</a> (and it makes sense when you think about it), hiding the file would then break upload to Heroku or any other service that uses Git for deployment.  So the key is to keep it in .gitignore while you&rsquo;re developing, then add to Git on a deploy.  But then if you continue development, the secret token will be in the commit history, and that will be available on Github!  Major problem.</p>
+
+<p>Well, one solution is to just regenerate the secret key every time you deploy; there is a Rake task for that.  So you could regenerate the secret key, move the master branch ahead by one commit and deploy that, then keep working from the previous commit with the old secret key, so the current secret key doesn&rsquo;t get to Github.  But this is a pain, and an extra step to remember!</p>
+
+<p>New Zealander David Fone <a href="http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/#comment-902646816">suggests an alternative solution</a>: set the secret key manually in testing and development, and set it on the server in production!  How does this look in practice?  Here&rsquo;s your secret_token.rb (updated by me for Rails 4):</p>
+
+<p><code>ruby
+if Rails.env.development? or Rails.env.test?
+  MyApp::Application.config.secret_key_base = ('x' * 30)
+else
+  MyApp::Application.config.secret_key_base = ENV['SECRET_TOKEN']
+end
+</code></p>
+
+<p>So whenever you&rsquo;re working on your own computer, the secret token is just a string of 30 &lsquo;x'es. That seems kinda stupid, but it definitely reminds you, the developer, that whatever secret key you would be using in testing/development just isn&rsquo;t secure. When you move your application to the production environment, you have to then use the host&rsquo;s tools to input or produce a secret token. In the case of Heroku, this is done with one command:</p>
+
+<p><code>bash
+$ heroku config:set SECRET_TOKEN=3eb6db5a9026c54...
+</code>
+(fill in a full-length secret token, you get the idea)</p>
+
+<p>So now the production code is secure and unexposed, and you can keep developing with your 30x token.</p>
+
+<p>Finally, one important question. Why is all this secret token stuff so important anyway?  By default, Rails stores sessions on the client&rsquo;s computer.  This means that the user can access the session&rsquo;s content, decipher it easily from Base 64 (since it&rsquo;s not encrypted in any way), and potentially modify it before the next request!  Rails avoids this pitfall by having every session end with a digest that is calculated using the session data and the secret token.  So if the user changes the session data, the digest no longer matches the session data, and Rails knows something is fishy.  It&rsquo;s highly unlikely that a user will be able to guess the secret token and create a new digest, so your session is ultimately safe, as long as your secret token hasn&rsquo;t been compromised.  But if someone else finds out the secret token, they can easily modify their sessions and create new digests (though the process to modify a session is still somewhat difficult, but ultimately it&rsquo;s doable).</p>
+
+<p>Either way, it&rsquo;s worth noting that the user is able to see the session information; Rails secret tokens just prevent the user from modifying the session information (e.g. changing the user id) and getting away with it.  So don&rsquo;t store information in the session that you don&rsquo;t want users to see!  In any situation where you might put sensitive information into a session &ndash; don&rsquo;t!  Keep it in a database with an easy way to access it based on the information contained in the session.</p>
+
+<p>So the ultimate take-aways are:</p>
+
+<p>1) Authenticating with services that use OmniAuth is very straightforward (though see <a href="http://webstersprodigy.net/2013/05/09/common-oauth-issue-you-can-use-to-take-over-accounts/">here</a> for a terrifying blog post about how an attacker can use CSRF to take over an account that has internal login plus Facebook login, or any other OmniAuth login)</p>
+
+<p>2) Don&rsquo;t commit your actual production secret token to Github or anywhere else; there are ways to avoid it without too much hassle.</p>
+
+<p>3) Don&rsquo;t store information in the session if having a user see it would constitute a security breach.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons from a Failed Successful Gem]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem/"/>
+    <updated>2014-02-18T19:55:54-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem</id>
+    <content type="html"><![CDATA[<p>One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about trying something, making it work, and then improving on it.</p>
+
+<p>I recently published a Ruby Gem called CheckEverything (the source code is <a href="http://github.com/amcaplan/check_everything">here</a> and the gem can be installed by typing &lsquo;<code>gem install check_everything</code>&rsquo; into your Bash console).</p>
+
+<p>Over the course of creating this gem, I&rsquo;ve made some mistakes, and learned a few lessons:</p>
+
+<!-- more -->
+
+
+<h2>1. Abstract and Keep it DRY</h2>
+
+<p>This one I always knew, but it&rsquo;s more apparent from working on a larger project.  Make methods for any of three reasons:</p>
+
+<p>a) Don&rsquo;t Repeat Yourself: don&rsquo;t unnecessarily write the same code multiple times
+b) abstract to keep your code clean and understandable
+c) reference values through a method so one change to the method will be reflected in many places in your code</p>
+
+<p>I&rsquo;ve learned that as methods get longer, they become less understandable and require more comments.  Names of helper methods essentially comment themselves, and add clarity to the method calling the helper method.</p>
+
+<p>Having lots of methods is often helpful in debugging.  When you create a new method, or modify it, it is usually much easier to isolate where something went wrong.  You will often be able to figure out a few options for where the error is creeping in, and it&rsquo;s pretty easy to check the output of a particular method.  If they&rsquo;re well-named, you should be able to locate functionality quickly and perform a surgical strike on the problem.</p>
+
+<h2><strong>2. Test Early and Test Often</strong></h2>
+
+<p>Tests are really important.  I&rsquo;m going to say it again ten times to emphasize this.</p>
+
+<blockquote>Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.  Tests are really important.</blockquote>
+
+
+<p>Do we get the idea?  The point of testing is clear.  But to a novice programmer, the idea of testing frequently is far from obvious.  Here&rsquo;s why it makes sense to test ALL. THE. TIME.</p>
+
+<p>Let&rsquo;s say you write a program that&rsquo;s 200 lines long, and then you test it.  You get this feedback as soon as you run it:</p>
+
+<blockquote>rub:200: syntax error, unexpected $end, expecting keyword_end</blockquote>
+
+
+<p>This is a major problem.  Sure, Ruby thinks the &ldquo;end&rdquo; is missing way down, but it turns out you have a block on line 36 that wasn&rsquo;t properly &ldquo;end"ed.  And you probably first made the mistake because you didn&rsquo;t indent properly, so it will be impossible to find.</p>
+
+<p>Let&rsquo;s say, however, that you were smart and tested every time you added a new method or made any significant (not necessarily major) modification.  That&rsquo;s great!  You&rsquo;ll have a narrow window to search for the problem, and you won&rsquo;t have to spend hours looking for the missing keyword.  (This is even more true in languages like Java where semicolons are required at the end of every line; finding that missing semicolon can be a nightmare.)</p>
+
+<p>If your error is more complex, this is even more important.  In short:</p>
+
+<blockquote>Build up your program bit by bit, so you can understand what each part actually does - not just what you thought it would do.</blockquote>
+
+
+<h2>3. Ruby Gems Rock!</h2>
+
+<p>If there&rsquo;s a complex task you want to perform, especially if it&rsquo;s a common need, search a bit and try to find out if there&rsquo;s a Ruby Gem that will take care of it for you.  I used <a href="http://nokogiri.org">Nokogiri</a> to scrape the Ruby website for class names.  I probably could have done it on my own, but why bother, if Nokogiri does it for me?  A little practice with scraping, and it was fairly straightforward.</p>
+
+<p>Luckily, the Ruby community seems to have taken up the <a href="http://en.wikipedia.org/wiki/Principle_of_least_astonishment">Principle of Least Astonishment</a>, so a good gem will hopefully be fairly easy to learn to use.  Invest a few minutes in checking out pre-existing tools before you decide to build your own.</p>
+
+<h2>4. Ruby Gems Aren&rsquo;t a Panacea</h2>
+
+<p>Unfortunately, there isn&rsquo;t a gem for everything.  So if you don&rsquo;t see a gem that you think should exist, make one!  Which brings me to&hellip;</p>
+
+<h2>5. Split Up Functionality!</h2>
+
+<p>If there&rsquo;s something in your gem that could be used in ways aside from what you want to do, split up the gem.  If you&rsquo;re publishing a gem for general use, divide the functionality into classes which can be used independently of each other.  Nokogiri is, I think, a fantastic example of this.  It includes multiple classes for parsing different file types.</p>
+
+<p>On the other hand, if your gem is specialized, but some of the code could be used in a variety of ways, consider publishing 2 gems &ndash; one for the basic code, and one for your specialized program.  For example, let&rsquo;s say you are publishing a gem that finds pictures of cats online and turns them into pictures of exploding cats.  You can probably split up the gem into a PictureExploder gem which turns pictures into pictures of explosions, and a CatExploder gem which webcrawls for lolcats and invokes the PictureExploder class to turn them into explosions.  Then, if someone wants to make a TypewriterExploder gem to make exploding typewriter pictures, half the work is done already!</p>
+
+<p>This of course leads to&hellip;</p>
+
+<h2>6. Be Open-Minded</h2>
+
+<p>Don&rsquo;t be afraid to change directions.  This is certainly true on the small scale, in terms of the &ldquo;how&rdquo; &ndash; the way your gem accomplishes its goal, the objects and methods and iterations.  However, it&rsquo;s also true in terms of the &ldquo;what&rdquo; &ndash; what your gem can accomplish.</p>
+
+<p>Initially, I intended to write a gem that would store a user&rsquo;s favorite websites and launch them all with a single command.  (For example, <code>check_everything morning</code> would launch any website the user had included in the category &lsquo;morning&rsquo;.)  Then I realized I could add much more practical functionality with a few additions:</p>
+
+<p>a) scrape the Ruby website for class names
+b) store the class names in a file that could be cross-checked
+c) allow the user to input a Ruby class, recognize the class name, and spit out the website for that class</p>
+
+<p>I then let things develop further, and at this point it will accept input like <code>check_everything array#map</code> and launch the page for that class, targeting the id associated with the method.</p>
+
+<p>So at this point, it&rsquo;s a pretty awesome gem.  Now, here&rsquo;s the problem: I like having both of those features.  But a gem shouldn&rsquo;t really have that sort of dual functionality.  So the answer at this point is probably to split off into 2 gems, and possibly 3 if they share enough code.  Am I going to do it?  Maybe, maybe not.  After all, the Flatiron School is keeping me pretty busy.</p>
+
+<p>But this problem is associated with tip #5 &ndash; splitting up functionality.  The more each function is separated, the easier it is to tease everything apart.  Luckily, thanks to tip #1 (abstracting), much of that has already been done.  Most of the code is either applicable to both Ruby Doc links and user-specific links, or has a separate method for each group where the logic diverges.  So when that task comes, it will be easier to do &ndash; just make 2 copies, and remove logic specific to each set of links from one or the other.  The hard part is going into shared methods that include logic for each set of links, but if that work is mostly done, the task shouldn&rsquo;t be impossible.</p>
+
+<p>Finally&hellip;</p>
+
+<h2>7. Be Inspired!</h2>
+
+<p>I would really like to add another bit of functionality to my gem: you can choose to either launch the documentation, or just display it in your command line.  Unfortunately, there doesn&rsquo;t seem to be a gem that displays web pages.  So now I have a new dream: build a text-based browser written in Ruby!  At least sophisticated enough to display a page and then return to your previously running program.  (When?  I&rsquo;m not sure, but I will need a lot of help!)</p>
+
+<p>In short, while writing gems, you may discover a great idea for a gem that would be super-useful, and no one has done before.  Be bold!  Be that person who takes the next step!</p>
+]]></content>
+  </entry>
+  
+</feed>

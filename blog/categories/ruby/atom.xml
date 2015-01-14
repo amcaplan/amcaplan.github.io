@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2015-01-13T19:44:38-05:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
+    <updated>2014-07-17T13:04:57-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
+    <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+<!-- More -->
+
+
+<h3>The Case</h3>
+
+<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
+
+<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
+
+<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
+
+<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
+
+<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
+
+<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
+
+<h3>The Explanation</h3>
+
+<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
+
+<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:
+<code>ruby
+page.document.synchronize do
+  element.find("a.edit-link").click
+  textarea = element.find "textarea"
+end
+</code>
+The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
+
+<p>When I added the block, the test passed.  Presto!</p>
+
+<h3>A Word of Caution</h3>
+
+<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
+
+<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
+    <updated>2014-05-29T18:09:56-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
+    <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
+
+<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
+
+<p>Now let's examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
+
+<!-- more -->
+
+
+<p>In this case, I have an <code>Animal</code> class, which will be at the top of the hierarchy and have animal classes that descend from it.  Here are my requirements:</p>
+
+<p>1) Since most of my animals are quadrupeds, I decide it makes sense for the class&rsquo;s instances to default to 4 legs, and any subclass (let&rsquo;s say <code>Octopus</code>) with a difference number of legs should change the default.</p>
+
+<p>2) Both the <code>Animal</code> class and the individual animal-type classes should keep track of how many of each type of animal exists, so I can check <code>Animal.all</code> or <code>Octopus.all</code>.</p>
+
+<p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
+
+<script src="https://gist.github.com/amcaplan/47ed2d92e8f95a82e99b.js"></script>
+
+
+<p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
+
+<p><a href="https://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg"><img src="http://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg?w=245" alt="8-legged llama" /></a></p>
+
+<p>Well, it turns out that Ruby class variables don&rsquo;t play very nicely with inheritance.  Essentially, they are shared by any class in an inheritance chain.  So when we defined <code>@@legs</code> in <code>Octopus</code>, it changed <code>@@legs</code> in <code>Animal</code> and, by extension, <code>@@legs</code> in <code>Llama</code>.  (Technically, if <code>Animal</code> doesn&rsquo;t define a class variable, <code>Llama</code> and <code>Octopus</code> won&rsquo;t share that variable.  But going down that path is just begging for trouble, because you never know when someone down the road will add <code>@@legs</code> to Animal and open up a huge can of worms.)  I have heard this described as &ldquo;leaky inheritance,&rdquo; though I have yet to see it in writing.</p>
+
+<p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
+
+<script src="https://gist.github.com/amcaplan/894910bc4036581aa10a.js"></script>
+
+
+<p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
+
+<script src="https://gist.github.com/amcaplan/4eb569ccee73fd3bb5ba.js"></script>
+
+
+<p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
+
+<p>Alright, we&rsquo;ve taken care of legs, but let&rsquo;s consider another issue.  What about our tallying object?  Right now, <code>Animal</code> has an <code>@@animals</code> variable which contains all the animals in our zoo.  This presents 2 problems:</p>
+
+<p>1) What if a later programmer decides to call the container <code>@@animals</code> in the <code>Elephant</code> class?  Suddenly we&rsquo;ve entered a world of hurt.</p>
+
+<p>2) On a more fundamental level &ndash; does it make sense for <code>Octopus</code> to have access to <code>@@animals</code>, even theoretically?  It should be blissfully unaware of the <code>Lion</code>s and <code>Tiger</code>s and <code>Bear</code>s throughout the zoo, and just know about the 8-legged ocean critters.  How can we make this happen?</p>
+
+<p>We can solve problem 1 by simply replacing the array <code>@@animals</code> with a constant, <code>ANIMALS</code>.  Hence, subclasses that define their own array of animals won&rsquo;t generate a conflict.  However, despite seeing others advocate for it, I don&rsquo;t like that solution either, for 3 reasons:</p>
+
+<p>1) Now we have a different problem.  If the designer of the <code>Elephant</code> class neglects to define an <code>ANIMALS</code> constant but still adds to the <code>ANIMALS</code> array, the parent class&rsquo;s array will be affected.  This may be difficult to debug.</p>
+
+<p>2) It&rsquo;s true that Ruby doesn&rsquo;t complain about changing the contents of a constant array, because the object hasn&rsquo;t been fundamentally redefined.  That doesn&rsquo;t mean it&rsquo;s the right thing to do.  Others will disagree (and in fact Rails apparently does this all the time), but I maintain that constants should be constant and predictable.</p>
+
+<p>3) Constants are easily accessible from outside the class.  Now, I know that everything in Ruby, even private methods, is accessible, but there&rsquo;s a semantic point here.  Where in the Ruby core classes do you find constants?  My first thought is in the <code>Math</code> module, which contains the constants <code>PI</code> and <code>E</code>.  In other words, constants are meant to be values which are definitional to the class and/or should never change once defined.  <code>PI</code> and <code>E</code> are not going anywhere.  Similarly, it makes sense to say that <code>Llama::LEGS</code> is 4 and <code>Octopus::LEGS</code> is 8, since those are attributes that should apply in all but the most exceptional cases.  (My apologies to Larry the 3-legged llama.)</p>
+
+<p>The animals array, on the other hand, is not at all fundamental.  It&rsquo;s a variable that is changed frequently, and should be associated with the class, but not easily accessible from outside, and not shared with subclasses.</p>
+
+<p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
+
+<script src="https://gist.github.com/amcaplan/a83d917476be44daaeff.js"></script>
+
+
+<p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
+
+<p>On the other hand, we&rsquo;ve essentially established the animal-tracking system in the parent class, and we can take advantage of it in children by giving each its own <code>@animals</code> array as a class instance variable.</p>
+
+<p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
+
+<script src="https://gist.github.com/amcaplan/992b11955e20a05c26ab.js"></script>
+
+
+<p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Struct: Ruby's Quickie Class]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/"/>
+    <updated>2014-03-04T19:32:48-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+
+<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+
+
+<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
+
+<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+
+<!-- more -->
+
+
+<p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
+
+<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+
+
+<p>Huh?  Where did all the code go?</p>
+
+<p>Struct.new is a really cool method that takes symbols as arguments and returns &ndash; no, it&rsquo;s not an object, it&rsquo;s a class!!!  (Well, technically all Ruby classes are objects too, but we&rsquo;re going to deliberately ignore that for now.)  It takes each symbol, makes it an instance variable, gives it setter and getter methods, and adds it to the initialize method in the order specified.  So it&rsquo;s doing a lot of work for you, just for adding the symbol there.  The optional block at the end (see how <code>BasketballTeam</code> is created with a block but <code>Player</code> isn&rsquo;t?) specifies any methods you want to add to the struct.  If you have a lot of these, Struct probably isn&rsquo;t for you.  But if it&rsquo;s just one or two simple methods, then Struct may still be a good idea.</p>
+
+<p>An examination of Struct&rsquo;s instance methods reveals its similarity to Array and Hash.  Here are my favorites:</p>
+
+<table >
+  
+    
+<td >Method
+</td>
+<td >Description and Correlatives
+</td>
+  
+  <tbody >
+    <tr >
+<td >
+  `#members`
+</td>
+<td >like `Hash#keys`, returns an array containing the instance variable names
+</td></tr>
+    <tr >
+<td >`#values`
+</td>
+<td >like `Hash#values`, returns an array containing the instance variable values
+</td></tr>
+    <tr >
+<td >`#length`, `#size`
+</td>
+<td >like `Hash#size` or `Array#size`, the number of instance variables
+</td></tr>
+    <tr >
+<td >`#each`
+</td>
+<td >similar to `Hash#each`, goes through each instance variable's value
+</td></tr>
+    <tr >
+<td >`#[member]`  
+(e.g. `team["player1"]` or `team[:player1]`)
+</td>
+<td >similar to `Hash#[]`, access by instance variable name
+</td></tr>
+    <tr >
+<td >`#[index]`  
+(e.g. `team[0])`
+</td>
+<td >similar to `Array#[]`, access by variable index in `#members`
+</td></tr>
+  </tbody>
+</table>
+
+
+<p>NOTE: You can also write <code>team[0] = Player.new("Magic Johnson", 15)</code></p>
+
+<p>Of course, you are also able to get <code>team.player1</code> because it attr_accessor'ed everything for you.</p>
+
+<p>Because Struct defines an <code>#each</code> method and includes Enumerable, you can use any of the Enumerable methods on its properties.  So you can <code>cycle</code>, check if <code>team.any? {|player| player.name == "Michael Jordan"}</code>, <code>inject</code>, or find the <code>team.max_by(&amp;:number)</code>, among others.  You can also modify all contained values pretty easily: <code>team.each{|player| player.number += 1}</code> (in case you needed to bump up everyone&rsquo;s number for some reason).  And if the IOC is insisting you sort your players by jersey number, just <code>team.sort_by(&amp;:number)</code> and you&rsquo;re all set!  Patrick Ewing, with jersey #6, is now <code>team[0]</code>, a.k.a. <code>team.player1</code>.</p>
+
+<p>One downside of Struct as opposed to Arrays is that you can&rsquo;t push/pop/unshift/shift, because the size is fixed from the beginning.</p>
+
+<p><strong>TL;DR</strong> A struct is somewhere between a regular object and a hash/array.  It&rsquo;s an awesome data structure when you</p>
+
+<ul>
+<li><p>know exactly what it needs to hold</p></li>
+<li><p>want to be able to access your data in a variety of useful ways</p></li>
+<li><p>need to define just a small number of custom methods (or none at all)</p></li>
+<li><p>and just don&rsquo;t want to write much boilerplate code while doing it!</p></li>
+</ul>
+
+
+<p>P.S. Check out <a href="http://blog.steveklabnik.com/posts/2012-09-01-random-ruby-tricks--struct-new">this post</a> from Steve Klabnik about how incorporating structs into your regular class definitions can make your debugging much easier due to Struct&rsquo;s handy <code>#to_s</code> method.</p>
+
+<p>P.P.S. Robert Klemme <a href="http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html">helpfully notes</a> that, unlike hashes, struct[&ldquo;something&rdquo;] will raise an error if there is no @something variable.  This can be helpful if you want to detect certain types of input problems.</p>
+
+<p>P.P.P.S. Here&rsquo;s the output from the code above (using structs or regular classes), if you&rsquo;re desperately interested:</p>
+
+<pre><code>Ladies and Gentlemen, here is the starting lineup!
+
+#15, Magic Johnson!
+
+#9, Michael Jordan!
+
+#7, Larry Bird!
+
+#14, Charles Barkley!
+
+#6, Patrick Ewing!
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

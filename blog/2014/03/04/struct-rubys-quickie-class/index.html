@@ -1,0 +1,371 @@
+<!doctype html>
+  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+  <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+  
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct: Ruby's Quickie Class - AMC: Aspiring Master of Code</title>
+    <meta name="author" content="Ariel Caplan">
+    
+    <meta name="description" content="Struct: Ruby's Quickie Class Mar 4th, 2014 Programming Ruby Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as &hellip;">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="canonical" href="http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class">
+    
+    <link href="/favicon.png" rel="icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
+    <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  </head>
+
+
+  <body >
+
+    <header>
+      <div class="grid-wrapper">
+  <div class="grid">
+
+    <div class="grid__item two-fifths lap-four-sixths palm-one-whole">
+  <a href="/" class="site-title">AMC: Aspiring Master of Code</a>
+</div>
+
+<div class="grid__item three-fifths lap-two-sixths palm-one-whole">
+  <nav>
+    <input type="checkbox" id="toggle">
+<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
+<ul class="menu pull-right">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">Blog</a></li>
+</ul>
+  </nav>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+    <div class="grid-wrapper">
+      <div class="grid grid-center">
+        
+        <div class="grid__item two-thirds lap-one-whole palm-one-whole">
+        
+
+          <article class="post">
+  <header>
+  
+  <h1 class="title indent">Struct: Ruby's Quickie Class</h1>
+  
+
+  
+  <div class="meta clearfix">
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time class="pull-left" datetime="2014-03-04T19:32:48-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Mar 4<span>th</span>, 2014</time>
+    
+
+  <div class="pull-left">
+    <i class="icon-tags"></i>
+    <ul class="tags unstyled">
+    
+      
+        <li><a class='category' href='/blog/categories/programming/'>Programming</a></li>
+      
+        <li><a class='category' href='/blog/categories/ruby/'>Ruby</a></li>
+      
+    
+    </ul>
+  </div>
+
+    
+  </div>
+  
+</header>
+
+
+
+
+  <p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+
+<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+
+
+<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
+
+<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+
+<!-- more -->
+
+
+<p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
+
+<script src="https://gist.github.com/amcaplan/3cc24af81c504cefecd5.js"></script>
+
+
+<p>Huh?  Where did all the code go?</p>
+
+<p>Struct.new is a really cool method that takes symbols as arguments and returns &ndash; no, it&rsquo;s not an object, it&rsquo;s a class!!!  (Well, technically all Ruby classes are objects too, but we&rsquo;re going to deliberately ignore that for now.)  It takes each symbol, makes it an instance variable, gives it setter and getter methods, and adds it to the initialize method in the order specified.  So it&rsquo;s doing a lot of work for you, just for adding the symbol there.  The optional block at the end (see how <code>BasketballTeam</code> is created with a block but <code>Player</code> isn&rsquo;t?) specifies any methods you want to add to the struct.  If you have a lot of these, Struct probably isn&rsquo;t for you.  But if it&rsquo;s just one or two simple methods, then Struct may still be a good idea.</p>
+
+<p>An examination of Struct&rsquo;s instance methods reveals its similarity to Array and Hash.  Here are my favorites:</p>
+
+<table >
+  
+    
+<td >Method
+</td>
+<td >Description and Correlatives
+</td>
+  
+  <tbody >
+    <tr >
+<td >
+  `#members`
+</td>
+<td >like `Hash#keys`, returns an array containing the instance variable names
+</td></tr>
+    <tr >
+<td >`#values`
+</td>
+<td >like `Hash#values`, returns an array containing the instance variable values
+</td></tr>
+    <tr >
+<td >`#length`, `#size`
+</td>
+<td >like `Hash#size` or `Array#size`, the number of instance variables
+</td></tr>
+    <tr >
+<td >`#each`
+</td>
+<td >similar to `Hash#each`, goes through each instance variable&#8217;s value
+</td></tr>
+    <tr >
+<td >`#[member]`  
+(e.g. `team[&#8220;player1&#8221;]` or `team[:player1]`)
+</td>
+<td >similar to `Hash#[]`, access by instance variable name
+</td></tr>
+    <tr >
+<td >`#[index]`  
+(e.g. `team[0])`
+</td>
+<td >similar to `Array#[]`, access by variable index in `#members`
+</td></tr>
+  </tbody>
+</table>
+
+
+<p>NOTE: You can also write <code>team[0] = Player.new("Magic Johnson", 15)</code></p>
+
+<p>Of course, you are also able to get <code>team.player1</code> because it attr_accessor&#8217;ed everything for you.</p>
+
+<p>Because Struct defines an <code>#each</code> method and includes Enumerable, you can use any of the Enumerable methods on its properties.  So you can <code>cycle</code>, check if <code>team.any? {|player| player.name == "Michael Jordan"}</code>, <code>inject</code>, or find the <code>team.max_by(&amp;:number)</code>, among others.  You can also modify all contained values pretty easily: <code>team.each{|player| player.number += 1}</code> (in case you needed to bump up everyone&rsquo;s number for some reason).  And if the IOC is insisting you sort your players by jersey number, just <code>team.sort_by(&amp;:number)</code> and you&rsquo;re all set!  Patrick Ewing, with jersey #6, is now <code>team[0]</code>, a.k.a. <code>team.player1</code>.</p>
+
+<p>One downside of Struct as opposed to Arrays is that you can&rsquo;t push/pop/unshift/shift, because the size is fixed from the beginning.</p>
+
+<p><strong>TL;DR</strong> A struct is somewhere between a regular object and a hash/array.  It&rsquo;s an awesome data structure when you</p>
+
+<ul>
+<li><p>know exactly what it needs to hold</p></li>
+<li><p>want to be able to access your data in a variety of useful ways</p></li>
+<li><p>need to define just a small number of custom methods (or none at all)</p></li>
+<li><p>and just don&rsquo;t want to write much boilerplate code while doing it!</p></li>
+</ul>
+
+
+<p>P.S. Check out <a href="http://blog.steveklabnik.com/posts/2012-09-01-random-ruby-tricks--struct-new">this post</a> from Steve Klabnik about how incorporating structs into your regular class definitions can make your debugging much easier due to Struct&rsquo;s handy <code>#to_s</code> method.</p>
+
+<p>P.P.S. Robert Klemme <a href="http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html">helpfully notes</a> that, unlike hashes, struct[&ldquo;something&rdquo;] will raise an error if there is no @something variable.  This can be helpful if you want to detect certain types of input problems.</p>
+
+<p>P.P.P.S. Here&rsquo;s the output from the code above (using structs or regular classes), if you&rsquo;re desperately interested:</p>
+
+<pre><code>Ladies and Gentlemen, here is the starting lineup!
+
+#15, Magic Johnson!
+
+#9, Michael Jordan!
+
+#7, Larry Bird!
+
+#14, Charles Barkley!
+
+#6, Patrick Ewing!
+</code></pre>
+
+
+</article>
+
+ 
+<section id="disqus">
+  <h1 class="indent title">Comments</h1>
+  <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+
+        </div>
+
+        
+        <aside id="sidebar" class="grid__item one-third lap-one-whole palm-one-whole">
+          <div class="grid">
+
+  
+<section class="social aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    Connect With Me
+  </h1>
+  <ul class="unstyled">
+    
+    
+    <li><a class="github" href="//github.com/amcaplan"><i class="icon-github"></i> Github</a></li>
+    
+    
+    
+    
+    
+    <li><a class="twitter" href="//twitter.com/amcaplan"><i class="icon-twitter"></i> Twitter</a></li>
+    
+  </ul>
+</section>
+
+
+  <section id="recent-posts" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">Recent Posts</h1>
+  <ul class="divided">
+    
+      <li class="post">
+        <a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section id="github-repos" class="aside-module grid__item one-whole lap-one-half">
+  <h1 class="title delta">
+    GitHub Repos
+    
+    <small class="pull-right">
+      <a class="btn" href="//github.com/amcaplan" title="@amcaplan on GitHub" target="_blank">
+        <i class="icon-external-link"></i>
+      </a>
+    </small>
+    
+  </h1>
+  <ul id="gh_repos" class="divided">
+    <li class="loading">
+      <i class="icon-spinner icon-spin"></i>
+    </li>
+  </ul>
+</section>
+
+
+
+
+</div>
+
+        </aside>
+        
+      </div>
+    </div>
+
+    <footer>
+      <div class="grid-wrapper">
+  <div class="grid">
+    <div class="grid__item">
+      <p class="copyright">
+  All content by Ariel Caplan and licensed under <a href="//creativecommons.org/licenses/by-nc-sa/3.0/ie/">Creative Commons</a>.<br>
+  Code under <a href="//github.com/coogie/oscailte/blob/master/README.md">MIT License</a>.
+</p>
+    </div>
+  </div>
+</div>
+
+    </footer>
+
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script defer src="/javascripts/octopress.js"></script>
+
+
+
+
+<script>
+  var disqus_shortname = 'amcaplan';
+  
+    
+    // var disqus_developer = 1;
+    var disqus_identifier = 'http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/';
+    var disqus_url = 'http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/';
+    var disqus_script = 'embed.js';
+  
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    if (!window.jXHR){
+      var jxhr = document.createElement('script');
+      jxhr.type = 'text/javascript';
+      jxhr.src = '/javascripts/libs/jXHR.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+      user: 'amcaplan',
+      count: 0,
+      skip_forks: true,
+      target: '#gh_repos'
+    });
+  });
+</script>
+<script src="/javascripts/github.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
