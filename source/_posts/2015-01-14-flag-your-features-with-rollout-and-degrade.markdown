@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Flag Your Features with Rollout and Degrade"
-date: 2015-01-13 19:29:40 -0500
+date: 2015-01-14 13:05:10 -0500
 comments: true
 categories: Ruby gems talks
 ---
