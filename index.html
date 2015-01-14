@@ -1,204 +1,628 @@
-<!doctype html>
-  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-  <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
 
   
+  <meta name="description" content="Check out the SpeakerDeck; blog post coming soon. In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of rollout &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
     
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>AMC: Aspiring Master of Code</title>
-    <meta name="author" content="Ariel Caplan">
+      <h1 class="entry-title"><a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features With Rollout and Degrade</a></h1>
     
-    <meta name="description" content="Where I&#8217;ve Been Check out my LinkedIn profile to see what I&#8217;ve been up to professionally. Or look at my GitHub profile to see what I&# &hellip;">
     
-    <meta name="viewport" content="width=device-width">
-    <link rel="canonical" href="http://amcaplan.ninja">
-    
-    <link href="/favicon.png" rel="icon">
-    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
-    <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
-  </head>
-
-
-  <body >
-
-    <header>
-      <div class="grid-wrapper">
-  <div class="grid">
-
-    <div class="grid__item two-fifths lap-four-sixths palm-one-whole">
-  <a href="/" class="site-title">AMC: Aspiring Master of Code</a>
-</div>
-
-<div class="grid__item three-fifths lap-two-sixths palm-one-whole">
-  <nav>
-    <input type="checkbox" id="toggle">
-<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
-<ul class="menu pull-right">
-  <li><a href="/">Home</a></li>
-  <li><a href="/blog/">Blog</a></li>
-</ul>
-  </nav>
-</div>
-
-  </div>
-</div>
-    </header>
-
-    
-      <div class="hero" style="background-image: url('/images/matrix.jpg');">
-  <div class="grid-wrapper">
-    <div class="grid flex">
-      <div class="grid__item flex__item two-fifths palm-one-whole avatar">
-        <img class="gravatar" src="/images/gravatar.jpg" alt="Ariel Caplan's Picture" data-gravatar="ariel.caplan@mail.yu.edu">
-      </div>
-      <div class="grid__item flex__item three-fifths palm-one-whole">
-      <h1>Ariel Caplan</h1>
-<hr>
-<p class="lead">
-  It's all in the code.
-</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    <div class="grid-wrapper">
-      <div class="grid grid-center">
-        
-        <div class="grid__item one-whole">
+      <p class="meta">
         
 
-          
-
-<div class="grid-wrapper">
-  <div class="grid">
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-chevron-left"></i>
-          </span>
-        </div>
-
-        <div class="grid__item one-whole lap-two-thirds">
-          <h2 class="title">Where I&#8217;ve Been</h2>
-<hr>
-<p>
-  Check out <a href="http://linkedin.com/pub/ariel-caplan/35/224/ab8">my LinkedIn profile</a> to see what I&#8217;ve been up to professionally.
-</p>
-<p>
-  Or look at <a href="http://github.com/amcaplan?tab=repositories">my GitHub profile</a> to see what I&#8217;ve been <strike>cooking</strike> coding up lately.
-</p>
-<p>
-  For some cool stuff from my time at <a href="http://flatironschool.com" target="_blank">the Flatiron School</a>, check <a href="http://flatiron-showcase.herokuapp.com/students/1">here</a>.
-</p>
-<p>
-  In previous sections of my life, I studied at <a href="http://yu.edu" target="_blank">Yeshiva University</a>, <a href="http://shaalvim.org/yeshiva" target="_blank">Yeshivat Shaalvim</a> in Israel, <a href="http://tabc.org" target="_blank">TABC</a>, and <a href="http://rpry.org" target="_blank">RPRY</a>. I&#8217;m counting back as long as I was making websites, which is around 10 years old.
-</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-laptop"></i>
-          </span>
-        </div>
-
-        <div class="grid__item one-whole lap-two-thirds">
-          <h2 class="title">What I&#8217;m Up To</h2>
-<hr>
-<p>
-  I work as a software engineer for <a href="http://vitals.com" target="_blank">Vitals</a>.
-</p>
-<p>
-  I&#8217;m leveling up my skills in Rails and the associated languages/environment.  On the side, I&#8217;m learning EmberJS, AngularJS, d3.
-</p>
-<p>
-  You can read my musings about code on the <a href="/blog">blog</a>.
-</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-chevron-right"></i>
-          </span>
-        </div>
-		 
-        <div class="grid__item one-whole lap-two-thirds">
-         <h2 class="title">What Does the Future Hold?</h2>
-<hr>
-<p>
-  I dunno.  <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCAQyCkwAA&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DjofNR_WkoCE&ei=U__HU9rhGI29uATT5oHgCw&usg=AFQjCNE9-Z1oW5gVjc6rJg_-KAhmjY_Qfg&bvm=bv.71198958,d.c2E" target="_blank">What does the fox say?</a>
-</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-        </div>
 
+
+
+
+
+  
+
+
+<time datetime="2015-01-13T19:29:40-05:00" pubdate data-updated="true">Jan 13<span>th</span>, 2015</time>
         
-      </div>
-    </div>
+      </p>
+    
+  </header>
 
+
+  <div class="entry-content"><p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>; blog post coming soon.</p>
+
+<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of rollout and degrade, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James&#8217; gems.</p>
+
+<p>Links:</p>
+
+<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
+<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
+<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
+<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-24T16:25:29-04:00" pubdate data-updated="true">Aug 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
+
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
+
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
+
+</div>
+  
+  
     <footer>
-      <div class="grid-wrapper">
-  <div class="grid">
-    <div class="grid__item">
-      <p class="copyright">
-  All content by Ariel Caplan and licensed under <a href="//creativecommons.org/licenses/by-nc-sa/3.0/ie/">Creative Commons</a>.<br>
-  Code under <a href="//github.com/coogie/oscailte/blob/master/README.md">MIT License</a>.
-</p>
-    </div>
+      <a rel="full-article" href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-17T13:04:57-04:00" pubdate data-updated="true">Jul 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-29T18:09:56-04:00" pubdate data-updated="true">May 29<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
+
+<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
+
+<p>Now let&#8217;s examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-01T19:40:43-04:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
+
+<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
+
+<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/01/coffeescript-101/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/">Using Helper Methods to DRY Up Rails Forms</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-02T00:59:32-04:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
+
+<ol>
+<li><p> &lt;</p></li>
+<li><p> &gt;</p></li>
+</ol>
+
+
+<p>Yup, Rails isn&rsquo;t a big fan of HTML markup, unless it&rsquo;s generated directly from the HTML in a view, or by one of the built-in Rails helper methods.</p>
+
+<p>No, no, don&rsquo;t get angry at Rails!!!  It&rsquo;s for your own good, to make sure that you don&rsquo;t accidentally run some sort of evil, malicious script that a user input into a form or submitted in some other way.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-18T20:56:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
+
+<p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/04/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-04T19:32:48-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+
+<script src="https://gist.github.com/amcaplan/985c28bd5b725d31e57c.js"></script>
+
+
+<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
+
+<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/04/struct-rubys-quickie-class/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-18T19:55:54-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about trying something, making it work, and then improving on it.</p>
+
+<p>I recently published a Ruby Gem called CheckEverything (the source code is <a href="http://github.com/amcaplan/check_everything">here</a> and the gem can be installed by typing &lsquo;<code>gem install check_everything</code>&rsquo; into your Bash console).</p>
+
+<p>Over the course of creating this gem, I&rsquo;ve made some mistakes, and learned a few lessons:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives/"> Archives </a>
+    
   </div>
 </div>
-
-    </footer>
-
-    <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-<script defer src="/javascripts/octopress.js"></script>
-
-
-
-
-<script>
-  var disqus_shortname = 'amcaplan';
+<aside class="sidebar">
   
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
     
-    // var disqus_developer = 1;
-    var disqus_identifier = 'http://amcaplan.ninja/index.html';
-    var disqus_url = 'http://amcaplan.ninja/index.html';
-    var disqus_script = 'embed.js';
+      <li class="post">
+        <a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
   
-  (function () {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  }());
+  <a href="https://github.com/amcaplan">@amcaplan</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amcaplan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
 </script>
 
 
 
 
-  </body>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
 </html>
