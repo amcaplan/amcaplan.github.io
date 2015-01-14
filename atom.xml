@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T02:28:19-05:00</updated>
+  <updated>2015-01-14T13:04:03-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -34,6 +34,15 @@
 <a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
 <a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
 <a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/"/>
+    <updated>2015-01-13T19:29:40-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade</id>
+    <content type="html"><![CDATA[<p>[This post has been moved to the new <a href="http://amcaplan.ninja/talks">Talks</a> section.]</p>
 ]]></content>
   </entry>
   

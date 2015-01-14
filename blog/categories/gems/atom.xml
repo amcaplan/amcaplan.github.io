@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gems | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/blog/categories/gems/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2015-01-14T13:04:03-05:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/"/>
+    <updated>2015-01-13T19:29:40-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade</id>
+    <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>; blog post coming soon.</p>
+
+<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James' gems.</p>
+
+<p>Links:</p>
+
+<!-- more -->
+
+
+<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
+<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
+<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
+<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
+]]></content>
+  </entry>
+  
+</feed>
