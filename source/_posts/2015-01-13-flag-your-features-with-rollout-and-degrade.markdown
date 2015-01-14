@@ -13,6 +13,8 @@ In light of James Golick's recent untimely passing, here's a brief overview of r
 
 Links:
 
+<!-- more -->
+
 [https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20](https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20)
 [https://news.ycombinator.com/item?id=8804624](https://news.ycombinator.com/item?id=8804624)
 [https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920](https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920)
