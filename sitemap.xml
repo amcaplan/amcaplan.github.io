@@ -72,4 +72,8 @@
         <loc>http://amcaplan.ninja/robots.txt</loc>
         <lastmod>2015-01-14T00:27:23-05:00</lastmod>
     </url>
+    <url>
+        <loc>http://amcaplan.ninja/talks/</loc>
+        <lastmod>2015-01-18T15:34:47-05:00</lastmod>
+    </url>
 </urlset>
