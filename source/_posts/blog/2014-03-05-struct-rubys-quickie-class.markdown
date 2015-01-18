@@ -7,6 +7,8 @@ slug: struct-rubys-quickie-class
 title: 'Struct: Ruby''s Quickie Class'
 wordpress_id: 31
 categories:
+- blog
+tags:
 - Programming
 - Ruby
 ---

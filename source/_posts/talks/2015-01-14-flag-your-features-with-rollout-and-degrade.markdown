@@ -3,7 +3,11 @@ layout: post
 title: "Flag Your Features with Rollout and Degrade"
 date: 2015-01-14 13:05:10 -0500
 comments: true
-categories: Ruby gems talks
+categories:
+- talks
+tags:
+- Ruby
+- gems
 ---
 
 Check out the [SpeakerDeck](https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade); blog post coming soon.

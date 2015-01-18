@@ -7,9 +7,9 @@ slug: how-to-stay-classy-with-ruby-variables
 title: How to Stay Classy With Ruby Variables
 wordpress_id: 141
 categories:
-- Programming
-- Ruby
+- blog
 tags:
+- Programming
 - Ruby
 - variables
 ---

@@ -7,17 +7,16 @@ slug: exploring-security-and-secret-tokens-through-facebook-login
 title: Exploring Security and Secret Tokens Through Facebook Login
 wordpress_id: 58
 categories:
+- blog
+tags:
 - Experiences
 - Programming
 - Rails
 - Security
 - Walkthroughs
-tags:
 - Facebook
 - OmniAuth
-- Rails
 - Secret Token
-- Security
 ---
 
 Security is really scary.  How scary?  Well, according to [this very pretty infographic](http://www.erieinsurance.com/identitytheft/), it costs US residents $13.3 billion and 383 million hours per year.  And you_ don't_ want to be the one people are pointing fingers at when there is a data breach.  So it's really important to understand at least the basics of security - if not all the details, then at least some basic points of entry for hackers.

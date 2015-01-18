@@ -7,8 +7,9 @@ slug: lessons-from-a-failed-successful-gem
 title: Lessons from a Failed Successful Gem
 wordpress_id: 8
 categories:
-- Experiences
+- blog
 tags:
+- Experiences
 - failure
 - gems
 - Ruby

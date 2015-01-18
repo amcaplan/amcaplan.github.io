@@ -7,9 +7,10 @@ slug: coffeescript-101
 title: CoffeeScript 101
 wordpress_id: 125
 categories:
+- blog
+tags:
 - JavaScript
 - Programming
-tags:
 - CoffeeScript
 ---
 

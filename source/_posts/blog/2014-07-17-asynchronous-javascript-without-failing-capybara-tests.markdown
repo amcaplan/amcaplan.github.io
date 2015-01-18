@@ -6,11 +6,10 @@ layout: post
 slug: async-js-without-failing-capybara-tests
 title: Asynchronous JavaScript - Without Failing Capybara Tests
 categories:
+- blog
+tags:
 - Experiences
 - Programming
-- Ruby
-- JavaScript
-tags:
 - Ruby
 - JavaScript
 - Capybara
