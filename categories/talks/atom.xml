@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
-  <link href="http://amcaplan.ninja/blog/categories/talks/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-18T15:36:06-05:00</updated>
+  <updated>2015-01-18T16:01:59-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
