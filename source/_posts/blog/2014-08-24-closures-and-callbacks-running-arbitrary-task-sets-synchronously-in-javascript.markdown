@@ -7,9 +7,8 @@ date: 2014-08-24 16:25:29 -0400
 comments: true
 categories:
 - blog
-- Programming
-- JavaScript
 tags:
+- Programming
 - JavaScript
 - closures
 - callbacks
