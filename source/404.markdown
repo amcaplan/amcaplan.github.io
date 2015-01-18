@@ -1,0 +1,12 @@
+---
+layout: page
+title: 404 Not Found
+footer: true
+permalink: /404.html
+---
+
+You are lost.
+
+You are [eaten by a grue](http://en.wikipedia.org/wiki/Grue_%28monster%29).
+
+[Play again?](/)
