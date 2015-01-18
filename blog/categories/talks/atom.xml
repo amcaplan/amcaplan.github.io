@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/blog/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T13:06:16-05:00</updated>
+  <updated>2015-01-18T15:31:16-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
+    <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
     <updated>2015-01-14T13:05:10-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
+    <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>; blog post coming soon.</p>
 
 <script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>

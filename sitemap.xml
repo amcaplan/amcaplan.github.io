@@ -2,55 +2,59 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem/</loc>
-        <lastmod>2015-01-14T00:40:12-05:00</lastmod>
+        <lastmod>2015-01-18T15:19:41-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/</loc>
-        <lastmod>2015-01-14T01:27:56-05:00</lastmod>
+        <lastmod>2015-01-18T15:19:36-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/
         </loc>
-        <lastmod>2015-01-14T00:40:12-05:00</lastmod>
+        <lastmod>2015-01-18T15:19:30-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/
         </loc>
-        <lastmod>2015-01-14T01:26:42-05:00</lastmod>
+        <lastmod>2015-01-18T15:17:22-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/</loc>
-        <lastmod>2015-01-14T00:40:12-05:00</lastmod>
+        <lastmod>2015-01-18T15:19:10-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/</loc>
-        <lastmod>2015-01-14T01:18:05-05:00</lastmod>
+        <lastmod>2015-01-18T15:19:05-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/
         </loc>
-        <lastmod>2015-01-14T00:40:12-05:00</lastmod>
+        <lastmod>2015-01-18T15:18:47-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/
+            http://amcaplan.ninja/blog/Programming/JavaScript/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/
         </loc>
-        <lastmod>2015-01-14T00:40:12-05:00</lastmod>
+        <lastmod>2015-01-18T15:17:46-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/
         </loc>
-        <lastmod>2015-01-14T12:18:48-05:00</lastmod>
+        <lastmod>2015-01-18T15:17:53-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/14/flag-your-features-with-rollout-and-degrade/
+            http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/
         </loc>
-        <lastmod>2015-01-14T13:05:48-05:00</lastmod>
+        <lastmod>2015-01-18T15:21:25-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://amcaplan.ninja/404.html</loc>
+        <lastmod>2015-01-18T15:28:49-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/about/</loc>
@@ -58,18 +62,14 @@
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2015-01-14T13:05:48-05:00</lastmod>
+        <lastmod>2015-01-18T15:21:25-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2015-01-14T13:05:48-05:00</lastmod>
+        <lastmod>2015-01-18T15:21:25-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>
         <lastmod>2015-01-14T00:27:23-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://amcaplan.ninja/talks/</loc>
-        <lastmod>2015-01-14T12:14:56-05:00</lastmod>
     </url>
 </urlset>

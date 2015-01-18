@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ruby | AMC: Aspiring Master of Code]]></title>
-  <link href="http://amcaplan.ninja/blog/categories/ruby/atom.xml" rel="self"/>
+  <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T13:06:16-05:00</updated>
+  <updated>2015-01-18T15:31:16-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,25 +15,251 @@
   
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T13:05:10-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
-    <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>; blog post coming soon.</p>
+    <link href="http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/"/>
+    <updated>2015-01-13T19:29:40-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade</id>
+    <content type="html"><![CDATA[<p>[This post has been moved to the new <a href="/talks">Talks</a> section.]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
+    <link href="http://amcaplan.ninja/blog/Programming/JavaScript/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
+    <updated>2014-08-24T16:25:29-04:00</updated>
+    <id>http://amcaplan.ninja/blog/Programming/JavaScript/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
+    <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
 
-<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
 
-
-<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James' gems.</p>
-
-<p>Links:</p>
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
 
 <!-- more -->
 
 
-<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
-<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
-<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
-<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
+<p><em>[Note: code examples have been simplified for readability, and proprietary
+secrets have been removed.]</em></p>
+
+<h3>Step 1: Implement callbacks for the deploy script</h3>
+
+<p>Initially, groundwork needed to be laid for post-deploy callbacks.  This was
+relatively simple to implement (all examples in CoffeeScript):
+``` coffeescript
+deploy = (app, env, callback) &ndash;>
+  # code to deploy the app, including spawning a Shell script, abstracted
+  # in JavaScript by an object held in the variable &lsquo;script&rsquo;</p>
+
+<p>  script.on &lsquo;close&rsquo;, &ndash;></p>
+
+<pre><code>callback()
+</code></pre>
+
+<p>```</p>
+
+<h3>Step 2: Create a function for each app</h3>
+
+<p>After quickly setting up a <code>robot.respond</code> function (which is how Hubot
+responds to a particular chat command), calling a <code>deployAll</code> function, I
+turned to the hard problem of setting up a series of functions to deploy all
+apps, one after the other.  I had a variable accessible as
+<code>robot.brain.PROJECTS</code>, which was a collection of all the app names, so I
+thought to iterate through all the apps, each time capturing the previous
+function as a callback of the new function.  This would effectively create
+a stack of functions that would be executed one by one, exactly as I described.</p>
+
+<p>``` coffeescript
+deployAll = (env, msg)&ndash;>
+  callback = &ndash;></p>
+
+<pre><code>msg.send "Finished deploying all the apps!"
+</code></pre>
+
+<p>  for app in robot.brain.PROJECTS</p>
+
+<pre><code># Reassign `callback` to a new function...
+callback = -&gt;
+  # which passes the current `callback` as a callback to `deploy`
+  deploy(app, env, callback)
+</code></pre>
+
+<p>  callback() # Start the chain!
+```</p>
+
+<p>It all seemed to make sense, until I actually tested it.  For some reason,
+it just tried to deploy the last app again and again.  What gives?</p>
+
+<h3>Step 2.5: Grokking Scope and Lazy Function Evaluation</h3>
+
+<p>It turns out that in the loop, when I redefined <code>callback</code>, it associated the
+<code>callback</code> variable with a new function, but within the function, it didn&rsquo;t
+yet do anything with the line <code>deploy(app, env, callback)</code>.  This is because
+functions exist within a particular closure; they will be evaluated as though
+they were run in the place where they were defined, with access to all local
+variables, but those variables are accessed when the function is actually run,
+NOT when the function is defined.</p>
+
+<p>Here&rsquo;s a simpler example:</p>
+
+<p><code>coffeescript
+i = 0
+logger = -&gt;
+  i++
+  console.log(i)
+logger() # =&gt; 1
+logger() # =&gt; 2
+console.log(i) =&gt; 2
+</code></p>
+
+<p>We can see that <code>i</code> is defined in the outer scope, modified in the inner scope,
+and that change persists in the outer scope.</p>
+
+<p>Let&rsquo;s now look at an example closer to our situation:</p>
+
+<p><code>coffeescript
+i = 0
+logger = -&gt;
+  console.log(i)
+i = 7
+logger() # =&gt; 7
+</code></p>
+
+<p>As we can see, the <code>i</code> inside the function is not fixed, but rather depends on
+what happens in its closure at any point before the function is actually
+called.</p>
+
+<p>Here&rsquo;s one last example, with a nested function like we had:</p>
+
+<p>``` coffeescript
+callbackRunner = (callback) &ndash;>
+  callback()
+onePrinter = &ndash;>
+  console.log(1)
+callbackRunner(onePrinter) # => 1</p>
+
+<p>cbRoP = &ndash;>
+  callbackRunner(onePrinter)
+cbRoP() # => 1</p>
+
+<p>onePrinter = &ndash;>
+  console.log(&ldquo;one&rdquo;)
+cbRoP() # => &ldquo;one&rdquo;
+```</p>
+
+<p>By redefining <code>onePrinter</code> in the outer scope, we changed what <code>cbRoP</code> does.
+This is because inside <code>cbRoP</code>, where <code>onePrinter</code> is referenced, that variable
+is evaluated only when <code>cbRoP</code> is actually called.  The first time, <code>onePrinter</code>
+prints out 1, but the second time, it prints out &ldquo;one&rdquo;.  Even within <code>cbRoP</code>,
+<code>onePrinter</code> has been redefined.</p>
+
+<h3>Step 3: Create a Custom Scope</h3>
+
+<p>The solution to our problem was to create a scope where the callback wouldn&rsquo;t
+change.  Here&rsquo;s the code:</p>
+
+<p>``` coffeescript
+deployAll = (env, msg)&ndash;>
+  callback = &ndash;></p>
+
+<pre><code>msg.send "Finished deploying all the apps!"
+</code></pre>
+
+<p>  deployFunctionFactory = (app, callback) &ndash;></p>
+
+<pre><code>-&gt;
+  deploy(app, env, callback)
+</code></pre>
+
+<p>  for app in robot.brain.PROJECTS</p>
+
+<pre><code>callback = deployFunctionFactory(app, callback)
+</code></pre>
+
+<p>  callback()
+```</p>
+
+<p>This is a bit of a mind-bender, so let&rsquo;s explain piece by piece.</p>
+
+<ul>
+<li><p><code>deployFunctionFactory</code> takes in a reference to an app and a function to
+use as a callback.  It returns a function which, when called, will deploy
+the app passed in, and use the callback that is passed in.  Since <code>callback</code>
+is one of <code>deployFunctionFactory</code>&rsquo;s arguments, it has been captured in the
+scope of the function, and nothing outside can change it in the future.</p></li>
+<li><p>The <code>for</code> loop reassigns <code>callback</code> each time to a new function which is
+produced on the spot by <code>deployFunctionFactory</code>.  The right side of the equals
+sign is evaluated immediately, so <code>callback</code> is passed into
+<code>deployFunctionFactory</code>, a new function is returned, and that new function is
+assigned to <code>callback</code>.</p></li>
+<li><p>The cycle repeats for each app, ultimately generating what is effectively
+a stack of functions to be called, one after the other.</p></li>
+<li><p>When the stack of functions is resolved on the last line, it starts by
+running the anonymous function returned by <code>deployFunctionFactory</code> for the last
+app in <code>robot.brain.PROJECTS</code>, since that&rsquo;s the last function that has been
+added to the virtual stack.  That function calls <code>deploy</code> with the second-to-last
+function (which deploys the second-to-last app) as a callback.  When the first
+app deployed is done deploying, this callback is run, deploying the next app
+in line.</p></li>
+</ul>
+
+
+<p>The logic is pretty complex, so here&rsquo;s a visual representation of what all this
+code is accomplishing.  We will consider a case of 3 apps to keep it simple.
+First, we build the function inside out:</p>
+
+<p>``` coffeescript
+1.  callback = &ndash;></p>
+
+<pre><code>  msg.send "Finished deploying all the apps!"
+</code></pre>
+
+<ol>
+<li><p>callback = &ndash;>
+  deploy &ldquo;app1&rdquo;, env, &ndash;>
+    msg.send &ldquo;Finished deploying all the apps!&rdquo;</p></li>
+<li><p>callback = &ndash;>
+  deploy &ldquo;app2&rdquo;, env, &ndash;>
+    deploy &ldquo;app1&rdquo;, env, &ndash;>
+      msg.send &ldquo;Finished deploying all the apps!&rdquo;</p></li>
+<li><p>callback = &ndash;>
+  deploy &ldquo;app3&rdquo;, env, &ndash;>
+    deploy &ldquo;app2&rdquo;, env, &ndash;>
+      deploy &ldquo;app1&rdquo;, env, &ndash;>
+        msg.send &ldquo;Finished deploying all the apps!&rdquo;
+```</p></li>
+</ol>
+
+
+<p>Now, when we call <code>callback</code>, the functions will be run outside in.  First,
+app3 will be deployed.  When that&rsquo;s done, our <code>deploy</code> function knows to call
+the callback, i.e. the next function, deploying app2.  When app2 finishes being
+deployed, app1 will be deployed.  At the end, a message will be sent letting
+you know all the apps have been deployed.</p>
+
+<h3>Concluding Thoughts</h3>
+
+<p>Using closures and callbacks properly can be a mentally exhausting endeavor.
+However, when these factors are properly considered and utilized, you can
+accomplish some pretty powerful stuff.</p>
+
+<p>I personally had to try a few iterations before I came up with a workable
+solution in this case, but the results were quite satisfying, and it got the
+job done.  In the future, if we add apps to <code>robot.brain.PROJECTS</code>, the
+<code>deployAll</code> function won&rsquo;t have to be changed; it will just add more layers
+to the nested function we&rsquo;ve built.</p>
+
+<p>Using closures and callbacks, we&rsquo;ve managed to build a function that will run
+an arbitrary number of tasks synchronously.  Sweet!</p>
 ]]></content>
   </entry>
   
@@ -418,174 +644,115 @@ Llama.all # => [#&lt;Llama:0x000001010a6868>]
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Struct: Ruby's Quickie Class]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/"/>
-    <updated>2014-03-04T19:32:48-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
-    <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+    <title type="html"><![CDATA[CoffeeScript 101]]></title>
+    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
+    <updated>2014-05-01T19:40:43-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
+    <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c'mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
 
-<p>``` ruby
-class Player
-  attr_accessor :name, :number</p>
+<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
 
-<p>  def initialize(name, number)</p>
-
-<pre><code>@name = name
-@number = number
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class BasketballTeam
-  attr_accessor :player1, :player2, :player3, :player4, :player5</p>
-
-<p>  def initialize(player1, player2, player3, player4, player5)</p>
-
-<pre><code>@player1 = player1
-@player2 = player2
-@player3 = player3
-@player4 = player4
-@player5 = player5
-</code></pre>
-
-<p>  end</p>
-
-<p>  def starting_lineup</p>
-
-<pre><code>str = "Ladies and Gentlemen, here is the starting lineup!\n"
-5.times do |num|
-  player = self.send("player#{num + 1}")
-  str += "\n##{player.number}, #{player.name}!\n"
-end
-str
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>team = BasketballTeam.new(Player.new(&ldquo;Magic Johnson&rdquo;, 15), Player.new(&ldquo;Michael Jordan&rdquo;, 9),
-  Player.new(&ldquo;Larry Bird&rdquo;, 7),Player.new(&ldquo;Charles Barkley&rdquo;, 14),Player.new(&ldquo;Patrick Ewing&rdquo;, 6))</p>
-
-<p>puts team.starting_lineup
-```</p>
-
-<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
-
-<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
 
 <!-- more -->
 
 
-<p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
+<p>Essentially, CoffeeScript is a language that compiles 1-to-1 to JavaScript, but is more clear and less error-prone. Forget the dreaded <code>var</code> keyword; it has no place in the wonderful world of CoffeeScript, because it&rsquo;s added automatically.  I like semicolons in English sentences; however, in the world of JavaScript, it&rsquo;s difficult to remember every semicolon.  Thankfully, Automatic Semicolon Insertion will usually take care of it, but it can lead to unexpected results.  With CoffeeScript, no more semicolons!  And those pesky braces (<code>{}</code>) appearing all over the place?  Gone!</p>
 
-<p>``` ruby
-Player = Struct.new(:name, :number)</p>
+<p>Now, some would say, &ldquo;Hey, what are you doing with my beautiful JavaScript?  It was so precise, so explicit!&rdquo;  I would tell them to go try Ruby and understand that <code>extraBoilerplate !== greaterPrecision</code> (I wrote that in JS so they would understand).  Or, as you would write it in CoffeeScript, <code>extraBoilerplate isnt greaterPrecision</code>.  (Yes, the &lsquo; was left out of isnt on purpose &ndash; that&rsquo;s how it&rsquo;s spelled in CoffeeScript.)</p>
 
-<p>BasketballTeam = Struct.new(:player1, :player2, :player3, :player4, :player5) do
-  def starting_lineup</p>
+<p>Just to demonstrate how awesome CoffeeScript is, I&rsquo;m going to write the rest of this post in CoffeeScript to show that it&rsquo;s really much simpler.</p>
 
-<pre><code>"Ladies and Gentlemen, here is the starting lineup!\n" +
-  self.collect {|player| "\n##{player.number}, #{player.name}!\n"}.join
+<p>``` coffeescript coffeescript_demo.js.coffee
+class Reader
+  inAttendance: yes
+  payAttention: &ndash;></p>
+
+<pre><code>alert 'Wake up and pay attention!'
 </code></pre>
 
-<p>  end
-end</p>
+<p>you = new Reader
+you.payAttention()</p>
 
-<p>team = BasketballTeam.new(Player.new(&ldquo;Magic Johnson&rdquo;, 15), Player.new(&ldquo;Michael Jordan&rdquo;, 9),
-  Player.new(&ldquo;Larry Bird&rdquo;, 7),Player.new(&ldquo;Charles Barkley&rdquo;, 14),Player.new(&ldquo;Patrick Ewing&rdquo;, 6))</p>
+<p>class DemoOfCoolThingsAboutCoffeeScript</p>
 
-<p>puts team.starting_lineup
+<p>  functions: &ndash;></p>
+
+<pre><code>console.log 'As you can see, functions are defined without ' +
+'"function()" or "{}"s. Just a simple "-&gt;" - but make sure' +
+' to keep track of your indentations!'
+</code></pre>
+
+<p>  classes: &ndash;></p>
+
+<pre><code>console.log 'It has classes. No more awkward JS inheritance!'
+</code></pre>
+
+<p>  punctuation: &ndash;></p>
+
+<pre><code>console.log "Have you noticed that I've been leaving out commas" +
+" and semicolons and braces? Indentation is way more natural..." +
+"\nAlso, see how parentheses are unnecessary on the " +
+"outermost function call?"
+</code></pre>
+
+<p>  splats: (params&hellip;)&ndash;></p>
+
+<pre><code>console.log "I can splat arguments, in both function definitions " +
+"and function calls. In this case, I used #{params.length} params." +
+" Oh, did we mention string interpolation?"
+</code></pre>
+
+<p>  conditionals: &ndash;></p>
+
+<pre><code>switchVar = on
+if switchVar
+  @showHowThisWorks(yes)
+else
+  console.log 'The switch is off!'
+</code></pre>
+
+<p>  showHowThisWorks: (comingFromSwitch&hellip;)&ndash;></p>
+
+<pre><code>if comingFromSwitch[0]
+  console.log 'This function was called from switch using "@", ' +
+  'which is a handy substitute for "this"'
+</code></pre>
+
+<p>  makingObjects: &ndash;></p>
+
+<pre><code>aboutMe =
+  name: "Ariel Caplan"
+  twitter: "@amcaplan"
+  field: "software development"
+  enjoysLongWalksOnTheBeach: yes
+if aboutMe.enjoysLongWalksOnTheBeach
+  console.log "#{aboutMe.name}, what is this, a personals ad?"
+else
+  console.log "#{aboutMe.name}, do you have no heart?"
+</code></pre>
+
+<p>  implicitReturns: &ndash;></p>
+
+<pre><code>returningFunction = -&gt;
+  "Hey, I never explicitly returned anything! How did you get this string?"
+console.log returningFunction()
+</code></pre>
+
+<p>  runEverything: &ndash;></p>
+
+<pre><code>@[propName]() for propName of this when propName isnt 'runEverything'
+</code></pre>
+
+<p>d = new DemoOfCoolThingsAboutCoffeeScript
+d.runEverything()
 ```</p>
 
-<p>Huh?  Where did all the code go?</p>
+<p>Still JS-y syntax (it&rsquo;s just impossible to escape), but isn&rsquo;t it at least a bit clearer?</p>
 
-<p>Struct.new is a really cool method that takes symbols as arguments and returns &ndash; no, it&rsquo;s not an object, it&rsquo;s a class!!!  (Well, technically all Ruby classes are objects too, but we&rsquo;re going to deliberately ignore that for now.)  It takes each symbol, makes it an instance variable, gives it setter and getter methods, and adds it to the initialize method in the order specified.  So it&rsquo;s doing a lot of work for you, just for adding the symbol there.  The optional block at the end (see how <code>BasketballTeam</code> is created with a block but <code>Player</code> isn&rsquo;t?) specifies any methods you want to add to the struct.  If you have a lot of these, Struct probably isn&rsquo;t for you.  But if it&rsquo;s just one or two simple methods, then Struct may still be a good idea.</p>
+<p>Hopefully this has been a pleasant little introduction to CoffeeScript.  You can run the code <a href="http://goo.gl/ixtsO7">on CoffeeScript&rsquo;s website here</a>.  (Click &ldquo;run&rdquo; on the top-right, and watch what happens in your console!)  And while you&rsquo;re there, read up on the language and all its features, try writing some of your own in the &ldquo;Try CoffeeScript&rdquo; modal, and maybe even take <a href="https://www.codeschool.com/courses/coffeescript">the CodeSchool course</a>.  You won&rsquo;t regret it!</p>
 
-<p>An examination of Struct&rsquo;s instance methods reveals its similarity to Array and Hash.  Here are my favorites:</p>
-
-<table >
-  
-    
-<td >Method
-</td>
-<td >Description and Correlatives
-</td>
-  
-  <tbody >
-    <tr >
-<td >
-  `#members`
-</td>
-<td >like `Hash#keys`, returns an array containing the instance variable names
-</td></tr>
-    <tr >
-<td >`#values`
-</td>
-<td >like `Hash#values`, returns an array containing the instance variable values
-</td></tr>
-    <tr >
-<td >`#length`, `#size`
-</td>
-<td >like `Hash#size` or `Array#size`, the number of instance variables
-</td></tr>
-    <tr >
-<td >`#each`
-</td>
-<td >similar to `Hash#each`, goes through each instance variable's value
-</td></tr>
-    <tr >
-<td >`#[member]`  
-(e.g. `team["player1"]` or `team[:player1]`)
-</td>
-<td >similar to `Hash#[]`, access by instance variable name
-</td></tr>
-    <tr >
-<td >`#[index]`  
-(e.g. `team[0])`
-</td>
-<td >similar to `Array#[]`, access by variable index in `#members`
-</td></tr>
-  </tbody>
-</table>
-
-
-<p>NOTE: You can also write <code>team[0] = Player.new("Magic Johnson", 15)</code></p>
-
-<p>Of course, you are also able to get <code>team.player1</code> because it attr_accessor'ed everything for you.</p>
-
-<p>Because Struct defines an <code>#each</code> method and includes Enumerable, you can use any of the Enumerable methods on its properties.  So you can <code>cycle</code>, check if <code>team.any? {|player| player.name == "Michael Jordan"}</code>, <code>inject</code>, or find the <code>team.max_by(&amp;:number)</code>, among others.  You can also modify all contained values pretty easily: <code>team.each{|player| player.number += 1}</code> (in case you needed to bump up everyone&rsquo;s number for some reason).  And if the IOC is insisting you sort your players by jersey number, just <code>team.sort_by(&amp;:number)</code> and you&rsquo;re all set!  Patrick Ewing, with jersey #6, is now <code>team[0]</code>, a.k.a. <code>team.player1</code>.</p>
-
-<p>One downside of Struct as opposed to Arrays is that you can&rsquo;t push/pop/unshift/shift, because the size is fixed from the beginning.</p>
-
-<p><strong>TL;DR</strong> A struct is somewhere between a regular object and a hash/array.  It&rsquo;s an awesome data structure when you</p>
-
-<ul>
-<li><p>know exactly what it needs to hold</p></li>
-<li><p>want to be able to access your data in a variety of useful ways</p></li>
-<li><p>need to define just a small number of custom methods (or none at all)</p></li>
-<li><p>and just don&rsquo;t want to write much boilerplate code while doing it!</p></li>
-</ul>
-
-
-<p>P.S. Check out <a href="http://blog.steveklabnik.com/posts/2012-09-01-random-ruby-tricks--struct-new">this post</a> from Steve Klabnik about how incorporating structs into your regular class definitions can make your debugging much easier due to Struct&rsquo;s handy <code>#to_s</code> method.</p>
-
-<p>P.P.S. Robert Klemme <a href="http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html">helpfully notes</a> that, unlike hashes, struct[&ldquo;something&rdquo;] will raise an error if there is no @something variable.  This can be helpful if you want to detect certain types of input problems.</p>
-
-<p>P.P.P.S. Here&rsquo;s the output from the code above (using structs or regular classes), if you&rsquo;re desperately interested:</p>
-
-<pre><code>Ladies and Gentlemen, here is the starting lineup!
-
-#15, Magic Johnson!
-
-#9, Michael Jordan!
-
-#7, Larry Bird!
-
-#14, Charles Barkley!
-
-#6, Patrick Ewing!
-</code></pre>
+<p>P.S. Bonus extra life!!! Check out some real-life jQuery/CoffeeScript action in the code for the Flatiron Showcase website.  I have some simple DOM manipulation stuff that I just converted to CoffeeScript yesterday.  <a href="https://github.com/amcaplan/flatiron_showcase/blob/d952882068f13231cd3272a71f992ffcf3e25076/app/assets/javascripts/images.js.coffee">Check it out on Github!</a></p>
 ]]></content>
   </entry>
   

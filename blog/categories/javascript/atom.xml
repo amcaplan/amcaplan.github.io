@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-14T13:06:16-05:00</updated>
+  <updated>2015-01-18T15:31:16-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
+    <link href="http://amcaplan.ninja/blog/Programming/JavaScript/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
     <updated>2014-08-24T16:25:29-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
+    <id>http://amcaplan.ninja/blog/Programming/JavaScript/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
 several environments.  So as you might imagine, making sure updated code
@@ -251,170 +251,6 @@ to the nested function we&rsquo;ve built.</p>
 
 <p>Using closures and callbacks, we&rsquo;ve managed to build a function that will run
 an arbitrary number of tasks synchronously.  Sweet!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T13:04:57-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
-    <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
-
-<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
-
-<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
-
-<!-- More -->
-
-
-<h3>The Case</h3>
-
-<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
-
-<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
-
-<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
-
-<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
-
-<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
-
-<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
-
-<h3>The Explanation</h3>
-
-<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
-
-<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:
-<code>ruby
-page.document.synchronize do
-  element.find("a.edit-link").click
-  textarea = element.find "textarea"
-end
-</code>
-The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
-
-<p>When I added the block, the test passed.  Presto!</p>
-
-<h3>A Word of Caution</h3>
-
-<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
-
-<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CoffeeScript 101]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
-    <updated>2014-05-01T19:40:43-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
-    <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c'mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
-
-<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
-
-<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
-
-<!-- more -->
-
-
-<p>Essentially, CoffeeScript is a language that compiles 1-to-1 to JavaScript, but is more clear and less error-prone. Forget the dreaded <code>var</code> keyword; it has no place in the wonderful world of CoffeeScript, because it&rsquo;s added automatically.  I like semicolons in English sentences; however, in the world of JavaScript, it&rsquo;s difficult to remember every semicolon.  Thankfully, Automatic Semicolon Insertion will usually take care of it, but it can lead to unexpected results.  With CoffeeScript, no more semicolons!  And those pesky braces (<code>{}</code>) appearing all over the place?  Gone!</p>
-
-<p>Now, some would say, &ldquo;Hey, what are you doing with my beautiful JavaScript?  It was so precise, so explicit!&rdquo;  I would tell them to go try Ruby and understand that <code>extraBoilerplate !== greaterPrecision</code> (I wrote that in JS so they would understand).  Or, as you would write it in CoffeeScript, <code>extraBoilerplate isnt greaterPrecision</code>.  (Yes, the &lsquo; was left out of isnt on purpose &ndash; that&rsquo;s how it&rsquo;s spelled in CoffeeScript.)</p>
-
-<p>Just to demonstrate how awesome CoffeeScript is, I&rsquo;m going to write the rest of this post in CoffeeScript to show that it&rsquo;s really much simpler.</p>
-
-<p>``` coffeescript coffeescript_demo.js.coffee
-class Reader
-  inAttendance: yes
-  payAttention: &ndash;></p>
-
-<pre><code>alert 'Wake up and pay attention!'
-</code></pre>
-
-<p>you = new Reader
-you.payAttention()</p>
-
-<p>class DemoOfCoolThingsAboutCoffeeScript</p>
-
-<p>  functions: &ndash;></p>
-
-<pre><code>console.log 'As you can see, functions are defined without ' +
-'"function()" or "{}"s. Just a simple "-&gt;" - but make sure' +
-' to keep track of your indentations!'
-</code></pre>
-
-<p>  classes: &ndash;></p>
-
-<pre><code>console.log 'It has classes. No more awkward JS inheritance!'
-</code></pre>
-
-<p>  punctuation: &ndash;></p>
-
-<pre><code>console.log "Have you noticed that I've been leaving out commas" +
-" and semicolons and braces? Indentation is way more natural..." +
-"\nAlso, see how parentheses are unnecessary on the " +
-"outermost function call?"
-</code></pre>
-
-<p>  splats: (params&hellip;)&ndash;></p>
-
-<pre><code>console.log "I can splat arguments, in both function definitions " +
-"and function calls. In this case, I used #{params.length} params." +
-" Oh, did we mention string interpolation?"
-</code></pre>
-
-<p>  conditionals: &ndash;></p>
-
-<pre><code>switchVar = on
-if switchVar
-  @showHowThisWorks(yes)
-else
-  console.log 'The switch is off!'
-</code></pre>
-
-<p>  showHowThisWorks: (comingFromSwitch&hellip;)&ndash;></p>
-
-<pre><code>if comingFromSwitch[0]
-  console.log 'This function was called from switch using "@", ' +
-  'which is a handy substitute for "this"'
-</code></pre>
-
-<p>  makingObjects: &ndash;></p>
-
-<pre><code>aboutMe =
-  name: "Ariel Caplan"
-  twitter: "@amcaplan"
-  field: "software development"
-  enjoysLongWalksOnTheBeach: yes
-if aboutMe.enjoysLongWalksOnTheBeach
-  console.log "#{aboutMe.name}, what is this, a personals ad?"
-else
-  console.log "#{aboutMe.name}, do you have no heart?"
-</code></pre>
-
-<p>  implicitReturns: &ndash;></p>
-
-<pre><code>returningFunction = -&gt;
-  "Hey, I never explicitly returned anything! How did you get this string?"
-console.log returningFunction()
-</code></pre>
-
-<p>  runEverything: &ndash;></p>
-
-<pre><code>@[propName]() for propName of this when propName isnt 'runEverything'
-</code></pre>
-
-<p>d = new DemoOfCoolThingsAboutCoffeeScript
-d.runEverything()
-```</p>
-
-<p>Still JS-y syntax (it&rsquo;s just impossible to escape), but isn&rsquo;t it at least a bit clearer?</p>
-
-<p>Hopefully this has been a pleasant little introduction to CoffeeScript.  You can run the code <a href="http://goo.gl/ixtsO7">on CoffeeScript&rsquo;s website here</a>.  (Click &ldquo;run&rdquo; on the top-right, and watch what happens in your console!)  And while you&rsquo;re there, read up on the language and all its features, try writing some of your own in the &ldquo;Try CoffeeScript&rdquo; modal, and maybe even take <a href="https://www.codeschool.com/courses/coffeescript">the CodeSchool course</a>.  You won&rsquo;t regret it!</p>
-
-<p>P.S. Bonus extra life!!! Check out some real-life jQuery/CoffeeScript action in the code for the Flatiron Showcase website.  I have some simple DOM manipulation stuff that I just converted to CoffeeScript yesterday.  <a href="https://github.com/amcaplan/flatiron_showcase/blob/d952882068f13231cd3272a71f992ffcf3e25076/app/assets/javascripts/images.js.coffee">Check it out on Github!</a></p>
 ]]></content>
   </entry>
   
