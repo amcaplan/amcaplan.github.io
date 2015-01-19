@@ -16,11 +16,13 @@ single: true
       {% include post/sharing.html %}
     {% endunless %}
     <p class="meta">
-      {% if page.previous.url %}
-        <a class="basic-alignment left" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&laquo; {{page.previous.title}}</a>
-      {% endif %}
-      {% if page.next.url %}
-        <a class="basic-alignment right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}} &raquo;</a>
+      {% if page.categories contains "blog" %}
+        {% if page.blog_prev.url %}
+          <a class="basic-alignment left" href="{{page.blog_prev.url}}" title="Previous Post: {{page.blog_prev.title}}">&laquo; {{page.blog_prev.title}}</a>
+        {% endif %}
+        {% if page.blog_next.url %}
+          <a class="basic-alignment right" href="{{page.blog_next.url}}" title="Next Post: {{page.blog_next.title}}">{{page.blog_next.title}} &raquo;</a>
+        {% endif %}
       {% endif %}
     </p>
   </footer>
