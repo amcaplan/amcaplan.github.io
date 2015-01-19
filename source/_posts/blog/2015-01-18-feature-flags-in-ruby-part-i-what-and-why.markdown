@@ -9,7 +9,8 @@ categories:
 
 *Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the [rollout] [rollout] and [degrade] [degrade]
-gems, check out Part II.*
+gems, check out [Part II] [feature flags part 2] and
+[Part III] [feature flags part 3].*
 
 ## What are Feature Flags?
 Glad you asked!
@@ -126,8 +127,8 @@ Luckily, there is a way out.  You can establish a strategy for what to do when
 the external service is inaccessible.  Normally, that strategy is kept inactive
 using a feature flag.  If the service experiences downtime, toggle the flag and
 you can activate your strategy for circumventing the service.  Even better, you
-don't have to do it yourself; the next post will show you how to activate this
-strategy programmatically.
+don't have to do it yourself; a [later post] [feature flags part 3] will show
+you how to activate this strategy programmatically.
 
 Less downtime means happier customers means fun and profit!
 
@@ -151,8 +152,9 @@ finely-tuned control over these sensitive parts of your application.
 
 ## Wrapping Up
 At this point, we have a better understanding of what feature flags are, and why
-we might want them in our application.  In Part II, we will give practical
-examples of how to set up feature flags, and where to place them in our code.
+we might want them in our application.  In [Part II] [feature flags part 2], we
+will give practical examples of how to set up feature flags, and where to place
+them in our code.
 
 ***
 
@@ -166,6 +168,9 @@ passing, see the links below the [SpeakerDeck][SpeakerDeck].*
 [rollout]: https://github.com/FetLife/rollout
 [degrade]: https://github.com/jamesgolick/degrade
 [wiki feature flags]: http://en.wikipedia.org/wiki/Feature_toggle
+
+[feature flags part 2]: /blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/
+[feature flags part 3]: /blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
 
 [nyc.rb talk]: /talks/2015/01/14/flag-your-features-with-rollout-and-degrade
 [nyc.rb]: http://www.meetup.com/NYC-rb/
