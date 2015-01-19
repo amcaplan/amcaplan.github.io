@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-18T22:01:11-05:00</updated>
+  <updated>2015-01-19T18:57:14-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,13 +14,307 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-18T22:16:18-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
+theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
+
+<p>Alright, you&rsquo;re convinced that feature flags are a necessary tool for your app.
+Let&rsquo;s discuss a gem, created by the late <a href="http://jamesgolick.com">James Golick</a>, which
+make the process of feature flagging as simple as could be.</p>
+
+<!-- more -->
+
+
+<h2>Rollout: A Feature Flagging Tool</h2>
+
+<p><a href="https://github.com/FetLife/rollout">Rollout</a> is a super-simple gem for feature flagging. To get started,
+you&rsquo;ll need a redis instance accessible to your app.  You likely have this in
+place already.  If not, you can pass in a reference to any object that accepts
+<code>set</code> and <code>get</code> methods.  But as redis is becoming a more and more common part
+of the standard stack, you should probably just set up a redis instance.</p>
+
+<p>Now let&rsquo;s get started.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, you&rsquo;ll need to <code>gem install rollout</code> or add <code>gem "rollout"</code> to your
+Gemfile and <code>bundle install</code>.</p>
+
+<h3>Instantiate the <code>rollout</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<p><code>ruby
+rollout = Rollout.new(redis)
+</code></p>
+
+<p>and you have your <code>rollout</code> object.  The <a href="https://github.com/redis/redis-rb">official docs</a>
+recommend assigning it to a global variable (<code>$rollout</code>), but if you&rsquo;d rather
+avoid that, you can assign a <code>rollout</code> variable at the global scope.  (In a
+Rails app, this code would belong in an initializer.)</p>
+
+<h3>Flipping Switches</h3>
+
+<p>Now you get to become a <a href="https://www.youtube.com/watch?v=eb9GREgzQYQ">switch-flipper</a>!  Turning a feature on
+or off is as simple as:
+``` ruby</p>
+
+<h1>activate for all users</h1>
+
+<p>rollout.activate(:chat)</p>
+
+<h1>deactivate for all users</h1>
+
+<p>rollout.deactivate(:chat)
+```</p>
+
+<p>The rollout object will always be able to tell you whether a feature is active:
+<code>ruby
+rollout.activate(:my_cool_feature)
+rollout.active?(:my_cool_feature) #=&gt; true
+rollout.deactivate(:my_cool_feature)
+rollout.active?(:my_cool_feature) #=&gt; false
+</code></p>
+
+<h3>Partial Activation</h3>
+
+<p>Sometimes you may want to activate a feature for a particular set of
+users.  Let&rsquo;s say we want to grant our premium users access to the beta version
+of our product.
+``` ruby
+rollout.define_group(:premium_users) { |user| user.premium? }
+rollout.activate_group(:beta, :premium_users)</p>
+
+<p>premium_user = User.where(premium: true).first
+rollout.active?(:beta, premium_user) #=> true</p>
+
+<p>regular_user = User.where(premium: false).first
+rollout.active?(:beta, regular_user) #=> false
+<code>``
+Rollout knows that only</code>premium_users<code>, as defined by the block
+</code>{ |user| user.premium? }<code>, have the</code>beta<code>feature active, and will return true
+or false based on the user passed in to</code>#active?`.</p>
+
+<p>Sometimes you may want to activate a feature for a random percentage of users.
+Rollout can handle that too:</p>
+
+<p><code>ruby
+rollout.activate_percentage(:chat, 20)
+</code></p>
+
+<p>Now 20% of users will have chat activated.  Rollout also makes sure that it&rsquo;s
+the same set of 20% of users who have chat available, so users don&rsquo;t have a
+disjointed experience.</p>
+
+<h3>Inserting Branch Points</h3>
+
+<p>The trickiest part of using feature flags is figuring out where to branch your
+code.  Ideally, the code should only need one call to <code>rollout#active?</code> to
+invoke the correct behavior.</p>
+
+<h4>Controller-Level Branch Points</h4>
+
+<p>Sometimes, the simplest place to branch is in a controller.  Let&rsquo;s say we want
+to feature-flag an entire endpoint in a Rails app:</p>
+
+<p>```ruby
+class ExperimentalController &lt; ApplicationController</p>
+
+<p>  def index</p>
+
+<pre><code>if rollout.active?(:my_feature)
+  @entities = MyFeature.get_entities(params)
+  respond_with @entities
+else
+  head(:service_unavailable)
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+```</p>
+
+<p>If <code>my_feature</code> is active, the controller does its usual work of calling models
+and views.  If <code>my_feature</code> is deactivated, the controller responds with a
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503</a>.
+This is a pretty clean example of an <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">&ldquo;On/Off&rdquo; feature flag</a>.</p>
+
+<p>This pattern is very useful for experimental API endpoints, as well as debugging
+utilities which will often be inactive.  It is also a good place to halt
+requests which, to succeed, will require a call to an external service that is
+currently experiencing downtime.</p>
+
+<h4>Model-Level Branch Points</h4>
+
+<p>Sometimes we want our application to display fundamentally different behavior
+depending on the situation.</p>
+
+<p>In this sample scenario, we already have a GitHub API integration, and we&rsquo;re
+trying out a BitBucket API integration as well.  When we fetch the user&rsquo;s repos,
+we want to control at runtime whether we&rsquo;re just getting the GitHub repos or
+also checking BitBucket.  Here&rsquo;s the code:</p>
+
+<p>```ruby
+class User
+  # &hellip;</p>
+
+<p>  def repos</p>
+
+<pre><code>if rollout.active?(:bitbucket)
+  github_repos + bitbucket_repos
+else
+  github_repos
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  # &hellip;
+end
+```</p>
+
+<p>It might take hundreds of lines of code across multiple classes to fetch and
+format those <code>bitbucket_repos</code> for the User, but we found one point in our code
+where we can decide whether or not all that code gets executed.</p>
+
+<h4>View/Decorator-Level Branch Points</h4>
+
+<p>Placing feature-related conditionals in our views is (almost) always a bad
+practice, so let&rsquo;s not address it here.  But we can sometimes make the case that
+a decorator class is the right place for a feature flag.</p>
+
+<p>Let&rsquo;s say that our API currently returns a top-level JSON Array, which is a
+<a href="http://flask.pocoo.org/docs/0.10/security/#json-security">Bad Practice™</a>.  We want to follow the Good Practice and return
+a top-level JavaScript object.  But we realize that clients may not be ready to
+handle that.  We can set up a feature flag to switch over to the new format once
+our clients have had ample time to prepare:</p>
+
+<p>```ruby
+class ResponseFormatter</p>
+
+<p>  attr_reader :array</p>
+
+<p>  def initialize(array)</p>
+
+<pre><code>@array = array
+</code></pre>
+
+<p>  end</p>
+
+<p>  def output</p>
+
+<pre><code>if rollout.active?(:safe_json_format)
+  { 'array' =&gt; array }
+else
+  array
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+```</p>
+
+<p>This is a very clear example of a <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">This/That feature flag</a>.</p>
+
+<h2>Back to Flipping Switches</h2>
+
+<p>We&rsquo;ve spoken about how to set up switches, and how to flip them in code.  How do
+we flip the switches when our code is running live in production?</p>
+
+<p>Unfortunately, the rollout gem doesn&rsquo;t provide any sort of UI, and you basically
+need to SSH into your production server and modify the value in redis.  In the
+case of Rails, you would enter the Rails console, and execute the command
+<code>rollout.activate(:my_feature)</code> or <code>rollout.deactivate(:my_feature)</code>.</p>
+
+<p>Is there a better way?</p>
+
+<h3>Improvement 1: Set Up an HTTP Endpoint</h3>
+
+<p>If we&rsquo;re running web apps, we can always add endpoints!  This is how a Rails app
+might handle feature flipping via HTTP requests:</p>
+
+<p>``` ruby
+class FeaturesController &lt; ApplicationController</p>
+
+<p>  def update</p>
+
+<pre><code>rollout.activate(params[:id].to_sym)
+head :ok
+</code></pre>
+
+<p>  end</p>
+
+<p>  def destroy</p>
+
+<pre><code>rollout.deactivate(params[:id].to_sym)
+head :ok
+</code></pre>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>```</p>
+
+<p>You probably want to have a <code>before_filter</code> to require authentication as well.</p>
+
+<p>At any rate, this allows you to easily activate and deactivate features without
+needing to SSH anywhere.</p>
+
+<h3>Improvement 2: Use Hubot</h3>
+
+<p>Hubot comes with a simple, powerful system for making HTTP requests.  Using this
+system, you can set up Hubot to hit these endpoints when instructed via chat
+command.  If you have a running Hubot instance, it&rsquo;s very simple to set up.
+This is the code to activate a feature:</p>
+
+<p>``` coffeescript
+robot.respond /activate (\w+)$/i, (msg) &ndash;>
+  feature = msg.match[1]</p>
+
+<p>  msg.http(&ldquo;<a href="http://my-app.com/features/#">http://my-app.com/features/#</a>{feature}&rdquo;).put() &ndash;></p>
+
+<pre><code>msg.reply "Activated #{feature}!"
+</code></pre>
+
+<p>```</p>
+
+<p>Now, when I say <code>hubot activate a_feature</code>, it takes care of it, then responds,
+<code>Activated a_feature!</code>  Suddenly, managing feature flags becomes a breeze.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>We&rsquo;ve discovered how to use rollout to easily turn bits of code on and off in a
+live application.  In <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>, we will discuss how to
+automatically turn off feature flags when an external service experiences
+downtime.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
     <updated>2015-01-18T16:07:26-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
-gems, check out Part II, coming soon.</em></p>
+gems, check out <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a> and
+<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>.</em></p>
 
 <h2>What are Feature Flags?</h2>
 
@@ -149,8 +443,8 @@ depend on an external service, their downtime can be yours as well.</p>
 the external service is inaccessible.  Normally, that strategy is kept inactive
 using a feature flag.  If the service experiences downtime, toggle the flag and
 you can activate your strategy for circumventing the service.  Even better, you
-don&rsquo;t have to do it yourself; the next post will show you how to activate this
-strategy programmatically.</p>
+don&rsquo;t have to do it yourself; a <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">later post</a> will show
+you how to activate this strategy programmatically.</p>
 
 <p>Less downtime means happier customers means fun and profit!</p>
 
@@ -176,8 +470,9 @@ finely-tuned control over these sensitive parts of your application.</p>
 <h2>Wrapping Up</h2>
 
 <p>At this point, we have a better understanding of what feature flags are, and why
-we might want them in our application.  In Part II, we will give practical
-examples of how to set up feature flags, and where to place them in our code.</p>
+we might want them in our application.  In <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>, we
+will give practical examples of how to set up feature flags, and where to place
+them in our code.</p>
 
 <hr />
 
@@ -488,335 +783,6 @@ The call to <code>#synchronize</code> tells Capybara to run the block but catch 
 <p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
 
 <p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
-    <updated>2014-05-29T18:09:56-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
-    <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
-
-<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
-
-<p>Now let's examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
-
-<!-- more -->
-
-
-<p>In this case, I have an <code>Animal</code> class, which will be at the top of the hierarchy and have animal classes that descend from it.  Here are my requirements:</p>
-
-<p>1) Since most of my animals are quadrupeds, I decide it makes sense for the class&rsquo;s instances to default to 4 legs, and any subclass (let&rsquo;s say <code>Octopus</code>) with a difference number of legs should change the default.</p>
-
-<p>2) Both the <code>Animal</code> class and the individual animal-type classes should keep track of how many of each type of animal exists, so I can check <code>Animal.all</code> or <code>Octopus.all</code>.</p>
-
-<p>Let&rsquo;s get to work.  Following Sandi Metz&rsquo;s recommendation, we&rsquo;re going to build an <code>Animal</code> parent class with a post-initialization hook.  Hence, the <code>Animal</code> class&rsquo;s initialize method will append the new item to an animals array, and then call an <code>after_initialize</code> method which will be accessible to the child classes.  We&rsquo;ll start with just 2 animal types, octopus and llama:</p>
-
-<p>``` ruby
-class Animal
-  @@animals = []
-  @@legs = 4</p>
-
-<p>  def initialize(args={})</p>
-
-<pre><code>@@animals &lt;&lt; self
-after_initialize(args)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def after_initialize(args)
-  end</p>
-
-<p>  def legs</p>
-
-<pre><code>@@legs
-</code></pre>
-
-<p>  end</p>
-
-<p>  def self.all</p>
-
-<pre><code>@@animals
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Octopus &lt; Animal
-  @@octopi = []
-  @@legs = 8</p>
-
-<p>  def after_initialize(args={})</p>
-
-<pre><code>@@octopi &lt;&lt; self
-</code></pre>
-
-<p>  end</p>
-
-<p>  def self.all</p>
-
-<pre><code>@@octopi
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Llama &lt; Animal
-  @@llamas = []</p>
-
-<p>  def after_initialize(args={})</p>
-
-<pre><code>@@llamas &lt;&lt; self
-</code></pre>
-
-<p>  end</p>
-
-<p>  def self.all</p>
-
-<pre><code>@@llamas
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Llama.new.legs # => 8
-```</p>
-
-<p>Hmmmmmm, not exactly what we wanted.  How did we end up with an 8-legged llama?</p>
-
-<p><a href="https://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg"><img src="http://amcaplan.files.wordpress.com/2014/05/8legllamab.jpg?w=245" alt="8-legged llama" /></a></p>
-
-<p>Well, it turns out that Ruby class variables don&rsquo;t play very nicely with inheritance.  Essentially, they are shared by any class in an inheritance chain.  So when we defined <code>@@legs</code> in <code>Octopus</code>, it changed <code>@@legs</code> in <code>Animal</code> and, by extension, <code>@@legs</code> in <code>Llama</code>.  (Technically, if <code>Animal</code> doesn&rsquo;t define a class variable, <code>Llama</code> and <code>Octopus</code> won&rsquo;t share that variable.  But going down that path is just begging for trouble, because you never know when someone down the road will add <code>@@legs</code> to Animal and open up a huge can of worms.)  I have heard this described as &ldquo;leaky inheritance,&rdquo; though I have yet to see it in writing.</p>
-
-<p>Class variables, it seems, are really best for situations when you want to have each member of an inheritance hierarchy to be able to access the same variable.  That might be useful for configuration.  For example, let&rsquo;s say each animal has a speak method which it defines, and it can speak verbosely or concisely (for a <code>Dog</code>, &ldquo;WOOF!  WOOF WOOF WOOF!&rdquo; vs &ldquo;WOOF!&rdquo;).  Perhaps we want to change one setting in <code>Animal</code> and have that apply to all animals.  In that case, we would do something like this (irrelevant code removed for now):</p>
-
-<p>``` ruby
-class Animal
-  @@config = {}</p>
-
-<p>  def self.config</p>
-
-<pre><code>@@config
-</code></pre>
-
-<p>  end</p>
-
-<p>  def speak</p>
-
-<pre><code>if self.class.config[:verbose] == true
-  verbose_speech
-else
-  brief_speech
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  def verbose_speech</p>
-
-<pre><code>''
-</code></pre>
-
-<p>  end</p>
-
-<p>  def brief_speech</p>
-
-<pre><code>''
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Dog &lt; Animal
-  def verbose_speech</p>
-
-<pre><code>"WOOF! WOOF WOOF WOOF!"
-</code></pre>
-
-<p>  end</p>
-
-<p>  def brief_speech</p>
-
-<pre><code>"WOOF!"
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Dog.new.speak # => &ldquo;WOOF!&rdquo;
-Animal.config[:verbose] = true
-Dog.new.speak # => &ldquo;WOOF! WOOF WOOF WOOF!&rdquo;
-```</p>
-
-<p>So that works great.  But we need to do something about <code>@@legs</code>.  So here&rsquo;s the next option, which works well.  Let&rsquo;s change <code>@@legs</code> to a constant, <code>LEGS</code>:</p>
-
-<p>``` ruby</p>
-
-<h1>IRRELEVANT CODE FOR THIS EXAMPLE HAS BEEN REMOVED</h1>
-
-<p>class Animal
-  LEGS = 4</p>
-
-<p>  def legs</p>
-
-<pre><code>self.class::LEGS
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Octopus &lt; Animal
-  LEGS = 8
-end</p>
-
-<p>class Llama &lt; Animal
-end</p>
-
-<p>Octopus.new.legs # => 8
-Llama.new.legs # => 4
-```</p>
-
-<p><em>Note how we now access <code>LEGS</code> as <code>self.class::LEGS</code>.  This is critical.  If we accessed it as <code>LEGS</code> without adding <code>self.class::</code>, we would be referencing the <code>LEGS</code> variable in the scope where the method was defined, i.e. <code>Animal</code>.  Instead, we tell the method to reference <code>LEGS</code> as it is defined within the scope of the current class.</em></p>
-
-<p>Alright, we&rsquo;ve taken care of legs, but let&rsquo;s consider another issue.  What about our tallying object?  Right now, <code>Animal</code> has an <code>@@animals</code> variable which contains all the animals in our zoo.  This presents 2 problems:</p>
-
-<p>1) What if a later programmer decides to call the container <code>@@animals</code> in the <code>Elephant</code> class?  Suddenly we&rsquo;ve entered a world of hurt.</p>
-
-<p>2) On a more fundamental level &ndash; does it make sense for <code>Octopus</code> to have access to <code>@@animals</code>, even theoretically?  It should be blissfully unaware of the <code>Lion</code>s and <code>Tiger</code>s and <code>Bear</code>s throughout the zoo, and just know about the 8-legged ocean critters.  How can we make this happen?</p>
-
-<p>We can solve problem 1 by simply replacing the array <code>@@animals</code> with a constant, <code>ANIMALS</code>.  Hence, subclasses that define their own array of animals won&rsquo;t generate a conflict.  However, despite seeing others advocate for it, I don&rsquo;t like that solution either, for 3 reasons:</p>
-
-<p>1) Now we have a different problem.  If the designer of the <code>Elephant</code> class neglects to define an <code>ANIMALS</code> constant but still adds to the <code>ANIMALS</code> array, the parent class&rsquo;s array will be affected.  This may be difficult to debug.</p>
-
-<p>2) It&rsquo;s true that Ruby doesn&rsquo;t complain about changing the contents of a constant array, because the object hasn&rsquo;t been fundamentally redefined.  That doesn&rsquo;t mean it&rsquo;s the right thing to do.  Others will disagree (and in fact Rails apparently does this all the time), but I maintain that constants should be constant and predictable.</p>
-
-<p>3) Constants are easily accessible from outside the class.  Now, I know that everything in Ruby, even private methods, is accessible, but there&rsquo;s a semantic point here.  Where in the Ruby core classes do you find constants?  My first thought is in the <code>Math</code> module, which contains the constants <code>PI</code> and <code>E</code>.  In other words, constants are meant to be values which are definitional to the class and/or should never change once defined.  <code>PI</code> and <code>E</code> are not going anywhere.  Similarly, it makes sense to say that <code>Llama::LEGS</code> is 4 and <code>Octopus::LEGS</code> is 8, since those are attributes that should apply in all but the most exceptional cases.  (My apologies to Larry the 3-legged llama.)</p>
-
-<p>The animals array, on the other hand, is not at all fundamental.  It&rsquo;s a variable that is changed frequently, and should be associated with the class, but not easily accessible from outside, and not shared with subclasses.</p>
-
-<p>So what&rsquo;s the right answer?  Well, let&rsquo;s remind ourselves for a moment that everything in Ruby is an object.  It turns out that even classes are objects &ndash; instances of the <code>Class</code> class.  (Sidebar: if you want to really warp your brain, enter <code>Class.class</code> into IRB.  Yep, <code>Class</code> is an instance of itself!  Mind blown.)  So if classes are instances, surely they have instance variables, right?  Yes, they do.  And we can use them to implement a safe working version of our animals array!</p>
-
-<p>``` ruby</p>
-
-<h1>IRRELEVANT CODE EXCISED</h1>
-
-<p>class Animal
-  @animals = []
-  def self.animals</p>
-
-<pre><code>@animals
-</code></pre>
-
-<p>  end</p>
-
-<p>  def initialize(args={})</p>
-
-<pre><code>Animal.animals &lt;&lt; self
-after_initialize(args)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def after_initialize(args)
-  end</p>
-
-<p>  def self.all</p>
-
-<pre><code>self.animals
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Lion &lt; Animal
-  @animals = []</p>
-
-<p>  def after_initialize(args)</p>
-
-<pre><code>self.class.animals &lt;&lt; self
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Lion.new
-Animal.all # => [#&lt;Lion:0x0000010187de60>]
-Animal.all.object_id # => 2160486800
-Lion.all # [#&lt;Lion:0x0000010187de60>]
-Lion.all.object_id # => 2160342160
-```</p>
-
-<p>Note that this was a bit tricky.  We had to define a getter method for the animals array.  If we have a number of such variables, we would probably be best off using <code>attr_accessor</code>, but the call to <code>attr_accessor</code> has to be within the context of a <code>class &lt;&lt; self ... end</code> (singleton class) block.</p>
-
-<p>On the other hand, we&rsquo;ve essentially established the animal-tracking system in the parent class, and we can take advantage of it in children by giving each its own <code>@animals</code> array as a class instance variable.</p>
-
-<p>Alright, dear readers.  The time has come to leave you with the final, comprehensive version of our zoo.  Just don&rsquo;t feed the animals!</p>
-
-<p>``` ruby
-class Animal
-  @animals = []
-  LEGS = 4</p>
-
-<p>  class &lt;&lt; self</p>
-
-<pre><code>attr_reader :animals
-alias :all :animals
-</code></pre>
-
-<p>  end</p>
-
-<p>  def initialize(args={})</p>
-
-<pre><code>Animal.animals &lt;&lt; self
-after_initialize(args)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def after_initialize(args)
-  end</p>
-
-<p>  def legs</p>
-
-<pre><code>self.class::LEGS
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Octopus &lt; Animal
-  @animals = []
-  LEGS = 8</p>
-
-<p>  def after_initialize(args={})</p>
-
-<pre><code>self.class.animals &lt;&lt; self
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class Llama &lt; Animal
-  @animals = []</p>
-
-<p>  def after_initialize(args={})</p>
-
-<pre><code>self.class.animals &lt;&lt; self
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Octopus.new.legs # => 8
-Llama.new.legs # => 4
-Animal.all # => [#&lt;Octopus:0x000001010ef220>,#&lt;Llama:0x000001010a6868>]
-Octopus.all # => [#&lt;Octopus:0x000001010ef220>]
-Llama.all # => [#&lt;Llama:0x000001010a6868>]
-```</p>
-
-<p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
 ]]></content>
   </entry>
   

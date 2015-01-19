@@ -89,7 +89,8 @@ gems, check out Part &hellip;">
 
 <div class="entry-content"><p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
-gems, check out Part II, coming soon.</em></p>
+gems, check out <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a> and
+<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>.</em></p>
 
 <h2>What are Feature Flags?</h2>
 
@@ -218,8 +219,8 @@ depend on an external service, their downtime can be yours as well.</p>
 the external service is inaccessible.  Normally, that strategy is kept inactive
 using a feature flag.  If the service experiences downtime, toggle the flag and
 you can activate your strategy for circumventing the service.  Even better, you
-don&rsquo;t have to do it yourself; the next post will show you how to activate this
-strategy programmatically.</p>
+don&rsquo;t have to do it yourself; a <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">later post</a> will show
+you how to activate this strategy programmatically.</p>
 
 <p>Less downtime means happier customers means fun and profit!</p>
 
@@ -245,8 +246,9 @@ finely-tuned control over these sensitive parts of your application.</p>
 <h2>Wrapping Up</h2>
 
 <p>At this point, we have a better understanding of what feature flags are, and why
-we might want them in our application.  In Part II, we will give practical
-examples of how to set up feature flags, and where to place them in our code.</p>
+we might want them in our application.  In <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>, we
+will give practical examples of how to set up feature flags, and where to place
+them in our code.</p>
 
 <hr />
 
@@ -300,6 +302,8 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
         
           <a class="basic-alignment left" href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/" title="Previous Post: Flag Your Features with Rollout and Degrade">&laquo; Flag Your Features with Rollout and Degrade</a>
         
+        
+          <a class="basic-alignment right" href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/" title="Next Post: Feature Flags in Ruby, Part II: How and Where">Feature Flags in Ruby, Part II: How and Where &raquo;</a>
         
       
     </p>
@@ -357,6 +361,12 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
     
       
         <li class="post">
+          <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Feature Flags in Ruby, Part II: How and Where</a>
+        </li>
+      
+    
+      
+        <li class="post">
           <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Feature Flags in Ruby, Part I: What and Why</a>
         </li>
       
@@ -375,12 +385,6 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
         </li>
       
     
-      
-        <li class="post">
-          <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
-        </li>
-      
-    
   </ul>
 </section>
 
@@ -391,11 +395,11 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
       
     
       
+    
+      
         <li class="post">
           <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
         </li>
-      
-    
       
     
       
