@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Feature Flags in Ruby, Part I: What and Why - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Note: Part I will be more theoretical. If you already know about feature
+flags and want to learn about the rollout and degrade
+gems, check out Part &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Feature Flags in Ruby, Part I: What and Why</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-18T16:07:26-05:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>Note: Part I will be more theoretical.  If you already know about feature
+flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
+gems, check out Part II.</em></p>
+
+<h2>What are Feature Flags?</h2>
+
+<p>Glad you asked!</p>
+
+<p>Feature flags, also known as &ldquo;feature flippers,&rdquo; &ldquo;feature toggles,&rdquo;
+<a href="http://en.wikipedia.org/wiki/Feature_toggle">and more</a>, are a way to simply turn bits of code on and
+off in a live, running application.</p>
+
+<p>While we won&rsquo;t get into too many of the details in this post, here&rsquo;s a simple
+way to think about it.  Let&rsquo;s say you run a bowling alley.  Most of the time,
+it&rsquo;s a straightforward establishment &ndash; lanes, balls, scoring computers, shoes&hellip;
+you get the idea.  However, every Tuesday night you turn over the place, and now
+it&rsquo;s Cosmic Bowling night!  You&rsquo;re blasting music, shining blacklights, the
+disco ball is spinning&hellip; it&rsquo;s a different world.  How are you going to carry
+out this operation?</p>
+
+<!-- more -->
+
+
+<p>Theoretically, you could go around every week and change all the lightbulbs, set
+up the disco ball, and hook up the speakers, and then undo it all afterwards.
+But that setup is highly error-prone and labor-intensive!</p>
+
+<p>Shockingly, programmers do this all the time.  Sometimes, real-world needs force
+us to have 2 working versions of our code.  Maybe we need to be ready to respond
+to 2 versions of an API &ndash; we&rsquo;ll get into examples shortly.  The way we deal with
+this is often by maintaining two active branches of our code.  This means that
+we end up having to make sure we&rsquo;re applying all new code and fixes to both
+branches, which is a nightmare.  And what if they really diverge to the point
+that patches are no longer simple?</p>
+
+<p>What&rsquo;s worse, sometimes we need to go back and forth on code deployed to our
+production servers.  Do we really want the stress of deploying code every time
+we want a feature turned on or off?  Of course not!</p>
+
+<p>Enter feature flags.</p>
+
+<p>To implement a feature flag, you need 2 things.  First, you need a branch point
+in your code where you can decide which direction your program will take.
+Second, you need an external method of flipping the switch in one direction or
+another.</p>
+
+<p><a name="feature-flag-types"></a></p>
+
+<h2>Types of Feature Flags</h2>
+
+<p>I haven&rsquo;t seen it described this way anywhere, but I&rsquo;ve come up with the idea
+that there are two major types of feature flags, which I&rsquo;ve named as follows:</p>
+
+<ol>
+<li><strong>On/Off</strong> &ndash; decide whether a feature should be active or inactive</li>
+<li><strong>This/That</strong> &ndash; direct executing code down one of two paths</li>
+</ol>
+
+
+<p>Although they are implemented in nearly the same way, these two types differ
+conceptually, and we will refer to them often as we continue our discussion.</p>
+
+<h2>Why Feature Flags?</h2>
+
+<p>Let&rsquo;s jump into some real-world scenarios to understand how feature flags might
+be helpful.  I will list 5 types of situations, but there are certainly others,
+and you may discover them in your own development work.</p>
+
+<h3>Experimental Code</h3>
+
+<p>Maybe you, or someone ordering you around, had a great idea about how to improve
+your web app.  But not everyone is convinced that it&rsquo;s such a good idea, or
+perhaps someone thinks it might break everything.  You&rsquo;d like to turn it on for
+a bit and see what happens, with a low cost to deactivate the new code if
+anything goes wrong.</p>
+
+<p>Using feature flags, you can insert a branch point to decide whether to run the
+old code or jump into your new feature.  Then, when the app is live in
+production, you can turn on the feature, see what happens, and be able to
+quickly deactivate the new code.</p>
+
+<p>A/B testing also falls under this paradigm.  If you are considering a change to
+your app and want some evidence about the user impact, you can turn it on,
+gather evidence, and then turn it off again while you evaluate.  Or, using a
+This/That feature flag, you can test two different implementations and decide
+which is better.</p>
+
+<h3>Syncing Apps in an SOA Ecosystem</h3>
+
+<p>Your company has jumped on the SOA bandwagon, and your app is now broken up into
+multiple services that talk to each other.  Now, you want to change the public
+API of one service, which will impact the downstream clients that consume it.
+Using feature flags, you can seamlessly transition from one API to the other.</p>
+
+<p>The service being changed has to keep the old code and the new code, and use a
+This/That feature flag to control which API version to expose.  The client, in
+the meantime, also uses a feature flag to decide which API to consume.  When the
+time comes, flip those two switches together, and your apps can communicate
+using the new API.  (If you set up your architecture right, you can actually
+have both switches really be one switch, which enforces change in unison.)</p>
+
+<h3>Consuming Internal Services (Built by Other Teams)</h3>
+
+<p>Although conceptually similar to the previous case, there is an enormous
+practical difference.  Your company may have its product split up into services
+maintained by separate teams.  In this case, you cannot control exactly when the
+other team will change its service.</p>
+
+<p>So let&rsquo;s say you depend on Service X.  Team X tells you they are switching to a
+new API in one month&rsquo;s time.  You want to start building against the new API,
+to be ready for its deployment, but your code also has to be maintained in the
+meantime.  Also, who says they will truly update their API in one month?  Maybe
+things will be delayed, and it will be 6 months, during which time your
+development progress is stymied by the fact that you can&rsquo;t deploy anything,
+since you&rsquo;ve built in support for the new API and thereby lost support for the
+old!</p>
+
+<p>Feature flags provide a convenient way to handle this issue.  You can build into
+your code the ability to access the new API, but keep it inactive using a
+feature flag.  Once the new API is in place, flip the switch!</p>
+
+<h3>External Services</h3>
+
+<p>Sometimes websites get DoS&#8217;ed.  Or DDoS&#8217;ed.  Or just a developer did something
+dumb and crashed the app for 10 minutes.  Lots of things can happen, and if you
+depend on an external service, their downtime can be yours as well.</p>
+
+<p>Luckily, there is a way out.  You can establish a strategy for what to do when
+the external service is inaccessible.  Normally, that strategy is kept inactive
+using a feature flag.  If the service experiences downtime, toggle the flag and
+you can activate your strategy for circumventing the service.  Even better, you
+don&rsquo;t have to do it yourself; the next post will show you how to activate this
+strategy programmatically.</p>
+
+<p>Less downtime means happier customers means fun and profit!</p>
+
+<h3>Debugging Tools</h3>
+
+<p>At <a href="http://vitals.com">Vitals</a>, we have a number of tools we use to log extra information
+about the state of our application and the data it processes, for debugging
+purposes.  However, these tools come at a price: they add a small amount of
+extra latency to each request.  We only want to activate these debugging tools
+as necessary for debugging, and the simplest way to do that is to associate them
+with feature flags.  Feature flag on&mdash;do extra work.  Feature flag off&mdash;speed
+up the request.</p>
+
+<p>Additionally, depending on the situation, debugging tools may occasionally yield
+output in the HTTP responses sent to the client.  This may be necessary to
+invoke on occasion, but certainly should not be active as a default.  It might
+expose too much information to users, and certainly should not be active by
+default.  Perhaps you want to have this information available as a matter of
+course in your QA/UAT/staging environment, and in case of emergency in
+production.  In any of these cases, feature flags provide convenient,
+finely-tuned control over these sensitive parts of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>At this point, we have a better understanding of what feature flags are, and why
+we might want them in our application.  In Part II, we will give practical
+examples of how to set up feature flags, and where to place them in our code.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-18T16:07:26-05:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/" title="Previous Post: Flag Your Features with Rollout and Degrade">&laquo; Flag Your Features with Rollout and Degrade</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="http://amcaplan.ninja/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Feature Flags in Ruby, Part I: What and Why</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/amcaplan">@amcaplan</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amcaplan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-18T21:46:18-05:00</updated>
+  <updated>2015-01-18T21:57:01-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,183 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
+    <updated>2015-01-18T16:07:26-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
+    <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
+flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
+gems, check out Part II.</em></p>
+
+<h2>What are Feature Flags?</h2>
+
+<p>Glad you asked!</p>
+
+<p>Feature flags, also known as &ldquo;feature flippers,&rdquo; &ldquo;feature toggles,&rdquo;
+<a href="http://en.wikipedia.org/wiki/Feature_toggle">and more</a>, are a way to simply turn bits of code on and
+off in a live, running application.</p>
+
+<p>While we won&rsquo;t get into too many of the details in this post, here&rsquo;s a simple
+way to think about it.  Let&rsquo;s say you run a bowling alley.  Most of the time,
+it&rsquo;s a straightforward establishment &ndash; lanes, balls, scoring computers, shoes&hellip;
+you get the idea.  However, every Tuesday night you turn over the place, and now
+it&rsquo;s Cosmic Bowling night!  You&rsquo;re blasting music, shining blacklights, the
+disco ball is spinning&hellip; it&rsquo;s a different world.  How are you going to carry
+out this operation?</p>
+
+<!-- more -->
+
+
+<p>Theoretically, you could go around every week and change all the lightbulbs, set
+up the disco ball, and hook up the speakers, and then undo it all afterwards.
+But that setup is highly error-prone and labor-intensive!</p>
+
+<p>Shockingly, programmers do this all the time.  Sometimes, real-world needs force
+us to have 2 working versions of our code.  Maybe we need to be ready to respond
+to 2 versions of an API &ndash; we&rsquo;ll get into examples shortly.  The way we deal with
+this is often by maintaining two active branches of our code.  This means that
+we end up having to make sure we&rsquo;re applying all new code and fixes to both
+branches, which is a nightmare.  And what if they really diverge to the point
+that patches are no longer simple?</p>
+
+<p>What&rsquo;s worse, sometimes we need to go back and forth on code deployed to our
+production servers.  Do we really want the stress of deploying code every time
+we want a feature turned on or off?  Of course not!</p>
+
+<p>Enter feature flags.</p>
+
+<p>To implement a feature flag, you need 2 things.  First, you need a branch point
+in your code where you can decide which direction your program will take.
+Second, you need an external method of flipping the switch in one direction or
+another.</p>
+
+<p><a name="feature-flag-types"></a></p>
+
+<h2>Types of Feature Flags</h2>
+
+<p>I haven&rsquo;t seen it described this way anywhere, but I&rsquo;ve come up with the idea
+that there are two major types of feature flags, which I&rsquo;ve named as follows:</p>
+
+<ol>
+<li><strong>On/Off</strong> &ndash; decide whether a feature should be active or inactive</li>
+<li><strong>This/That</strong> &ndash; direct executing code down one of two paths</li>
+</ol>
+
+
+<p>Although they are implemented in nearly the same way, these two types differ
+conceptually, and we will refer to them often as we continue our discussion.</p>
+
+<h2>Why Feature Flags?</h2>
+
+<p>Let&rsquo;s jump into some real-world scenarios to understand how feature flags might
+be helpful.  I will list 5 types of situations, but there are certainly others,
+and you may discover them in your own development work.</p>
+
+<h3>Experimental Code</h3>
+
+<p>Maybe you, or someone ordering you around, had a great idea about how to improve
+your web app.  But not everyone is convinced that it&rsquo;s such a good idea, or
+perhaps someone thinks it might break everything.  You&rsquo;d like to turn it on for
+a bit and see what happens, with a low cost to deactivate the new code if
+anything goes wrong.</p>
+
+<p>Using feature flags, you can insert a branch point to decide whether to run the
+old code or jump into your new feature.  Then, when the app is live in
+production, you can turn on the feature, see what happens, and be able to
+quickly deactivate the new code.</p>
+
+<p>A/B testing also falls under this paradigm.  If you are considering a change to
+your app and want some evidence about the user impact, you can turn it on,
+gather evidence, and then turn it off again while you evaluate.  Or, using a
+This/That feature flag, you can test two different implementations and decide
+which is better.</p>
+
+<h3>Syncing Apps in an SOA Ecosystem</h3>
+
+<p>Your company has jumped on the SOA bandwagon, and your app is now broken up into
+multiple services that talk to each other.  Now, you want to change the public
+API of one service, which will impact the downstream clients that consume it.
+Using feature flags, you can seamlessly transition from one API to the other.</p>
+
+<p>The service being changed has to keep the old code and the new code, and use a
+This/That feature flag to control which API version to expose.  The client, in
+the meantime, also uses a feature flag to decide which API to consume.  When the
+time comes, flip those two switches together, and your apps can communicate
+using the new API.  (If you set up your architecture right, you can actually
+have both switches really be one switch, which enforces change in unison.)</p>
+
+<h3>Consuming Internal Services (Built by Other Teams)</h3>
+
+<p>Although conceptually similar to the previous case, there is an enormous
+practical difference.  Your company may have its product split up into services
+maintained by separate teams.  In this case, you cannot control exactly when the
+other team will change its service.</p>
+
+<p>So let&rsquo;s say you depend on Service X.  Team X tells you they are switching to a
+new API in one month&rsquo;s time.  You want to start building against the new API,
+to be ready for its deployment, but your code also has to be maintained in the
+meantime.  Also, who says they will truly update their API in one month?  Maybe
+things will be delayed, and it will be 6 months, during which time your
+development progress is stymied by the fact that you can&rsquo;t deploy anything,
+since you&rsquo;ve built in support for the new API and thereby lost support for the
+old!</p>
+
+<p>Feature flags provide a convenient way to handle this issue.  You can build into
+your code the ability to access the new API, but keep it inactive using a
+feature flag.  Once the new API is in place, flip the switch!</p>
+
+<h3>External Services</h3>
+
+<p>Sometimes websites get DoS'ed.  Or DDoS'ed.  Or just a developer did something
+dumb and crashed the app for 10 minutes.  Lots of things can happen, and if you
+depend on an external service, their downtime can be yours as well.</p>
+
+<p>Luckily, there is a way out.  You can establish a strategy for what to do when
+the external service is inaccessible.  Normally, that strategy is kept inactive
+using a feature flag.  If the service experiences downtime, toggle the flag and
+you can activate your strategy for circumventing the service.  Even better, you
+don&rsquo;t have to do it yourself; the next post will show you how to activate this
+strategy programmatically.</p>
+
+<p>Less downtime means happier customers means fun and profit!</p>
+
+<h3>Debugging Tools</h3>
+
+<p>At <a href="http://vitals.com">Vitals</a>, we have a number of tools we use to log extra information
+about the state of our application and the data it processes, for debugging
+purposes.  However, these tools come at a price: they add a small amount of
+extra latency to each request.  We only want to activate these debugging tools
+as necessary for debugging, and the simplest way to do that is to associate them
+with feature flags.  Feature flag on&mdash;do extra work.  Feature flag off&mdash;speed
+up the request.</p>
+
+<p>Additionally, depending on the situation, debugging tools may occasionally yield
+output in the HTTP responses sent to the client.  This may be necessary to
+invoke on occasion, but certainly should not be active as a default.  It might
+expose too much information to users, and certainly should not be active by
+default.  Perhaps you want to have this information available as a matter of
+course in your QA/UAT/staging environment, and in case of emergency in
+production.  In any of these cases, feature flags provide convenient,
+finely-tuned control over these sensitive parts of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>At this point, we have a better understanding of what feature flags are, and why
+we might want them in our application.  In Part II, we will give practical
+examples of how to set up feature flags, and where to place them in our code.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
@@ -640,119 +817,6 @@ Llama.all # => [#&lt;Llama:0x000001010a6868>]
 ```</p>
 
 <p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CoffeeScript 101]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
-    <updated>2014-05-01T19:40:43-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
-    <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c'mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
-
-<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
-
-<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
-
-<!-- more -->
-
-
-<p>Essentially, CoffeeScript is a language that compiles 1-to-1 to JavaScript, but is more clear and less error-prone. Forget the dreaded <code>var</code> keyword; it has no place in the wonderful world of CoffeeScript, because it&rsquo;s added automatically.  I like semicolons in English sentences; however, in the world of JavaScript, it&rsquo;s difficult to remember every semicolon.  Thankfully, Automatic Semicolon Insertion will usually take care of it, but it can lead to unexpected results.  With CoffeeScript, no more semicolons!  And those pesky braces (<code>{}</code>) appearing all over the place?  Gone!</p>
-
-<p>Now, some would say, &ldquo;Hey, what are you doing with my beautiful JavaScript?  It was so precise, so explicit!&rdquo;  I would tell them to go try Ruby and understand that <code>extraBoilerplate !== greaterPrecision</code> (I wrote that in JS so they would understand).  Or, as you would write it in CoffeeScript, <code>extraBoilerplate isnt greaterPrecision</code>.  (Yes, the &lsquo; was left out of isnt on purpose &ndash; that&rsquo;s how it&rsquo;s spelled in CoffeeScript.)</p>
-
-<p>Just to demonstrate how awesome CoffeeScript is, I&rsquo;m going to write the rest of this post in CoffeeScript to show that it&rsquo;s really much simpler.</p>
-
-<p>``` coffeescript coffeescript_demo.js.coffee
-class Reader
-  inAttendance: yes
-  payAttention: &ndash;></p>
-
-<pre><code>alert 'Wake up and pay attention!'
-</code></pre>
-
-<p>you = new Reader
-you.payAttention()</p>
-
-<p>class DemoOfCoolThingsAboutCoffeeScript</p>
-
-<p>  functions: &ndash;></p>
-
-<pre><code>console.log 'As you can see, functions are defined without ' +
-'"function()" or "{}"s. Just a simple "-&gt;" - but make sure' +
-' to keep track of your indentations!'
-</code></pre>
-
-<p>  classes: &ndash;></p>
-
-<pre><code>console.log 'It has classes. No more awkward JS inheritance!'
-</code></pre>
-
-<p>  punctuation: &ndash;></p>
-
-<pre><code>console.log "Have you noticed that I've been leaving out commas" +
-" and semicolons and braces? Indentation is way more natural..." +
-"\nAlso, see how parentheses are unnecessary on the " +
-"outermost function call?"
-</code></pre>
-
-<p>  splats: (params&hellip;)&ndash;></p>
-
-<pre><code>console.log "I can splat arguments, in both function definitions " +
-"and function calls. In this case, I used #{params.length} params." +
-" Oh, did we mention string interpolation?"
-</code></pre>
-
-<p>  conditionals: &ndash;></p>
-
-<pre><code>switchVar = on
-if switchVar
-  @showHowThisWorks(yes)
-else
-  console.log 'The switch is off!'
-</code></pre>
-
-<p>  showHowThisWorks: (comingFromSwitch&hellip;)&ndash;></p>
-
-<pre><code>if comingFromSwitch[0]
-  console.log 'This function was called from switch using "@", ' +
-  'which is a handy substitute for "this"'
-</code></pre>
-
-<p>  makingObjects: &ndash;></p>
-
-<pre><code>aboutMe =
-  name: "Ariel Caplan"
-  twitter: "@amcaplan"
-  field: "software development"
-  enjoysLongWalksOnTheBeach: yes
-if aboutMe.enjoysLongWalksOnTheBeach
-  console.log "#{aboutMe.name}, what is this, a personals ad?"
-else
-  console.log "#{aboutMe.name}, do you have no heart?"
-</code></pre>
-
-<p>  implicitReturns: &ndash;></p>
-
-<pre><code>returningFunction = -&gt;
-  "Hey, I never explicitly returned anything! How did you get this string?"
-console.log returningFunction()
-</code></pre>
-
-<p>  runEverything: &ndash;></p>
-
-<pre><code>@[propName]() for propName of this when propName isnt 'runEverything'
-</code></pre>
-
-<p>d = new DemoOfCoolThingsAboutCoffeeScript
-d.runEverything()
-```</p>
-
-<p>Still JS-y syntax (it&rsquo;s just impossible to escape), but isn&rsquo;t it at least a bit clearer?</p>
-
-<p>Hopefully this has been a pleasant little introduction to CoffeeScript.  You can run the code <a href="http://goo.gl/ixtsO7">on CoffeeScript&rsquo;s website here</a>.  (Click &ldquo;run&rdquo; on the top-right, and watch what happens in your console!)  And while you&rsquo;re there, read up on the language and all its features, try writing some of your own in the &ldquo;Try CoffeeScript&rdquo; modal, and maybe even take <a href="https://www.codeschool.com/courses/coffeescript">the CodeSchool course</a>.  You won&rsquo;t regret it!</p>
-
-<p>P.S. Bonus extra life!!! Check out some real-life jQuery/CoffeeScript action in the code for the Flatiron Showcase website.  I have some simple DOM manipulation stuff that I just converted to CoffeeScript yesterday.  <a href="https://github.com/amcaplan/flatiron_showcase/blob/d952882068f13231cd3272a71f992ffcf3e25076/app/assets/javascripts/images.js.coffee">Check it out on Github!</a></p>
 ]]></content>
   </entry>
   
