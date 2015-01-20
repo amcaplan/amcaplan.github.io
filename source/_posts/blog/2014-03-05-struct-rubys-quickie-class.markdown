@@ -56,7 +56,7 @@ puts team.starting_lineup
 
 In this case, since there are always exactly 5 players, I don't want to pull out an array every time and write `team.players[0]`, and instead I've chosen to use 5 similarly named instance variables, so I can do `team.player1`.  This looks nice, but also isn't ideal.  If I want to access player n, this starts to get ugly: `team.send("player#{n}")`.
 
-Well, here's the good news\: as usual, Ruby has a better way for you to do it.
+Well, here's the good news&colon; as usual, Ruby has a better way for you to do it.
 
 <!-- more -->
 
