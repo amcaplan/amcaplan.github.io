@@ -42,12 +42,6 @@
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/13/flag-your-features-with-rollout-and-degrade/
-        </loc>
-        <lastmod>2015-01-18T18:26:35-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
             http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/
         </loc>
         <lastmod>2015-01-19T19:01:10-05:00</lastmod>
@@ -56,7 +50,7 @@
         <loc>
             http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/
         </loc>
-        <lastmod>2015-01-19T18:35:41-05:00</lastmod>
+        <lastmod>2015-01-19T19:09:48-05:00</lastmod>
     </url>
     <url>
         <loc>
@@ -80,11 +74,11 @@
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2015-01-19T19:03:02-05:00</lastmod>
+        <lastmod>2015-01-19T19:09:48-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2015-01-19T19:03:02-05:00</lastmod>
+        <lastmod>2015-01-19T19:09:48-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>
