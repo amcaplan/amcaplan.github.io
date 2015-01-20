@@ -3,6 +3,7 @@ layout: post
 title: "Feature Flags in Ruby, Part I: What and Why"
 date: 2015-01-18 16:07:26 -0500
 comments: true
+alias: /blog/2015/01/13/flag-your-features-with-rollout-and-degrade
 categories:
 - blog
 ---
