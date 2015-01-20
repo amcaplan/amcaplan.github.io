@@ -9,7 +9,26 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about &hellip;">
+  <meta name="description" content="Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -59,6 +78,128 @@
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/04/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-04T19:32:48-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Player</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:number</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'>    <span class="vi">@number</span> <span class="o">=</span> <span class="n">number</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">BasketballTeam</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:player1</span><span class="p">,</span> <span class="ss">:player2</span><span class="p">,</span> <span class="ss">:player3</span><span class="p">,</span> <span class="ss">:player4</span><span class="p">,</span> <span class="ss">:player5</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">,</span> <span class="n">player3</span><span class="p">,</span> <span class="n">player4</span><span class="p">,</span> <span class="n">player5</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@player1</span> <span class="o">=</span> <span class="n">player1</span>
+</span><span class='line'>    <span class="vi">@player2</span> <span class="o">=</span> <span class="n">player2</span>
+</span><span class='line'>    <span class="vi">@player3</span> <span class="o">=</span> <span class="n">player3</span>
+</span><span class='line'>    <span class="vi">@player4</span> <span class="o">=</span> <span class="n">player4</span>
+</span><span class='line'>    <span class="vi">@player5</span> <span class="o">=</span> <span class="n">player5</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">starting_lineup</span>
+</span><span class='line'>    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Ladies and Gentlemen, here is the starting lineup!</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">player</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;player</span><span class="si">#{</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">#</span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">str</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">team</span> <span class="o">=</span> <span class="no">BasketballTeam</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Magic Johnson&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Michael Jordan&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
+</span><span class='line'>  <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Larry Bird&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Charles Barkley&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Patrick Ewing&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">team</span><span class="o">.</span><span class="n">starting_lineup</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
+
+<p>Well, here&rsquo;s the good news\: as usual, Ruby has a better way for you to do it.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/04/struct-rubys-quickie-class/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -158,6 +299,12 @@
     
       
         <li class="post">
+          <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)</a>
+        </li>
+      
+    
+      
+        <li class="post">
           <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Feature Flags in Ruby, Part II: How and Where</a>
         </li>
       
@@ -176,12 +323,6 @@
         </li>
       
     
-      
-        <li class="post">
-          <a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a>
-        </li>
-      
-    
   </ul>
 </section>
 
@@ -194,11 +335,11 @@
       
     
       
+    
+      
         <li class="post">
           <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/">Flag Your Features with Rollout and Degrade</a>
         </li>
-      
-    
       
     
       

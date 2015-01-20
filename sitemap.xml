@@ -65,6 +65,12 @@
         <lastmod>2015-01-19T18:44:46-05:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
+        </loc>
+        <lastmod>2015-01-19T19:03:02-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://amcaplan.ninja/404.html</loc>
         <lastmod>2015-01-18T15:28:49-05:00</lastmod>
     </url>
@@ -74,11 +80,11 @@
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2015-01-19T19:01:10-05:00</lastmod>
+        <lastmod>2015-01-19T19:03:02-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2015-01-19T19:01:10-05:00</lastmod>
+        <lastmod>2015-01-19T19:03:02-05:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-19T19:01:41-05:00</updated>
+  <updated>2015-01-19T19:03:19-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,256 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
+    <updated>2015-01-19T16:49:19-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
+    <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
+practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
+theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.  For more info
+about rollout, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>.</em></p>
+
+<p>You have feature flags in your application, letting you turn off calls to
+external services as necessary.  How can we make this happen automatically?</p>
+
+<!-- more -->
+
+
+<h2>Degrade: An Amputation Tool</h2>
+
+<p><a href="https://github.com/jamesgolick/degrade">Degrade</a> exists to cut off error-prone external services when they
+fail.  Let&rsquo;s go through a demo of how we might use it.</p>
+
+<p>Before starting, we should note that redis is absolutely required to use
+degrade.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, <code>gem install degrade</code> or add <code>gem "degrade"</code> to your Gemfile and <code>bundle
+install</code>.</p>
+
+<h3>Instantiate the <code>degrade</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<p>``` ruby
+degrade_my_feature = Degrade.new(
+  redis,
+  name:             :my_feature,
+  sample:           5000, # The sample is reset after this number of requests.
+  minimum:          100,  # Degrade won&rsquo;t check whether the threshold has been hit until this number of requests has been made.
+  threshold:        0.1,  # The error rate (in this case, 10%) to deactivate the service
+  errors:           [StandardError], # The errors which will label this request as a failure
+  failure_strategy: &ndash;> {  # A lambda to be called when the error rate is reached</p>
+
+<pre><code>rollout.deactivate(:my_feature)
+</code></pre>
+
+<p>  }
+)
+```</p>
+
+<p>Whoa, that&rsquo;s a lot of options!  Most pieces are optional and should be
+fine-tuned to the needs of your application.  The important things are: you need
+to pass in a <code>redis</code> object, give your degrade object a <code>name</code>, and feed it a
+<code>failure_strategy</code> lambda which will run if the error threshold is reached.</p>
+
+<p>Let&rsquo;s discuss how to use your shiny new degrade object!</p>
+
+<h3>Wrap a call</h3>
+
+<p>Your <code>degrade</code> object comes with a <code>#perform</code> method that takes a block, thusly:</p>
+
+<p><code>ruby
+data = degrade_my_feature.perform do
+  Net::HTTP.get('mega-downtime.com', '/data.json')
+end
+</code></p>
+
+<p>It will run the block without impacting the return value, only pausing to mark
+whether the block raised one of the specified errors.  As you can see from
+<a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">the source code</a> for <code>#perform</code>:</p>
+
+<p>``` ruby
+def perform
+  begin</p>
+
+<pre><code>mark_request
+yield
+</code></pre>
+
+<p>  rescue *@errors => e</p>
+
+<pre><code>mark_failure
+raise e
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>It simply marks that a request is being made, and yields to your passed-in
+block. If all goes well, <code>perform</code> will return the return value of the block.
+If an error occurs, and it&rsquo;s one of the errors you&rsquo;ve selected to track, degrade
+will rescue, mark that this request ended in failure, and re-raise the error.</p>
+
+<p>It&rsquo;s important to understand that degrade won&rsquo;t automatically turn off a feature
+for you.  All it does is run the <code>failure_strategy</code> you&rsquo;ve given it.  You can
+use something like rollout to handle the failure situation.  Here is an example:</p>
+
+<p>``` ruby
+if rollout.active?(:my_feature)
+  data = degrade_my_feature.perform do</p>
+
+<pre><code>Net::HTTP.get('mega-downtime.com', '/data.json')
+</code></pre>
+
+<p>  end
+  hashify(data)
+else
+  {}
+end
+```</p>
+
+<p>You can, of course, cut off the request earlier in your code.  You might turn
+off a controller action entirely if the external service it needs is down.</p>
+
+<h2>Customizing Your <code>failure_strategy</code></h2>
+
+<p>The <code>failure_strategy</code> you pass to degrade is just a plain old lambda, so you
+can pass in any code that you want.  Let&rsquo;s say you create an <code>OutageNotifier</code>
+module which can send an email/text when the external service goes down.  Just
+call that code from the <code>failure_strategy</code>.  You can also set up a Sidekiq
+worker that will reactivate the service (i.e., try again) after a specified
+period of time.</p>
+
+<p>Here&rsquo;s how you might do all that in one <code>failure_strategy</code>:</p>
+
+<p>```ruby
+degrade_my_feature = Degrade.new(
+  redis,
+  name: :my_feature,
+  failure_strategy: &ndash;> {</p>
+
+<pre><code>rollout.deactivate(:my_feature)
+OutageNotifier.notify(downtime: :my_feature)
+MyFeatureActivatorWorker.perform_in(30.minutes)
+</code></pre>
+
+<p>  }
+)
+```</p>
+
+<h3>Reactivation</h3>
+
+<p>There is one catch to be aware of when reactivating.  Degrade does not
+automatically reset the sample when it runs the <code>failure_strategy</code>.  It has a
+private method to do that (after it hits the sample size max), but we&rsquo;ll respect
+that method&rsquo;s privacy.  Here&rsquo;s what <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L56-L61">that method</a> looks
+like:</p>
+
+<p>```ruby
+def reset_sample
+  if requests > @sample</p>
+
+<pre><code>@redis.del(requests_key)
+@redis.del(failures_key)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>If we <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L31-L37">dive deeper</a>, we&rsquo;ll see that <code>requests_key</code> and
+<code>failures_key</code> are:</p>
+
+<p>```ruby
+def requests_key
+  &ldquo;status:#{@name}:requests&rdquo;
+end</p>
+
+<p>def failures_key
+  &ldquo;status:#{@name}:failures&rdquo;
+end
+```</p>
+
+<p>So if we copy those methods, all we have to do to reset the sample is copy that
+code into our worker.  Here&rsquo;s a simplified Sidekiq worker, where <code>#perform</code> will
+reset the sample and then reactivate the feature flag:</p>
+
+<p>```ruby
+class MyFeatureActivatorWorker
+  include Sidekiq::Worker</p>
+
+<p>  def perform</p>
+
+<pre><code>reset_sample
+rollout.activate(:my_feature)
+</code></pre>
+
+<p>  end</p>
+
+<p>  private</p>
+
+<p>  def reset_sample</p>
+
+<pre><code>redis.del(requests_key)
+redis.del(failures_key)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def requests_key</p>
+
+<pre><code>"status:my_feature:requests"
+</code></pre>
+
+<p>  end</p>
+
+<p>  def failures_key</p>
+
+<pre><code>"status:my_feature:failures"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Now you can use the line of code:
+<code>ruby
+MyFeatureActivatorWorker.perform_in(30.minutes)
+</code>
+to reactivate the feature after a 30-minute delay.  If you&rsquo;re really clever, you
+can even set it up to increase the delay each time.  It all depends on the needs
+of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>In this series, we&rsquo;ve learned</p>
+
+<ul>
+<li><p>what feature flags are</p></li>
+<li><p>how to use feature flags with the rollout gem</p></li>
+<li><p>how to use degrade, building on rollout, to shut off external services as
+necessary</p></li>
+</ul>
+
+
+<p>Let me know about your experiences in the comments!</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
@@ -732,57 +982,6 @@ to the nested function we&rsquo;ve built.</p>
 
 <p>Using closures and callbacks, we&rsquo;ve managed to build a function that will run
 an arbitrary number of tasks synchronously.  Sweet!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T13:04:57-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
-    <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
-
-<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
-
-<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
-
-<!-- More -->
-
-
-<h3>The Case</h3>
-
-<p>In my situation, we were working with <a href="https://github.com/bernat/best_in_place">the <code>best_in_place</code> gem</a>, a jQuery library which allows in-place editing of a model&rsquo;s attributes.  We were providing users with an Edit button which would turn the text into a textarea, and a Save button to save changes.</p>
-
-<p>So we wrote a test where the text is edited once, saved, and then edited again.  The first time, no problems.  The second time, though, Capybara failed every time with an <code>ElementNotFound</code> error.  The textarea just wasn&rsquo;t there.  After lots of code changes, fancy debugging techniques, etc., the problem wasn&rsquo;t presenting itself.</p>
-
-<p>Here&rsquo;s the issue, when we finally figured it out: We were replacing the element on the page after the AJAX call to update the model on the server successfully completed.  It turns out that <code>best_in_place</code> has a <code>data-activator</code> attribute, defining a DOM selector for the activator element (in this case, the Edit Button), which is used only once, when <code>$(editableElement).best_in_place()</code> is called.  This adds an event listener for a click on the activator.</p>
-
-<p>When the element is replaced, then, we need to call <code>$(editableElement).best_in_place()</code> again to activate the activator (since the editable element, and the activator itself, have been replaced).  Failing to do so would mean that the item could be edited once, and never edited again!  There&rsquo;s our problem!</p>
-
-<p>But wait &ndash; we <em>were</em> calling <code>$(editableElement).best_in_place()</code> again, and spinning up a Rails server showed that when I tried it in the browser, it all worked!  So what gives?</p>
-
-<p>TL;DR (on the last few paragraphs) &ndash; everything was being done right, and Capybara was still failing.</p>
-
-<h3>The Explanation</h3>
-
-<p>It turns out that Capybara is really good at waiting for an element to appear, but doesn&rsquo;t wait for elements to change.  So while <code>$(editableElement).best_in_place()</code> was still running, Capybara already clicked the element and moved on.  Not surprisingly, the element hadn&rsquo;t had the click handler bound to it yet, so the textarea never appeared.</p>
-
-<p>The fix was a method introduced in Capybara 2 called <code>#synchronize</code>.  It&rsquo;s documented <a href="http://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Base:synchronize">here</a>.  This is how I used it:
-<code>ruby
-page.document.synchronize do
-  element.find("a.edit-link").click
-  textarea = element.find "textarea"
-end
-</code>
-The call to <code>#synchronize</code> tells Capybara to run the block but catch certain errors, including an <code>ElementNotFound</code> error.  If there is an error, it will run the block again from the top.  So in this case when it fails to find the textarea, it will click the link again and see if the textarea appears this time.  This cycle will continue until the block completes without errors, or the global Capybara timeout is reached.</p>
-
-<p>When I added the block, the test passed.  Presto!</p>
-
-<h3>A Word of Caution</h3>
-
-<p>Before you go out and start using <code>#synchronize</code> all over your code, however, a warning is in order.  Capybara is really good at waiting for elements to appear, and waiting for AJAX has better solutions than <code>#synchronize</code>.  (See <a href="https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends">the official Capybara documentation</a> for built-in functionality, and <a href="http://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara">this helpful Thoughtbot post</a> for how to avoid race conditions.)  So <code>#synchronize</code> is really for situations like this, where you have an element on the page which Capybara can find, but it takes a moment for it to gain the functionality you need &ndash; and, since Capybara browses way faster than you can, it interacts with that element just a bit too early.</p>
-
-<p>The downside to <code>#synchronize</code> is that it introduces another point where Capybara tests can stall before failing, and it can mask a bad UX where JS that enables elements takes too long to work.  I&rsquo;d generally recommend avoiding the use of <code>#synchronize</code> until you hit a wall and the existing Capybara magic doesn&rsquo;t quite cut it.  And if you do use <code>#synchronize</code>, open up the browser, and make sure the real-life UX is fast enough that your users don&rsquo;t hit some kind of unexpected behavior.</p>
 ]]></content>
   </entry>
   

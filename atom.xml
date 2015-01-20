@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-19T19:01:41-05:00</updated>
+  <updated>2015-01-19T19:03:19-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,305 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
+    <updated>2015-01-19T16:49:19-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
+    <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
+practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
+theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.  For more info
+about rollout, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>.</em></p>
+
+<p>You have feature flags in your application, letting you turn off calls to
+external services as necessary.  How can we make this happen automatically?</p>
+
+<!-- more -->
+
+
+<h2>Degrade: An Amputation Tool</h2>
+
+<p><a href="https://github.com/jamesgolick/degrade">Degrade</a> exists to cut off error-prone external services when they
+fail.  Let&rsquo;s go through a demo of how we might use it.</p>
+
+<p>Before starting, we should note that redis is absolutely required to use
+degrade.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, <code>gem install degrade</code> or add <code>gem "degrade"</code> to your Gemfile and <code>bundle
+install</code>.</p>
+
+<h3>Instantiate the <code>degrade</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">degrade_my_feature</span> <span class="o">=</span> <span class="no">Degrade</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+</span><span class='line'>  <span class="n">redis</span><span class="p">,</span>
+</span><span class='line'>  <span class="nb">name</span><span class="p">:</span>             <span class="ss">:my_feature</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">sample</span><span class="p">:</span>           <span class="mi">5000</span><span class="p">,</span> <span class="c1"># The sample is reset after this number of requests.</span>
+</span><span class='line'>  <span class="ss">minimum</span><span class="p">:</span>          <span class="mi">100</span><span class="p">,</span>  <span class="c1"># Degrade won&#39;t check whether the threshold has been hit until this number of requests has been made.</span>
+</span><span class='line'>  <span class="ss">threshold</span><span class="p">:</span>        <span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The error rate (in this case, 10%) to deactivate the service</span>
+</span><span class='line'>  <span class="ss">errors</span><span class="p">:</span>           <span class="o">[</span><span class="no">StandardError</span><span class="o">]</span><span class="p">,</span> <span class="c1"># The errors which will label this request as a failure</span>
+</span><span class='line'>  <span class="n">failure_strategy</span><span class="p">:</span> <span class="o">-&gt;</span> <span class="p">{</span>  <span class="c1"># A lambda to be called when the error rate is reached</span>
+</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Whoa, that&rsquo;s a lot of options!  Most pieces are optional and should be
+fine-tuned to the needs of your application.  The important things are: you need
+to pass in a <code>redis</code> object, give your degrade object a <code>name</code>, and feed it a
+<code>failure_strategy</code> lambda which will run if the error threshold is reached.</p>
+
+<p>Let&rsquo;s discuss how to use your shiny new degrade object!</p>
+
+<h3>Wrap a call</h3>
+
+<p>Your <code>degrade</code> object comes with a <code>#perform</code> method that takes a block, thusly:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">degrade_my_feature</span><span class="o">.</span><span class="n">perform</span> <span class="k">do</span>
+</span><span class='line'>  <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mega-downtime.com&#39;</span><span class="p">,</span> <span class="s1">&#39;/data.json&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It will run the block without impacting the return value, only pausing to mark
+whether the block raised one of the specified errors.  As you can see from
+<a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">the source code</a> for <code>#perform</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">perform</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="n">mark_request</span>
+</span><span class='line'>    <span class="k">yield</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="o">*</span><span class="vi">@errors</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>    <span class="n">mark_failure</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="n">e</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It simply marks that a request is being made, and yields to your passed-in
+block. If all goes well, <code>perform</code> will return the return value of the block.
+If an error occurs, and it&rsquo;s one of the errors you&rsquo;ve selected to track, degrade
+will rescue, mark that this request ended in failure, and re-raise the error.</p>
+
+<p>It&rsquo;s important to understand that degrade won&rsquo;t automatically turn off a feature
+for you.  All it does is run the <code>failure_strategy</code> you&rsquo;ve given it.  You can
+use something like rollout to handle the failure situation.  Here is an example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">degrade_my_feature</span><span class="o">.</span><span class="n">perform</span> <span class="k">do</span>
+</span><span class='line'>    <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mega-downtime.com&#39;</span><span class="p">,</span> <span class="s1">&#39;/data.json&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">hashify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="p">{}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can, of course, cut off the request earlier in your code.  You might turn
+off a controller action entirely if the external service it needs is down.</p>
+
+<h2>Customizing Your <code>failure_strategy</code></h2>
+
+<p>The <code>failure_strategy</code> you pass to degrade is just a plain old lambda, so you
+can pass in any code that you want.  Let&rsquo;s say you create an <code>OutageNotifier</code>
+module which can send an email/text when the external service goes down.  Just
+call that code from the <code>failure_strategy</code>.  You can also set up a Sidekiq
+worker that will reactivate the service (i.e., try again) after a specified
+period of time.</p>
+
+<p>Here&rsquo;s how you might do all that in one <code>failure_strategy</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">degrade_my_feature</span> <span class="o">=</span> <span class="no">Degrade</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+</span><span class='line'>  <span class="n">redis</span><span class="p">,</span>
+</span><span class='line'>  <span class="nb">name</span><span class="p">:</span> <span class="ss">:my_feature</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">failure_strategy</span><span class="p">:</span> <span class="o">-&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">OutageNotifier</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="ss">downtime</span><span class="p">:</span> <span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">MyFeatureActivatorWorker</span><span class="o">.</span><span class="n">perform_in</span><span class="p">(</span><span class="mi">30</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Reactivation</h3>
+
+<p>There is one catch to be aware of when reactivating.  Degrade does not
+automatically reset the sample when it runs the <code>failure_strategy</code>.  It has a
+private method to do that (after it hits the sample size max), but we&rsquo;ll respect
+that method&rsquo;s privacy.  Here&rsquo;s what <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L56-L61">that method</a> looks
+like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">reset_sample</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">requests</span> <span class="o">&gt;</span> <span class="vi">@sample</span>
+</span><span class='line'>    <span class="vi">@redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">requests_key</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">failures_key</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L31-L37">dive deeper</a>, we&rsquo;ll see that <code>requests_key</code> and
+<code>failures_key</code> are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">requests_key</span>
+</span><span class='line'>  <span class="s2">&quot;status:</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">:requests&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">failures_key</span>
+</span><span class='line'>  <span class="s2">&quot;status:</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">:failures&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So if we copy those methods, all we have to do to reset the sample is copy that
+code into our worker.  Here&rsquo;s a simplified Sidekiq worker, where <code>#perform</code> will
+reset the sample and then reactivate the feature flag:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyFeatureActivatorWorker</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">Sidekiq</span><span class="p">:</span><span class="ss">:Worker</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">perform</span>
+</span><span class='line'>    <span class="n">reset_sample</span>
+</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">reset_sample</span>
+</span><span class='line'>    <span class="n">redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">requests_key</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">failures_key</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">requests_key</span>
+</span><span class='line'>    <span class="s2">&quot;status:my_feature:requests&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">failures_key</span>
+</span><span class='line'>    <span class="s2">&quot;status:my_feature:failures&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can use the line of code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">MyFeatureActivatorWorker</span><span class="o">.</span><span class="n">perform_in</span><span class="p">(</span><span class="mi">30</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to reactivate the feature after a 30-minute delay.  If you&rsquo;re really clever, you
+can even set it up to increase the delay each time.  It all depends on the needs
+of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>In this series, we&rsquo;ve learned</p>
+
+<ul>
+<li><p>what feature flags are</p></li>
+<li><p>how to use feature flags with the rollout gem</p></li>
+<li><p>how to use degrade, building on rollout, to shut off external services as
+necessary</p></li>
+</ul>
+
+
+<p>Let me know about your experiences in the comments!</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
