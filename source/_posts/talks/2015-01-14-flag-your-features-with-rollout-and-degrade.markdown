@@ -10,7 +10,10 @@ tags:
 - gems
 ---
 
-Check out the [SpeakerDeck](https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade); blog post coming soon.
+Check out the [SpeakerDeck] [SpeakerDeck]!  You can also read the
+[three] [feature flags part 1] [blog] [feature flags part 2]
+[posts] [feature flags part 3] I wrote about feature flags.
+
 
 <script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -24,3 +27,8 @@ Links:
 [https://news.ycombinator.com/item?id=8804624](https://news.ycombinator.com/item?id=8804624)
 [https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920](https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920)
 [https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6](https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6)
+
+[SpeakerDeck]: https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade
+[feature flags part 1]: /blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/
+[feature flags part 2]: /blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/
+[feature flags part 3]: /blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
