@@ -3,7 +3,6 @@ layout: post
 title: "Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)"
 date: 2015-01-19 16:49:19 -0500
 comments: true
-published: false
 categories:
 - blog
 ---
