@@ -5,6 +5,9 @@ date: 2015-01-19 16:49:19 -0500
 comments: true
 categories:
 - blog
+twitter:
+  title: "Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)"
+  description: A primer on the use of James Golick's `degrade` gem to automate feature flipping.
 ---
 
 *Note: Part III assumes familiarity with the idea of feature flags, and their
