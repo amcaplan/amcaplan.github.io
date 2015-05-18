@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-19T22:05:32-05:00</updated>
+  <updated>2015-05-18T17:06:44+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T16:49:19-05:00</updated>
+    <updated>2015-01-19T23:49:19+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
@@ -314,9 +314,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-18T22:16:18-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-19T05:16:18+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
 
@@ -666,7 +666,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
-    <updated>2015-01-18T16:07:26-05:00</updated>
+    <updated>2015-01-18T23:07:26+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
@@ -845,7 +845,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
     <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T13:05:10-05:00</updated>
+    <updated>2015-01-14T20:05:10+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
@@ -871,7 +871,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
     <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
-    <updated>2014-08-24T16:25:29-04:00</updated>
+    <updated>2014-08-24T23:25:29+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
@@ -1168,7 +1168,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
     <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T13:04:57-04:00</updated>
+    <updated>2014-07-17T20:04:57+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
     <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
 
@@ -1224,9 +1224,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
-    <updated>2014-05-29T18:09:56-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
+    <link href="http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/"/>
+    <updated>2014-05-30T01:09:56+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables</id>
     <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
 
 <p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
@@ -1675,9 +1675,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[CoffeeScript 101]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
-    <updated>2014-05-01T19:40:43-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
+    <link href="http://amcaplan.ninja/blog/2014/05/02/coffeescript-101/"/>
+    <updated>2014-05-02T02:40:43+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/02/coffeescript-101</id>
     <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
 
 <p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
@@ -1829,7 +1829,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Using Helper Methods to DRY Up Rails Forms]]></title>
     <link href="http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/"/>
-    <updated>2014-04-02T00:59:32-04:00</updated>
+    <updated>2014-04-02T07:59:32+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms</id>
     <content type="html"><![CDATA[<p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
 
@@ -2073,9 +2073,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[Exploring Security and Secret Tokens Through Facebook Login]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/"/>
-    <updated>2014-03-18T20:56:00-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login</id>
+    <link href="http://amcaplan.ninja/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/"/>
+    <updated>2014-03-19T02:56:00+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login</id>
     <content type="html"><![CDATA[<p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
 
 <p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
@@ -2141,9 +2141,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[Struct: Ruby's Quickie Class]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/"/>
-    <updated>2014-03-04T19:32:48-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class</id>
+    <link href="http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/"/>
+    <updated>2014-03-05T02:32:48+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class</id>
     <content type="html"><![CDATA[<p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2352,9 +2352,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[Lessons from a Failed Successful Gem]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem/"/>
-    <updated>2014-02-18T19:55:54-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem</id>
+    <link href="http://amcaplan.ninja/blog/2014/02/19/lessons-from-a-failed-successful-gem/"/>
+    <updated>2014-02-19T02:55:54+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/02/19/lessons-from-a-failed-successful-gem</id>
     <content type="html"><![CDATA[<p>One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about trying something, making it work, and then improving on it.</p>
 
 <p>I recently published a Ruby Gem called CheckEverything (the source code is <a href="http://github.com/amcaplan/check_everything">here</a> and the gem can be installed by typing &lsquo;<code>gem install check_everything</code>&rsquo; into your Bash console).</p>

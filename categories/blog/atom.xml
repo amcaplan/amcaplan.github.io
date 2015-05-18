@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-19T22:05:32-05:00</updated>
+  <updated>2015-05-18T17:06:44+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T16:49:19-05:00</updated>
+    <updated>2015-01-19T23:49:19+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
@@ -265,9 +265,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-18T22:16:18-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-19T05:16:18+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
 
@@ -559,7 +559,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
-    <updated>2015-01-18T16:07:26-05:00</updated>
+    <updated>2015-01-18T23:07:26+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
@@ -738,7 +738,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
     <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
-    <updated>2014-08-24T16:25:29-04:00</updated>
+    <updated>2014-08-24T23:25:29+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
@@ -979,7 +979,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
     <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T13:04:57-04:00</updated>
+    <updated>2014-07-17T20:04:57+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
     <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
 

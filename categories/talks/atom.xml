@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-01-19T22:05:32-05:00</updated>
+  <updated>2015-05-18T17:06:44+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
     <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T13:05:10-05:00</updated>
+    <updated>2015-01-14T20:05:10+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
