@@ -6,6 +6,8 @@ comments: true
 alias: /blog/2015/01/13/flag-your-features-with-rollout-and-degrade
 categories:
 - blog
+twitter:
+  description: A theoretical introduction to feature flagging - what it is, and why it might be useful in your app.
 ---
 
 *Note: Part I will be more theoretical.  If you already know about feature

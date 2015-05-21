@@ -5,6 +5,8 @@ date: 2015-01-18 22:16:18 -0500
 comments: true
 categories:
 - blog
+twitter:
+  description: How to integrate James Golick's `rollout` gem into your app, and some clever ways to interact with it.
 ---
 
 *Note: Part II assumes familiarity with the idea of feature flags.  For the

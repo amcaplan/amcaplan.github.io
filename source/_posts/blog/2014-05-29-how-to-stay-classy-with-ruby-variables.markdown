@@ -12,6 +12,8 @@ tags:
 - Programming
 - Ruby
 - variables
+twitter:
+  description: A deep dive into class variables, class instance variables, and constants, and how they function when it comes to inheritance.
 ---
 
 Ruby provides a number of options for non-instance-specific variables - class variables (of the form: `@@var`), constants (in all caps: `VAR`), and class instance variables (`@var`).  Which one to use depends on the use case, and to some degree on personal preference.  Let's explore this a bit.

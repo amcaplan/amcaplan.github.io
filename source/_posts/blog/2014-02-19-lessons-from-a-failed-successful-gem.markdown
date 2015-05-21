@@ -13,6 +13,8 @@ tags:
 - failure
 - gems
 - Ruby
+twitter:
+  description: One new developer's experience with the process of building and publishing a Ruby gem.
 ---
 
 One of our mottos at Flatiron is "Celebrate failure."  We aren't trying to get it right immediately - it's all about trying something, making it work, and then improving on it.

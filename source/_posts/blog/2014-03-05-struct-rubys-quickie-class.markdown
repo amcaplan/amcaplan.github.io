@@ -11,6 +11,8 @@ categories:
 tags:
 - Programming
 - Ruby
+twitter:
+  description: An intro to the Struct class in Ruby.
 ---
 
 Let's say you have Player and BasketballTeam classes that are defined and used as follows:

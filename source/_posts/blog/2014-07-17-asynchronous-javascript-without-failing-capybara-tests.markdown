@@ -13,6 +13,8 @@ tags:
 - Ruby
 - JavaScript
 - Capybara
+twitter:
+  description: A little trick for avoiding nasty Capybara errors.
 ---
 
 Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn't with my code - it was with the way Capybara works.  I want to save you the time I lost, so let's get to it.

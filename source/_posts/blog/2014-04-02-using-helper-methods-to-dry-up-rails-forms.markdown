@@ -8,6 +8,8 @@ title: Using Helper Methods to DRY Up Rails Forms
 wordpress_id: 113
 categories:
 - blog
+twitter:
+  description: An introduction to Rails helpers, demonstrating their use in applying standard coding techniques to HTML.
 ---
 
 Helpers are a pretty nifty feature of Rails. And I'm not just talking about the built-in form helpers and the like, though those are awesome. I'm talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let's first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn't like:

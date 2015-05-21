@@ -12,6 +12,8 @@ tags:
 - JavaScript
 - Programming
 - CoffeeScript
+twitter:
+  description: A nifty little demo of what makes CoffeeScript fantastic.
 ---
 
 "CoffeeScript, c'mon and/ take a sip, they call it/ CoffeeScript, Coff-"

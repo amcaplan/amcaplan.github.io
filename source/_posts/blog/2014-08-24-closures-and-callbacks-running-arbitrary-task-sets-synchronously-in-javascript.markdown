@@ -12,6 +12,8 @@ tags:
 - JavaScript
 - closures
 - callbacks
+twitter:
+  description: Learning synchronous JavaScript by trial-and-error.
 ---
 
 On the Vitals Choice team, we have divided our product into a number of apps.

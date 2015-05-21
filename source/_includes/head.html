@@ -19,7 +19,11 @@
   {% if page.twitter %}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@amcaplan" />
-    <meta name="twitter:title" content="{{ page.twitter.title }}" />
+    {% if page.twitter.title %}
+      <meta name="twitter:title" content="{{ page.twitter.title }}" />
+    {% else %}
+      <meta name="twitter:title" content="{{ page.title }}" />
+    {% endif %}
     <meta name="twitter:description" content="{{ page.twitter.description }}" />
     {% if page.twitter.image %}
       <meta name="twitter:image" content="{{ page.twitter.image }}" />
