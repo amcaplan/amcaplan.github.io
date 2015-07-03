@@ -6,7 +6,7 @@ comments: true
 categories:
 - blog
 twitter:
-  description: Reflections after a year "in the field" working as a developer.
+  description: Reflections after a year in the field working as a developer.
 ---
 
 Recently, a new member of our team asked me (and other coworkers) to list 3
