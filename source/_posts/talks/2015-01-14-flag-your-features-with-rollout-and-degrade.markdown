@@ -8,6 +8,9 @@ categories:
 tags:
 - Ruby
 - gems
+twitter:
+  description: Learn how to use Rollout and Degrade to manage your
+    application's behavior at runtime
 ---
 
 Check out the [SpeakerDeck] [SpeakerDeck]!  You can also read the
