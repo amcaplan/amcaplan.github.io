@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-11-06T00:34:11+02:00</updated>
+  <updated>2015-11-06T00:35:53+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -19,6 +19,8 @@
     <updated>2015-11-06T00:01:36+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
+
+<p>This talk was given at RailsRemoteConf 2015.</p>
 
 <p>Check out the <a href="https://speakerdeck.com/amcaplan/start-your-rails-engines-railsremoteconf-2015">SpeakerDeck</a>!  Video coming soon!</p>
 
