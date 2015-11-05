@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript" />
+    
+    <meta name="twitter:description" content="Learning synchronous JavaScript by trial-and-error." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-24T23:25:29+03:00" pubdate data-updated="true">Aug 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
+
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
+
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
+
+<!-- more -->
+
+
+<p><em>[Note: code examples have been simplified for readability, and proprietary
+secrets have been removed.]</em></p>
+
+<h3>Step 1: Implement callbacks for the deploy script</h3>
+
+<p>Initially, groundwork needed to be laid for post-deploy callbacks.  This was
+relatively simple to implement (all examples in CoffeeScript):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deploy = </span><span class="nf">(app, env, callback) -&gt;</span>
+</span><span class='line'>  <span class="c1"># code to deploy the app, including spawning a Shell script, abstracted</span>
+</span><span class='line'>  <span class="c1"># in JavaScript by an object held in the variable &#39;script&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">script</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;close&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">callback</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Step 2: Create a function for each app</h3>
+
+<p>After quickly setting up a <code>robot.respond</code> function (which is how Hubot
+responds to a particular chat command), calling a <code>deployAll</code> function, I
+turned to the hard problem of setting up a series of functions to deploy all
+apps, one after the other.  I had a variable accessible as
+<code>robot.brain.PROJECTS</code>, which was a collection of all the app names, so I
+thought to iterate through all the apps, each time capturing the previous
+function as a callback of the new function.  This would effectively create
+a stack of functions that would be executed one by one, exactly as I described.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deployAll = </span><span class="nf">(env, msg)-&gt;</span>
+</span><span class='line'>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">app</span> <span class="k">in</span> <span class="nx">robot</span><span class="p">.</span><span class="nx">brain</span><span class="p">.</span><span class="nx">PROJECTS</span>
+</span><span class='line'>    <span class="c1"># Reassign `callback` to a new function...</span>
+</span><span class='line'>    <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="c1"># which passes the current `callback` as a callback to `deploy`</span>
+</span><span class='line'>      <span class="nx">deploy</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span> <span class="c1"># Start the chain!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It all seemed to make sense, until I actually tested it.  For some reason,
+it just tried to deploy the last app again and again.  What gives?</p>
+
+<h3>Step 2.5: Grokking Scope and Lazy Function Evaluation</h3>
+
+<p>It turns out that in the loop, when I redefined <code>callback</code>, it associated the
+<code>callback</code> variable with a new function, but within the function, it didn&rsquo;t
+yet do anything with the line <code>deploy(app, env, callback)</code>.  This is because
+functions exist within a particular closure; they will be evaluated as though
+they were run in the place where they were defined, with access to all local
+variables, but those variables are accessed when the function is actually run,
+NOT when the function is defined.</p>
+
+<p>Here&rsquo;s a simpler example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">i = </span><span class="mi">0</span>
+</span><span class='line'><span class="nv">logger = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">i</span><span class="o">++</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 2</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="nf">(i) =&gt;</span> <span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can see that <code>i</code> is defined in the outer scope, modified in the inner scope,
+and that change persists in the outer scope.</p>
+
+<p>Let&rsquo;s now look at an example closer to our situation:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">i = </span><span class="mi">0</span>
+</span><span class='line'><span class="nv">logger = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="nv">i = </span><span class="mi">7</span>
+</span><span class='line'><span class="nx">logger</span><span class="p">()</span> <span class="c1"># =&gt; 7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As we can see, the <code>i</code> inside the function is not fixed, but rather depends on
+what happens in its closure at any point before the function is actually
+called.</p>
+
+<p>Here&rsquo;s one last example, with a nested function like we had:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">callbackRunner = </span><span class="nf">(callback) -&gt;</span>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span>
+</span><span class='line'><span class="nv">onePrinter = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">callbackRunner</span><span class="p">(</span><span class="nx">onePrinter</span><span class="p">)</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">cbRoP = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">callbackRunner</span><span class="p">(</span><span class="nx">onePrinter</span><span class="p">)</span>
+</span><span class='line'><span class="nx">cbRoP</span><span class="p">()</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">onePrinter = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nx">cbRoP</span><span class="p">()</span> <span class="c1"># =&gt; &quot;one&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By redefining <code>onePrinter</code> in the outer scope, we changed what <code>cbRoP</code> does.
+This is because inside <code>cbRoP</code>, where <code>onePrinter</code> is referenced, that variable
+is evaluated only when <code>cbRoP</code> is actually called.  The first time, <code>onePrinter</code>
+prints out 1, but the second time, it prints out &ldquo;one&rdquo;.  Even within <code>cbRoP</code>,
+<code>onePrinter</code> has been redefined.</p>
+
+<h3>Step 3: Create a Custom Scope</h3>
+
+<p>The solution to our problem was to create a scope where the callback wouldn&rsquo;t
+change.  Here&rsquo;s the code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">deployAll = </span><span class="nf">(env, msg)-&gt;</span>
+</span><span class='line'>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">deployFunctionFactory = </span><span class="nf">(app, callback) -&gt;</span>
+</span><span class='line'>    <span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">app</span> <span class="k">in</span> <span class="nx">robot</span><span class="p">.</span><span class="nx">brain</span><span class="p">.</span><span class="nx">PROJECTS</span>
+</span><span class='line'>    <span class="nv">callback = </span><span class="nx">deployFunctionFactory</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a bit of a mind-bender, so let&rsquo;s explain piece by piece.</p>
+
+<ul>
+<li><p><code>deployFunctionFactory</code> takes in a reference to an app and a function to
+use as a callback.  It returns a function which, when called, will deploy
+the app passed in, and use the callback that is passed in.  Since <code>callback</code>
+is one of <code>deployFunctionFactory</code>&rsquo;s arguments, it has been captured in the
+scope of the function, and nothing outside can change it in the future.</p></li>
+<li><p>The <code>for</code> loop reassigns <code>callback</code> each time to a new function which is
+produced on the spot by <code>deployFunctionFactory</code>.  The right side of the equals
+sign is evaluated immediately, so <code>callback</code> is passed into
+<code>deployFunctionFactory</code>, a new function is returned, and that new function is
+assigned to <code>callback</code>.</p></li>
+<li><p>The cycle repeats for each app, ultimately generating what is effectively
+a stack of functions to be called, one after the other.</p></li>
+<li><p>When the stack of functions is resolved on the last line, it starts by
+running the anonymous function returned by <code>deployFunctionFactory</code> for the last
+app in <code>robot.brain.PROJECTS</code>, since that&rsquo;s the last function that has been
+added to the virtual stack.  That function calls <code>deploy</code> with the second-to-last
+function (which deploys the second-to-last app) as a callback.  When the first
+app deployed is done deploying, this callback is run, deploying the next app
+in line.</p></li>
+</ul>
+
+
+<p>The logic is pretty complex, so here&rsquo;s a visual representation of what all this
+code is accomplishing.  We will consider a case of 3 apps to keep it simple.
+First, we build the function inside out:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="mi">1</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">2</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">3</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app2&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>          <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">4</span><span class="p">.</span>  <span class="nv">callback = </span><span class="nf">-&gt;</span>
+</span><span class='line'>      <span class="nx">deploy</span> <span class="s">&quot;app3&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>        <span class="nx">deploy</span> <span class="s">&quot;app2&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>          <span class="nx">deploy</span> <span class="s">&quot;app1&quot;</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>            <span class="nx">msg</span><span class="p">.</span><span class="nx">send</span> <span class="s">&quot;Finished deploying all the apps!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, when we call <code>callback</code>, the functions will be run outside in.  First,
+app3 will be deployed.  When that&rsquo;s done, our <code>deploy</code> function knows to call
+the callback, i.e. the next function, deploying app2.  When app2 finishes being
+deployed, app1 will be deployed.  At the end, a message will be sent letting
+you know all the apps have been deployed.</p>
+
+<h3>Concluding Thoughts</h3>
+
+<p>Using closures and callbacks properly can be a mentally exhausting endeavor.
+However, when these factors are properly considered and utilized, you can
+accomplish some pretty powerful stuff.</p>
+
+<p>I personally had to try a few iterations before I came up with a workable
+solution in this case, but the results were quite satisfying, and it got the
+job done.  In the future, if we add apps to <code>robot.brain.PROJECTS</code>, the
+<code>deployAll</code> function won&rsquo;t have to be changed; it will just add more layers
+to the nested function we&rsquo;ve built.</p>
+
+<p>Using closures and callbacks, we&rsquo;ve managed to build a function that will run
+an arbitrary number of tasks synchronously.  Sweet!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">amcaplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-24T23:25:29+03:00" pubdate data-updated="true">Aug 24<span>th</span>, 2014</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/" title="Previous Post: Asynchronous JavaScript - Without Failing Capybara Tests">&laquo; Asynchronous JavaScript - Without Failing Capybara Tests</a>
+        
+        
+          <a class="basic-alignment right" href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/" title="Next Post: Feature Flags in Ruby, Part I: What and Why">Feature Flags in Ruby, Part I: What and Why &raquo;</a>
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="http://amcaplan.ninja/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/">Recruit Software Engineers with this 1 Weird Old Tip</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/06/29/what-should-a-junior-developer-work-on-first/">What Should a Junior Developer Work On First?</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/05/21/the-making-of-persistentopenstruct/">The Making of PersistentOpenStruct</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+        <li class="post">
+          <a href="/talks/2015/11/06/start-your-rails-engines/">Start Your (Rails) Engines!</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/amcaplan">@amcaplan</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amcaplan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

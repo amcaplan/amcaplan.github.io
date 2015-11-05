@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-08-02T10:48:26+03:00</updated>
+  <updated>2015-11-06T00:24:30+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
+    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
+    <updated>2015-11-06T00:01:36+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
+    <content type="html"><![CDATA[<h3>The Talk</h3>
+
+<p>Check out the <a href="https://speakerdeck.com/amcaplan/start-your-rails-engines-railsremoteconf-2015">SpeakerDeck</a>!  Video coming soon!</p>
+
+<script async class="speakerdeck-embed" data-id="f1a29cab92da437284c27653a1525131" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>Want to split up your Rails app into pieces but not sure where to begin? Wish
+you could share controller code among microservices but don&rsquo;t know how? Do you
+work on lots of projects and have boilerplate Rails code repeated in each?</p>
+
+<p>Rails Engines may be your answer.</p>
+
+<p>We will build a simple Rails engine and understand how this app-within-an-app
+architecture can help you write more modular code which can be gemified and
+reused across multiple projects.</p>
+
+<br /><br />
+
+
+<h3>Following Along</h3>
+
+<p>The video will be made public&hellip; eventually.</p>
+
+<p>In the meantime, you can check out the code from the &ldquo;live code&rdquo; portion at
+<a href="https://github.com/amcaplan/forget">https://github.com/amcaplan/forget</a> and
+<a href="https://github.com/amcaplan/cacher">https://github.com/amcaplan/cacher</a>. I also
+edited my notes from the live code portion, and published them at
+<a href="https://gist.github.com/amcaplan/0841065fdb69966b860f">https://gist.github.com/amcaplan/0841065fdb69966b860f</a>.</p>
+
+<p>For your convenience, here are the links from the talk.</p>
+
+<br />
+
+
+<h4>Links Throughout the Presentation</h4>
+
+<p><a href="http://guides.rubyonrails.org/engines.html">http://guides.rubyonrails.org/engines.html</a></p>
+
+<p><a href="https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79">https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79</a></p>
+
+<p><a href="http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/">http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/</a></p>
+
+<p><a href="http://article.gmane.org/gmane.comp.lang.ruby.rails/29166">http://article.gmane.org/gmane.comp.lang.ruby.rails/29166</a></p>
+
+<p><a href="https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/">https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/</a></p>
+
+<br />
+
+
+<h4>Further information links</h4>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">GoGaRuCo 2012, Erik Michaels-Ober &ndash; “Writing a Rails Engine”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/leave-your-migrations-in-your-rails-engines">Ben Smith &ndash; “Leave your migrations in your Rails engines”</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">RailsConf 2015, Stephan Hagemann &ndash; “Get started with Component-based Rails applications!”</a></p>
+
+<p><a href="http://tech.taskrabbit.com/blog/2014/02/11/rails-4-engines/">Brian Leonard, “Rails 4 Engines” (Blog post about splitting up an application)</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=uDaBtqEYNBo">Rocky Mountain Ruby 2013, Ben Smith &ndash; “How I architected my big Rails app for success!”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines">Stephan Hagemann, “Migrating from a single Rails app to a suite of Rails engines”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/experience-report-engine-usage-that-didn-t-work">Will Read, “Experience Report: Engine Usage That Didn&rsquo;t Work”</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
@@ -143,7 +216,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#x40;&#x73;&#97;&#x77;&#102;&#x74;&#x77;&#101;&#x61;&#x72;&#46;&#x6c;&#x79;&#46;">&#100;&#x65;&#118;&#64;&#115;&#97;&#x77;&#x66;&#x74;&#x77;&#101;&#97;&#114;&#46;&#108;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#100;&#101;&#118;&#64;&#x73;&#97;&#119;&#x66;&#x74;&#x77;&#101;&#97;&#114;&#x2e;&#x6c;&#121;&#x2e;">&#x64;&#x65;&#118;&#x40;&#115;&#x61;&#x77;&#102;&#x74;&#119;&#x65;&#97;&#114;&#x2e;&#x6c;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -1475,10 +1548,10 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T20:05:10+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
+    <title type="html"><![CDATA[Flag Your Features With Rollout And Degrade]]></title>
+    <link href="http://amcaplan.ninja/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
+    <updated>2015-01-14T00:00:00+02:00</updated>
+    <id>http://amcaplan.ninja/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
 <a href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">posts</a> I wrote about feature flags.</p>

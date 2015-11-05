@@ -41,10 +41,8 @@
         <lastmod>2015-05-21T03:29:05+03:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/
-        </loc>
-        <lastmod>2015-01-20T02:01:10+02:00</lastmod>
+        <loc>http://amcaplan.ninja/2015/01/14/flag-your-features-with-rollout-and-degrade/</loc>
+        <lastmod>2015-11-06T00:20:22+02:00</lastmod>
     </url>
     <url>
         <loc>
@@ -81,6 +79,10 @@
         <lastmod>2015-08-02T10:47:05+03:00</lastmod>
     </url>
     <url>
+        <loc>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/</loc>
+        <lastmod>2015-11-06T00:23:57+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://amcaplan.ninja/404.html</loc>
         <lastmod>2015-01-18T22:28:49+02:00</lastmod>
     </url>
@@ -90,11 +92,11 @@
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2015-08-02T10:47:05+03:00</lastmod>
+        <lastmod>2015-11-06T00:23:57+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2015-08-02T10:47:05+03:00</lastmod>
+        <lastmod>2015-11-06T00:23:57+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>
