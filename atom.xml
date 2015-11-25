@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-11-18T16:06:40+02:00</updated>
+  <updated>2015-11-25T16:19:00+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Threads and Processes]]></title>
+    <link href="http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes/"/>
+    <updated>2015-11-24T23:40:44+02:00</updated>
+    <id>http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes</id>
+    <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
+
+<p>Video from the conference will be posted after it is published.  In the
+meantime, here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="9078d225f907475faf2c13bc3a41ea94" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Talk Description:</h4>
+
+<p>Many of us use threads and/or processes in our code, whether explicitly or implicitly. But do we really understand what threads and processes are? Can we clearly evaluate the pros and cons of each? We will attempt to clarify these concepts in a simple, concise fashion.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
@@ -294,7 +313,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x64;&#101;&#x76;&#x40;&#x73;&#x61;&#119;&#102;&#x74;&#119;&#101;&#97;&#x72;&#46;&#108;&#121;&#x2e;">&#100;&#x65;&#x76;&#64;&#115;&#97;&#119;&#x66;&#x74;&#119;&#x65;&#x61;&#x72;&#46;&#x6c;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#x65;&#118;&#64;&#115;&#x61;&#x77;&#102;&#116;&#x77;&#x65;&#97;&#114;&#x2e;&#x6c;&#x79;&#x2e;">&#100;&#x65;&#118;&#x40;&#115;&#x61;&#119;&#x66;&#116;&#119;&#101;&#97;&#x72;&#x2e;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
