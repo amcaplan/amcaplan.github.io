@@ -9,9 +9,8 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Uncle Bob recently published a post where he
-attempted to formulate the ethical principles that should guide programmers. It
-was an interesting &hellip;">
+  <meta name="description" content="Many of us are familiar with the standard tirades against the use of metrics in
+judging developers. Most of these arguments basically boil down to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +72,69 @@ was an interesting &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/02/metrics-that-matter/">Metrics That Matter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-02T16:05:35+02:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Many of us are familiar with the standard tirades against the use of metrics in
+judging developers.  Most of these arguments basically boil down to one of two
+concerns:</p>
+
+<ol>
+<li>Metrics tend to value things which shouldn&rsquo;t be valued</li>
+<li>Metrics attempt to quantify things that fundamentally elude quantification</li>
+</ol>
+
+
+<p>Examples of the first may be measuring lines of code (which rewards overly
+verbose, unmaintainable solutions) or test coverage (which encourages test suite
+bloat and doesn&rsquo;t ensure good testing practices).  The second applies to metrics
+like story points completed (which attempts to quantify productivity as story
+points &ndash; a bad measure of accomplishment &ndash; per time, and encourages high
+estimates and rush jobs).</p>
+
+<p>While these points are true, I would argue that there&rsquo;s a bigger issue here.
+We should judge the utility of metrics by the results they incentivize.  These
+metrics are meant to encourage individual performance, but from a company&rsquo;s
+perspective, the goal should be total performance as a team.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/12/02/metrics-that-matter/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -556,53 +618,6 @@ the way.</p>
         </article>
     
   
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-30T01:09:56+03:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
-
-<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
-
-<p>Now let&#8217;s examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -653,6 +668,12 @@ the way.</p>
   <ul id="recent_posts">
     
       
+        <li class="post">
+          <a href="/blog/2015/12/02/metrics-that-matter/">Metrics That Matter</a>
+        </li>
+      
+    
+      
     
       
         <li class="post">
@@ -668,18 +689,14 @@ the way.</p>
         </li>
       
     
-      
-        <li class="post">
-          <a href="/blog/2015/06/29/what-should-a-junior-developer-work-on-first/">What Should a Junior Developer Work On First?</a>
-        </li>
-      
-    
   </ul>
 </section>
 
 <section>
   <h1>Recent Talks</h1>
   <ul id="recent_talks">
+    
+      
     
       
         <li class="post">
@@ -693,8 +710,6 @@ the way.</p>
         <li class="post">
           <a href="/talks/2015/11/06/start-your-rails-engines/">Start Your (Rails) Engines!</a>
         </li>
-      
-    
       
     
       

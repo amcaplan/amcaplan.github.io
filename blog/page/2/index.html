@@ -9,7 +9,7 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo; - oh, sorry, didn&rsquo;t see you there! I was just &hellip;">
+  <meta name="description" content="Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: @@var), constants (in all caps: VAR), and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +71,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T01:09:56+03:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
+
+<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
+
+<p>Now let&#8217;s examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -436,6 +483,12 @@
   <ul id="recent_posts">
     
       
+        <li class="post">
+          <a href="/blog/2015/12/02/metrics-that-matter/">Metrics That Matter</a>
+        </li>
+      
+    
+      
     
       
         <li class="post">
@@ -451,18 +504,14 @@
         </li>
       
     
-      
-        <li class="post">
-          <a href="/blog/2015/06/29/what-should-a-junior-developer-work-on-first/">What Should a Junior Developer Work On First?</a>
-        </li>
-      
-    
   </ul>
 </section>
 
 <section>
   <h1>Recent Talks</h1>
   <ul id="recent_talks">
+    
+      
     
       
         <li class="post">
@@ -476,8 +525,6 @@
         <li class="post">
           <a href="/talks/2015/11/06/start-your-rails-engines/">Start Your (Rails) Engines!</a>
         </li>
-      
-    
       
     
       
