@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2015-12-02T17:29:48+02:00</updated>
+  <updated>2016-01-04T00:24:34+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,10 +14,377 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Choose Your Constraints]]></title>
+    <link href="http://amcaplan.ninja/blog/Programming/2016/01/04/choose-your-constraints/"/>
+    <updated>2016-01-04T00:04:10+02:00</updated>
+    <id>http://amcaplan.ninja/blog/Programming/2016/01/04/choose-your-constraints</id>
+    <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
+a chord with others, and I want to develop the point a bit more.</p>
+
+<p>So let&rsquo;s start with this: What are some constraints you feel in your day-to-day
+coding?  Which factors are limiting your ability to produce new, shippable
+features?  Consider the following list:</p>
+
+<div id="constraints-checklist">
+  <input type="checkbox" id="time" name="time" value="Time"><label for="time">Time/Deadline</label><br/>
+  <input type="checkbox" id="money" name="money" value="Money"><label for="money">Money</label><br/>
+  <input type="checkbox" id="legacy" name="legacy" value="Legacy Code"><label for="legacy">Legacy Code/Projects</label><br/>
+  <input type="checkbox" id="performance-requirements" name="performance-requirements" value="Performance Requirements"><label for="performance-requirements">Performance Requirements</label><br/>
+  <input type="checkbox" id="legal" name="legal" value="Legal Regulations"><label for="legal">Legal Regulations</label><br/>
+  <input type="checkbox" id="clients" name="clients" value="Client Restrictions"><label for="clients">Client Restrictions</label><br/>
+  <input type="checkbox" id="hardware" name="hardware" value="Hardware"><label for="hardware">Hardware</label><br/>
+  <input type="checkbox" id="competing-projects" name="competing-projects" value="Competing Projects"><label for="competing-projects">Competing Projects</label><br/>
+  <input type="checkbox" id="skills" name="skills" value="Skills"><label for="skills">Team Members' Skills</label>
+</div>
+
+
+<br/>
+
+
+<p>Take a moment and check off the 3 biggest pain points in your current job.</p>
+
+<p>You&rsquo;ve selected:</p>
+
+<ul id="constraints-results"></ul>
+
+
+<p>Hold that thought; let&rsquo;s talk for a moment about the most significant force
+behind your (and all developers') frustrations, and how it underlies the factors
+you&rsquo;ve chosen.</p>
+
+<!-- more -->
+
+
+<h3>The Triple Constraint</h3>
+
+<p>The Triple Constraint, also known as the Project Management Triangle, is
+well-known as a classic line developers tell overzealous managers:</p>
+
+<blockquote><p>We can build it with every feature, on time, and on budget.  Pick two.</p></blockquote>
+
+<p>The Triple Constraint sets up a fundamental tension between three factors:</p>
+
+<ol>
+<li>Time (how quickly the project is done)</li>
+<li>Cost (how much it costs to complete the project)</li>
+<li>Scope (how many features are built, and how well)</li>
+</ol>
+
+
+<p>Any time you make greater demands in one aspect, at least one of the others will
+have to give.  If you reduce the time for the project, you&rsquo;ll need to pay more
+or (more realistically) cut scope.  Want to save money?  Cut scope, or hire
+developers who will do it more slowly.  To increase the scope, pay more, or
+better, developers, to work on it for the same amount of time, or increase the
+length of time allotted for the project.</p>
+
+<p>Let&rsquo;s see how the Triple Constraint applies to the problems you&rsquo;ve selected:</p>
+
+<p id="constraints-interpretation"></p>
+
+
+<p>So it looks like <span id="biggest-problems"></span>.  With that in mind, let&rsquo;s
+think about a more active approach to controlling and choosing our constraints.</p>
+
+<h3>Constraints: A Choice of Which, Not Whether</h3>
+
+<p>The point of the Triple Constraint is to emphasize that constraints will exist
+on every project, and we are responsible for managing them realistically.  There
+is great temptation to assume that with extra effort we can cheat the system and
+push for a better outcome on all 3 constraints.  That&rsquo;s just not possible.</p>
+
+<p>However, by acknowledging and embracing our constraints, we can maximize the
+outcome.  We cannot build every feature, on time, and on budget.  But we can
+build the right set of features, given the right amount of time and an
+appropriate budget.</p>
+
+<p>Let&rsquo;s think about this in the context of the issues you selected.</p>
+
+<div id="constraints-suggestions"></div>
+
+
+<p>The main point here is that each of Cost, Scope, and Time constraints will get
+the best of you, unless you actively acknowledge the conflict, and make sure
+your efforts reflect the true business priorities.  Attempting to maximize all
+three is impossible and will usually lead to significant shortcomings in all
+three areas.</p>
+
+<h3>Adding More Constraints</h3>
+
+<p>This is the Tweetstorm (yes, my own) that originally got me thinking:</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Your current constraints ultimately train you to operate effectively within precisely those constraints. Choose your constraints wisely.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030185106907136">November 27, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Take on too much work for the time allotted, you will learn to overwork and underdeliver, and you&#39;ll stop noticing that it&#39;s happening.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030975620005890">November 27, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Always make time for testing, pairing, knowledge sharing, and learning. Eventually they will happen automatically without special effort.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031382144528385">November 27, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Took me &gt;1yr to get used to TDD. But now it comes free, without thinking about it, and the benefits are tangible.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031749641076737">November 27, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Now that I&rsquo;ve thought things through more clearly, let&rsquo;s summarize using the
+terms above.  You already work within constraints of Cost, Scope, and Time.  If
+you ignore the competitive nature of those constraints, you will overwork
+yourself, fail to deliver the entire Scope, miss the deadline, or—even worse—all
+three.  This will become the <em>de facto</em> mode of operation, much to the
+consternation of yourself, your colleagues, and your managers.  Worse, you will
+take on the Cost of long-term technical debt because it allows you to expand
+Scope and minimize Time in the short term.</p>
+
+<p>The only solution is to embrace the fact that you just can&rsquo;t do everything, and
+take on constraints that will safeguard you from the poor decision-making that
+brings on long-term troubles.</p>
+
+<p>The four constraints I recommend budgeting for, as mentioned above, are:</p>
+
+<ol>
+<li><p><strong>Testing:</strong> Insist on meaningful test coverage.  There are advantages to
+writing your tests first, but at least make sure you end up with solidly tested
+code.</p>
+
+<ul>
+<li>You will know your code works, and it will be much easier to change or
+extend later without breaking everything.</li>
+<li>It&rsquo;s hard to know you&rsquo;ve accomplished the appropriate Scope without a
+reproducible test, and not testing increases the Cost of adding features
+later.</li>
+</ul>
+</li>
+<li><p><strong>Pairing:</strong> Don&rsquo;t let a sprint go by without finding an opportunity to pair
+on something, anything.</p>
+
+<ul>
+<li>Pairing is not always the best use of resources (you might say it&rsquo;s double
+the Cost), but often the synergy of two coders talking things out nets an
+overall gain in productivity.</li>
+<li>Pairing also provides a host of benefits for the long term, in terms of
+team relationships and knowledge sharing.  Which brings us to the next
+point&hellip;</li>
+</ul>
+</li>
+<li><p><strong>Knowledge Sharing:</strong> Make time in your workflow to share knowledge, both
+formally and informally.</p>
+
+<ul>
+<li>Meet weekly with your team and have someone present their recent work.
+Eventually everyone will take a (temporary or permanent) vacation, and
+someone else will need to fill their role.  Pay down the Cost of a weekly
+hour-long meeting, so your team isn&rsquo;t frozen when one person takes a
+much-needed break.</li>
+<li>Look for opportunities to pair junior and senior developers together.  Or
+if someone is unfamiliar with part of the codebase, assign them a ticket
+that requires them to learn it, and designate a knowledgeable pair. The
+stronger each member of your team becomes, the more quickly you can build
+new features in a stable fashion.</li>
+</ul>
+</li>
+<li><p><strong>Learning:</strong> I expect this to be controversial, but here goes.  Make time in
+your workday for something code-related that has nothing to do with your work.
+Try out a new language or framework.  Write a script to automate something at
+home.  Read an article from one of
+<a href="http://peterc.org/#ap3">Peter Cooper&rsquo;s newsletters</a> or watch a talk on
+<a href="http://confreaks.tv/events">Confreaks</a>.  Follow the Twitter account of a
+developer you respect and read what they post.  Broaden your horizons in code,
+and you&rsquo;ll find that some of your most brilliant ideas at work will come from
+your explorations.  You can&rsquo;t be inspired without inspiration.</p></li>
+</ol>
+
+
+<p>The crazy thing about these practices is that if you constrain yourself for long
+enough, they become second nature, and you don&rsquo;t notice the time they take up.
+Eventually, your budget will automatically include these activities.  Yet you
+will be able to crank out features at a quicker, more stable pace, precisely
+<em>because</em> you are taking the time to invest in yourself and your code.</p>
+
+<p>You will also notice a greater sense of team cohesiveness.  These practices
+encourage the team to work together, to learn together, and to help each other
+grow in capacity to produce excellent software.  These practices bring out the
+synergetic relationships that make team-built software qualitatively better than
+software produced by individuals.</p>
+
+<p>Sometimes, it will be difficult to get buy-in from the more business-minded
+stakeholders in your company.  For this reason, make sure to couch the
+conversation in terms of risk avoidance and long-term business objectives, which
+honestly should be your goal, too.</p>
+
+<h3>A Call to Action</h3>
+
+<p>Let&rsquo;s end with a challenge, shall we?  Commit to one—just one—of these four
+practices for the next two weeks.  Then let&rsquo;s hear some feedback about how you
+did, and what type of impact it had on yourself, your code, and your team.</p>
+
+<ul>
+<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20insist%20on%20meaningful%20test%20coverage%20for%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Testing</a></li>
+<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20make%20time%20for%20pairing%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Pairing</a></li>
+<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20organize%20a%20regular%20knowledge%20sharing%20session%20starting%20in%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Knowledge Sharing</a></li>
+<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20dedicate%20time%20to%20non-work-related%20programming%20learning%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2FProgramming%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Learning</a></li>
+</ul>
+
+
+<script type="text/javascript">
+  (function(){
+    var inputs = document.getElementById('constraints-checklist').getElementsByTagName('input');
+
+    var selectedInputs = function() {
+      checkedInputs = [];
+
+      for (var i = 0; i < inputs.length; i++) {
+        input = inputs[i]
+        if (input.checked) { checkedInputs.push(input); }
+      }
+
+      return checkedInputs;
+    };
+
+    var noSelectionMade = '&lt;NO SELECTION MADE&gt;';
+
+    var inputText = function(input){ return input.labels[0].textContent; }
+    var liIfy = function(text) { return "<li>" + text + "</li>"; };
+
+    var setResultsHTML = function(selected) {
+      if (selected.length === 0) { html = noSelectionMade; }
+      else {
+        html = selected.map(inputText).map(liIfy).join('');
+      }
+      document.getElementById('constraints-results').innerHTML = html;
+    };
+
+    var interpretations = {
+      "time": "Time is <strong>Time</strong>, easy enough.",
+      "money": "Money is one element of <strong>Cost</strong>.",
+      "legacy": "When you pay down technical debt on legacy code and projects, you encounter the <strong>Cost</strong> of a past project, except that you incur those costs now.",
+      "performance-requirements": "Performance requirements are an aspect of <strong>Scope</strong>.",
+      "legal": "Legal requirements are an aspect of <strong>Scope</strong>.",
+      "clients": "Client requirements are an aspect of <strong>Scope</strong>.",
+      "hardware": "Insufficient hardware resources reflect an upper bound on <strong>Cost</strong>.",
+      "competing-projects": "Assigning developers to too many simultaneous projects reflects unwillingness to accept the true <strong>Cost</strong> of each project.",
+      "skills": "When team members lack the skills to complete the task, the learning involved becomes part of the <strong>Cost</strong> of the project."
+    };
+    var interpretation = function(input) { return interpretations[input.name]; }
+
+    var setInterpretationHTML = function(selected) {
+      if (selected.length === 0) { html = ''; }
+      else {
+        html = '<ul>' +
+          selected.map(interpretation).map(liIfy).join('') +
+          '</ul>';
+      }
+      document.getElementById('constraints-interpretation').innerHTML = html;
+    }
+
+    var problems = {
+      "time": "Time",
+      "money": "Cost",
+      "legacy": "Cost",
+      "performance-requirements": "Scope",
+      "legal": "Scope",
+      "clients": "Scope",
+      "hardware": "Cost",
+      "competing-projects": "Cost",
+      "skills": "Cost"
+    };
+    var problemList = function(selected) {
+      var list = [];
+      selected.forEach(function(input) {
+        var problem = problems[input.name];
+        if (list.indexOf(problem) === -1) { list.push(problem); }
+      });
+      return list.sort();
+    };
+    var outputProblemList = function(list) {
+      switch(list.length) {
+        case 0:
+          return "your biggest problems are &lt;UNKNOWN - FILL IN PLEASE&gt;";
+        case 1:
+          return "your biggest problem is " + list[0];
+        case 2:
+          return "your biggest problems are " + list[0] + " and " + list[1];
+        case 3:
+          return "you are struggling on all 3 fronts: Cost, Scope, and Time"
+      }
+    };
+    var updateProblemList = function(inputs) {
+      document.getElementById('biggest-problems').innerHTML =
+        outputProblemList(problemList(inputs));
+    };
+
+    var suggestions = {
+      "time": "<strong>Time/Deadlines:</strong> Sometimes, your product's greatest feature is time - for example, it must capture the market before competitors arrive.  In other cases, time is less crucial than other factors.  So it's important to evaluate the significance of the deadline in your situation.  Often the right answer is multifaceted - for example, extending the deadline by a month along with cutting scope in certain ways.",
+      "money": "<strong>Money:</strong> This question will be fundamentally different depending on the scenario.  In a small startup launching its first product, you may not have the leeway to increase Cost.  This is why startups tend to build small, streamlined products that are sold on their simplicity; they cut Scope, because money is limited, and a long time-to-market will kill the company financially.  In a large company, though, the right answer may be to build the product with full scope, but extend the Time or accept increased Cost.",
+      "legacy": "<strong>Legacy Infrastructure:</strong> If you struggle with legacy code or even full applications, congratulations!  Your product has been around for a while, it's hopefully well-established, but it comes with the messiness of decisions which—as you can see using your 20/20 hindsight—have turned out for the worse.  The answer is usually to minimize Cost by paying down technical debt when possible, but accept that sometimes the value of Time will triumph.  Usually businesspeople err on the side of not paying down technical debt; your job as developer is to counter that trend, diplomatically of course.",
+      "performance-requirements": "<strong>Performance:</strong> Whether you're building for desktop, mobile, tablet, or the web, performance is going to be a make-or-break for your product.  And performance has a tangible Cost in terms of developer attention and effort.  The company needs to accept that performance will require massive attention, especially over time as more and more features are added.  The right answer is usually to cut feature Scope when performance becomes a problem, and not before.  It's also important to understand how valuable performance gains are in any situation, and make sure a proportional amount of developer resources are dedicated to performance improvements.  Too little attention and performance problems will be the death of your product; too much attention and your product's feature set will go nowhere.",
+      "legal": "<strong>Legal Requirements:</strong> These are generally non-negotiable.  Once we accept that, it's important to view fulfillment of legal requirements as a Scope achievement, and cut other Scope considerations as necessary.  Better 2 new features than 3 features plus a lawsuit.",
+      "clients": "<strong>Client Requirements:</strong> Keep in mind, your client is the one paying your bills.  However, clients often use that position to demand more features than are healthy for your product.  It's important to be honest with clients about the limitations of your team, and explain that you want your product to grow stably in the long term.  Pushing lots of features out the door quickly will limit your product's ability to grow, and that will hurt your clients as well later on.  Negotiate your clients down to a reasonable feature set given the Time and Cost constraints of your project—and make sure to deliver.",
+      "hardware": "<strong>Hardware Limitations:</strong> These cases generally fall into two categories.  One is a small company with severe financial constraints.  In that case, the answer is probably to wait on certain features until the company begins to gather more revenue.  Small companies have a tendency to try to scale too early; wait until the need arises.  (In other words, limit the Scope of your operations until the market demands more.)  Larger companies have the opposite problem; they know the scale is necessary, but may not have financial resources available now, or the process of getting appropriate hardware may take time.  The right answer is usually to shelve the project for now; there are probably many other projects deserving of attention that would provide value immediately.",
+      "competing-projects": "<strong>Competing Projects</strong>: Companies are often unaware of the Cost of context switching.  To minimize Cost, a developer should work on only one project at a time.  If multiple projects need attention, every effort should be made to limit Scope or extend Time in a way that allows each developer to give their undivided attention to one project, perhaps switching back and forth at intervals of one to two weeks.  Greater flexibility will pay off in increased productivity.",
+      "skills": "<strong>Team Members' Skills:</strong> Developers, contrary to popular belief, are not code-generation machines.  They are human beings who know some things and do not know other things.  Part of the Cost of a project is the need for developers to educate themselves about the necessary tools and the problem space.  This must be considered as a factor that will challenge Time and Scope."
+    };
+
+    var suggestionList = function(inputs) {
+      if (inputs.length === 0) { return [noSelectionMade]; }
+      return inputs.map(function(input) {
+        return '<li>' + suggestions[input.name] + '</li>';
+      });
+    };
+
+    var updateSuggestionList = function(inputs) {
+      document.getElementById('constraints-suggestions').innerHTML =
+        '<ul>' + suggestionList(inputs).join('') + '</ul>';
+    };
+
+    var uncheckIfFourth = function() {
+      if (selectedInputs().length > 3) { this.checked = false; }
+    };
+
+    var updateFields = function(){
+      selected = selectedInputs();
+      setResultsHTML(selected);
+      setInterpretationHTML(selected);
+      updateProblemList(selected);
+      updateSuggestionList(selected);
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+      input = inputs[i];
+      input.addEventListener('change', uncheckIfFourth, false);
+      input.addEventListener('change', updateFields, false);
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+      updateFields();
+    });
+  })()
+</script>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
+    <link href="http://amcaplan.ninja/blog/Programming/metrics/2015/12/02/metrics-that-matter/"/>
     <updated>2015-12-02T16:05:35+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
+    <id>http://amcaplan.ninja/blog/Programming/metrics/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
 concerns:</p>
@@ -219,9 +586,9 @@ multiply the value created individually.</p>
   
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
+    <link href="http://amcaplan.ninja/blog/Programming/Ethics/2015/11/18/formulating-the-ethics-of-programming/"/>
     <updated>2015-11-18T15:42:16+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
+    <id>http://amcaplan.ninja/blog/Programming/Ethics/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
 was an interesting concept, but I immediately felt it could use a rewrite.</p>
@@ -295,9 +662,9 @@ is a comforting universality to ethics.</p>
   
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
+    <link href="http://amcaplan.ninja/blog/Programming/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
     <updated>2015-08-02T09:55:53+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
+    <id>http://amcaplan.ninja/blog/Programming/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
 
@@ -423,7 +790,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#100;&#x65;&#118;&#64;&#115;&#97;&#119;&#x66;&#116;&#x77;&#101;&#x61;&#x72;&#x2e;&#x6c;&#x79;&#46;">&#100;&#x65;&#118;&#x40;&#115;&#97;&#x77;&#x66;&#x74;&#x77;&#101;&#x61;&#x72;&#x2e;&#x6c;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#x65;&#x76;&#64;&#x73;&#97;&#x77;&#x66;&#116;&#x77;&#101;&#97;&#114;&#x2e;&#108;&#121;&#x2e;">&#100;&#x65;&#x76;&#x40;&#115;&#x61;&#119;&#x66;&#x74;&#119;&#101;&#97;&#114;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -457,9 +824,9 @@ getting good people to work together, because good people are hard to come by.</
   
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
+    <link href="http://amcaplan.ninja/blog/Programming/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
     <updated>2015-06-29T01:01:19+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first</id>
+    <id>http://amcaplan.ninja/blog/Programming/2015/06/29/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
 job.  Being at the end of my first year on the job, it was an excellent
@@ -723,171 +1090,12 @@ on in their first few months on the job?  Share your thoughts in the comments!</
 <hr/>
 <ol>
 <li id="fn:1">
-<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/"/>
-    <updated>2015-05-21T03:39:23+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct</id>
-    <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
-
-<h2>The Challenge</h2>
-
-<p>Here&rsquo;s the problem we were having at work.  We have a bunch of microservices
-which communicate with each other via HTTP.  Since they&rsquo;re passing around raw
-data, and the shape often changes, we decided quite some time ago to use classes
-inheriting from <code>OpenStruct</code>, that magical schema-free class, as a data container.</p>
-
-<p>The problem is, <code>OpenStruct</code> is also ridiculously slow&hellip;</p>
-
-<!-- more -->
-
-
-<p>``` ruby
-[1] pry(main)> require &lsquo;ostruct&rsquo;
-=> true
-[2] pry(main)> require &lsquo;benchmark/ips&rsquo;
-=> true
-[3] pry(main)> Benchmark.ips do |x|
-[3] pry(main)<em>   class RegularClass
-[3] pry(main)</em>     attr_accessor :foo
-[3] pry(main)<em>   end
-[3] pry(main)</em>
-[3] pry(main)<em>   class OpenStructClass &lt; OpenStruct
-[3] pry(main)</em>   end
-[3] pry(main)<em>
-[3] pry(main)</em>   x.report(&lsquo;regular class&rsquo;) do
-[3] pry(main)<em>     r = RegularClass.new
-[3] pry(main)</em>     r.foo = :bar
-[3] pry(main)<em>     r.foo
-[3] pry(main)</em>   end
-[3] pry(main)<em>
-[3] pry(main)</em>   x.report(&lsquo;OpenStruct class&rsquo;) do
-[3] pry(main)<em>     o = OpenStructClass.new
-[3] pry(main)</em>     o.foo = :bar
-[3] pry(main)<em>     o.foo
-[3] pry(main)</em>   end
-[3] pry(main)* end
-Calculating &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
-
-<pre><code>   regular class   114.702k i/100ms
-OpenStruct class    14.400k i/100ms
-</code></pre>
-
-<hr />
-
-<pre><code>   regular class      3.901M (± 4.0%) i/s -     19.499M
-OpenStruct class    158.799k (± 7.1%) i/s -    792.000k
-</code></pre>
-
-<p>```</p>
-
-<p>From that benchmark, it seems like <code>OpenStruct</code> is 4% the speed of a regular
-class &ndash; not particularly helpful when performance is a significant concern.</p>
-
-<p>In our case, profiling with <code>StackProf</code> showed that <code>OpenStruct</code> was taking up
-13% of CPU time in many cases; in short, it was one of our worst offenders,
-performance-wise.</p>
-
-<p>However, we really wanted to stick with <code>OpenStruct</code> because of the flexibility
-it provides.  How could we bridge that gap?</p>
-
-<h2>Attempt 1: OpenFastStruct</h2>
-
-<p>I had read about a gem called <code>open_fast_struct</code> recently, which provides a
-different implementation of <code>OpenStruct</code>, with its own performance quirks.  In
-most use cases, it outperforms <code>OpenStruct</code> by a factor of 4.  It achieves this
-by skipping a step that <code>OpenStruct</code> does.</p>
-
-<p>Internally, every time I call a new method on and <code>OpenStruct</code> instance, it
-defines a new method for next time.  This is much more efficient if I&rsquo;m going to
-be calling that method hundreds of times.  However, if I&rsquo;m just calling it a few
-times, it&rsquo;s not worth it to define the method, and instead what I should really
-do is continue to rely on <code>#method_missing</code>.</p>
-
-<p>That idea is at the core of <code>OpenFastStruct</code>.  It just maintains an internal
-hash containing the data you insert, and any call to <code>#method_missing</code> interacts
-with that hash.  In contrast, <code>OpenStruct</code> also maintains an internal hash, but
-defines methods on-the-fly to interact with that hash.</p>
-
-<p>However, <code>OpenFastStruct</code> doesn&rsquo;t maintain the entire public interface of
-<code>OpenStruct</code>, and it became clear we would need to monkey-patch it quite a bit
-to get it to work for us.</p>
-
-<p>Additionally, I realized that we didn&rsquo;t really need <em>all</em> the flexibility of
-<code>OpenStruct</code>.  Instead, our needs would be best served by something that would
-define the shape of the class on-the-fly and then stick with it.</p>
-
-<h2>Attempt 2: PersistentOpenStruct</h2>
-
-<p>So I decided to build a new gem.  <code>PersistentOpenStruct</code>, as the name suggests,
-allows the construction of a class on-the-fly.  The major difference from
-<code>OpenStruct</code> is that it defines methods on the class, rather than defining
-singleton methods on the object.  This means that if I create 1,000 objects with
-the same 8 properties, <code>OpenStruct</code> will define 8,000 methods, and
-<code>PersistentOpenStruct</code> will define 8.</p>
-
-<p>To make sure I obeyed the entire public interface, I decided to put this
-together by subclassing <code>OpenStruct</code> and redefining the methods which would
-otherwise define singleton methods.  This has the nice benefit that the entire
-significant code in the gem is around 15 lines.  The downside is, of course,
-that <code>PersistentOpenStruct</code> can only be understood in the context of
-<code>OpenStruct</code> and depends on the internals of <code>OpenStruct</code>.  Still, I think the
-tradeoffs are in favor of keeping things simple for now, and letting things
-develop over time as needed.</p>
-
-<p>The other thing I did was literally copy over the tests that are used to test
-the original <code>OpenStruct</code> class.  The only changes I made were adjustments which
-made sense in this case (unlike <code>OpenStruct</code>, what happens to one object affects
-the <code>#respond_to?</code> answer of another), and adding some additional tests.</p>
-
-<p>Enough of my chitchat, though, it&rsquo;s time for the results!</p>
-
-<h2>PersistentOpenStruct Revealed</h2>
-
-<p>Here&rsquo;s some code which demonstrates how <code>PersistentOpenStruct</code> works.</p>
-
-<p>``` ruby
-class MyDataStructure &lt; PersistentOpenStruct
-end</p>
-
-<p>datum1 = MyDataStructure.new(foo: :bar)</p>
-
-<p>datum2 = MyDataStructure.new
-datum2.respond_to?(:baz) #=> false
-datum2.respond_to?(:foo) #=> true
-```</p>
-
-<p>Since <code>datum1</code> used <code>foo</code> as a key, every instance of <code>MyDataStructure</code> will
-now have a <code>foo</code> method.  Again, this happens because <code>MyDataStructure</code> has the
-<code>#foo=</code> and <code>foo</code> methods defined on the class as soon as any instance gets a
-<code>foo</code> property.</p>
-
-<p>As for performance?  You can download the gem and run the benchmarks yourself.
-Various actions (key/value assignment on initialization, key/value assignment
-after initialization, value access) have different comparisons, but generally
-speaking, <code>PersistentOpenStruct</code> is about 25%-99% as fast as a regular class.</p>
-
-<p>You can see the results I got on my Mac at the gem&rsquo;s homepage.</p>
-
-<h2>The Bottom Line</h2>
-
-<p>By simply dropping in <code>PersistentOpenStruct</code> in place of <code>OpenStruct</code>, we saw a
-10% reduction in response time for Sidekiq jobs that relied heavily on
-<code>OpenStruct</code>s.</p>
-
-<p>Sound interesting?  Check out
-<a href="http://github.com/amcaplan/persistent_open_struct">the gem&rsquo;s homepage</a> and give
-it a whirl.  Drop me a line &ndash; leave a comment or submit a GitHub issue &ndash; let me
-know what happens!</p>
 ]]></content>
   </entry>
   

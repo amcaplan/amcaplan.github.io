@@ -48,53 +48,61 @@
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/
+            http://amcaplan.ninja/blog/feature%20flags/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/
         </loc>
-        <lastmod>2015-05-21T03:26:32+03:00</lastmod>
+        <lastmod>2016-01-02T23:28:09+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/
+            http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/
         </loc>
-        <lastmod>2015-05-21T03:20:07+03:00</lastmod>
+        <lastmod>2016-01-02T23:28:14+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
+            http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
         </loc>
-        <lastmod>2015-05-21T03:25:25+03:00</lastmod>
-    </url>
-    <url>
-        <loc>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/</loc>
-        <lastmod>2015-05-21T04:20:53+03:00</lastmod>
+        <lastmod>2016-01-02T23:28:20+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/
+            http://amcaplan.ninja/blog/gems/Ruby/2015/05/21/the-making-of-persistentopenstruct/
         </loc>
-        <lastmod>2015-07-03T14:04:30+03:00</lastmod>
+        <lastmod>2016-01-02T23:28:34+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/
+            http://amcaplan.ninja/blog/Programming/2015/06/29/what-should-a-junior-developer-work-on-first/
         </loc>
-        <lastmod>2015-08-02T10:47:05+03:00</lastmod>
+        <lastmod>2016-01-02T23:28:41+02:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://amcaplan.ninja/blog/Programming/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/
+        </loc>
+        <lastmod>2016-01-02T23:28:48+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/</loc>
         <lastmod>2015-11-25T16:18:38+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/</loc>
-        <lastmod>2015-11-18T16:06:07+02:00</lastmod>
+        <loc>
+            http://amcaplan.ninja/blog/Programming/Ethics/2015/11/18/formulating-the-ethics-of-programming/
+        </loc>
+        <lastmod>2016-01-02T23:28:57+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes/</loc>
         <lastmod>2015-11-24T23:45:33+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/</loc>
-        <lastmod>2015-12-02T17:29:06+02:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/Programming/metrics/2015/12/02/metrics-that-matter/</loc>
+        <lastmod>2016-01-02T23:29:04+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://amcaplan.ninja/blog/Programming/2016/01/04/choose-your-constraints/</loc>
+        <lastmod>2016-01-04T00:24:16+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/404.html</loc>
@@ -106,11 +114,11 @@
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2015-12-02T17:29:06+02:00</lastmod>
+        <lastmod>2016-01-04T00:24:16+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2015-12-02T17:29:06+02:00</lastmod>
+        <lastmod>2016-01-04T00:24:16+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>

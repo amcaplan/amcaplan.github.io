@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gems | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/categories/gems/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2016-01-04T00:24:34+02:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
+    <link href="http://amcaplan.ninja/blog/gems/Ruby/2015/05/21/the-making-of-persistentopenstruct/"/>
+    <updated>2015-05-21T03:39:23+03:00</updated>
+    <id>http://amcaplan.ninja/blog/gems/Ruby/2015/05/21/the-making-of-persistentopenstruct</id>
+    <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
+
+<h2>The Challenge</h2>
+
+<p>Here&rsquo;s the problem we were having at work.  We have a bunch of microservices
+which communicate with each other via HTTP.  Since they&rsquo;re passing around raw
+data, and the shape often changes, we decided quite some time ago to use classes
+inheriting from <code>OpenStruct</code>, that magical schema-free class, as a data container.</p>
+
+<p>The problem is, <code>OpenStruct</code> is also ridiculously slow&hellip;</p>
+
+<!-- more -->
+
+
+<p>``` ruby
+[1] pry(main)> require &lsquo;ostruct&rsquo;
+=> true
+[2] pry(main)> require &lsquo;benchmark/ips&rsquo;
+=> true
+[3] pry(main)> Benchmark.ips do |x|
+[3] pry(main)<em>   class RegularClass
+[3] pry(main)</em>     attr_accessor :foo
+[3] pry(main)<em>   end
+[3] pry(main)</em>
+[3] pry(main)<em>   class OpenStructClass &lt; OpenStruct
+[3] pry(main)</em>   end
+[3] pry(main)<em>
+[3] pry(main)</em>   x.report(&lsquo;regular class&rsquo;) do
+[3] pry(main)<em>     r = RegularClass.new
+[3] pry(main)</em>     r.foo = :bar
+[3] pry(main)<em>     r.foo
+[3] pry(main)</em>   end
+[3] pry(main)<em>
+[3] pry(main)</em>   x.report(&lsquo;OpenStruct class&rsquo;) do
+[3] pry(main)<em>     o = OpenStructClass.new
+[3] pry(main)</em>     o.foo = :bar
+[3] pry(main)<em>     o.foo
+[3] pry(main)</em>   end
+[3] pry(main)* end
+Calculating &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<pre><code>   regular class   114.702k i/100ms
+OpenStruct class    14.400k i/100ms
+</code></pre>
+
+<hr />
+
+<pre><code>   regular class      3.901M (± 4.0%) i/s -     19.499M
+OpenStruct class    158.799k (± 7.1%) i/s -    792.000k
+</code></pre>
+
+<p>```</p>
+
+<p>From that benchmark, it seems like <code>OpenStruct</code> is 4% the speed of a regular
+class &ndash; not particularly helpful when performance is a significant concern.</p>
+
+<p>In our case, profiling with <code>StackProf</code> showed that <code>OpenStruct</code> was taking up
+13% of CPU time in many cases; in short, it was one of our worst offenders,
+performance-wise.</p>
+
+<p>However, we really wanted to stick with <code>OpenStruct</code> because of the flexibility
+it provides.  How could we bridge that gap?</p>
+
+<h2>Attempt 1: OpenFastStruct</h2>
+
+<p>I had read about a gem called <code>open_fast_struct</code> recently, which provides a
+different implementation of <code>OpenStruct</code>, with its own performance quirks.  In
+most use cases, it outperforms <code>OpenStruct</code> by a factor of 4.  It achieves this
+by skipping a step that <code>OpenStruct</code> does.</p>
+
+<p>Internally, every time I call a new method on and <code>OpenStruct</code> instance, it
+defines a new method for next time.  This is much more efficient if I&rsquo;m going to
+be calling that method hundreds of times.  However, if I&rsquo;m just calling it a few
+times, it&rsquo;s not worth it to define the method, and instead what I should really
+do is continue to rely on <code>#method_missing</code>.</p>
+
+<p>That idea is at the core of <code>OpenFastStruct</code>.  It just maintains an internal
+hash containing the data you insert, and any call to <code>#method_missing</code> interacts
+with that hash.  In contrast, <code>OpenStruct</code> also maintains an internal hash, but
+defines methods on-the-fly to interact with that hash.</p>
+
+<p>However, <code>OpenFastStruct</code> doesn&rsquo;t maintain the entire public interface of
+<code>OpenStruct</code>, and it became clear we would need to monkey-patch it quite a bit
+to get it to work for us.</p>
+
+<p>Additionally, I realized that we didn&rsquo;t really need <em>all</em> the flexibility of
+<code>OpenStruct</code>.  Instead, our needs would be best served by something that would
+define the shape of the class on-the-fly and then stick with it.</p>
+
+<h2>Attempt 2: PersistentOpenStruct</h2>
+
+<p>So I decided to build a new gem.  <code>PersistentOpenStruct</code>, as the name suggests,
+allows the construction of a class on-the-fly.  The major difference from
+<code>OpenStruct</code> is that it defines methods on the class, rather than defining
+singleton methods on the object.  This means that if I create 1,000 objects with
+the same 8 properties, <code>OpenStruct</code> will define 8,000 methods, and
+<code>PersistentOpenStruct</code> will define 8.</p>
+
+<p>To make sure I obeyed the entire public interface, I decided to put this
+together by subclassing <code>OpenStruct</code> and redefining the methods which would
+otherwise define singleton methods.  This has the nice benefit that the entire
+significant code in the gem is around 15 lines.  The downside is, of course,
+that <code>PersistentOpenStruct</code> can only be understood in the context of
+<code>OpenStruct</code> and depends on the internals of <code>OpenStruct</code>.  Still, I think the
+tradeoffs are in favor of keeping things simple for now, and letting things
+develop over time as needed.</p>
+
+<p>The other thing I did was literally copy over the tests that are used to test
+the original <code>OpenStruct</code> class.  The only changes I made were adjustments which
+made sense in this case (unlike <code>OpenStruct</code>, what happens to one object affects
+the <code>#respond_to?</code> answer of another), and adding some additional tests.</p>
+
+<p>Enough of my chitchat, though, it&rsquo;s time for the results!</p>
+
+<h2>PersistentOpenStruct Revealed</h2>
+
+<p>Here&rsquo;s some code which demonstrates how <code>PersistentOpenStruct</code> works.</p>
+
+<p>``` ruby
+class MyDataStructure &lt; PersistentOpenStruct
+end</p>
+
+<p>datum1 = MyDataStructure.new(foo: :bar)</p>
+
+<p>datum2 = MyDataStructure.new
+datum2.respond_to?(:baz) #=> false
+datum2.respond_to?(:foo) #=> true
+```</p>
+
+<p>Since <code>datum1</code> used <code>foo</code> as a key, every instance of <code>MyDataStructure</code> will
+now have a <code>foo</code> method.  Again, this happens because <code>MyDataStructure</code> has the
+<code>#foo=</code> and <code>foo</code> methods defined on the class as soon as any instance gets a
+<code>foo</code> property.</p>
+
+<p>As for performance?  You can download the gem and run the benchmarks yourself.
+Various actions (key/value assignment on initialization, key/value assignment
+after initialization, value access) have different comparisons, but generally
+speaking, <code>PersistentOpenStruct</code> is about 25%-99% as fast as a regular class.</p>
+
+<p>You can see the results I got on my Mac at the gem&rsquo;s homepage.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>By simply dropping in <code>PersistentOpenStruct</code> in place of <code>OpenStruct</code>, we saw a
+10% reduction in response time for Sidekiq jobs that relied heavily on
+<code>OpenStruct</code>s.</p>
+
+<p>Sound interesting?  Check out
+<a href="http://github.com/amcaplan/persistent_open_struct">the gem&rsquo;s homepage</a> and give
+it a whirl.  Drop me a line &ndash; leave a comment or submit a GitHub issue &ndash; let me
+know what happens!</p>
+]]></content>
+  </entry>
+  
+</feed>

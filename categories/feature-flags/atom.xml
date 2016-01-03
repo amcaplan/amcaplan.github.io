@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: feature flags | AMC: Aspiring Master of Code]]></title>
+  <link href="http://amcaplan.ninja/categories/feature-flags/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2016-01-04T00:24:34+02:00</updated>
+  <id>http://amcaplan.ninja/</id>
+  <author>
+    <name><![CDATA[Ariel Caplan]]></name>
+    <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
+    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
+    <updated>2015-01-19T23:49:19+02:00</updated>
+    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
+    <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
+practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
+theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.  For more info
+about rollout, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>.</em></p>
+
+<p>You have feature flags in your application, letting you turn off calls to
+external services as necessary.  How can we make this happen automatically?</p>
+
+<!-- more -->
+
+
+<h2>Degrade: An Amputation Tool</h2>
+
+<p><a href="https://github.com/jamesgolick/degrade">Degrade</a> exists to cut off error-prone external services when they
+fail.  Let&rsquo;s go through a demo of how we might use it.</p>
+
+<p>Before starting, we should note that redis is absolutely required to use
+degrade.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, <code>gem install degrade</code> or add <code>gem "degrade"</code> to your Gemfile and <code>bundle
+install</code>.</p>
+
+<h3>Instantiate the <code>degrade</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<p>``` ruby
+degrade_my_feature = Degrade.new(
+  redis,
+  name:             :my_feature,
+  sample:           5000, # The sample is reset after this number of requests.
+  minimum:          100,  # Degrade won&rsquo;t check whether the threshold has been hit until this number of requests has been made.
+  threshold:        0.1,  # The error rate (in this case, 10%) to deactivate the service
+  errors:           [StandardError], # The errors which will label this request as a failure
+  failure_strategy: &ndash;> {  # A lambda to be called when the error rate is reached</p>
+
+<pre><code>rollout.deactivate(:my_feature)
+</code></pre>
+
+<p>  }
+)
+```</p>
+
+<p>Whoa, that&rsquo;s a lot of options!  Most pieces are optional and should be
+fine-tuned to the needs of your application.  The important things are: you need
+to pass in a <code>redis</code> object, give your degrade object a <code>name</code>, and feed it a
+<code>failure_strategy</code> lambda which will run if the error threshold is reached.</p>
+
+<p>Let&rsquo;s discuss how to use your shiny new degrade object!</p>
+
+<h3>Wrap a call</h3>
+
+<p>Your <code>degrade</code> object comes with a <code>#perform</code> method that takes a block, thusly:</p>
+
+<p><code>ruby
+data = degrade_my_feature.perform do
+  Net::HTTP.get('mega-downtime.com', '/data.json')
+end
+</code></p>
+
+<p>It will run the block without impacting the return value, only pausing to mark
+whether the block raised one of the specified errors.  As you can see from
+<a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">the source code</a> for <code>#perform</code>:</p>
+
+<p>``` ruby
+def perform
+  begin</p>
+
+<pre><code>mark_request
+yield
+</code></pre>
+
+<p>  rescue *@errors => e</p>
+
+<pre><code>mark_failure
+raise e
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>It simply marks that a request is being made, and yields to your passed-in
+block. If all goes well, <code>perform</code> will return the return value of the block.
+If an error occurs, and it&rsquo;s one of the errors you&rsquo;ve selected to track, degrade
+will rescue, mark that this request ended in failure, and re-raise the error.</p>
+
+<p>It&rsquo;s important to understand that degrade won&rsquo;t automatically turn off a feature
+for you.  All it does is run the <code>failure_strategy</code> you&rsquo;ve given it.  You can
+use something like rollout to handle the failure situation.  Here is an example:</p>
+
+<p>``` ruby
+if rollout.active?(:my_feature)
+  data = degrade_my_feature.perform do</p>
+
+<pre><code>Net::HTTP.get('mega-downtime.com', '/data.json')
+</code></pre>
+
+<p>  end
+  hashify(data)
+else
+  {}
+end
+```</p>
+
+<p>You can, of course, cut off the request earlier in your code.  You might turn
+off a controller action entirely if the external service it needs is down.</p>
+
+<h2>Customizing Your <code>failure_strategy</code></h2>
+
+<p>The <code>failure_strategy</code> you pass to degrade is just a plain old lambda, so you
+can pass in any code that you want.  Let&rsquo;s say you create an <code>OutageNotifier</code>
+module which can send an email/text when the external service goes down.  Just
+call that code from the <code>failure_strategy</code>.  You can also set up a Sidekiq
+worker that will reactivate the service (i.e., try again) after a specified
+period of time.</p>
+
+<p>Here&rsquo;s how you might do all that in one <code>failure_strategy</code>:</p>
+
+<p>```ruby
+degrade_my_feature = Degrade.new(
+  redis,
+  name: :my_feature,
+  failure_strategy: &ndash;> {</p>
+
+<pre><code>rollout.deactivate(:my_feature)
+OutageNotifier.notify(downtime: :my_feature)
+MyFeatureActivatorWorker.perform_in(30.minutes)
+</code></pre>
+
+<p>  }
+)
+```</p>
+
+<h3>Reactivation</h3>
+
+<p>There is one catch to be aware of when reactivating.  Degrade does not
+automatically reset the sample when it runs the <code>failure_strategy</code>.  It has a
+private method to do that (after it hits the sample size max), but we&rsquo;ll respect
+that method&rsquo;s privacy.  Here&rsquo;s what <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L56-L61">that method</a> looks
+like:</p>
+
+<p>```ruby
+def reset_sample
+  if requests > @sample</p>
+
+<pre><code>@redis.del(requests_key)
+@redis.del(failures_key)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>If we <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L31-L37">dive deeper</a>, we&rsquo;ll see that <code>requests_key</code> and
+<code>failures_key</code> are:</p>
+
+<p>```ruby
+def requests_key
+  &ldquo;status:#{@name}:requests&rdquo;
+end</p>
+
+<p>def failures_key
+  &ldquo;status:#{@name}:failures&rdquo;
+end
+```</p>
+
+<p>So if we copy those methods, all we have to do to reset the sample is copy that
+code into our worker.  Here&rsquo;s a simplified Sidekiq worker, where <code>#perform</code> will
+reset the sample and then reactivate the feature flag:</p>
+
+<p>```ruby
+class MyFeatureActivatorWorker
+  include Sidekiq::Worker</p>
+
+<p>  def perform</p>
+
+<pre><code>reset_sample
+rollout.activate(:my_feature)
+</code></pre>
+
+<p>  end</p>
+
+<p>  private</p>
+
+<p>  def reset_sample</p>
+
+<pre><code>redis.del(requests_key)
+redis.del(failures_key)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def requests_key</p>
+
+<pre><code>"status:my_feature:requests"
+</code></pre>
+
+<p>  end</p>
+
+<p>  def failures_key</p>
+
+<pre><code>"status:my_feature:failures"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Now you can use the line of code:
+<code>ruby
+MyFeatureActivatorWorker.perform_in(30.minutes)
+</code>
+to reactivate the feature after a 30-minute delay.  If you&rsquo;re really clever, you
+can even set it up to increase the delay each time.  It all depends on the needs
+of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>In this series, we&rsquo;ve learned</p>
+
+<ul>
+<li><p>what feature flags are</p></li>
+<li><p>how to use feature flags with the rollout gem</p></li>
+<li><p>how to use degrade, building on rollout, to shut off external services as
+necessary</p></li>
+</ul>
+
+
+<p>Let me know about your experiences in the comments!</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
+    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-19T05:16:18+02:00</updated>
+    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
+theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
+
+<p>Alright, you&rsquo;re convinced that feature flags are a necessary tool for your app.
+Let&rsquo;s discuss a gem, created by the late <a href="http://jamesgolick.com">James Golick</a>, which
+make the process of feature flagging as simple as could be.</p>
+
+<!-- more -->
+
+
+<h2>Rollout: A Feature Flagging Tool</h2>
+
+<p><a href="https://github.com/FetLife/rollout">Rollout</a> is a super-simple gem for feature flagging. To get started,
+you&rsquo;ll need a redis instance accessible to your app.  You likely have this in
+place already.  If not, you can pass in a reference to any object that accepts
+<code>set</code> and <code>get</code> methods.  But as redis is becoming a more and more common part
+of the standard stack, you should probably just set up a redis instance.</p>
+
+<p>Now let&rsquo;s get started.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, you&rsquo;ll need to <code>gem install rollout</code> or add <code>gem "rollout"</code> to your
+Gemfile and <code>bundle install</code>.</p>
+
+<h3>Instantiate the <code>rollout</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<p><code>ruby
+rollout = Rollout.new(redis)
+</code></p>
+
+<p>and you have your <code>rollout</code> object.  The <a href="https://github.com/redis/redis-rb">official docs</a>
+recommend assigning it to a global variable (<code>$rollout</code>), but if you&rsquo;d rather
+avoid that, you can assign a <code>rollout</code> variable at the global scope.  (In a
+Rails app, this code would belong in an initializer.)</p>
+
+<h3>Flipping Switches</h3>
+
+<p>Now you get to become a <a href="https://www.youtube.com/watch?v=eb9GREgzQYQ">switch-flipper</a>!  Turning a feature on
+or off is as simple as:
+``` ruby</p>
+
+<h1>activate for all users</h1>
+
+<p>rollout.activate(:chat)</p>
+
+<h1>deactivate for all users</h1>
+
+<p>rollout.deactivate(:chat)
+```</p>
+
+<p>The rollout object will always be able to tell you whether a feature is active:
+<code>ruby
+rollout.activate(:my_cool_feature)
+rollout.active?(:my_cool_feature) #=&gt; true
+rollout.deactivate(:my_cool_feature)
+rollout.active?(:my_cool_feature) #=&gt; false
+</code></p>
+
+<h3>Partial Activation</h3>
+
+<p>Sometimes you may want to activate a feature for a particular set of
+users.  Let&rsquo;s say we want to grant our premium users access to the beta version
+of our product.
+``` ruby
+rollout.define_group(:premium_users) { |user| user.premium? }
+rollout.activate_group(:beta, :premium_users)</p>
+
+<p>premium_user = User.where(premium: true).first
+rollout.active?(:beta, premium_user) #=> true</p>
+
+<p>regular_user = User.where(premium: false).first
+rollout.active?(:beta, regular_user) #=> false
+<code>``
+Rollout knows that only</code>premium_users<code>, as defined by the block
+</code>{ |user| user.premium? }<code>, have the</code>beta<code>feature active, and will return true
+or false based on the user passed in to</code>#active?`.</p>
+
+<p>Sometimes you may want to activate a feature for a random percentage of users.
+Rollout can handle that too:</p>
+
+<p><code>ruby
+rollout.activate_percentage(:chat, 20)
+</code></p>
+
+<p>Now 20% of users will have chat activated.  Rollout also makes sure that it&rsquo;s
+the same set of 20% of users who have chat available, so users don&rsquo;t have a
+disjointed experience.</p>
+
+<h3>Inserting Branch Points</h3>
+
+<p>The trickiest part of using feature flags is figuring out where to branch your
+code.  Ideally, the code should only need one call to <code>rollout#active?</code> to
+invoke the correct behavior.</p>
+
+<h4>Controller-Level Branch Points</h4>
+
+<p>Sometimes, the simplest place to branch is in a controller.  Let&rsquo;s say we want
+to feature-flag an entire endpoint in a Rails app:</p>
+
+<p>```ruby
+class ExperimentalController &lt; ApplicationController</p>
+
+<p>  def index</p>
+
+<pre><code>if rollout.active?(:my_feature)
+  @entities = MyFeature.get_entities(params)
+  respond_with @entities
+else
+  head(:service_unavailable)
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+```</p>
+
+<p>If <code>my_feature</code> is active, the controller does its usual work of calling models
+and views.  If <code>my_feature</code> is deactivated, the controller responds with a
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503</a>.
+This is a pretty clean example of an <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">&ldquo;On/Off&rdquo; feature flag</a>.</p>
+
+<p>This pattern is very useful for experimental API endpoints, as well as debugging
+utilities which will often be inactive.  It is also a good place to halt
+requests which, to succeed, will require a call to an external service that is
+currently experiencing downtime.</p>
+
+<h4>Model-Level Branch Points</h4>
+
+<p>Sometimes we want our application to display fundamentally different behavior
+depending on the situation.</p>
+
+<p>In this sample scenario, we already have a GitHub API integration, and we&rsquo;re
+trying out a BitBucket API integration as well.  When we fetch the user&rsquo;s repos,
+we want to control at runtime whether we&rsquo;re just getting the GitHub repos or
+also checking BitBucket.  Here&rsquo;s the code:</p>
+
+<p>```ruby
+class User
+  # &hellip;</p>
+
+<p>  def repos</p>
+
+<pre><code>if rollout.active?(:bitbucket)
+  github_repos + bitbucket_repos
+else
+  github_repos
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  # &hellip;
+end
+```</p>
+
+<p>It might take hundreds of lines of code across multiple classes to fetch and
+format those <code>bitbucket_repos</code> for the User, but we found one point in our code
+where we can decide whether or not all that code gets executed.</p>
+
+<h4>View/Decorator-Level Branch Points</h4>
+
+<p>Placing feature-related conditionals in our views is (almost) always a bad
+practice, so let&rsquo;s not address it here.  But we can sometimes make the case that
+a decorator class is the right place for a feature flag.</p>
+
+<p>Let&rsquo;s say that our API currently returns a top-level JSON Array, which is a
+<a href="http://flask.pocoo.org/docs/0.10/security/#json-security">Bad Practice™</a>.  We want to follow the Good Practice and return
+a top-level JavaScript object.  But we realize that clients may not be ready to
+handle that.  We can set up a feature flag to switch over to the new format once
+our clients have had ample time to prepare:</p>
+
+<p>```ruby
+class ResponseFormatter</p>
+
+<p>  attr_reader :array</p>
+
+<p>  def initialize(array)</p>
+
+<pre><code>@array = array
+</code></pre>
+
+<p>  end</p>
+
+<p>  def output</p>
+
+<pre><code>if rollout.active?(:safe_json_format)
+  { 'array' =&gt; array }
+else
+  array
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+```</p>
+
+<p>This is a very clear example of a <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">This/That feature flag</a>.</p>
+
+<h2>Back to Flipping Switches</h2>
+
+<p>We&rsquo;ve spoken about how to set up switches, and how to flip them in code.  How do
+we flip the switches when our code is running live in production?</p>
+
+<p>Unfortunately, the rollout gem doesn&rsquo;t provide any sort of UI, and you basically
+need to SSH into your production server and modify the value in redis.  In the
+case of Rails, you would enter the Rails console, and execute the command
+<code>rollout.activate(:my_feature)</code> or <code>rollout.deactivate(:my_feature)</code>.</p>
+
+<p>Is there a better way?</p>
+
+<h3>Improvement 1: Set Up an HTTP Endpoint</h3>
+
+<p>If we&rsquo;re running web apps, we can always add endpoints!  This is how a Rails app
+might handle feature flipping via HTTP requests:</p>
+
+<p>``` ruby
+class FeaturesController &lt; ApplicationController</p>
+
+<p>  def update</p>
+
+<pre><code>rollout.activate(params[:id].to_sym)
+head :ok
+</code></pre>
+
+<p>  end</p>
+
+<p>  def destroy</p>
+
+<pre><code>rollout.deactivate(params[:id].to_sym)
+head :ok
+</code></pre>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>```</p>
+
+<p>You probably want to have a <code>before_filter</code> to require authentication as well.</p>
+
+<p>At any rate, this allows you to easily activate and deactivate features without
+needing to SSH anywhere.</p>
+
+<h3>Improvement 2: Use Hubot</h3>
+
+<p>Hubot comes with a simple, powerful system for making HTTP requests.  Using this
+system, you can set up Hubot to hit these endpoints when instructed via chat
+command.  If you have a running Hubot instance, it&rsquo;s very simple to set up.
+This is the code to activate a feature:</p>
+
+<p>``` coffeescript
+robot.respond /activate (\w+)$/i, (msg) &ndash;>
+  feature = msg.match[1]</p>
+
+<p>  msg.http(&ldquo;<a href="http://my-app.com/features/#">http://my-app.com/features/#</a>{feature}&rdquo;).put() &ndash;></p>
+
+<pre><code>msg.reply "Activated #{feature}!"
+</code></pre>
+
+<p>```</p>
+
+<p>Now, when I say <code>hubot activate a_feature</code>, it takes care of it, then responds,
+<code>Activated a_feature!</code>  Suddenly, managing feature flags becomes a breeze.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>We&rsquo;ve discovered how to use rollout to easily turn bits of code on and off in a
+live application.  In <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>, we will discuss how to
+automatically turn off feature flags when an external service experiences
+downtime.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
+    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
+    <updated>2015-01-18T23:07:26+02:00</updated>
+    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
+    <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
+flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
+gems, check out <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a> and
+<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>.</em></p>
+
+<h2>What are Feature Flags?</h2>
+
+<p>Glad you asked!</p>
+
+<p>Feature flags, also known as &ldquo;feature flippers,&rdquo; &ldquo;feature toggles,&rdquo;
+<a href="http://en.wikipedia.org/wiki/Feature_toggle">and more</a>, are a way to simply turn bits of code on and
+off in a live, running application.</p>
+
+<p>While we won&rsquo;t get into too many of the details in this post, here&rsquo;s a simple
+way to think about it.  Let&rsquo;s say you run a bowling alley.  Most of the time,
+it&rsquo;s a straightforward establishment &ndash; lanes, balls, scoring computers, shoes&hellip;
+you get the idea.  However, every Tuesday night you turn over the place, and now
+it&rsquo;s Cosmic Bowling night!  You&rsquo;re blasting music, shining blacklights, the
+disco ball is spinning&hellip; it&rsquo;s a different world.  How are you going to carry
+out this operation?</p>
+
+<!-- more -->
+
+
+<p>Theoretically, you could go around every week and change all the lightbulbs, set
+up the disco ball, and hook up the speakers, and then undo it all afterwards.
+But that setup is highly error-prone and labor-intensive!</p>
+
+<p>Shockingly, programmers do this all the time.  Sometimes, real-world needs force
+us to have 2 working versions of our code.  Maybe we need to be ready to respond
+to 2 versions of an API &ndash; we&rsquo;ll get into examples shortly.  The way we deal with
+this is often by maintaining two active branches of our code.  This means that
+we end up having to make sure we&rsquo;re applying all new code and fixes to both
+branches, which is a nightmare.  And what if they really diverge to the point
+that patches are no longer simple?</p>
+
+<p>What&rsquo;s worse, sometimes we need to go back and forth on code deployed to our
+production servers.  Do we really want the stress of deploying code every time
+we want a feature turned on or off?  Of course not!</p>
+
+<p>Enter feature flags.</p>
+
+<p>To implement a feature flag, you need 2 things.  First, you need a branch point
+in your code where you can decide which direction your program will take.
+Second, you need an external method of flipping the switch in one direction or
+another.</p>
+
+<p><a name="feature-flag-types"></a></p>
+
+<h2>Types of Feature Flags</h2>
+
+<p>I haven&rsquo;t seen it described this way anywhere, but I&rsquo;ve come up with the idea
+that there are two major types of feature flags, which I&rsquo;ve named as follows:</p>
+
+<ol>
+<li><strong>On/Off</strong> &ndash; decide whether a feature should be active or inactive</li>
+<li><strong>This/That</strong> &ndash; direct executing code down one of two paths</li>
+</ol>
+
+
+<p>Although they are implemented in nearly the same way, these two types differ
+conceptually, and we will refer to them often as we continue our discussion.</p>
+
+<h2>Why Feature Flags?</h2>
+
+<p>Let&rsquo;s jump into some real-world scenarios to understand how feature flags might
+be helpful.  I will list 5 types of situations, but there are certainly others,
+and you may discover them in your own development work.</p>
+
+<h3>Experimental Code</h3>
+
+<p>Maybe you, or someone ordering you around, had a great idea about how to improve
+your web app.  But not everyone is convinced that it&rsquo;s such a good idea, or
+perhaps someone thinks it might break everything.  You&rsquo;d like to turn it on for
+a bit and see what happens, with a low cost to deactivate the new code if
+anything goes wrong.</p>
+
+<p>Using feature flags, you can insert a branch point to decide whether to run the
+old code or jump into your new feature.  Then, when the app is live in
+production, you can turn on the feature, see what happens, and be able to
+quickly deactivate the new code.</p>
+
+<p>A/B testing also falls under this paradigm.  If you are considering a change to
+your app and want some evidence about the user impact, you can turn it on,
+gather evidence, and then turn it off again while you evaluate.  Or, using a
+This/That feature flag, you can test two different implementations and decide
+which is better.</p>
+
+<h3>Syncing Apps in an SOA Ecosystem</h3>
+
+<p>Your company has jumped on the SOA bandwagon, and your app is now broken up into
+multiple services that talk to each other.  Now, you want to change the public
+API of one service, which will impact the downstream clients that consume it.
+Using feature flags, you can seamlessly transition from one API to the other.</p>
+
+<p>The service being changed has to keep the old code and the new code, and use a
+This/That feature flag to control which API version to expose.  The client, in
+the meantime, also uses a feature flag to decide which API to consume.  When the
+time comes, flip those two switches together, and your apps can communicate
+using the new API.  (If you set up your architecture right, you can actually
+have both switches really be one switch, which enforces change in unison.)</p>
+
+<h3>Consuming Internal Services (Built by Other Teams)</h3>
+
+<p>Although conceptually similar to the previous case, there is an enormous
+practical difference.  Your company may have its product split up into services
+maintained by separate teams.  In this case, you cannot control exactly when the
+other team will change its service.</p>
+
+<p>So let&rsquo;s say you depend on Service X.  Team X tells you they are switching to a
+new API in one month&rsquo;s time.  You want to start building against the new API,
+to be ready for its deployment, but your code also has to be maintained in the
+meantime.  Also, who says they will truly update their API in one month?  Maybe
+things will be delayed, and it will be 6 months, during which time your
+development progress is stymied by the fact that you can&rsquo;t deploy anything,
+since you&rsquo;ve built in support for the new API and thereby lost support for the
+old!</p>
+
+<p>Feature flags provide a convenient way to handle this issue.  You can build into
+your code the ability to access the new API, but keep it inactive using a
+feature flag.  Once the new API is in place, flip the switch!</p>
+
+<h3>External Services</h3>
+
+<p>Sometimes websites get DoS'ed.  Or DDoS'ed.  Or just a developer did something
+dumb and crashed the app for 10 minutes.  Lots of things can happen, and if you
+depend on an external service, their downtime can be yours as well.</p>
+
+<p>Luckily, there is a way out.  You can establish a strategy for what to do when
+the external service is inaccessible.  Normally, that strategy is kept inactive
+using a feature flag.  If the service experiences downtime, toggle the flag and
+you can activate your strategy for circumventing the service.  Even better, you
+don&rsquo;t have to do it yourself; a <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">later post</a> will show
+you how to activate this strategy programmatically.</p>
+
+<p>Less downtime means happier customers means fun and profit!</p>
+
+<h3>Debugging Tools</h3>
+
+<p>At <a href="http://vitals.com">Vitals</a>, we have a number of tools we use to log extra information
+about the state of our application and the data it processes, for debugging
+purposes.  However, these tools come at a price: they add a small amount of
+extra latency to each request.  We only want to activate these debugging tools
+as necessary for debugging, and the simplest way to do that is to associate them
+with feature flags.  Feature flag on&mdash;do extra work.  Feature flag off&mdash;speed
+up the request.</p>
+
+<p>Additionally, depending on the situation, debugging tools may occasionally yield
+output in the HTTP responses sent to the client.  This may be necessary to
+invoke on occasion, but certainly should not be active as a default.  It might
+expose too much information to users, and certainly should not be active by
+default.  Perhaps you want to have this information available as a matter of
+course in your QA/UAT/staging environment, and in case of emergency in
+production.  In any of these cases, feature flags provide convenient,
+finely-tuned control over these sensitive parts of your application.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>At this point, we have a better understanding of what feature flags are, and why
+we might want them in our application.  In <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>, we
+will give practical examples of how to set up feature flags, and where to place
+them in our code.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+]]></content>
+  </entry>
+  
+</feed>
