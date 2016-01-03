@@ -5,6 +5,7 @@ date: 2015-06-29 1:01:19 +0300
 comments: true
 categories:
 - blog
+- Programming
 twitter:
   description: Reflections after a year in the field working as a developer.
 ---
@@ -260,5 +261,5 @@ on in their first few months on the job?  Share your thoughts in the comments!_
 
 [Justin Searls talk]: https://www.youtube.com/watch?v=9_3RsSvgRd4
 [Kent Beck TDD]: http://www.quora.com/Does-Kent-Beck-use-TDD-at-Facebook-How
-[^1]: Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. 
-[^2]: This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. 
+[^1]: Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn.
+[^2]: This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users.

@@ -5,6 +5,7 @@ date: 2015-01-18 22:16:18 -0500
 comments: true
 categories:
 - blog
+- feature flags
 twitter:
   description: How to integrate James Golick's `rollout` gem into your app, and some clever ways to interact with it.
 ---
@@ -151,7 +152,7 @@ class User
     end
   end
 
-  # ... 
+  # ...
 end
 ```
 
@@ -242,7 +243,7 @@ This is the code to activate a feature:
 ``` coffeescript
 robot.respond /activate (\w+)$/i, (msg) ->
   feature = msg.match[1]
-  
+
   msg.http("http://my-app.com/features/#{feature}").put() ->
     msg.reply "Activated #{feature}!"
 ```

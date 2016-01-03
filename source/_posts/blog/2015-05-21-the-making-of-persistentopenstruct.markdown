@@ -5,6 +5,8 @@ date: 2015-05-21 03:39:23 +0300
 comments: true
 categories:
 - blog
+- gems
+- Ruby
 twitter:
   description: Motivating factors behind the gem, and how it works
 ---

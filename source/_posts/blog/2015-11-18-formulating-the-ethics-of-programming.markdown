@@ -5,6 +5,8 @@ date: 2015-11-18 15:42:16 +0200
 comments: true
 categories:
 - blog
+- Programming
+- Ethics
 twitter:
   description: Uncle Bob just published a Programmer's Oath. I think there is
     some room for improvement.
