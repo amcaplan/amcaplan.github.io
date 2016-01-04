@@ -33,6 +33,8 @@ features?  Consider the following list:
 
 Take a moment and check off the 3 biggest pain points in your current job.
 
+<!-- more -->
+
 You've selected:
 
 <ul id="constraints-results"></ul>
@@ -40,8 +42,6 @@ You've selected:
 Hold that thought; let's talk for a moment about the most significant force
 behind your (and all developers') frustrations, and how it underlies the factors
 you've chosen.
-
-<!-- more -->
 
 ### The Triple Constraint
 
