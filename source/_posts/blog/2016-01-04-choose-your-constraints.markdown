@@ -5,7 +5,6 @@ date: 2016-01-04 00:04:10 +0200
 comments: true
 categories:
 - blog
-- Programming
 twitter:
   description: Constraints are a choice not of yes or no, but of which.
     Sometimes the right answer is not fewer constraints, but more.
