@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What Should a Junior Developer Work On First? - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Recently, a new member of our team asked me (and other coworkers) to list 3
+things a junior developer should accomplish within their first 3 months &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="What Should a Junior Developer Work On First?" />
+    
+    <meta name="twitter:description" content="Reflections after a year in the field working as a developer." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What Should a Junior Developer Work on First?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-29T01:01:19+03:00" pubdate data-updated="true">Jun 29<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Recently, a new member of our team asked me (and other coworkers) to list 3
+things a junior developer should accomplish within their first 3 months on the
+job.  Being at the end of my first year on the job, it was an excellent
+opportunity for reflection on what I have learned during this year which was
+most useful.</p>
+
+<p>After some thinking, I came up with 3 concrete goals, emblematic of 3
+big-picture objectives which should be guiding lights for the new developer.</p>
+
+<p>Here are my picks:</p>
+
+<ol>
+<li>Be reasonably comfortable with TDD</li>
+<li>Write good commit/PR messages</li>
+<li>Present at a team hangout</li>
+</ol>
+
+
+<p>These might seem like arbitrary goals, so they deserve some explanation.</p>
+
+<!-- more -->
+
+
+<p>First, you&rsquo;ll notice that I did not mention &ldquo;learn X language&rdquo; or &ldquo;become
+proficient in Y framework.&rdquo;  This is simply because languages and frameworks are
+important, but not inherent, goals.  The languages and libraries you use today
+will most likely fade with time, to be replaced by newer tools more appropriate
+for the tasks of tomorrow.  But <em>how</em> to write code will be just as relevant in
+30 years as it was 30 years ago.  Design principles evolve as well, but the idea
+of designing code, rather than just getting things to work, is the most
+important, and biggest, jump.</p>
+
+<p>Now, let&rsquo;s move on to expanding these concrete goals into coherent broad ideas.</p>
+
+<h2>TDD: A Design Tool</h2>
+
+<p>&ldquo;Why test?&rdquo; is a very complicated question with a lot of answers.  Justin Searls
+has <a href="https://www.youtube.com/watch?v=9_3RsSvgRd4">an excellent talk</a> listing about 10 different reasons
+for testing.  The reason I focus on TDD here is because it is the most powerful
+technique I know for learning how to design code from the outside in.</p>
+
+<p>As a new developer, you are probably focused on assimilating the multitude of
+new technologies you need to master to get things to work.  It probably seems
+odd that I would recommend focusing on technique, rather than just staying
+afloat.</p>
+
+<p>However, I would argue that feeling lost is just part of being a software
+developer today.  There is a constant influx of new languages, frameworks, and
+tools, and it is far too easy to be satisfied with just making things work.
+However, programmers who excel in their careers make sure to reserve time for
+becoming better at the basics of how to write good code.  If you don&rsquo;t make time
+for that now, when will you?</p>
+
+<p>There are many ways of becoming better.  You can get ideas from articles and
+conference lectures, books and blog posts.  But there is a jump to be made from
+the theoretical to the practical.</p>
+
+<h4>What is &ldquo;good code&rdquo;?</h4>
+
+<p>Good code, among other qualities, is modular and intuitive.</p>
+
+<ul>
+<li>By modular, I mean that each piece carries a responsibility appropriate for
+its size.  Methods do just one thing, and do it well.  Classes are the same, but
+a &ldquo;thing&rdquo; is a larger unit of work.  Collaborating objects form systems that
+accomplish yet larger things, but at every level, there is a single unifying
+theme to the system.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
+<li>By intuitive, I mean that it acts in the way you would expect, both from the
+outside and once you open it up.  The outside piece of that statement means that
+its public API provides as few surprises as possible.  The input/output, as
+closely as possible, matches what the average programmer would expect it to be.
+Additionally, the innards are divvied up in a fashion that makes it easy for
+someone new to the codebase to interpret and reason about.  Clever hacks or
+thrown-together solutions are generally not intuitive, and tough to modify
+later.</li>
+</ul>
+
+
+<h4>So what does TDD have to do with all this?</h4>
+
+<p>TDD enforces (as much as is possible to enforce such things) code which is
+modular and intuitive.</p>
+
+<p>It is exceptionally difficult to write tests for code which is not modular.
+Generally speaking, code with intertwined responsibilities will also have deep
+interdependencies between modules.  This causes immense pain in testing,
+encouraging the programmer to think about how to tease apart responsibility and
+dependency.</p>
+
+<p>Yet beyond that testing pain, there is a larger point: it is very hard to test
+code when you don&rsquo;t understand its responsibility.  Usually, if you have not
+defined what code is supposed to do, it will be nearly impossible to write the
+tests first, because the tests are simply a concretion of the responsibilities
+of the code you are about to write.  By following the principles of TDD, you
+encourage yourself to state your goals, thereby breaking up your code before you
+have written a mess of intertwined modules.</p>
+
+<p>TDD also strongly encourages intuitive code.  When engaged in TDD, you should be
+testing only the public API of your code, defining inputs and expected outputs,
+before you figure out the implementation.  This means that your primary goal
+when writing the code itself is to meet the needs that you have already
+described in your tests.  This, in turn, means that you are thinking first about
+the user of your code, and only afterwards about the internal algorithms and
+details involved in your solution.  That leads to code which is friendlier for
+outside use.</p>
+
+<p>I don&rsquo;t think TDD necessarily offers much direction in terms of properly writing
+the internals of your code, but I never promised a single, all-encompassing
+solution, did I? 😉</p>
+
+<p>Based on all this, I think that becoming comfortable with TDD is a highly time-
+and effort-efficient method of speeding up the learning curve for excellent
+coding habits.  Even if it&rsquo;s not the approach you take all the time (and hey,
+<a href="http://www.quora.com/Does-Kent-Beck-use-TDD-at-Facebook-How">even Kent Beck doesn&rsquo;t think it should be</a>), it&rsquo;s a worthy
+exercise to practice skills and thought patterns which ultimately will be quite
+useful regardless of your workflow.</p>
+
+<h2>Commit and PR Messages: A Primary Source of Communication</h2>
+
+<p>One of the most important lessons to learn as a junior developer is that, unless
+you are the only developer on your team, your code is a shared entity.  Your job
+is not to be personally awesome, but rather to help your entire team be awesome.
+This means you need to sometimes sacrifice some of your own productivity in
+order to help everyone else be more productive.</p>
+
+<p>Commit messages are a prime example of this.  In just a few seconds per commit,
+you have the opportunity to lay out a trail of breadcrumbs to lead members of
+your team toward understanding why certain decisions were made, why this was
+added and that deleted.  You instruct them as to what code is relevant to a
+particular feature, and what dangers would be involved in deleting it.</p>
+
+<p>Pull request messages are, in a sense, just a broader repetition of the same
+motif.  Rather than explaining a small bit of work, they expound on the
+rationale for a set of adjustments to your application.  But if your team uses
+a pull request-based workflow, these messages are even more important.  Rather
+than reading your code and puzzling over what you were trying to accomplish,
+your teammates can quickly understand your goals, and then evaluate whether you
+achieved them in the best way possible.  A good pull request message can be the
+difference between &ldquo;It looks like code, guess I&rsquo;ll merge it!&rdquo; versus &ldquo;That was
+an interesting choice of how to tackle this issue, we should discuss it
+further.&rdquo;  If you invest in the quality of code review on your submissions, you
+will be rewarded with plenty of free advice on how to make your next bit of work
+even better.</p>
+
+<h4>Look Into Your Future&hellip;</h4>
+
+<p>Beyond the basic point of just being a good teammate, there is another
+compelling reason to write clear, thorough commit and PR messages: The next
+person who has to read them just might be you.</p>
+
+<p>Let&rsquo;s face it.  We might all talk about collective responsibility for a code
+base, but if you wrote the code, you will likely be called in to explain why it
+was written the way it was.  And you will also probably have forgotten by that
+point why you did things that way.</p>
+
+<p>If you leave yourself clear commit and PR messages, they will serve as memory
+jogs so you can figure things out far more quickly.  If you left a bunch of code
+with commit messages like &ldquo;fixed a thing&rdquo; and &ldquo;it works now&rdquo; &ndash; well, you&rsquo;re
+gonna have a bad time.  And you will probably misunderstand your own code, and
+break lots of things.</p>
+
+<p>Realistically, what percentage of commits or PR messages will you ever read
+again?  Probably no more than 5-10%.  But the amount of time you will save in
+those 5-10% of cases is well worth the small upfront investment of archiving
+your thoughts.</p>
+
+<p>So care about your teammates, and care about your future self.  Learn to write
+clear commit and PR messages, and you will thank yourself later when they are
+your &ldquo;primary source&rdquo; of information about days of coding past.</p>
+
+<h2>Presenting: The Code Is Not Enough</h2>
+
+<p>Software, like any slice of the human enterprise, is really more about the
+people making it than the product itself.  Most problems in software stem from
+the people making it.  It follows that software will be as coherent as is the
+communication amongst its developers.</p>
+
+<p>If you want to be a successful coder, you also need to be a successful
+communicator.</p>
+
+<p>There are many formats of communication, including commit and PR messages, as
+discussed above.  Most people can get along in one-on-one conversation, though
+some (including myself) struggle even with that.  But even for people who are
+natural conversationalists, presenting to a group can be difficult.  Yet it is
+also necessary to learn how to present one&rsquo;s ideas cogently and convincingly to
+a group.</p>
+
+<p>The other salient point is that many junior software engineers are convinced
+that they are no good, or at the very least so inferior to senior developers
+that nothing they themselves say could possibly be of interest to others with
+more experience.  Yet that could not be farther from the truth.</p>
+
+<h4>Junior Devs: A Critical Voice In Our Community</h4>
+
+<p>Junior developers need to understand: Your ideas are valuable.  You came into
+this profession, this artisans&#8217; guild, because you find beauty in well-organized
+code, you are awed by the power of loops and function calls and recursion, you
+draw excitement from optimizing an algorithm from <em>O(n<sup>2</sup>)</em> to <em>O(n)</em>.  (At
+least, I hope you do; otherwise, you&rsquo;ll be pretty bored in this business.)  You
+see opportunity in new technologies, and you are still developing heuristics to
+evaluate the tradeoffs inherent in choosing one over the other.</p>
+
+<p>You are a neophyte.  And neophytes tend to ask the most interesting questions,
+forcing people more experienced than themselves to articulate their opinions and
+perspectives on issues that matter to everyone.</p>
+
+<p>Because you are new to the trade, your ideas and experiences are valuable, and
+your enthusiasm gives light and warmth to those who may have forgotten the
+excitement of their earlier coding days.</p>
+
+<p>So even if you speak about a technical topic they are thoroughly familiar with,
+senior developers will still enjoy your presentation.</p>
+
+<h4>Senior Devs: Seeing Beyond the Pedestal</h4>
+
+<p>If you are not yet convinced, let me offer another argument.</p>
+
+<p>Senior developers are simply programmers with more experience writing (hopefully
+good) code, more familiarity with the breadth of languages and tools, and a
+better understanding of the system underlying all programming platforms.  But
+they are hardly godlike omniscient beings.  It&rsquo;s not too hard to find a topic
+that the senior developers on your team haven&rsquo;t delved into, or at least offer a
+fresh perspective which would be of interest to them.</p>
+
+<p>Even if they are generally familiar with a topic, even if they utilize that
+knowledge on a daily basis, there are still going to be some points that they
+have forgotten or never learned about, so they will walk away with some useful
+bits of knowledge from your presentation.</p>
+
+<p>Finally, seniors are often interested, for business reasons or out of altruistic
+motivations, in bringing in juniors and helping them to be as productive as
+possible.  Your struggles in your work are useful and informative to more senior
+folks on your team, helping them to reassess the process and iterate on their
+onboarding process for new junior developers.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+
+<p>Your thoughts and learning will be of value to others, and by presenting, you
+will develop a critical skill which &ndash; if not properly nurtured &ndash; could be the
+barrier between you and a highly successful career.</p>
+
+<h2>Summing It Up</h2>
+
+<p>Now that we&rsquo;ve provided some theoretical background, the 3 goals listed above
+might be stated as:</p>
+
+<ol>
+<li>Learning to design code effectively</li>
+<li>Being a communicative team player</li>
+<li>Gaining confidence in your worth as a coder</li>
+</ol>
+
+
+<p>Since I believe in concrete, rather than abstract, goals, I will stick with the
+list above as a more helpful set of discrete accomplishments to be aimed for in
+the first few months.  But with the broader goals in mind, hopefully the
+specifics make more sense as guideposts on the journey toward a long, enjoyable,
+successful career in code.</p>
+
+<p><em>What do </em>you<em> think are the most important things for junior developers to work
+on in their first few months on the job?  Share your thoughts in the comments!</em></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-29T01:01:19+03:00" pubdate data-updated="true">Jun 29<span>th</span>, 2015</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2015/05/21/the-making-of-persistentopenstruct/" title="Previous Post: The Making of PersistentOpenStruct">&laquo; The Making of PersistentOpenStruct</a>
+        
+        
+          <a class="basic-alignment right" href="/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/" title="Next Post: Recruit Software Engineers with this 1 Weird Old Tip">Recruit Software Engineers with this 1 Weird Old Tip &raquo;</a>
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="http://amcaplan.ninja/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2016/01/04/choose-your-constraints/">Choose Your Constraints</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/12/02/metrics-that-matter/">Metrics That Matter</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/11/18/formulating-the-ethics-of-programming/">Formulating the Ethics of Programming</a>
+        </li>
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/Ruby/talks/2015/11/24/threads-and-processes/">Threads and Processes</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2015/11/06/start-your-rails-engines/">Start Your (Rails) Engines!</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/amcaplan">@amcaplan</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amcaplan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

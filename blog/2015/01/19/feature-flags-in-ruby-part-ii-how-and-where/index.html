@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Feature Flags in Ruby, Part II: How and Where - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Note: Part II assumes familiarity with the idea of feature flags. For the
+theoretical background, see Part I. Alright, you&rsquo;re convinced that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Feature Flags in Ruby, Part II: How and Where" />
+    
+    <meta name="twitter:description" content="How to integrate James Golick's `rollout` gem into your app, and some clever ways to interact with it." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Feature Flags in Ruby, Part II: How and Where</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-19T05:16:18+02:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
+theoretical background, see <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
+
+<p>Alright, you&rsquo;re convinced that feature flags are a necessary tool for your app.
+Let&rsquo;s discuss a gem, created by the late <a href="http://jamesgolick.com">James Golick</a>, which
+make the process of feature flagging as simple as could be.</p>
+
+<!-- more -->
+
+
+<h2>Rollout: A Feature Flagging Tool</h2>
+
+<p><a href="https://github.com/FetLife/rollout">Rollout</a> is a super-simple gem for feature flagging. To get started,
+you&rsquo;ll need a redis instance accessible to your app.  You likely have this in
+place already.  If not, you can pass in a reference to any object that accepts
+<code>set</code> and <code>get</code> methods.  But as redis is becoming a more and more common part
+of the standard stack, you should probably just set up a redis instance.</p>
+
+<p>Now let&rsquo;s get started.</p>
+
+<h3>Install the gem</h3>
+
+<p>First, you&rsquo;ll need to <code>gem install rollout</code> or add <code>gem "rollout"</code> to your
+Gemfile and <code>bundle install</code>.</p>
+
+<h3>Instantiate the <code>rollout</code> object</h3>
+
+<p>Next, assuming you have a <code>redis</code> variable which is an instance of
+<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span> <span class="o">=</span> <span class="no">Rollout</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">redis</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and you have your <code>rollout</code> object.  The <a href="https://github.com/redis/redis-rb">official docs</a>
+recommend assigning it to a global variable (<code>$rollout</code>), but if you&rsquo;d rather
+avoid that, you can assign a <code>rollout</code> variable at the global scope.  (In a
+Rails app, this code would belong in an initializer.)</p>
+
+<h3>Flipping Switches</h3>
+
+<p>Now you get to become a <a href="https://www.youtube.com/watch?v=eb9GREgzQYQ">switch-flipper</a>!  Turning a feature on
+or off is as simple as:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># activate for all users</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:chat</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># deactivate for all users</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:chat</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The rollout object will always be able to tell you whether a feature is active:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span> <span class="c1">#=&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Partial Activation</h3>
+
+<p>Sometimes you may want to activate a feature for a particular set of
+users.  Let&rsquo;s say we want to grant our premium users access to the beta version
+of our product.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">define_group</span><span class="p">(</span><span class="ss">:premium_users</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="o">.</span><span class="n">premium?</span> <span class="p">}</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate_group</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="ss">:premium_users</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">premium_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">premium</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="n">premium_user</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">regular_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">premium</span><span class="p">:</span> <span class="kp">false</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="n">regular_user</span><span class="p">)</span> <span class="c1">#=&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rollout knows that only <code>premium_users</code>, as defined by the block
+<code>{ |user| user.premium? }</code>, have the <code>beta</code> feature active, and will return true
+or false based on the user passed in to <code>#active?</code>.</p>
+
+<p>Sometimes you may want to activate a feature for a random percentage of users.
+Rollout can handle that too:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate_percentage</span><span class="p">(</span><span class="ss">:chat</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now 20% of users will have chat activated.  Rollout also makes sure that it&rsquo;s
+the same set of 20% of users who have chat available, so users don&rsquo;t have a
+disjointed experience.</p>
+
+<h3>Inserting Branch Points</h3>
+
+<p>The trickiest part of using feature flags is figuring out where to branch your
+code.  Ideally, the code should only need one call to <code>rollout#active?</code> to
+invoke the correct behavior.</p>
+
+<h4>Controller-Level Branch Points</h4>
+
+<p>Sometimes, the simplest place to branch is in a controller.  Let&rsquo;s say we want
+to feature-flag an entire endpoint in a Rails app:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ExperimentalController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@entities</span> <span class="o">=</span> <span class="no">MyFeature</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">respond_with</span> <span class="vi">@entities</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">head</span><span class="p">(</span><span class="ss">:service_unavailable</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If <code>my_feature</code> is active, the controller does its usual work of calling models
+and views.  If <code>my_feature</code> is deactivated, the controller responds with a
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503</a>.
+This is a pretty clean example of an <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">&ldquo;On/Off&rdquo; feature flag</a>.</p>
+
+<p>This pattern is very useful for experimental API endpoints, as well as debugging
+utilities which will often be inactive.  It is also a good place to halt
+requests which, to succeed, will require a call to an external service that is
+currently experiencing downtime.</p>
+
+<h4>Model-Level Branch Points</h4>
+
+<p>Sometimes we want our application to display fundamentally different behavior
+depending on the situation.</p>
+
+<p>In this sample scenario, we already have a GitHub API integration, and we&rsquo;re
+trying out a BitBucket API integration as well.  When we fetch the user&rsquo;s repos,
+we want to control at runtime whether we&rsquo;re just getting the GitHub repos or
+also checking BitBucket.  Here&rsquo;s the code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">repos</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:bitbucket</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">github_repos</span> <span class="o">+</span> <span class="n">bitbucket_repos</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">github_repos</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># ... </span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It might take hundreds of lines of code across multiple classes to fetch and
+format those <code>bitbucket_repos</code> for the User, but we found one point in our code
+where we can decide whether or not all that code gets executed.</p>
+
+<h4>View/Decorator-Level Branch Points</h4>
+
+<p>Placing feature-related conditionals in our views is (almost) always a bad
+practice, so let&rsquo;s not address it here.  But we can sometimes make the case that
+a decorator class is the right place for a feature flag.</p>
+
+<p>Let&rsquo;s say that our API currently returns a top-level JSON Array, which is a
+<a href="http://flask.pocoo.org/docs/0.10/security/#json-security">Bad Practice™</a>.  We want to follow the Good Practice and return
+a top-level JavaScript object.  But we realize that clients may not be ready to
+handle that.  We can set up a feature flag to switch over to the new format once
+our clients have had ample time to prepare:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ResponseFormatter</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:array</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@array</span> <span class="o">=</span> <span class="n">array</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">output</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:safe_json_format</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span> <span class="s1">&#39;array&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">array</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a very clear example of a <a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">This/That feature flag</a>.</p>
+
+<h2>Back to Flipping Switches</h2>
+
+<p>We&rsquo;ve spoken about how to set up switches, and how to flip them in code.  How do
+we flip the switches when our code is running live in production?</p>
+
+<p>Unfortunately, the rollout gem doesn&rsquo;t provide any sort of UI, and you basically
+need to SSH into your production server and modify the value in redis.  In the
+case of Rails, you would enter the Rails console, and execute the command
+<code>rollout.activate(:my_feature)</code> or <code>rollout.deactivate(:my_feature)</code>.</p>
+
+<p>Is there a better way?</p>
+
+<h3>Improvement 1: Set Up an HTTP Endpoint</h3>
+
+<p>If we&rsquo;re running web apps, we can always add endpoints!  This is how a Rails app
+might handle feature flipping via HTTP requests:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FeaturesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_sym</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">head</span> <span class="ss">:ok</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_sym</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">head</span> <span class="ss">:ok</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You probably want to have a <code>before_filter</code> to require authentication as well.</p>
+
+<p>At any rate, this allows you to easily activate and deactivate features without
+needing to SSH anywhere.</p>
+
+<h3>Improvement 2: Use Hubot</h3>
+
+<p>Hubot comes with a simple, powerful system for making HTTP requests.  Using this
+system, you can set up Hubot to hit these endpoints when instructed via chat
+command.  If you have a running Hubot instance, it&rsquo;s very simple to set up.
+This is the code to activate a feature:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">robot</span><span class="p">.</span><span class="nx">respond</span> <span class="sr">/activate (\w+)$/i</span><span class="p">,</span> <span class="nf">(msg) -&gt;</span>
+</span><span class='line'>  <span class="nv">feature = </span><span class="nx">msg</span><span class="p">.</span><span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">msg</span><span class="p">.</span><span class="nx">http</span><span class="p">(</span><span class="s">&quot;http://my-app.com/features/</span><span class="si">#{</span><span class="nx">feature</span><span class="si">}</span><span class="s">&quot;</span><span class="p">).</span><span class="nx">put</span><span class="p">()</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">reply</span> <span class="s">&quot;Activated </span><span class="si">#{</span><span class="nx">feature</span><span class="si">}</span><span class="s">!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, when I say <code>hubot activate a_feature</code>, it takes care of it, then responds,
+<code>Activated a_feature!</code>  Suddenly, managing feature flags becomes a breeze.</p>
+
+<h2>Wrapping Up</h2>
+
+<p>We&rsquo;ve discovered how to use rollout to easily turn bits of code on and off in a
+live application.  In <a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>, we will discuss how to
+automatically turn off feature flags when an external service experiences
+downtime.</p>
+
+<hr />
+
+<p><em>Recently I gave a <a href="/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
+<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
+rehash and expansion of the material delivered there.</em></p>
+
+<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
+passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-19T05:16:18+02:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/" title="Previous Post: Feature Flags in Ruby, Part I: What and Why">&laquo; Feature Flags in Ruby, Part I: What and Why</a>
+        
+        
+          <a class="basic-alignment right" href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/" title="Next Post: Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)">Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping) &raquo;</a>
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="http://amcaplan.ninja/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2016/01/04/choose-your-constraints/">Choose Your Constraints</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/12/02/metrics-that-matter/">Metrics That Matter</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2015/11/18/formulating-the-ethics-of-programming/">Formulating the Ethics of Programming</a>
+        </li>
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/Ruby/talks/2015/11/24/threads-and-processes/">Threads and Processes</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2015/11/06/start-your-rails-engines/">Start Your (Rails) Engines!</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/amcaplan">@amcaplan</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amcaplan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

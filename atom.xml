@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-01-04T15:07:22+02:00</updated>
+  <updated>2016-01-04T20:28:46+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/Programming/2016/01/04/choose-your-constraints/"/>
+    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
     <updated>2016-01-04T00:04:10+02:00</updated>
-    <id>http://amcaplan.ninja/blog/Programming/2016/01/04/choose-your-constraints</id>
+    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -382,9 +382,9 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
-    <link href="http://amcaplan.ninja/blog/Programming/metrics/2015/12/02/metrics-that-matter/"/>
+    <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
     <updated>2015-12-02T16:05:35+02:00</updated>
-    <id>http://amcaplan.ninja/blog/Programming/metrics/2015/12/02/metrics-that-matter</id>
+    <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
 concerns:</p>
@@ -605,9 +605,9 @@ meantime, here are the slides:</p>
   
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
-    <link href="http://amcaplan.ninja/blog/Programming/Ethics/2015/11/18/formulating-the-ethics-of-programming/"/>
+    <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
     <updated>2015-11-18T15:42:16+02:00</updated>
-    <id>http://amcaplan.ninja/blog/Programming/Ethics/2015/11/18/formulating-the-ethics-of-programming</id>
+    <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
 was an interesting concept, but I immediately felt it could use a rewrite.</p>
@@ -756,9 +756,9 @@ edited my notes from the live code portion, and published them at
   
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
-    <link href="http://amcaplan.ninja/blog/Programming/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
+    <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
     <updated>2015-08-02T09:55:53+03:00</updated>
-    <id>http://amcaplan.ninja/blog/Programming/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
+    <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
 
@@ -884,7 +884,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#101;&#x76;&#64;&#115;&#x61;&#119;&#102;&#x74;&#119;&#101;&#97;&#114;&#46;&#108;&#x79;&#46;">&#x64;&#x65;&#x76;&#x40;&#115;&#x61;&#119;&#102;&#116;&#x77;&#101;&#97;&#x72;&#x2e;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#101;&#118;&#x40;&#115;&#x61;&#119;&#102;&#116;&#x77;&#101;&#97;&#114;&#x2e;&#108;&#x79;&#46;">&#x64;&#101;&#118;&#x40;&#x73;&#x61;&#x77;&#x66;&#116;&#x77;&#101;&#97;&#x72;&#46;&#x6c;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -918,9 +918,9 @@ getting good people to work together, because good people are hard to come by.</
   
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/Programming/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
+    <link href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
     <updated>2015-06-29T01:01:19+03:00</updated>
-    <id>http://amcaplan.ninja/blog/Programming/2015/06/29/what-should-a-junior-developer-work-on-first</id>
+    <id>http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
 job.  Being at the end of my first year on the job, it was an excellent
@@ -1184,9 +1184,9 @@ on in their first few months on the job?  Share your thoughts in the comments!</
 <hr/>
 <ol>
 <li id="fn:1">
-<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users.<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -1195,9 +1195,9 @@ on in their first few months on the job?  Share your thoughts in the comments!</
   
   <entry>
     <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
-    <link href="http://amcaplan.ninja/blog/gems/Ruby/2015/05/21/the-making-of-persistentopenstruct/"/>
+    <link href="http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/"/>
     <updated>2015-05-21T03:39:23+03:00</updated>
-    <id>http://amcaplan.ninja/blog/gems/Ruby/2015/05/21/the-making-of-persistentopenstruct</id>
+    <id>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct</id>
     <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
 
 <h2>The Challenge</h2>
@@ -1388,9 +1388,9 @@ know what happens!</p>
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
-    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
     <updated>2015-01-19T23:49:19+02:00</updated>
-    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.  For more info
@@ -1687,9 +1687,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
     <updated>2015-01-19T05:16:18+02:00</updated>
-    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
 
@@ -1884,7 +1884,7 @@ also checking BitBucket.  Here&rsquo;s the code:</p>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'>  <span class="c1"># ... </span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2038,9 +2038,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
-    <link href="http://amcaplan.ninja/blog/feature%20flags/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
+    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
     <updated>2015-01-18T23:07:26+02:00</updated>
-    <id>http://amcaplan.ninja/blog/feature%20flags/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
+    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
 gems, check out <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a> and
