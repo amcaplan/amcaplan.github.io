@@ -5,7 +5,6 @@ date: 2015-08-02 09:55:53 +0300
 comments: true
 categories:
 - blog
-- Programming
 twitter:
   description: Recruiting programmers isn't hard - just advertise what we
     actually want. Oh, and be what you say, too.

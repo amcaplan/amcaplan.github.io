@@ -5,8 +5,6 @@ date: 2015-12-02 16:05:35 +0200
 comments: true
 categories:
 - blog
-- Programming
-- metrics
 twitter:
   description: Metrics for developers often get a bad rap. Is the problem the
     metrics themselves, or what they try to quantify?

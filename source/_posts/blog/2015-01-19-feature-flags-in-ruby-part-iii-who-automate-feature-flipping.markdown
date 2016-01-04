@@ -5,7 +5,6 @@ date: 2015-01-19 16:49:19 -0500
 comments: true
 categories:
 - blog
-- feature flags
 twitter:
   description: A primer on the use of James Golick's `degrade` gem to automate feature flipping.
 ---
