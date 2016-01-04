@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-01-04T00:24:34+02:00</updated>
+  <updated>2016-01-04T15:07:22+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -43,6 +43,9 @@ features?  Consider the following list:</p>
 
 <p>Take a moment and check off the 3 biggest pain points in your current job.</p>
 
+<!-- more -->
+
+
 <p>You&rsquo;ve selected:</p>
 
 <ul id="constraints-results"></ul>
@@ -51,9 +54,6 @@ features?  Consider the following list:</p>
 <p>Hold that thought; let&rsquo;s talk for a moment about the most significant force
 behind your (and all developers&#8217;) frustrations, and how it underlies the factors
 you&rsquo;ve chosen.</p>
-
-<!-- more -->
-
 
 <h3>The Triple Constraint</h3>
 
@@ -884,7 +884,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x65;&#x76;&#x40;&#x73;&#x61;&#119;&#x66;&#116;&#x77;&#101;&#97;&#x72;&#x2e;&#108;&#x79;&#x2e;">&#x64;&#101;&#118;&#x40;&#x73;&#x61;&#119;&#102;&#x74;&#x77;&#101;&#97;&#x72;&#x2e;&#x6c;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#101;&#x76;&#64;&#115;&#x61;&#119;&#102;&#x74;&#119;&#101;&#97;&#114;&#46;&#108;&#x79;&#46;">&#x64;&#x65;&#x76;&#x40;&#115;&#x61;&#119;&#102;&#116;&#x77;&#101;&#97;&#x72;&#x2e;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
