@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-01-04T23:48:24+02:00</updated>
+  <updated>2016-03-09T19:11:16+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,13 +15,15 @@
   
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
-    <link href="http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes/"/>
+    <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
     <updated>2015-11-24T23:40:44+02:00</updated>
-    <id>http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes</id>
+    <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
-<p>Video from the conference will be posted after it is published.  In the
-meantime, here are the slides:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oDY-NDfzsxc" frameborder="0" allowfullscreen></iframe>
+
+
+<p>And in case you don&rsquo;t have 5 minutes, here are the slides:</p>
 
 <script async class="speakerdeck-embed" data-id="9078d225f907475faf2c13bc3a41ea94" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 

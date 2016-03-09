@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-01-04T23:48:24+02:00</updated>
+  <updated>2016-03-09T19:11:16+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -586,13 +586,15 @@ multiply the value created individually.</p>
   
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
-    <link href="http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes/"/>
+    <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
     <updated>2015-11-24T23:40:44+02:00</updated>
-    <id>http://amcaplan.ninja/Ruby/talks/2015/11/24/threads-and-processes</id>
+    <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
-<p>Video from the conference will be posted after it is published.  In the
-meantime, here are the slides:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oDY-NDfzsxc" frameborder="0" allowfullscreen></iframe>
+
+
+<p>And in case you don&rsquo;t have 5 minutes, here are the slides:</p>
 
 <script async class="speakerdeck-embed" data-id="9078d225f907475faf2c13bc3a41ea94" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -884,7 +886,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#101;&#x76;&#64;&#x73;&#x61;&#119;&#102;&#x74;&#x77;&#x65;&#x61;&#114;&#x2e;&#x6c;&#121;&#x2e;">&#x64;&#101;&#x76;&#64;&#x73;&#x61;&#x77;&#x66;&#116;&#x77;&#x65;&#97;&#114;&#x2e;&#108;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#101;&#x76;&#x40;&#115;&#97;&#119;&#x66;&#x74;&#x77;&#101;&#x61;&#x72;&#x2e;&#108;&#121;&#46;">&#x64;&#x65;&#x76;&#64;&#x73;&#x61;&#119;&#102;&#x74;&#119;&#x65;&#x61;&#x72;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
