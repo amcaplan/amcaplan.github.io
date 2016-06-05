@@ -5,11 +5,30 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>AMC: Aspiring Master of Code</title>
+  <title>Struct: Ruby's Quickie Class - AMC: Aspiring Master of Code</title>
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Recently at work, I spent over a day trying to get one failing test to pass. I tried everything in the code, but no dice. Finally, I realized that &hellip;">
+  <meta name="description" content="Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,16 +40,16 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@amcaplan" />
     
-      <meta name="twitter:title" content="Ariel Caplan's blog" />
+      <meta name="twitter:title" content="Struct: Ruby's Quickie Class" />
     
-    <meta name="twitter:description" content="Musings on code, tech, and becoming a better developer." />
+    <meta name="twitter:description" content="An intro to the Struct class in Ruby." />
     
       <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
     
   
 
   
-  <link rel="canonical" href="http://amcaplan.ninja/blog/page/2/">
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -69,255 +88,12 @@
 </header>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-    
-      
-        <article>
-          
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-17T20:04:57+03:00" pubdate data-updated="true">Jul 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
-
-<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
-
-<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-30T01:09:56+03:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
-
-<p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
-
-<p>Now let&#8217;s examine some use cases and see where things start to get tricky.  To make things fun, let&rsquo;s go to the zoo!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/02/coffeescript-101/">CoffeeScript 101</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-02T02:40:43+03:00" pubdate data-updated="true">May 2<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
-
-<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
-
-<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/05/02/coffeescript-101/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/">Using Helper Methods to DRY Up Rails Forms</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-02T07:59:32+03:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
-
-<ol>
-<li><p> &lt;</p></li>
-<li><p> &gt;</p></li>
-</ol>
-
-
-<p>Yup, Rails isn&rsquo;t a big fan of HTML markup, unless it&rsquo;s generated directly from the HTML in a view, or by one of the built-in Rails helper methods.</p>
-
-<p>No, no, don&rsquo;t get angry at Rails!!!  It&rsquo;s for your own good, to make sure that you don&rsquo;t accidentally run some sort of evil, malicious script that a user input into a form or submitted in some other way.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-19T02:56:00+02:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
-
-<p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/05/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
+      <h1 class="entry-title">Struct: Ruby's Quickie Class</h1>
     
     
       <p class="meta">
@@ -340,7 +116,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
+<div class="entry-content"><p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -421,29 +197,139 @@
 
 <p>Well, here&rsquo;s the good news&colon; as usual, Ruby has a better way for you to do it.</p>
 
+<!-- more -->
+
+
+<p>Introducing: the Struct class!  Structs fall somewhere between full-fledged Ruby classes and arrays/hashes, and are excellent for generating classes which are mostly variable storage containers with a particular number of items, with a small number of methods.  Here is how we would refactor our code from before:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Player</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:number</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">BasketballTeam</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:player1</span><span class="p">,</span> <span class="ss">:player2</span><span class="p">,</span> <span class="ss">:player3</span><span class="p">,</span> <span class="ss">:player4</span><span class="p">,</span> <span class="ss">:player5</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">starting_lineup</span>
+</span><span class='line'>    <span class="s2">&quot;Ladies and Gentlemen, here is the starting lineup!</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">collect</span> <span class="p">{</span><span class="o">|</span><span class="n">player</span><span class="o">|</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">#</span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">join</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">team</span> <span class="o">=</span> <span class="no">BasketballTeam</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Magic Johnson&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Michael Jordan&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
+</span><span class='line'>  <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Larry Bird&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Charles Barkley&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Patrick Ewing&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">team</span><span class="o">.</span><span class="n">starting_lineup</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Huh?  Where did all the code go?</p>
+
+<p>Struct.new is a really cool method that takes symbols as arguments and returns &ndash; no, it&rsquo;s not an object, it&rsquo;s a class!!!  (Well, technically all Ruby classes are objects too, but we&rsquo;re going to deliberately ignore that for now.)  It takes each symbol, makes it an instance variable, gives it setter and getter methods, and adds it to the initialize method in the order specified.  So it&rsquo;s doing a lot of work for you, just for adding the symbol there.  The optional block at the end (see how <code>BasketballTeam</code> is created with a block but <code>Player</code> isn&rsquo;t?) specifies any methods you want to add to the struct.  If you have a lot of these, Struct probably isn&rsquo;t for you.  But if it&rsquo;s just one or two simple methods, then Struct may still be a good idea.</p>
+
+<p>An examination of Struct&rsquo;s instance methods reveals its similarity to Array and Hash.  Here are my favorites:</p>
+
+<table >
+  
+    
+<td >Method
+</td>
+<td >Description and Correlatives
+</td>
+  
+  <tbody >
+    <tr >
+<td >
+  `#members`
+</td>
+<td >like `Hash#keys`, returns an array containing the instance variable names
+</td></tr>
+    <tr >
+<td >`#values`
+</td>
+<td >like `Hash#values`, returns an array containing the instance variable values
+</td></tr>
+    <tr >
+<td >`#length`, `#size`
+</td>
+<td >like `Hash#size` or `Array#size`, the number of instance variables
+</td></tr>
+    <tr >
+<td >`#each`
+</td>
+<td >similar to `Hash#each`, goes through each instance variable&#8217;s value
+</td></tr>
+    <tr >
+<td >`#[member]`  
+(e.g. `team[&#8220;player1&#8221;]` or `team[:player1]`)
+</td>
+<td >similar to `Hash#[]`, access by instance variable name
+</td></tr>
+    <tr >
+<td >`#[index]`  
+(e.g. `team[0])`
+</td>
+<td >similar to `Array#[]`, access by variable index in `#members`
+</td></tr>
+  </tbody>
+</table>
+
+
+<p>NOTE: You can also write <code>team[0] = Player.new("Magic Johnson", 15)</code></p>
+
+<p>Of course, you are also able to get <code>team.player1</code> because it attr_accessor&#8217;ed everything for you.</p>
+
+<p>Because Struct defines an <code>#each</code> method and includes Enumerable, you can use any of the Enumerable methods on its properties.  So you can <code>cycle</code>, check if <code>team.any? {|player| player.name == "Michael Jordan"}</code>, <code>inject</code>, or find the <code>team.max_by(&amp;:number)</code>, among others.  You can also modify all contained values pretty easily: <code>team.each{|player| player.number += 1}</code> (in case you needed to bump up everyone&rsquo;s number for some reason).  And if the IOC is insisting you sort your players by jersey number, just <code>team.sort_by(&amp;:number)</code> and you&rsquo;re all set!  Patrick Ewing, with jersey #6, is now <code>team[0]</code>, a.k.a. <code>team.player1</code>.</p>
+
+<p>One downside of Struct as opposed to Arrays is that you can&rsquo;t push/pop/unshift/shift, because the size is fixed from the beginning.</p>
+
+<p><strong>TL;DR</strong> A struct is somewhere between a regular object and a hash/array.  It&rsquo;s an awesome data structure when you</p>
+
+<ul>
+<li><p>know exactly what it needs to hold</p></li>
+<li><p>want to be able to access your data in a variety of useful ways</p></li>
+<li><p>need to define just a small number of custom methods (or none at all)</p></li>
+<li><p>and just don&rsquo;t want to write much boilerplate code while doing it!</p></li>
+</ul>
+
+
+<p>P.S. Check out <a href="http://blog.steveklabnik.com/posts/2012-09-01-random-ruby-tricks--struct-new">this post</a> from Steve Klabnik about how incorporating structs into your regular class definitions can make your debugging much easier due to Struct&rsquo;s handy <code>#to_s</code> method.</p>
+
+<p>P.P.S. Robert Klemme <a href="http://blog.rubybestpractices.com/posts/rklemme/017-Struct.html">helpfully notes</a> that, unlike hashes, struct[&ldquo;something&rdquo;] will raise an error if there is no @something variable.  This can be helpful if you want to detect certain types of input problems.</p>
+
+<p>P.P.P.S. Here&rsquo;s the output from the code above (using structs or regular classes), if you&rsquo;re desperately interested:</p>
+
+<pre><code>Ladies and Gentlemen, here is the starting lineup!
+
+#15, Magic Johnson!
+
+#9, Michael Jordan!
+
+#7, Larry Bird!
+
+#14, Charles Barkley!
+
+#6, Patrick Ewing!
+</code></pre>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/05/struct-rubys-quickie-class/">Read on &rarr;</a>
-    </footer>
-  
 
 
-        </article>
-    
-  
-    
+  <footer>
+    <p class="meta">
       
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">amcaplan</span></span>
+
+      
 
 
 
@@ -455,39 +341,44 @@
   
 
 
-<time datetime="2014-02-19T02:55:54+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-03-05T02:32:48+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
+      
+
+
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/" title="Previous Post: Lessons from a Failed Successful Gem">&laquo; Lessons from a Failed Successful Gem</a>
+        
+        
+          <a class="basic-alignment right" href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/" title="Next Post: Exploring Security and Secret Tokens Through Facebook Login">Exploring Security and Secret Tokens Through Facebook Login &raquo;</a>
+        
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>One of our mottos at Flatiron is &ldquo;Celebrate failure.&rdquo;  We aren&rsquo;t trying to get it right immediately &ndash; it&rsquo;s all about trying something, making it work, and then improving on it.</p>
-
-<p>I recently published a Ruby Gem called CheckEverything (the source code is <a href="http://github.com/amcaplan/check_everything">here</a> and the gem can be installed by typing &lsquo;<code>gem install check_everything</code>&rsquo; into your Bash console).</p>
-
-<p>Over the course of creating this gem, I&rsquo;ve made some mistakes, and learned a few lessons:</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
-    </footer>
-  
 
-
-        </article>
-    
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives/"> Archives </a>
-    
-    <a class="next" href="/">Newer &rarr;</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section id="titles">
@@ -585,6 +476,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -599,7 +491,10 @@
       var disqus_shortname = 'amcaplan';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Threads and Processes - AMC: Aspiring Master of Code</title>
+  <title>Start Your (Rails) Engines! - AMC: Aspiring Master of Code</title>
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="This talk was given at RailsIsrael 2015. And in case you don&rsquo;t have 5 minutes, here are the slides: Talk Description: Many of us use threads &hellip;">
+  <meta name="description" content="The Talk This talk was given at RailsRemoteConf 2015. Check out the SpeakerDeck! Video coming soon! Want to split up your Rails app into pieces but &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,16 +21,16 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@amcaplan" />
     
-      <meta name="twitter:title" content="Threads and Processes" />
+      <meta name="twitter:title" content="Start Your (Rails) Engines!" />
     
-    <meta name="twitter:description" content="Many of us use threads or processes in our code, whether explicitly or implicitly. But do we really understand what threads and processes are?" />
+    <meta name="twitter:description" content="Learn the basics of building and integrating Rails Engines, and consider when they are or aren't the best solution." />
     
       <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
     
   
 
   
-  <link rel="canonical" href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/">
+  <link rel="canonical" href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -74,7 +74,7 @@
   
   <header>
     
-      <h1 class="entry-title">Threads and Processes</h1>
+      <h1 class="entry-title">Start Your (Rails) Engines!</h1>
     
     
       <p class="meta">
@@ -90,26 +90,80 @@
   
 
 
-<time datetime="2015-11-24T23:40:44+02:00" pubdate data-updated="true">Nov 24<span>th</span>, 2015</time>
+<time datetime="2015-11-06T00:01:36+02:00" pubdate data-updated="true">Nov 6<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This talk was given at RailsIsrael 2015.</p>
+<div class="entry-content"><h3>The Talk</h3>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oDY-NDfzsxc" frameborder="0" allowfullscreen></iframe>
+<p>This talk was given at RailsRemoteConf 2015.</p>
+
+<p>Check out the <a href="https://speakerdeck.com/amcaplan/start-your-rails-engines-railsremoteconf-2015">SpeakerDeck</a>!  Video coming soon!</p>
+
+<script async class="speakerdeck-embed" data-id="f1a29cab92da437284c27653a1525131" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 
-<p>And in case you don&rsquo;t have 5 minutes, here are the slides:</p>
+<p>Want to split up your Rails app into pieces but not sure where to begin? Wish
+you could share controller code among microservices but don&rsquo;t know how? Do you
+work on lots of projects and have boilerplate Rails code repeated in each?</p>
 
-<script async class="speakerdeck-embed" data-id="9078d225f907475faf2c13bc3a41ea94" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<p>Rails Engines may be your answer.</p>
+
+<p>We will build a simple Rails engine and understand how this app-within-an-app
+architecture can help you write more modular code which can be gemified and
+reused across multiple projects.</p>
+
+<br /><br />
 
 
-<h4>Talk Description:</h4>
+<h3>Following Along</h3>
 
-<p>Many of us use threads and/or processes in our code, whether explicitly or implicitly. But do we really understand what threads and processes are? Can we clearly evaluate the pros and cons of each? We will attempt to clarify these concepts in a simple, concise fashion.</p>
+<p>The video will be made public&hellip; eventually.</p>
+
+<p>In the meantime, you can check out the code from the &ldquo;live code&rdquo; portion at
+<a href="https://github.com/amcaplan/forget">https://github.com/amcaplan/forget</a> and
+<a href="https://github.com/amcaplan/cacher">https://github.com/amcaplan/cacher</a>. I also
+edited my notes from the live code portion, and published them at
+<a href="https://gist.github.com/amcaplan/0841065fdb69966b860f">https://gist.github.com/amcaplan/0841065fdb69966b860f</a>.</p>
+
+<p>For your convenience, here are the links from the talk.</p>
+
+<br />
+
+
+<h4>Links Throughout the Presentation</h4>
+
+<p><a href="http://guides.rubyonrails.org/engines.html">http://guides.rubyonrails.org/engines.html</a></p>
+
+<p><a href="https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79">https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79</a></p>
+
+<p><a href="http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/">http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/</a></p>
+
+<p><a href="http://article.gmane.org/gmane.comp.lang.ruby.rails/29166">http://article.gmane.org/gmane.comp.lang.ruby.rails/29166</a></p>
+
+<p><a href="https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/">https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/</a></p>
+
+<br />
+
+
+<h4>Further information links</h4>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">GoGaRuCo 2012, Erik Michaels-Ober &ndash; “Writing a Rails Engine”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/leave-your-migrations-in-your-rails-engines">Ben Smith &ndash; “Leave your migrations in your Rails engines”</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">RailsConf 2015, Stephan Hagemann &ndash; “Get started with Component-based Rails applications!”</a></p>
+
+<p><a href="http://tech.taskrabbit.com/blog/2014/02/11/rails-4-engines/">Brian Leonard, “Rails 4 Engines” (Blog post about splitting up an application)</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=uDaBtqEYNBo">Rocky Mountain Ruby 2013, Ben Smith &ndash; “How I architected my big Rails app for success!”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines">Stephan Hagemann, “Migrating from a single Rails app to a suite of Rails engines”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/experience-report-engine-usage-that-didn-t-work">Will Read, “Experience Report: Engine Usage That Didn&rsquo;t Work”</a></p>
 </div>
 
 
@@ -132,7 +186,7 @@
   
 
 
-<time datetime="2015-11-24T23:40:44+02:00" pubdate data-updated="true">Nov 24<span>th</span>, 2015</time>
+<time datetime="2015-11-06T00:01:36+02:00" pubdate data-updated="true">Nov 6<span>th</span>, 2015</time>
       
 
 
@@ -142,7 +196,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/" >Tweet</a>
   
   
   
@@ -276,8 +330,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/';
-        var disqus_url = 'http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/';
+        var disqus_identifier = 'http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/';
+        var disqus_url = 'http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/';
         var disqus_script = 'embed.js';
       
     (function () {
