@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-06-05T17:37:16+03:00</updated>
+  <updated>2016-06-05T17:38:28+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
-    <link href="http://amcaplan.ninja/talks/2016/06/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-06-05T17:32:24+03:00</updated>
-    <id>http://amcaplan.ninja/talks/2016/06/05/this-is-your-brain-on-ruby</id>
+    <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
+    <updated>2016-05-05T17:32:24+03:00</updated>
+    <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hVrNnc26oTs" frameborder="0" allowfullscreen></iframe>
