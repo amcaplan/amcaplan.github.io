@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-06-05T17:38:28+03:00</updated>
+  <updated>2016-09-16T14:11:52-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,35 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Building a Better OpenStruct]]></title>
+    <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
+    <updated>2016-09-16T11:25:09-05:00</updated>
+    <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
+    <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
+
+<p>Here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Talk Description:</h4>
+
+<p>OpenStruct, part of Ruby’s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
+
+<p>Recently, Rubyists have tried various approaches to speed up OpenStruct or provide alternatives. We will study these attempts, learning how to take advantage of the tools in our ecosystem while advancing the state of the Ruby community.</p>
+
+<p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
+
+<h4>Link from the talk:</h4>
+
+<p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T17:32:24+03:00</updated>
+    <updated>2016-05-05T09:32:24-05:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -28,7 +54,7 @@
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T17:20:43+03:00</updated>
+    <updated>2016-05-04T09:20:43-05:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -47,9 +73,9 @@
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
-    <updated>2016-01-04T00:04:10+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
+    <updated>2016-01-03T16:04:10-06:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -415,7 +441,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T16:05:35+02:00</updated>
+    <updated>2015-12-02T08:05:35-06:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -619,7 +645,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T23:40:44+02:00</updated>
+    <updated>2015-11-24T15:40:44-06:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -640,7 +666,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T15:42:16+02:00</updated>
+    <updated>2015-11-18T07:42:16-06:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -715,9 +741,9 @@ is a comforting universality to ethics.</p>
   
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
-    <updated>2015-11-06T00:01:36+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
+    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
+    <updated>2015-11-05T16:01:36-06:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
 <p>This talk was given at RailsRemoteConf 2015.</p>
@@ -791,7 +817,7 @@ edited my notes from the live code portion, and published them at
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
     <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T09:55:53+03:00</updated>
+    <updated>2015-08-02T01:55:53-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
@@ -918,7 +944,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#x65;&#x76;&#64;&#x73;&#x61;&#x77;&#102;&#116;&#119;&#101;&#x61;&#114;&#46;&#108;&#121;&#46;">&#100;&#x65;&#x76;&#64;&#x73;&#x61;&#x77;&#102;&#x74;&#x77;&#101;&#97;&#x72;&#46;&#108;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x64;&#101;&#x76;&#64;&#115;&#x61;&#119;&#x66;&#x74;&#x77;&#x65;&#x61;&#114;&#46;&#108;&#121;&#46;">&#x64;&#101;&#118;&#x40;&#x73;&#x61;&#119;&#102;&#x74;&#x77;&#101;&#x61;&#x72;&#x2e;&#108;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -952,9 +978,9 @@ getting good people to work together, because good people are hard to come by.</
   
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-29T01:01:19+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first</id>
+    <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
+    <updated>2015-06-28T17:01:19-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
 job.  Being at the end of my first year on the job, it was an excellent
@@ -1229,9 +1255,9 @@ on in their first few months on the job?  Share your thoughts in the comments!</
   
   <entry>
     <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/"/>
-    <updated>2015-05-21T03:39:23+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct</id>
+    <link href="http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct/"/>
+    <updated>2015-05-20T19:39:23-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct</id>
     <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
 
 <h2>The Challenge</h2>
@@ -1423,7 +1449,7 @@ know what happens!</p>
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T23:49:19+02:00</updated>
+    <updated>2015-01-19T15:49:19-06:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
@@ -1721,9 +1747,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-19T05:16:18+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-18T21:16:18-06:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
 
@@ -2073,7 +2099,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
-    <updated>2015-01-18T23:07:26+02:00</updated>
+    <updated>2015-01-18T15:07:26-06:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
@@ -2252,7 +2278,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
     <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T20:05:10+02:00</updated>
+    <updated>2015-01-14T12:05:10-06:00</updated>
     <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
@@ -2278,7 +2304,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
     <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
-    <updated>2014-08-24T23:25:29+03:00</updated>
+    <updated>2014-08-24T15:25:29-05:00</updated>
     <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
@@ -2575,7 +2601,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
     <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T20:04:57+03:00</updated>
+    <updated>2014-07-17T12:04:57-05:00</updated>
     <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
     <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
 
@@ -2631,9 +2657,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/"/>
-    <updated>2014-05-30T01:09:56+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables</id>
+    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
+    <updated>2014-05-29T17:09:56-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
     <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
 
 <p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
@@ -3082,9 +3108,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[CoffeeScript 101]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/02/coffeescript-101/"/>
-    <updated>2014-05-02T02:40:43+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/02/coffeescript-101</id>
+    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
+    <updated>2014-05-01T18:40:43-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
     <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
 
 <p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
@@ -3235,9 +3261,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[Using Helper Methods to DRY Up Rails Forms]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/"/>
-    <updated>2014-04-02T07:59:32+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms</id>
+    <link href="http://amcaplan.ninja/blog/2014/04/01/using-helper-methods-to-dry-up-rails-forms/"/>
+    <updated>2014-04-01T23:59:32-05:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/04/01/using-helper-methods-to-dry-up-rails-forms</id>
     <content type="html"><![CDATA[<p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
 
 <ol>
@@ -3475,74 +3501,6 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 <p>Also note that the method takes the block and passes it in as the final parameter to <code>content_tag</code>.  This is a built-in feature of <code>content_tag</code> &ndash; it will take a string or a block and stick whichever one between the tags it builds.  Hence, in the last form element (relationship), the method gets a block rather than a string, and it works just fine.</p>
 
 <p>One final useful note: look at line 17 of the updated version.  See <code>tag(:hr)</code>?  That&rsquo;s another helper offered by Rails, and it totally beats the alternative: <code>raw("&lt;hr&gt;")</code>.  It&rsquo;s nice to not have to raw things up.  Whether you love or hate view helpers, it&rsquo;s still important to recognize and know how to use the built-in helper methods, because they will come in handy in plain old views for avoiding the problems caused by Rails&#8217; automatic sanitization.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Exploring Security and Secret Tokens Through Facebook Login]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/"/>
-    <updated>2014-03-19T02:56:00+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login</id>
-    <content type="html"><![CDATA[<p>Security is really scary.  How scary?  Well, according to <a href="http://www.erieinsurance.com/identitytheft/">this very pretty infographic</a>, it costs US residents $13.3 billion and 383 million hours per year.  And you<em> don&rsquo;t</em> want to be the one people are pointing fingers at when there is a data breach.  So it&rsquo;s really important to understand at least the basics of security &ndash; if not all the details, then at least some basic points of entry for hackers.</p>
-
-<p>I&rsquo;ve been working on a project for my upcoming presentation (next week!) at the <a href="http://flatironschool.com">Flatiron School</a>, and I decided to use Facebook authentication.  This makes sense because users will generally have Facebook logins already, so the barrier to entry is lowered, and I don&rsquo;t have the responsibility of taking care of a database of user passwords (or password hashes).  However, I needed to take care of a few things in order to make this happen.</p>
-
-<!-- more -->
-
-
-<p>First, I registered a new app with Facebook.  The process was pretty simple &ndash; took me about 3 minutes &ndash; and I had an app ID and secret key ready to go.  Then I followed the steps on <a href="https://coderwall.com/p/bsfitw">this fantastic blog post</a> to integrate Facebook login with my app using OmniAuth and the Facebook OmniAuth gem.  Et voilà, I can seamlessly bring in Facebook users!</p>
-
-<p>However, there was something that still needed to be taken care of to avoid security vulnerabilities popping up.  My config/initializers folder now included 2 files which would be dangerous to expose in public by posting to Github.  These files are:</p>
-
-<p>omniauth.rb - added for use with OmniAuth, it includes the App ID and Secret Key for Facebook)</p>
-
-<p>secret_token.rb &ndash; included in a standard Rails app, used to authenticate the session sent by the user</p>
-
-<p>I checked the initialize directory out of version control, since it&rsquo;s mostly standard files, and these were the non-standard files and needed to be secret, there was nothing that desperately needed to be pushed to Github.</p>
-
-<p>But this wasn&rsquo;t ideal either.  Let me explain.</p>
-
-<p>Interestingly, the default code for secret_token.rb includes the following comment: &#8221;Make sure your secret_key_base is kept private if you&rsquo;re sharing your code publicly.&ldquo;  So they tell you to hide it, but don&rsquo;t hide it by default.  Why is that?  According to <a href="https://groups.google.com/forum/#!topic/rubyonrails-core/N2EFnf6X_i4">this Google Groups discussion</a> (and it makes sense when you think about it), hiding the file would then break upload to Heroku or any other service that uses Git for deployment.  So the key is to keep it in .gitignore while you&rsquo;re developing, then add to Git on a deploy.  But then if you continue development, the secret token will be in the commit history, and that will be available on Github!  Major problem.</p>
-
-<p>Well, one solution is to just regenerate the secret key every time you deploy; there is a Rake task for that.  So you could regenerate the secret key, move the master branch ahead by one commit and deploy that, then keep working from the previous commit with the old secret key, so the current secret key doesn&rsquo;t get to Github.  But this is a pain, and an extra step to remember!</p>
-
-<p>New Zealander David Fone <a href="http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/#comment-902646816">suggests an alternative solution</a>: set the secret key manually in testing and development, and set it on the server in production!  How does this look in practice?  Here&rsquo;s your secret_token.rb (updated by me for Rails 4):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="ow">or</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
-</span><span class='line'>  <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span><span class="err"> </span><span class="p">(</span><span class="s1">&#39;x&#39;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span><span class="err"> </span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SECRET_TOKEN&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So whenever you&rsquo;re working on your own computer, the secret token is just a string of 30 &lsquo;x&#8217;es. That seems kinda stupid, but it definitely reminds you, the developer, that whatever secret key you would be using in testing/development just isn&rsquo;t secure. When you move your application to the production environment, you have to then use the host&rsquo;s tools to input or produce a secret token. In the case of Heroku, this is done with one command:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>heroku config:set <span class="nv">SECRET_TOKEN</span><span class="o">=</span>3eb6db5a9026c54...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(fill in a full-length secret token, you get the idea)</p>
-
-<p>So now the production code is secure and unexposed, and you can keep developing with your 30x token.</p>
-
-<p>Finally, one important question. Why is all this secret token stuff so important anyway?  By default, Rails stores sessions on the client&rsquo;s computer.  This means that the user can access the session&rsquo;s content, decipher it easily from Base 64 (since it&rsquo;s not encrypted in any way), and potentially modify it before the next request!  Rails avoids this pitfall by having every session end with a digest that is calculated using the session data and the secret token.  So if the user changes the session data, the digest no longer matches the session data, and Rails knows something is fishy.  It&rsquo;s highly unlikely that a user will be able to guess the secret token and create a new digest, so your session is ultimately safe, as long as your secret token hasn&rsquo;t been compromised.  But if someone else finds out the secret token, they can easily modify their sessions and create new digests (though the process to modify a session is still somewhat difficult, but ultimately it&rsquo;s doable).</p>
-
-<p>Either way, it&rsquo;s worth noting that the user is able to see the session information; Rails secret tokens just prevent the user from modifying the session information (e.g. changing the user id) and getting away with it.  So don&rsquo;t store information in the session that you don&rsquo;t want users to see!  In any situation where you might put sensitive information into a session &ndash; don&rsquo;t!  Keep it in a database with an easy way to access it based on the information contained in the session.</p>
-
-<p>So the ultimate take-aways are:</p>
-
-<p>1) Authenticating with services that use OmniAuth is very straightforward (though see <a href="http://webstersprodigy.net/2013/05/09/common-oauth-issue-you-can-use-to-take-over-accounts/">here</a> for a terrifying blog post about how an attacker can use CSRF to take over an account that has internal login plus Facebook login, or any other OmniAuth login)</p>
-
-<p>2) Don&rsquo;t commit your actual production secret token to Github or anywhere else; there are ways to avoid it without too much hassle.</p>
-
-<p>3) Don&rsquo;t store information in the session if having a user see it would constitute a security breach.</p>
 ]]></content>
   </entry>
   

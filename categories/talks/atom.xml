@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-06-05T17:38:28+03:00</updated>
+  <updated>2016-09-16T14:11:52-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,35 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Building a Better OpenStruct]]></title>
+    <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
+    <updated>2016-09-16T11:25:09-05:00</updated>
+    <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
+    <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
+
+<p>Here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Talk Description:</h4>
+
+<p>OpenStruct, part of Ruby’s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
+
+<p>Recently, Rubyists have tried various approaches to speed up OpenStruct or provide alternatives. We will study these attempts, learning how to take advantage of the tools in our ecosystem while advancing the state of the Ruby community.</p>
+
+<p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
+
+<h4>Link from the talk:</h4>
+
+<p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T17:32:24+03:00</updated>
+    <updated>2016-05-05T09:32:24-05:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -28,7 +54,7 @@
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T17:20:43+03:00</updated>
+    <updated>2016-05-04T09:20:43-05:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -48,7 +74,7 @@
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T23:40:44+02:00</updated>
+    <updated>2015-11-24T15:40:44-06:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -68,9 +94,9 @@
   
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
-    <updated>2015-11-06T00:01:36+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
+    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
+    <updated>2015-11-05T16:01:36-06:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
 <p>This talk was given at RailsRemoteConf 2015.</p>
@@ -138,32 +164,6 @@ edited my notes from the live code portion, and published them at
 <p><a href="http://blog.pivotal.io/labs/labs/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines">Stephan Hagemann, “Migrating from a single Rails app to a suite of Rails engines”</a></p>
 
 <p><a href="http://blog.pivotal.io/labs/labs/experience-report-engine-usage-that-didn-t-work">Will Read, “Experience Report: Engine Usage That Didn&rsquo;t Work”</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T20:05:10+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
-    <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
-<a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
-<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">posts</a> I wrote about feature flags.</p>
-
-<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James' gems.</p>
-
-<p>Links:</p>
-
-<!-- more -->
-
-
-<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
-<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
-<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
-<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
 ]]></content>
   </entry>
   

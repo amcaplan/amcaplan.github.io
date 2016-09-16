@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Flag Your Features with Rollout and Degrade - AMC: Aspiring Master of Code</title>
+  <title>Start Your (Rails) Engines! - AMC: Aspiring Master of Code</title>
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Check out the SpeakerDeck! You can also read the
-three blog
-posts I wrote about feature flags. In light of James Golick&rsquo;s recent untimely &hellip;">
+  <meta name="description" content="The Talk This talk was given at RailsRemoteConf 2015. Check out the SpeakerDeck! Video coming soon! Want to split up your Rails app into pieces but &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,16 +21,16 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@amcaplan" />
     
-      <meta name="twitter:title" content="Flag Your Features with Rollout and Degrade" />
+      <meta name="twitter:title" content="Start Your (Rails) Engines!" />
     
-    <meta name="twitter:description" content="Learn how to use Rollout and Degrade to manage your application's behavior at runtime" />
+    <meta name="twitter:description" content="Learn the basics of building and integrating Rails Engines, and consider when they are or aren't the best solution." />
     
       <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
     
   
 
   
-  <link rel="canonical" href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/">
+  <link rel="canonical" href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -76,7 +74,7 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
   
   <header>
     
-      <h1 class="entry-title">Flag Your Features With Rollout and Degrade</h1>
+      <h1 class="entry-title">Start Your (Rails) Engines!</h1>
     
     
       <p class="meta">
@@ -92,31 +90,80 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
   
 
 
-<time datetime="2015-01-14T12:05:10-06:00" pubdate data-updated="true">Jan 14<span>th</span>, 2015</time>
+<time datetime="2015-11-05T16:01:36-06:00" pubdate data-updated="true">Nov 5<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
-<a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
-<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">posts</a> I wrote about feature flags.</p>
+<div class="entry-content"><h3>The Talk</h3>
 
-<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<p>This talk was given at RailsRemoteConf 2015.</p>
 
+<p>Check out the <a href="https://speakerdeck.com/amcaplan/start-your-rails-engines-railsremoteconf-2015">SpeakerDeck</a>!  Video coming soon!</p>
 
-<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James&#8217; gems.</p>
-
-<p>Links:</p>
-
-<!-- more -->
+<script async class="speakerdeck-embed" data-id="f1a29cab92da437284c27653a1525131" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 
-<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
-<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
-<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
-<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
+<p>Want to split up your Rails app into pieces but not sure where to begin? Wish
+you could share controller code among microservices but don&rsquo;t know how? Do you
+work on lots of projects and have boilerplate Rails code repeated in each?</p>
+
+<p>Rails Engines may be your answer.</p>
+
+<p>We will build a simple Rails engine and understand how this app-within-an-app
+architecture can help you write more modular code which can be gemified and
+reused across multiple projects.</p>
+
+<br /><br />
+
+
+<h3>Following Along</h3>
+
+<p>The video will be made public&hellip; eventually.</p>
+
+<p>In the meantime, you can check out the code from the &ldquo;live code&rdquo; portion at
+<a href="https://github.com/amcaplan/forget">https://github.com/amcaplan/forget</a> and
+<a href="https://github.com/amcaplan/cacher">https://github.com/amcaplan/cacher</a>. I also
+edited my notes from the live code portion, and published them at
+<a href="https://gist.github.com/amcaplan/0841065fdb69966b860f">https://gist.github.com/amcaplan/0841065fdb69966b860f</a>.</p>
+
+<p>For your convenience, here are the links from the talk.</p>
+
+<br />
+
+
+<h4>Links Throughout the Presentation</h4>
+
+<p><a href="http://guides.rubyonrails.org/engines.html">http://guides.rubyonrails.org/engines.html</a></p>
+
+<p><a href="https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79">https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79</a></p>
+
+<p><a href="http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/">http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/</a></p>
+
+<p><a href="http://article.gmane.org/gmane.comp.lang.ruby.rails/29166">http://article.gmane.org/gmane.comp.lang.ruby.rails/29166</a></p>
+
+<p><a href="https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/">https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/</a></p>
+
+<br />
+
+
+<h4>Further information links</h4>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">GoGaRuCo 2012, Erik Michaels-Ober &ndash; “Writing a Rails Engine”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/leave-your-migrations-in-your-rails-engines">Ben Smith &ndash; “Leave your migrations in your Rails engines”</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">RailsConf 2015, Stephan Hagemann &ndash; “Get started with Component-based Rails applications!”</a></p>
+
+<p><a href="http://tech.taskrabbit.com/blog/2014/02/11/rails-4-engines/">Brian Leonard, “Rails 4 Engines” (Blog post about splitting up an application)</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=uDaBtqEYNBo">Rocky Mountain Ruby 2013, Ben Smith &ndash; “How I architected my big Rails app for success!”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines">Stephan Hagemann, “Migrating from a single Rails app to a suite of Rails engines”</a></p>
+
+<p><a href="http://blog.pivotal.io/labs/labs/experience-report-engine-usage-that-didn-t-work">Will Read, “Experience Report: Engine Usage That Didn&rsquo;t Work”</a></p>
 </div>
 
 
@@ -139,7 +186,7 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
   
 
 
-<time datetime="2015-01-14T12:05:10-06:00" pubdate data-updated="true">Jan 14<span>th</span>, 2015</time>
+<time datetime="2015-11-05T16:01:36-06:00" pubdate data-updated="true">Nov 5<span>th</span>, 2015</time>
       
 
 
@@ -149,7 +196,7 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/" >Tweet</a>
   
   
   
@@ -283,8 +330,8 @@ posts I wrote about feature flags. In light of James Golick&rsquo;s recent untim
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/';
-        var disqus_url = 'http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/';
+        var disqus_identifier = 'http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/';
+        var disqus_url = 'http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/';
         var disqus_script = 'embed.js';
       
     (function () {
