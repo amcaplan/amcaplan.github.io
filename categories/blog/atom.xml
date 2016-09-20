@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-09-16T14:11:52-05:00</updated>
+  <updated>2016-09-20T10:23:31-04:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
     <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T16:04:10-06:00</updated>
+    <updated>2016-01-03T17:04:10-05:00</updated>
     <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
@@ -383,7 +383,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T08:05:35-06:00</updated>
+    <updated>2015-12-02T09:05:35-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -587,7 +587,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T07:42:16-06:00</updated>
+    <updated>2015-11-18T08:42:16-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -663,7 +663,7 @@ is a comforting universality to ethics.</p>
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
     <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T01:55:53-05:00</updated>
+    <updated>2015-08-02T02:55:53-04:00</updated>
     <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
@@ -790,7 +790,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#100;&#x65;&#118;&#64;&#115;&#97;&#x77;&#102;&#116;&#119;&#x65;&#97;&#114;&#x2e;&#108;&#121;&#46;">&#x64;&#x65;&#x76;&#64;&#115;&#97;&#x77;&#102;&#116;&#x77;&#x65;&#97;&#114;&#46;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x64;&#101;&#x76;&#64;&#x73;&#97;&#119;&#x66;&#x74;&#119;&#101;&#97;&#114;&#x2e;&#108;&#121;&#x2e;">&#100;&#x65;&#118;&#x40;&#115;&#97;&#x77;&#102;&#x74;&#x77;&#101;&#97;&#x72;&#x2e;&#x6c;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -825,7 +825,7 @@ getting good people to work together, because good people are hard to come by.</
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
     <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-28T17:01:19-05:00</updated>
+    <updated>2015-06-28T18:01:19-04:00</updated>
     <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the

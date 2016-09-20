@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-09-16T14:11:52-05:00</updated>
+  <updated>2016-09-20T10:23:31-04:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,13 +16,23 @@
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T11:25:09-05:00</updated>
+    <updated>2016-09-16T12:25:09-04:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
+
+<p>Until the official conference video is posted around October, here&rsquo;s a screen capture (sorry about the poor audio quality):</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m22kVEUiOvM" frameborder="0" allowfullscreen></iframe>
+
 
 <p>Here are the slides:</p>
 
 <script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+
+
+<br/>
 
 
 <h4>Talk Description:</h4>
@@ -42,7 +52,7 @@
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T09:32:24-05:00</updated>
+    <updated>2016-05-05T10:32:24-04:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -54,7 +64,7 @@
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T09:20:43-05:00</updated>
+    <updated>2016-05-04T10:20:43-04:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -74,7 +84,7 @@
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
     <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T16:04:10-06:00</updated>
+    <updated>2016-01-03T17:04:10-05:00</updated>
     <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
@@ -441,7 +451,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T08:05:35-06:00</updated>
+    <updated>2015-12-02T09:05:35-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -645,7 +655,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T15:40:44-06:00</updated>
+    <updated>2015-11-24T16:40:44-05:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -666,7 +676,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T07:42:16-06:00</updated>
+    <updated>2015-11-18T08:42:16-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -742,7 +752,7 @@ is a comforting universality to ethics.</p>
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
-    <updated>2015-11-05T16:01:36-06:00</updated>
+    <updated>2015-11-05T17:01:36-05:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
@@ -817,7 +827,7 @@ edited my notes from the live code portion, and published them at
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
     <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T01:55:53-05:00</updated>
+    <updated>2015-08-02T02:55:53-04:00</updated>
     <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
@@ -944,7 +954,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x64;&#101;&#x76;&#64;&#115;&#x61;&#119;&#x66;&#x74;&#x77;&#x65;&#x61;&#114;&#46;&#108;&#121;&#46;">&#x64;&#101;&#118;&#x40;&#x73;&#x61;&#119;&#102;&#x74;&#x77;&#101;&#x61;&#x72;&#x2e;&#108;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#100;&#101;&#x76;&#x40;&#115;&#x61;&#119;&#x66;&#x74;&#119;&#101;&#x61;&#x72;&#46;&#x6c;&#121;&#x2e;">&#x64;&#101;&#118;&#64;&#115;&#97;&#x77;&#102;&#x74;&#x77;&#101;&#x61;&#x72;&#x2e;&#x6c;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -979,7 +989,7 @@ getting good people to work together, because good people are hard to come by.</
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
     <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-28T17:01:19-05:00</updated>
+    <updated>2015-06-28T18:01:19-04:00</updated>
     <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
@@ -1256,7 +1266,7 @@ on in their first few months on the job?  Share your thoughts in the comments!</
   <entry>
     <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
     <link href="http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct/"/>
-    <updated>2015-05-20T19:39:23-05:00</updated>
+    <updated>2015-05-20T20:39:23-04:00</updated>
     <id>http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct</id>
     <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
 
@@ -1449,7 +1459,7 @@ know what happens!</p>
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T15:49:19-06:00</updated>
+    <updated>2015-01-19T16:49:19-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
@@ -1748,7 +1758,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-18T21:16:18-06:00</updated>
+    <updated>2015-01-18T22:16:18-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
@@ -2099,7 +2109,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
-    <updated>2015-01-18T15:07:26-06:00</updated>
+    <updated>2015-01-18T16:07:26-05:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
@@ -2278,7 +2288,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
     <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T12:05:10-06:00</updated>
+    <updated>2015-01-14T13:05:10-05:00</updated>
     <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
@@ -2304,7 +2314,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
     <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
-    <updated>2014-08-24T15:25:29-05:00</updated>
+    <updated>2014-08-24T16:25:29-04:00</updated>
     <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
@@ -2601,7 +2611,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
     <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T12:04:57-05:00</updated>
+    <updated>2014-07-17T13:04:57-04:00</updated>
     <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
     <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
 
@@ -2658,7 +2668,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
     <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
-    <updated>2014-05-29T17:09:56-05:00</updated>
+    <updated>2014-05-29T18:09:56-04:00</updated>
     <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
     <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
 
@@ -3109,7 +3119,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[CoffeeScript 101]]></title>
     <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
-    <updated>2014-05-01T18:40:43-05:00</updated>
+    <updated>2014-05-01T19:40:43-04:00</updated>
     <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
     <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
 
@@ -3261,9 +3271,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[Using Helper Methods to DRY Up Rails Forms]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/04/01/using-helper-methods-to-dry-up-rails-forms/"/>
-    <updated>2014-04-01T23:59:32-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/04/01/using-helper-methods-to-dry-up-rails-forms</id>
+    <link href="http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/"/>
+    <updated>2014-04-02T00:59:32-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms</id>
     <content type="html"><![CDATA[<p>Helpers are a pretty nifty feature of Rails. And I&rsquo;m not just talking about the built-in form helpers and the like, though those are awesome. I&rsquo;m talking about the fact that you can custom-build your own helper methods to clean up repetitive content. Building your own helpers can be a bit tricky, though, so let&rsquo;s first review a basic Rails rule that is likely to trip you up. Here are some things Rails doesn&rsquo;t like:</p>
 
 <ol>
