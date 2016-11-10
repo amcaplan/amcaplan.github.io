@@ -19,11 +19,11 @@ twitter:
 
 This talk was given at WindyCityRails 2016.
 
-Until the official conference video is posted around October, here's a screen capture (sorry about the poor audio quality):
+Here's the official video:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m22kVEUiOvM" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Te4Q3Os5QUA" frameborder="0" allowfullscreen></iframe>
 
-Here are the slides:
+And the slides:
 
 <script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
