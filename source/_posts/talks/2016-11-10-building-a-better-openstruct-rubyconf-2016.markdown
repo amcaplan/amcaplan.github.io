@@ -22,7 +22,7 @@ This talk was given at RubyConf 2016. It's an updated version of [the same talk 
 
 Here are the slides:
 
-<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<script async class="speakerdeck-embed" data-id="7ed494d4b4244f26a453c97aa9efc75d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 <br/>
 #### Talk Description:
