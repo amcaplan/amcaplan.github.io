@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-09-20T10:23:31-04:00</updated>
+  <updated>2016-11-10T14:17:48-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,7 +14,38 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Building a Better OpenStruct]]></title>
+    <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
+    <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
+    <updated>2016-11-10T14:01:52-05:00</updated>
+    <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
+    <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
+
+<p>Here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+
+
+<br/>
+
+
+<h4>Talk Description:</h4>
+
+<p>OpenStruct, part of Ruby&rsquo;s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
+
+<p>Luckily, Rubyists have recently improved OpenStruct performance and provided some alternatives. We&rsquo;ll study their approaches, learning to take advantage of the tools in our ecosystem while advancing the state our community.</p>
+
+<p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
+
+<h4>Link from the talk:</h4>
+
+<p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
     <updated>2016-09-16T12:25:09-04:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
@@ -99,81 +130,6 @@
 <h4>Talk Description:</h4>
 
 <p>Many of us use threads and/or processes in our code, whether explicitly or implicitly. But do we really understand what threads and processes are? Can we clearly evaluate the pros and cons of each? We will attempt to clarify these concepts in a simple, concise fashion.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
-    <updated>2015-11-05T17:01:36-05:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
-    <content type="html"><![CDATA[<h3>The Talk</h3>
-
-<p>This talk was given at RailsRemoteConf 2015.</p>
-
-<p>Check out the <a href="https://speakerdeck.com/amcaplan/start-your-rails-engines-railsremoteconf-2015">SpeakerDeck</a>!  Video coming soon!</p>
-
-<script async class="speakerdeck-embed" data-id="f1a29cab92da437284c27653a1525131" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<p>Want to split up your Rails app into pieces but not sure where to begin? Wish
-you could share controller code among microservices but don&rsquo;t know how? Do you
-work on lots of projects and have boilerplate Rails code repeated in each?</p>
-
-<p>Rails Engines may be your answer.</p>
-
-<p>We will build a simple Rails engine and understand how this app-within-an-app
-architecture can help you write more modular code which can be gemified and
-reused across multiple projects.</p>
-
-<br /><br />
-
-
-<h3>Following Along</h3>
-
-<p>The video will be made public&hellip; eventually.</p>
-
-<p>In the meantime, you can check out the code from the &ldquo;live code&rdquo; portion at
-<a href="https://github.com/amcaplan/forget">https://github.com/amcaplan/forget</a> and
-<a href="https://github.com/amcaplan/cacher">https://github.com/amcaplan/cacher</a>. I also
-edited my notes from the live code portion, and published them at
-<a href="https://gist.github.com/amcaplan/0841065fdb69966b860f">https://gist.github.com/amcaplan/0841065fdb69966b860f</a>.</p>
-
-<p>For your convenience, here are the links from the talk.</p>
-
-<br />
-
-
-<h4>Links Throughout the Presentation</h4>
-
-<p><a href="http://guides.rubyonrails.org/engines.html">http://guides.rubyonrails.org/engines.html</a></p>
-
-<p><a href="https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79">https://github.com/rails/rails/blob/master/railties/lib/rails/application.rb#L79</a></p>
-
-<p><a href="http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/">http://weblog.rubyonrails.org/2005/11/11/why-engines-and-components-are-not-evil-but-distracting/</a></p>
-
-<p><a href="http://article.gmane.org/gmane.comp.lang.ruby.rails/29166">http://article.gmane.org/gmane.comp.lang.ruby.rails/29166</a></p>
-
-<p><a href="https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/">https://techblog.livingsocial.com/blog/2014/01/24/open-sourcing-with-rails-engines/</a></p>
-
-<br />
-
-
-<h4>Further information links</h4>
-
-<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">GoGaRuCo 2012, Erik Michaels-Ober &ndash; “Writing a Rails Engine”</a></p>
-
-<p><a href="http://blog.pivotal.io/labs/labs/leave-your-migrations-in-your-rails-engines">Ben Smith &ndash; “Leave your migrations in your Rails engines”</a></p>
-
-<p><a href="https://www.youtube.com/watch?v=MsRPxS7Cu_Q">RailsConf 2015, Stephan Hagemann &ndash; “Get started with Component-based Rails applications!”</a></p>
-
-<p><a href="http://tech.taskrabbit.com/blog/2014/02/11/rails-4-engines/">Brian Leonard, “Rails 4 Engines” (Blog post about splitting up an application)</a></p>
-
-<p><a href="https://www.youtube.com/watch?v=uDaBtqEYNBo">Rocky Mountain Ruby 2013, Ben Smith &ndash; “How I architected my big Rails app for success!”</a></p>
-
-<p><a href="http://blog.pivotal.io/labs/labs/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines">Stephan Hagemann, “Migrating from a single Rails app to a suite of Rails engines”</a></p>
-
-<p><a href="http://blog.pivotal.io/labs/labs/experience-report-engine-usage-that-didn-t-work">Will Read, “Experience Report: Engine Usage That Didn&rsquo;t Work”</a></p>
 ]]></content>
   </entry>
   
