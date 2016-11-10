@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-11-10T14:17:48-05:00</updated>
+  <updated>2016-11-10T14:21:08-05:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -51,12 +51,12 @@
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
-<p>Until the official conference video is posted around October, here&rsquo;s a screen capture (sorry about the poor audio quality):</p>
+<p>Here&rsquo;s the official video:</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m22kVEUiOvM" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Te4Q3Os5QUA" frameborder="0" allowfullscreen></iframe>
 
 
-<p>Here are the slides:</p>
+<p>And the slides:</p>
 
 <script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -985,7 +985,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#101;&#x76;&#64;&#x73;&#97;&#x77;&#102;&#116;&#119;&#101;&#97;&#x72;&#46;&#x6c;&#121;&#x2e;">&#x64;&#101;&#118;&#64;&#115;&#97;&#119;&#x66;&#116;&#119;&#101;&#x61;&#114;&#x2e;&#108;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x64;&#x65;&#x76;&#64;&#115;&#97;&#x77;&#x66;&#x74;&#119;&#x65;&#97;&#x72;&#x2e;&#x6c;&#x79;&#x2e;">&#100;&#x65;&#118;&#x40;&#115;&#97;&#x77;&#x66;&#x74;&#119;&#x65;&#x61;&#114;&#x2e;&#108;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
