@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building a Better OpenStruct"
+title: "Building a Better OpenStruct - WindyCityRails 2016"
 date: 2016-09-16 11:25:09 -0500
 comments: true
 categories:
