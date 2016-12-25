@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-11-10T14:23:33-05:00</updated>
+  <updated>2016-12-25T16:33:35+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
-    <updated>2016-11-10T14:01:52-05:00</updated>
+    <updated>2016-11-10T21:01:52+02:00</updated>
     <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
@@ -47,7 +47,7 @@
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T12:25:09-04:00</updated>
+    <updated>2016-09-16T19:25:09+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
@@ -83,7 +83,7 @@
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T10:32:24-04:00</updated>
+    <updated>2016-05-05T17:32:24+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -95,7 +95,7 @@
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T10:20:43-04:00</updated>
+    <updated>2016-05-04T17:20:43+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -115,7 +115,7 @@
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T16:40:44-05:00</updated>
+    <updated>2015-11-24T23:40:44+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 

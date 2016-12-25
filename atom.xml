@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-11-10T14:23:33-05:00</updated>
+  <updated>2016-12-25T16:33:35+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,91 @@
 
   
   <entry>
+    <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
+    <updated>2016-12-25T16:01:56+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
+    <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
+
+<p>I&rsquo;m certainly proud of (most of) the content.  It&rsquo;s shown significant
+development in complexity and depth since I started.  But I have a lot of ideas
+running around my head all the time, some of them even good ideas, and I&rsquo;d like
+the blog to reflect more of them.</p>
+
+<p>So I&rsquo;ve decided to give myself a Chanukah gift: I&rsquo;m requiring myself to make
+every effort to come up with one blog post every day of Chanukah.</p>
+
+<p>This probably makes you wonder a few things.</p>
+
+<!-- more -->
+
+
+<h3>What?</h3>
+
+<p>It&rsquo;s really simple.  I want to make my blog better, and I think it&rsquo;ll be better
+if I&rsquo;m more inclined to post things when I have ideas which are useful to
+others.  I&rsquo;ve gotten out of the habit of blogging, with the result that lots of
+smaller, useful-tech-tips type blog posts, and some larger thinkpiece posts,
+just never happened.  That means people Googling to find a solution to their
+problem might not find what they&rsquo;re looking for, and I&rsquo;ve lost the amazing
+conversations and learning that come from publishing thinkpieces.</p>
+
+<p>Also, I really like writing.</p>
+
+<p>To change my habits, I&rsquo;m going to try to publish 8 posts in 8 days.  That&rsquo;s a
+big deal for me; it&rsquo;ll add 50% to my current total of posts.  But desperate
+times call for desperate measures.</p>
+
+<h3>When?</h3>
+
+<p>The 25th of Kislev through the 3rd of Tevet, which this year happens to coincide
+with December 25th through January 1st.  Those dates aren&rsquo;t related in any
+significant way; in 2013, for example, the first Day of Chanukah coincided with
+American Thanksgiving.</p>
+
+<p>As I&rsquo;ll clarify below, Chanukah wasn&rsquo;t chosen for any religious reason; it&rsquo;s
+just a convenient (for me) cluster of 8 days to focus a rather ambitious goal!</p>
+
+<h3>How?</h3>
+
+<p>Honestly, I&rsquo;m not quite sure.  I&rsquo;m cheating by counting this as one post, and I
+have one high-quality post already written up.  I also have an idea for a third.
+Beyond that, I&rsquo;ll have to get creative!</p>
+
+<h3>Why?</h3>
+
+<p>Now&rsquo;s when I&rsquo;m supposed to offer some platitude about &ldquo;This is my Chanukah gift
+to you,&rdquo; or &ldquo;You can think of it as a Christmas present,&rdquo; or whatever.  But I
+don&rsquo;t feel comfortable with just about anything explicitly interfaith, and I
+don&rsquo;t think I need a religious (or pseudo-religious) reason to do something
+valuable.  Also I don&rsquo;t believe in Chanukah presents, coming from a family that
+eschewed the practice since TBQH it seems pretty Christian.  So basically, no
+presents.  Deal.</p>
+
+<p>To be perfectly honest, this is an experiment to see whether I can get my
+creative juices flowing.  I happen to have a little extra time now, between days
+off and the fact that people seem to disappear for well-deserved vacation around
+this time of year so essentially nothing work-related gets done.</p>
+
+<p>In other words, it&rsquo;s the best time of year to engage in an experiment that takes
+a lot of time, for someone like myself who isn&rsquo;t celebrating anything in
+particular, unless you count Chanukah, which adds maybe 20 minutes to my daily
+schedule but basically functions as 8 regular days.</p>
+
+<p>It should be fun.  There&rsquo;s some good stuff down the pipeline!</p>
+
+<h3>Who are you exactly?</h3>
+
+<p>If you&rsquo;re first visiting the blog, I do have an <a href="http://amcaplan.ninja/about/">About Page</a>.  I
+have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>, and occasionally
+<a href="http://amcaplan.ninja/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
-    <updated>2016-11-10T14:01:52-05:00</updated>
+    <updated>2016-11-10T21:01:52+02:00</updated>
     <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
@@ -47,7 +129,7 @@
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T12:25:09-04:00</updated>
+    <updated>2016-09-16T19:25:09+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
@@ -83,7 +165,7 @@
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T10:32:24-04:00</updated>
+    <updated>2016-05-05T17:32:24+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -95,7 +177,7 @@
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T10:20:43-04:00</updated>
+    <updated>2016-05-04T17:20:43+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -114,9 +196,9 @@
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T17:04:10-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
+    <updated>2016-01-04T00:04:10+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -482,7 +564,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T09:05:35-05:00</updated>
+    <updated>2015-12-02T16:05:35+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -686,7 +768,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T16:40:44-05:00</updated>
+    <updated>2015-11-24T23:40:44+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -707,7 +789,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T08:42:16-05:00</updated>
+    <updated>2015-11-18T15:42:16+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -782,9 +864,9 @@ is a comforting universality to ethics.</p>
   
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
-    <updated>2015-11-05T17:01:36-05:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
+    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
+    <updated>2015-11-06T00:01:36+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
 <p>This talk was given at RailsRemoteConf 2015.</p>
@@ -858,7 +940,7 @@ edited my notes from the live code portion, and published them at
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
     <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T02:55:53-04:00</updated>
+    <updated>2015-08-02T09:55:53+03:00</updated>
     <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
@@ -985,7 +1067,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#101;&#x76;&#x40;&#115;&#97;&#x77;&#102;&#x74;&#x77;&#x65;&#97;&#x72;&#x2e;&#108;&#121;&#46;">&#x64;&#x65;&#118;&#64;&#x73;&#97;&#119;&#x66;&#116;&#119;&#x65;&#97;&#x72;&#x2e;&#108;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x65;&#118;&#x40;&#x73;&#x61;&#119;&#x66;&#116;&#x77;&#x65;&#x61;&#114;&#46;&#x6c;&#121;&#x2e;">&#x64;&#101;&#118;&#x40;&#x73;&#x61;&#119;&#102;&#116;&#x77;&#101;&#97;&#x72;&#x2e;&#x6c;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -1019,9 +1101,9 @@ getting good people to work together, because good people are hard to come by.</
   
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-28T18:01:19-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
+    <link href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
+    <updated>2015-06-29T01:01:19+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
 job.  Being at the end of my first year on the job, it was an excellent
@@ -1296,9 +1378,9 @@ on in their first few months on the job?  Share your thoughts in the comments!</
   
   <entry>
     <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct/"/>
-    <updated>2015-05-20T20:39:23-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct</id>
+    <link href="http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/"/>
+    <updated>2015-05-21T03:39:23+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct</id>
     <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
 
 <h2>The Challenge</h2>
@@ -1490,7 +1572,7 @@ know what happens!</p>
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T16:49:19-05:00</updated>
+    <updated>2015-01-19T23:49:19+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
     <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
 practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
@@ -1788,9 +1870,9 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-18T22:16:18-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where</id>
+    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
+    <updated>2015-01-19T05:16:18+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
     <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
 theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
 
@@ -2140,7 +2222,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Feature Flags in Ruby, Part I: What and Why]]></title>
     <link href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/"/>
-    <updated>2015-01-18T16:07:26-05:00</updated>
+    <updated>2015-01-18T23:07:26+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why</id>
     <content type="html"><![CDATA[<p><em>Note: Part I will be more theoretical.  If you already know about feature
 flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
@@ -2319,7 +2401,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
     <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T13:05:10-05:00</updated>
+    <updated>2015-01-14T20:05:10+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
     <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
 <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
@@ -2345,7 +2427,7 @@ passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-
   <entry>
     <title type="html"><![CDATA[Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript]]></title>
     <link href="http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/"/>
-    <updated>2014-08-24T16:25:29-04:00</updated>
+    <updated>2014-08-24T23:25:29+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript</id>
     <content type="html"><![CDATA[<p>On the Vitals Choice team, we have divided our product into a number of apps.
 Each of those apps has one running instance per environment , and we have
@@ -2642,7 +2724,7 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   <entry>
     <title type="html"><![CDATA[Asynchronous JavaScript - Without Failing Capybara Tests]]></title>
     <link href="http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/"/>
-    <updated>2014-07-17T13:04:57-04:00</updated>
+    <updated>2014-07-17T20:04:57+03:00</updated>
     <id>http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests</id>
     <content type="html"><![CDATA[<p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
 
@@ -2698,9 +2780,9 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
   
   <entry>
     <title type="html"><![CDATA[How to Stay Classy With Ruby Variables]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/"/>
-    <updated>2014-05-29T18:09:56-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables</id>
+    <link href="http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/"/>
+    <updated>2014-05-30T01:09:56+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables</id>
     <content type="html"><![CDATA[<p>Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: <code>@@var</code>), constants (in all caps: <code>VAR</code>), and class instance variables (<code>@var</code>).  Which one to use depends on the use case, and to some degree on personal preference.  Let&rsquo;s explore this a bit.</p>
 
 <p>Constants are meant to be &ndash; well, constant.  This is not technically enforced in Ruby; if you redefine a constant during program execution, it will display a warning, but not actually raise an error.  However, the semantic idea of a constant is that it should be defined once and not touched again. Variables, on the other hand, are variable.  They record a particular state that is likely to be redefined at some future point in time.</p>
@@ -3144,159 +3226,6 @@ an arbitrary number of tasks synchronously.  Sweet!</p>
 
 
 <p>As always, comments and thoughts are most welcome.  Stay classy, Rubyists!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CoffeeScript 101]]></title>
-    <link href="http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/"/>
-    <updated>2014-05-01T19:40:43-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101</id>
-    <content type="html"><![CDATA[<p>&ldquo;CoffeeScript, c&#8217;mon and/ take a sip, they call it/ CoffeeScript, Coff-&rdquo;</p>
-
-<p>- oh, sorry, didn&rsquo;t see you there! I was just humming the jingle from <a href="https://www.codeschool.com/courses/coffeescript">CodeSchool&rsquo;s CoffeeScript course</a>. Been working on it for a few days. I&rsquo;ve never been a huge fan of the brown caffeinated stuff, but CoffeeScript? I&rsquo;m addicted.</p>
-
-<p>CoffeeScript is described by its creator, Jeremy Ashkenas, as &ldquo;a little language that compiles into JavaScript.&rdquo; Here&rsquo;s how I would describe it: &ldquo;JavaScript is written to give you a brain hemorrhage. CoffeeScript is more like a mild migraine.&rdquo;</p>
-
-<!-- more -->
-
-
-<p>Essentially, CoffeeScript is a language that compiles 1-to-1 to JavaScript, but is more clear and less error-prone. Forget the dreaded <code>var</code> keyword; it has no place in the wonderful world of CoffeeScript, because it&rsquo;s added automatically.  I like semicolons in English sentences; however, in the world of JavaScript, it&rsquo;s difficult to remember every semicolon.  Thankfully, Automatic Semicolon Insertion will usually take care of it, but it can lead to unexpected results.  With CoffeeScript, no more semicolons!  And those pesky braces (<code>{}</code>) appearing all over the place?  Gone!</p>
-
-<p>Now, some would say, &ldquo;Hey, what are you doing with my beautiful JavaScript?  It was so precise, so explicit!&rdquo;  I would tell them to go try Ruby and understand that <code>extraBoilerplate !== greaterPrecision</code> (I wrote that in JS so they would understand).  Or, as you would write it in CoffeeScript, <code>extraBoilerplate isnt greaterPrecision</code>.  (Yes, the &lsquo; was left out of isnt on purpose &ndash; that&rsquo;s how it&rsquo;s spelled in CoffeeScript.)</p>
-
-<p>Just to demonstrate how awesome CoffeeScript is, I&rsquo;m going to write the rest of this post in CoffeeScript to show that it&rsquo;s really much simpler.</p>
-
-<figure class='code'><figcaption><span>coffeescript_demo.js.coffee</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="k">class</span> <span class="nx">Reader</span>
-</span><span class='line'>  <span class="nv">inAttendance: </span><span class="kc">yes</span>
-</span><span class='line'>  <span class="nv">payAttention: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">alert</span> <span class="s">&#39;Wake up and pay attention!&#39;</span>
-</span><span class='line'><span class="nv">you = </span><span class="k">new</span> <span class="nx">Reader</span>
-</span><span class='line'><span class="nx">you</span><span class="p">.</span><span class="nx">payAttention</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nx">DemoOfCoolThingsAboutCoffeeScript</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">functions: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;As you can see, functions are defined without &#39;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&#39;&quot;function()&quot; or &quot;{}&quot;s. Just a simple &quot;-&gt;&quot; - but make sure&#39;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&#39; to keep track of your indentations!&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">classes: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;It has classes. No more awkward JS inheritance!&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">punctuation: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;Have you noticed that I&#39;ve been leaving out commas&quot;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&quot; and semicolons and braces? Indentation is way more natural...&quot;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&quot;\nAlso, see how parentheses are unnecessary on the &quot;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&quot;outermost function call?&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">splats: </span><span class="nf">(params...)-&gt;</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;I can splat arguments, in both function definitions &quot;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&quot;and function calls. In this case, I used </span><span class="si">#{</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="s"> params.&quot;</span> <span class="o">+</span>
-</span><span class='line'>    <span class="s">&quot; Oh, did we mention string interpolation?&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">conditionals: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nv">switchVar = </span><span class="kc">on</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nx">switchVar</span>
-</span><span class='line'>      <span class="nx">@showHowThisWorks</span><span class="p">(</span><span class="kc">yes</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;The switch is off!&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">showHowThisWorks: </span><span class="nf">(comingFromSwitch...)-&gt;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nx">comingFromSwitch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;This function was called from switch using &quot;@&quot;, &#39;</span> <span class="o">+</span>
-</span><span class='line'>      <span class="s">&#39;which is a handy substitute for &quot;this&quot;&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">makingObjects: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nv">aboutMe =</span>
-</span><span class='line'>      <span class="nv">name: </span><span class="s">&quot;Ariel Caplan&quot;</span>
-</span><span class='line'>      <span class="nv">twitter: </span><span class="s">&quot;@amcaplan&quot;</span>
-</span><span class='line'>      <span class="nv">field: </span><span class="s">&quot;software development&quot;</span>
-</span><span class='line'>      <span class="nv">enjoysLongWalksOnTheBeach: </span><span class="kc">yes</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nx">aboutMe</span><span class="p">.</span><span class="nx">enjoysLongWalksOnTheBeach</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">aboutMe</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">, what is this, a personals ad?&quot;</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">aboutMe</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">, do you have no heart?&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">implicitReturns: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nv">returningFunction = </span><span class="nf">-&gt;</span>
-</span><span class='line'>      <span class="s">&quot;Hey, I never explicitly returned anything! How did you get this string?&quot;</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">returningFunction</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="nv">runEverything: </span><span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">@</span><span class="p">[</span><span class="nx">propName</span><span class="p">]()</span> <span class="k">for</span> <span class="nx">propName</span> <span class="k">of</span> <span class="k">this</span> <span class="k">when</span> <span class="nx">propName</span> <span class="o">isnt</span> <span class="s">&#39;runEverything&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">d = </span><span class="k">new</span> <span class="nx">DemoOfCoolThingsAboutCoffeeScript</span>
-</span><span class='line'><span class="nx">d</span><span class="p">.</span><span class="nx">runEverything</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Still JS-y syntax (it&rsquo;s just impossible to escape), but isn&rsquo;t it at least a bit clearer?</p>
-
-<p>Hopefully this has been a pleasant little introduction to CoffeeScript.  You can run the code <a href="http://goo.gl/ixtsO7">on CoffeeScript&rsquo;s website here</a>.  (Click &ldquo;run&rdquo; on the top-right, and watch what happens in your console!)  And while you&rsquo;re there, read up on the language and all its features, try writing some of your own in the &ldquo;Try CoffeeScript&rdquo; modal, and maybe even take <a href="https://www.codeschool.com/courses/coffeescript">the CodeSchool course</a>.  You won&rsquo;t regret it!</p>
-
-<p>P.S. Bonus extra life!!! Check out some real-life jQuery/CoffeeScript action in the code for the Flatiron Showcase website.  I have some simple DOM manipulation stuff that I just converted to CoffeeScript yesterday.  <a href="https://github.com/amcaplan/flatiron_showcase/blob/d952882068f13231cd3272a71f992ffcf3e25076/app/assets/javascripts/images.js.coffee">Check it out on Github!</a></p>
 ]]></content>
   </entry>
   

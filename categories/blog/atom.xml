@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-11-10T14:23:33-05:00</updated>
+  <updated>2016-12-25T16:33:35+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,10 +14,92 @@
 
   
   <entry>
+    <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
+    <updated>2016-12-25T16:01:56+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
+    <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
+
+<p>I&rsquo;m certainly proud of (most of) the content.  It&rsquo;s shown significant
+development in complexity and depth since I started.  But I have a lot of ideas
+running around my head all the time, some of them even good ideas, and I&rsquo;d like
+the blog to reflect more of them.</p>
+
+<p>So I&rsquo;ve decided to give myself a Chanukah gift: I&rsquo;m requiring myself to make
+every effort to come up with one blog post every day of Chanukah.</p>
+
+<p>This probably makes you wonder a few things.</p>
+
+<!-- more -->
+
+
+<h3>What?</h3>
+
+<p>It&rsquo;s really simple.  I want to make my blog better, and I think it&rsquo;ll be better
+if I&rsquo;m more inclined to post things when I have ideas which are useful to
+others.  I&rsquo;ve gotten out of the habit of blogging, with the result that lots of
+smaller, useful-tech-tips type blog posts, and some larger thinkpiece posts,
+just never happened.  That means people Googling to find a solution to their
+problem might not find what they&rsquo;re looking for, and I&rsquo;ve lost the amazing
+conversations and learning that come from publishing thinkpieces.</p>
+
+<p>Also, I really like writing.</p>
+
+<p>To change my habits, I&rsquo;m going to try to publish 8 posts in 8 days.  That&rsquo;s a
+big deal for me; it&rsquo;ll add 50% to my current total of posts.  But desperate
+times call for desperate measures.</p>
+
+<h3>When?</h3>
+
+<p>The 25th of Kislev through the 3rd of Tevet, which this year happens to coincide
+with December 25th through January 1st.  Those dates aren&rsquo;t related in any
+significant way; in 2013, for example, the first Day of Chanukah coincided with
+American Thanksgiving.</p>
+
+<p>As I&rsquo;ll clarify below, Chanukah wasn&rsquo;t chosen for any religious reason; it&rsquo;s
+just a convenient (for me) cluster of 8 days to focus a rather ambitious goal!</p>
+
+<h3>How?</h3>
+
+<p>Honestly, I&rsquo;m not quite sure.  I&rsquo;m cheating by counting this as one post, and I
+have one high-quality post already written up.  I also have an idea for a third.
+Beyond that, I&rsquo;ll have to get creative!</p>
+
+<h3>Why?</h3>
+
+<p>Now&rsquo;s when I&rsquo;m supposed to offer some platitude about &ldquo;This is my Chanukah gift
+to you,&rdquo; or &ldquo;You can think of it as a Christmas present,&rdquo; or whatever.  But I
+don&rsquo;t feel comfortable with just about anything explicitly interfaith, and I
+don&rsquo;t think I need a religious (or pseudo-religious) reason to do something
+valuable.  Also I don&rsquo;t believe in Chanukah presents, coming from a family that
+eschewed the practice since TBQH it seems pretty Christian.  So basically, no
+presents.  Deal.</p>
+
+<p>To be perfectly honest, this is an experiment to see whether I can get my
+creative juices flowing.  I happen to have a little extra time now, between days
+off and the fact that people seem to disappear for well-deserved vacation around
+this time of year so essentially nothing work-related gets done.</p>
+
+<p>In other words, it&rsquo;s the best time of year to engage in an experiment that takes
+a lot of time, for someone like myself who isn&rsquo;t celebrating anything in
+particular, unless you count Chanukah, which adds maybe 20 minutes to my daily
+schedule but basically functions as 8 regular days.</p>
+
+<p>It should be fun.  There&rsquo;s some good stuff down the pipeline!</p>
+
+<h3>Who are you exactly?</h3>
+
+<p>If you&rsquo;re first visiting the blog, I do have an <a href="/about/">About Page</a>.  I
+have lots of <a href="/archives/">thoughts about stuff</a>, and occasionally
+<a href="/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T17:04:10-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
+    <updated>2016-01-04T00:04:10+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -383,7 +465,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T09:05:35-05:00</updated>
+    <updated>2015-12-02T16:05:35+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -587,7 +669,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T08:42:16-05:00</updated>
+    <updated>2015-11-18T15:42:16+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -663,7 +745,7 @@ is a comforting universality to ethics.</p>
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
     <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T02:55:53-04:00</updated>
+    <updated>2015-08-02T09:55:53+03:00</updated>
     <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
@@ -790,7 +872,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#101;&#118;&#64;&#115;&#x61;&#x77;&#102;&#116;&#x77;&#101;&#x61;&#114;&#x2e;&#108;&#x79;&#46;">&#x64;&#x65;&#118;&#x40;&#x73;&#97;&#119;&#102;&#116;&#x77;&#x65;&#x61;&#114;&#x2e;&#108;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#100;&#x65;&#118;&#x40;&#x73;&#97;&#119;&#102;&#x74;&#119;&#x65;&#x61;&#114;&#46;&#108;&#x79;&#x2e;">&#100;&#101;&#x76;&#x40;&#x73;&#97;&#x77;&#102;&#116;&#x77;&#101;&#x61;&#114;&#46;&#x6c;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -819,283 +901,6 @@ want to work from 11AM to 7PM, or 7AM to 3PM, or work from home 3 days a week.</
 involved with training newer folks, and I do it across an ocean at +7 hours.
 Especially in this field, it&rsquo;s so important to be open to creative solutions for
 getting good people to work together, because good people are hard to come by.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-28T18:01:19-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
-    <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
-things a junior developer should accomplish within their first 3 months on the
-job.  Being at the end of my first year on the job, it was an excellent
-opportunity for reflection on what I have learned during this year which was
-most useful.</p>
-
-<p>After some thinking, I came up with 3 concrete goals, emblematic of 3
-big-picture objectives which should be guiding lights for the new developer.</p>
-
-<p>Here are my picks:</p>
-
-<ol>
-<li>Be reasonably comfortable with TDD</li>
-<li>Write good commit/PR messages</li>
-<li>Present at a team hangout</li>
-</ol>
-
-
-<p>These might seem like arbitrary goals, so they deserve some explanation.</p>
-
-<!-- more -->
-
-
-<p>First, you&rsquo;ll notice that I did not mention &ldquo;learn X language&rdquo; or &ldquo;become
-proficient in Y framework.&rdquo;  This is simply because languages and frameworks are
-important, but not inherent, goals.  The languages and libraries you use today
-will most likely fade with time, to be replaced by newer tools more appropriate
-for the tasks of tomorrow.  But <em>how</em> to write code will be just as relevant in
-30 years as it was 30 years ago.  Design principles evolve as well, but the idea
-of designing code, rather than just getting things to work, is the most
-important, and biggest, jump.</p>
-
-<p>Now, let&rsquo;s move on to expanding these concrete goals into coherent broad ideas.</p>
-
-<h2>TDD: A Design Tool</h2>
-
-<p>&ldquo;Why test?&rdquo; is a very complicated question with a lot of answers.  Justin Searls
-has <a href="https://www.youtube.com/watch?v=9_3RsSvgRd4">an excellent talk</a> listing about 10 different reasons
-for testing.  The reason I focus on TDD here is because it is the most powerful
-technique I know for learning how to design code from the outside in.</p>
-
-<p>As a new developer, you are probably focused on assimilating the multitude of
-new technologies you need to master to get things to work.  It probably seems
-odd that I would recommend focusing on technique, rather than just staying
-afloat.</p>
-
-<p>However, I would argue that feeling lost is just part of being a software
-developer today.  There is a constant influx of new languages, frameworks, and
-tools, and it is far too easy to be satisfied with just making things work.
-However, programmers who excel in their careers make sure to reserve time for
-becoming better at the basics of how to write good code.  If you don&rsquo;t make time
-for that now, when will you?</p>
-
-<p>There are many ways of becoming better.  You can get ideas from articles and
-conference lectures, books and blog posts.  But there is a jump to be made from
-the theoretical to the practical.</p>
-
-<h4>What is &ldquo;good code&rdquo;?</h4>
-
-<p>Good code, among other qualities, is modular and intuitive.</p>
-
-<ul>
-<li>By modular, I mean that each piece carries a responsibility appropriate for
-its size.  Methods do just one thing, and do it well.  Classes are the same, but
-a &ldquo;thing&rdquo; is a larger unit of work.  Collaborating objects form systems that
-accomplish yet larger things, but at every level, there is a single unifying
-theme to the system.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li>By intuitive, I mean that it acts in the way you would expect, both from the
-outside and once you open it up.  The outside piece of that statement means that
-its public API provides as few surprises as possible.  The input/output, as
-closely as possible, matches what the average programmer would expect it to be.
-Additionally, the innards are divvied up in a fashion that makes it easy for
-someone new to the codebase to interpret and reason about.  Clever hacks or
-thrown-together solutions are generally not intuitive, and tough to modify
-later.</li>
-</ul>
-
-
-<h4>So what does TDD have to do with all this?</h4>
-
-<p>TDD enforces (as much as is possible to enforce such things) code which is
-modular and intuitive.</p>
-
-<p>It is exceptionally difficult to write tests for code which is not modular.
-Generally speaking, code with intertwined responsibilities will also have deep
-interdependencies between modules.  This causes immense pain in testing,
-encouraging the programmer to think about how to tease apart responsibility and
-dependency.</p>
-
-<p>Yet beyond that testing pain, there is a larger point: it is very hard to test
-code when you don&rsquo;t understand its responsibility.  Usually, if you have not
-defined what code is supposed to do, it will be nearly impossible to write the
-tests first, because the tests are simply a concretion of the responsibilities
-of the code you are about to write.  By following the principles of TDD, you
-encourage yourself to state your goals, thereby breaking up your code before you
-have written a mess of intertwined modules.</p>
-
-<p>TDD also strongly encourages intuitive code.  When engaged in TDD, you should be
-testing only the public API of your code, defining inputs and expected outputs,
-before you figure out the implementation.  This means that your primary goal
-when writing the code itself is to meet the needs that you have already
-described in your tests.  This, in turn, means that you are thinking first about
-the user of your code, and only afterwards about the internal algorithms and
-details involved in your solution.  That leads to code which is friendlier for
-outside use.</p>
-
-<p>I don&rsquo;t think TDD necessarily offers much direction in terms of properly writing
-the internals of your code, but I never promised a single, all-encompassing
-solution, did I? 😉</p>
-
-<p>Based on all this, I think that becoming comfortable with TDD is a highly time-
-and effort-efficient method of speeding up the learning curve for excellent
-coding habits.  Even if it&rsquo;s not the approach you take all the time (and hey,
-<a href="http://www.quora.com/Does-Kent-Beck-use-TDD-at-Facebook-How">even Kent Beck doesn&rsquo;t think it should be</a>), it&rsquo;s a worthy
-exercise to practice skills and thought patterns which ultimately will be quite
-useful regardless of your workflow.</p>
-
-<h2>Commit and PR Messages: A Primary Source of Communication</h2>
-
-<p>One of the most important lessons to learn as a junior developer is that, unless
-you are the only developer on your team, your code is a shared entity.  Your job
-is not to be personally awesome, but rather to help your entire team be awesome.
-This means you need to sometimes sacrifice some of your own productivity in
-order to help everyone else be more productive.</p>
-
-<p>Commit messages are a prime example of this.  In just a few seconds per commit,
-you have the opportunity to lay out a trail of breadcrumbs to lead members of
-your team toward understanding why certain decisions were made, why this was
-added and that deleted.  You instruct them as to what code is relevant to a
-particular feature, and what dangers would be involved in deleting it.</p>
-
-<p>Pull request messages are, in a sense, just a broader repetition of the same
-motif.  Rather than explaining a small bit of work, they expound on the
-rationale for a set of adjustments to your application.  But if your team uses
-a pull request-based workflow, these messages are even more important.  Rather
-than reading your code and puzzling over what you were trying to accomplish,
-your teammates can quickly understand your goals, and then evaluate whether you
-achieved them in the best way possible.  A good pull request message can be the
-difference between &ldquo;It looks like code, guess I&rsquo;ll merge it!&rdquo; versus &ldquo;That was
-an interesting choice of how to tackle this issue, we should discuss it
-further.&rdquo;  If you invest in the quality of code review on your submissions, you
-will be rewarded with plenty of free advice on how to make your next bit of work
-even better.</p>
-
-<h4>Look Into Your Future&hellip;</h4>
-
-<p>Beyond the basic point of just being a good teammate, there is another
-compelling reason to write clear, thorough commit and PR messages: The next
-person who has to read them just might be you.</p>
-
-<p>Let&rsquo;s face it.  We might all talk about collective responsibility for a code
-base, but if you wrote the code, you will likely be called in to explain why it
-was written the way it was.  And you will also probably have forgotten by that
-point why you did things that way.</p>
-
-<p>If you leave yourself clear commit and PR messages, they will serve as memory
-jogs so you can figure things out far more quickly.  If you left a bunch of code
-with commit messages like &ldquo;fixed a thing&rdquo; and &ldquo;it works now&rdquo; &ndash; well, you&rsquo;re
-gonna have a bad time.  And you will probably misunderstand your own code, and
-break lots of things.</p>
-
-<p>Realistically, what percentage of commits or PR messages will you ever read
-again?  Probably no more than 5-10%.  But the amount of time you will save in
-those 5-10% of cases is well worth the small upfront investment of archiving
-your thoughts.</p>
-
-<p>So care about your teammates, and care about your future self.  Learn to write
-clear commit and PR messages, and you will thank yourself later when they are
-your &ldquo;primary source&rdquo; of information about days of coding past.</p>
-
-<h2>Presenting: The Code Is Not Enough</h2>
-
-<p>Software, like any slice of the human enterprise, is really more about the
-people making it than the product itself.  Most problems in software stem from
-the people making it.  It follows that software will be as coherent as is the
-communication amongst its developers.</p>
-
-<p>If you want to be a successful coder, you also need to be a successful
-communicator.</p>
-
-<p>There are many formats of communication, including commit and PR messages, as
-discussed above.  Most people can get along in one-on-one conversation, though
-some (including myself) struggle even with that.  But even for people who are
-natural conversationalists, presenting to a group can be difficult.  Yet it is
-also necessary to learn how to present one&rsquo;s ideas cogently and convincingly to
-a group.</p>
-
-<p>The other salient point is that many junior software engineers are convinced
-that they are no good, or at the very least so inferior to senior developers
-that nothing they themselves say could possibly be of interest to others with
-more experience.  Yet that could not be farther from the truth.</p>
-
-<h4>Junior Devs: A Critical Voice In Our Community</h4>
-
-<p>Junior developers need to understand: Your ideas are valuable.  You came into
-this profession, this artisans' guild, because you find beauty in well-organized
-code, you are awed by the power of loops and function calls and recursion, you
-draw excitement from optimizing an algorithm from <em>O(n<sup>2</sup>)</em> to <em>O(n)</em>.  (At
-least, I hope you do; otherwise, you&rsquo;ll be pretty bored in this business.)  You
-see opportunity in new technologies, and you are still developing heuristics to
-evaluate the tradeoffs inherent in choosing one over the other.</p>
-
-<p>You are a neophyte.  And neophytes tend to ask the most interesting questions,
-forcing people more experienced than themselves to articulate their opinions and
-perspectives on issues that matter to everyone.</p>
-
-<p>Because you are new to the trade, your ideas and experiences are valuable, and
-your enthusiasm gives light and warmth to those who may have forgotten the
-excitement of their earlier coding days.</p>
-
-<p>So even if you speak about a technical topic they are thoroughly familiar with,
-senior developers will still enjoy your presentation.</p>
-
-<h4>Senior Devs: Seeing Beyond the Pedestal</h4>
-
-<p>If you are not yet convinced, let me offer another argument.</p>
-
-<p>Senior developers are simply programmers with more experience writing (hopefully
-good) code, more familiarity with the breadth of languages and tools, and a
-better understanding of the system underlying all programming platforms.  But
-they are hardly godlike omniscient beings.  It&rsquo;s not too hard to find a topic
-that the senior developers on your team haven&rsquo;t delved into, or at least offer a
-fresh perspective which would be of interest to them.</p>
-
-<p>Even if they are generally familiar with a topic, even if they utilize that
-knowledge on a daily basis, there are still going to be some points that they
-have forgotten or never learned about, so they will walk away with some useful
-bits of knowledge from your presentation.</p>
-
-<p>Finally, seniors are often interested, for business reasons or out of altruistic
-motivations, in bringing in juniors and helping them to be as productive as
-possible.  Your struggles in your work are useful and informative to more senior
-folks on your team, helping them to reassess the process and iterate on their
-onboarding process for new junior developers.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
-
-<p>Your thoughts and learning will be of value to others, and by presenting, you
-will develop a critical skill which &ndash; if not properly nurtured &ndash; could be the
-barrier between you and a highly successful career.</p>
-
-<h2>Summing It Up</h2>
-
-<p>Now that we&rsquo;ve provided some theoretical background, the 3 goals listed above
-might be stated as:</p>
-
-<ol>
-<li>Learning to design code effectively</li>
-<li>Being a communicative team player</li>
-<li>Gaining confidence in your worth as a coder</li>
-</ol>
-
-
-<p>Since I believe in concrete, rather than abstract, goals, I will stick with the
-list above as a more helpful set of discrete accomplishments to be aimed for in
-the first few months.  But with the broader goals in mind, hopefully the
-specifics make more sense as guideposts on the journey toward a long, enjoyable,
-successful career in code.</p>
-
-<p><em>What do </em>you<em> think are the most important things for junior developers to work
-on in their first few months on the job?  Share your thoughts in the comments!</em></p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
 ]]></content>
   </entry>
   

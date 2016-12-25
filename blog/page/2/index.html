@@ -9,7 +9,8 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Recently at work, I spent over a day trying to get one failing test to pass. I tried everything in the code, but no dice. Finally, I realized that &hellip;">
+  <meta name="description" content="On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,65 @@
           
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-24T23:25:29+03:00" pubdate data-updated="true">Aug 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
+
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
+
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
+  
+    
+      
+        <article>
+          
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a></h1>
     
     
@@ -94,7 +154,7 @@
   
 
 
-<time datetime="2014-07-17T13:04:57-04:00" pubdate data-updated="true">Jul 17<span>th</span>, 2014</time>
+<time datetime="2014-07-17T20:04:57+03:00" pubdate data-updated="true">Jul 17<span>th</span>, 2014</time>
         
       </p>
     
@@ -125,7 +185,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
     
     
       <p class="meta">
@@ -141,7 +201,7 @@
   
 
 
-<time datetime="2014-05-29T18:09:56-04:00" pubdate data-updated="true">May 29<span>th</span>, 2014</time>
+<time datetime="2014-05-30T01:09:56+03:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
         
       </p>
     
@@ -158,7 +218,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
     </footer>
   
 
@@ -172,7 +232,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/05/02/coffeescript-101/">CoffeeScript 101</a></h1>
     
     
       <p class="meta">
@@ -188,7 +248,7 @@
   
 
 
-<time datetime="2014-05-01T19:40:43-04:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
+<time datetime="2014-05-02T02:40:43+03:00" pubdate data-updated="true">May 2<span>nd</span>, 2014</time>
         
       </p>
     
@@ -205,7 +265,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/05/01/coffeescript-101/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/05/02/coffeescript-101/">Read on &rarr;</a>
     </footer>
   
 
@@ -235,7 +295,7 @@
   
 
 
-<time datetime="2014-04-02T00:59:32-04:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
+<time datetime="2014-04-02T07:59:32+03:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
         
       </p>
     
@@ -272,7 +332,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
     
     
       <p class="meta">
@@ -288,7 +348,7 @@
   
 
 
-<time datetime="2014-03-18T20:56:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
+<time datetime="2014-03-19T02:56:00+02:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
         
       </p>
     
@@ -303,7 +363,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
     </footer>
   
 
@@ -317,7 +377,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/04/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/03/05/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
     
     
       <p class="meta">
@@ -333,7 +393,7 @@
   
 
 
-<time datetime="2014-03-04T19:32:48-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2014</time>
+<time datetime="2014-03-05T02:32:48+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
         
       </p>
     
@@ -425,7 +485,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/04/struct-rubys-quickie-class/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/03/05/struct-rubys-quickie-class/">Read on &rarr;</a>
     </footer>
   
 
@@ -439,7 +499,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
     
     
       <p class="meta">
@@ -455,7 +515,7 @@
   
 
 
-<time datetime="2014-02-18T19:55:54-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time>
+<time datetime="2014-02-19T02:55:54+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time>
         
       </p>
     
@@ -472,7 +532,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
     </footer>
   
 
@@ -530,17 +590,17 @@
   <ul id="recent_posts">
     
       
-    
-      
-    
-      
-    
-      
-    
-      
         <li class="post">
-          <a href="/blog/2016/01/03/choose-your-constraints/">Choose Your Constraints</a>
+          <a href="/blog/2016/12/25/8-crazy-blog-posts/">8 Crazy Blog Posts!</a>
         </li>
+      
+    
+      
+    
+      
+    
+      
+    
       
     
   </ul>
@@ -549,6 +609,8 @@
 <section>
   <h1>Recent Talks</h1>
   <ul id="recent_talks">
+    
+      
     
       
         <li class="post">
@@ -572,8 +634,6 @@
         <li class="post">
           <a href="/talks/2016/05/04/understanding-building-and-integrating-rails-engines/">Understanding, Building, and Integrating Rails Engines</a>
         </li>
-      
-    
       
     
   </ul>
