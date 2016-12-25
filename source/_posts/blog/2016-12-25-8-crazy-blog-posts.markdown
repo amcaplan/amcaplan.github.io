@@ -3,7 +3,6 @@ layout: post
 title: "8 Crazy Blog Posts!"
 date: 2016-12-25 16:01:56 +0200
 comments: true
-published: false
 categories:
 - blog
 twitter:
