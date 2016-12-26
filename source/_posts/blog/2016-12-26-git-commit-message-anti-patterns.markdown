@@ -167,7 +167,7 @@ db68160 Implement admin workflow for comments (Ariel Caplan, 3 months ago)
 42adaf2 Moderate comments by default (Ariel Caplan, 3 months ago)
 2c2d151 Filter comments for spam (Ariel Caplan, 4 months ago)
 28b958f Add comments support to posts (Ariel Caplan, 4 months ago)
-a713ef2 Merge pull request #478 from 'ABC121-make-post-template-cooler' (Ariel Caplan, 3 months ago)
+a713ef2 Merge pull request #477 from 'ABC121-make-post-template-cooler' (Ariel Caplan, 3 months ago)
 0827ed1 Replace hero image with cooler ninja (Ariel Caplan, 4 months ago)
 dae8999 Darken post background (Ariel Caplan, 4 months ago)
 ```
