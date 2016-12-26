@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-26T13:44:30+02:00</updated>
+  <updated>2016-12-26T13:46:42+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -176,7 +176,7 @@ db68160 Implement admin workflow for comments (Ariel Caplan, 3 months ago)
 42adaf2 Moderate comments by default (Ariel Caplan, 3 months ago)
 2c2d151 Filter comments for spam (Ariel Caplan, 4 months ago)
 28b958f Add comments support to posts (Ariel Caplan, 4 months ago)
-a713ef2 Merge pull request #478 from 'ABC121-make-post-template-cooler' (Ariel Caplan, 3 months ago)
+a713ef2 Merge pull request #477 from 'ABC121-make-post-template-cooler' (Ariel Caplan, 3 months ago)
 0827ed1 Replace hero image with cooler ninja (Ariel Caplan, 4 months ago)
 dae8999 Darken post background (Ariel Caplan, 4 months ago)
 </code></p>
