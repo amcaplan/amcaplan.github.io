@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-26T00:54:44+02:00</updated>
+  <updated>2016-12-26T13:44:30+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,207 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
+    <updated>2016-12-26T12:11:32+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
+    <content type="html"><![CDATA[<p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
+you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
+commit and push.  So let&rsquo;s just <code>git commit -am "</code>&hellip; what exactly?  Filling in
+that line can be really tricky, and you never know when another developer—or
+future you—will curse your name for an unhelpful commit message.</p>
+
+<p>Fortunately, many common harmful practices can be summed up into a few
+anti-patterns.  In this post, we&rsquo;ll cover 5 critical mistakes to avoid.</p>
+
+<!-- more -->
+
+
+<h3>1. The One-Liner</h3>
+
+<p>One of the most common mistakes programmers make (not just junior developers!)
+is overuse of the <code>-m</code> flag.  It&rsquo;s awfully convenient to write out your message
+on the command line, never having to drop into Vim to edit a commit message.</p>
+
+<p>Unfortunately, <code>-m</code> also means you can&rsquo;t (easily) write a multi-line commit.
+Often, a multi-line commit is the perfect place to add a comment about why a
+decision was made, the business purpose of a feature, or how something performs
+(you can even include benchmarks!).  When commits are viewed in the short form,
+only the first line will show up, but if someone dives deeper into that commit,
+they&rsquo;ll find all the juicy stuff you left for them.  And if you make multi-line
+commits a regular practice, you&rsquo;ll find that the team starts looking for them
+more and more, further increasing their value.</p>
+
+<p>If you don&rsquo;t like using Vim, guess what?  You don&rsquo;t have to!  Just set the
+<code>$GIT_EDITOR</code> bash variable in your <code>.bash_profile</code> and you can switch it to
+any editor you want.  I&rsquo;m partial to MacVim, so I&rsquo;ve set:</p>
+
+<p><code>sh
+export GIT_EDITOR="mvim +star -f"
+</code></p>
+
+<p>to start MacVim in Insert mode.  You can add whatever command line flags you
+wish to really customize your git editor.</p>
+
+<p>I&rsquo;ve also aliased <code>gc</code> to <code>git commit -v</code>, which prints out a diff in my text
+editor below the message area.  It&rsquo;s not included in the message, just for me to
+see while I&rsquo;m writing.  This way, I have a quick opportunity to look over all my
+changes and make sure my message properly reflects what changed in this commit.</p>
+
+<h3>2. The File List</h3>
+
+<p>Commits are often headlined with <code>Update file.rb and other_file.js</code>.  This
+misses the point of a commit.</p>
+
+<p>If I want to know what files were updated in a commit, I&rsquo;ll dive deeper with
+<code>git show</code>.  The commit tagline serves a different purpose: explaining the
+semantic nature of your changes.</p>
+
+<p>Consider this git history:</p>
+
+<p><code>
+db68160 Add _posts/talks/2016-05-05-this-is-your-brain-on-ruby.markdown (Ariel Caplan, 3 months ago)
+42adaf2 Add _posts/talks/2015-11-06-start-your-rails-engines.markdown (Ariel Caplan, 3 months ago)
+2c2d151 Add source/railsconf2016/index.html and PDF (Ariel Caplan, 4 months ago)
+28b958f Remove source/_includes/asides/github.html and edit layout files (Ariel Caplan, 6 months ago)
+9e09be5 Edit _posts/talks/2015-11-24-threads-and-processes.markdown (Ariel Caplan, 6 months ago)
+</code></p>
+
+<p>Now consider this:</p>
+
+<p><code>
+db68160 Add This Is Your Brain on Ruby as a talk (Ariel Caplan, 3 months ago)
+42adaf2 Add RailsConf Rails Engines workshop as a talk (Ariel Caplan, 3 months ago)
+2c2d151 Add RailsConf2016 slides (Ariel Caplan, 4 months ago)
+28b958f Remove GitHub repos aside (Ariel Caplan, 6 months ago)
+9e09be5 Add video for RailsIsrael talk (Ariel Caplan, 6 months ago)
+</code></p>
+
+<p>Which one tells a more coherent story, months or years later?  And keep in mind,
+this is just for a blog with a bunch of unrelated posts; now think about an
+application which has a nontrivial history of interrelated commits.</p>
+
+<p>Making the point differently, the file list tells the How, but your commit
+history is about telling the What: What happened to this repo over the course of
+time?  How has it changed and developed?</p>
+
+<h3>3. Bugfix</h3>
+
+<p>Very often we justify a quick &ldquo;Bugfix&rdquo; commit message with the thought that it&rsquo;s
+just a bugfix so it&rsquo;s not important.  That could not be further from the truth!</p>
+
+<p>A bug is no more or less than an application doing exactly what you told it to
+do.  The problem is always that you told it to do something different than you
+really had in mind.  Fixing a bug is a change in behavior; it deserves to be
+documented appropriately in your commit message.</p>
+
+<p>What was the incorrect behavior you observed?  How does your change address it?
+What steps did you take to ensure the bug won&rsquo;t happen again: Extra tests, a
+guard clause, a refactor to avoid the problem?  All of this is useful
+information when you need to revisit that code.</p>
+
+<h3>4. &ldquo;It was the best of times, it was the worst of times&hellip;&rdquo;</h3>
+
+<p>This tip is simple: Keep it short!</p>
+
+<p>It&rsquo;s definitely important to go into detail in your commit messages.  But the
+one-line summary isn&rsquo;t the place for it.  Make sure your first line is no more
+or less detailed than necessary, and then expand to your heart&rsquo;s content in the
+following lines.</p>
+
+<p><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Tim Pope recommends</a> that you keep the first line below 50
+characters.  I stretch that limit on occasion, but it&rsquo;s a decent rule of thumb.</p>
+
+<p>Keep in mind, when you run <code>git log</code>, you&rsquo;ll be reading the messages on your
+screen in a big wall of text.  Make sure the important words pop out (capitalize
+appropriately!) and don&rsquo;t create more visual noise than necessary.  As
+Shakespeare wrote, &ldquo;Brevity is the soul of wit.&rdquo;</p>
+
+<p>To get to the point: You have 1 line to work with, so get to the point!</p>
+
+<h3>5. ABC123</h3>
+
+<p>This one might be a little controversial, but hear me out.</p>
+
+<p>Some shops might have a convention of prefacing a commit message with a ticket
+number:</p>
+
+<p><code>
+[ABC123] Implement admin workflow for comments
+</code></p>
+
+<p>This might seem like a good idea.  However, keep in mind that it adds
+significant noise to the commit message and removes focus from the substance of
+the commit, all while impinging on your precious 50 characters.</p>
+
+<p>More importantly, the ticket number is helpful for searching, but not for
+eyeballing.  The one-liner&rsquo;s main goal should be to quickly run through history
+and figure out what to focus on.  Once you spot the commit you want, you can
+dive into details.  At that point, information like ticket number is useful—and
+that&rsquo;s why you have the remainder of your commit message.</p>
+
+<p>My personal preference is to always include the ticket number in the branch name
+and pull request title, and to always merge the pull request with a merge
+commit.  That way, the commit messages are broken into chunks, bracketed by pull
+request titles which sum up the last few commits and link them to a ticket.  So
+instead of:</p>
+
+<p><code>
+db68160 [ABC123] Implement admin workflow for comments (Ariel Caplan, 3 months ago)
+42adaf2 [ABC123] Moderate comments by default (Ariel Caplan, 3 months ago)
+2c2d151 [ABC123] Filter comments for spam (Ariel Caplan, 4 months ago)
+28b958f [ABC123] Add comments support to posts (Ariel Caplan, 4 months ago)
+0827ed1 [ABC121] Replace hero image with cooler ninja (Ariel Caplan, 4 months ago)
+dae8999 [ABC121] Darken post background (Ariel Caplan, 4 months ago)
+</code></p>
+
+<p>we might see this instead:</p>
+
+<p><code>
+9e09be5 Merge pull request #478 from 'ABC123-add-comment-support-to-posts' (Ariel Caplan, 3 months ago)
+db68160 Implement admin workflow for comments (Ariel Caplan, 3 months ago)
+42adaf2 Moderate comments by default (Ariel Caplan, 3 months ago)
+2c2d151 Filter comments for spam (Ariel Caplan, 4 months ago)
+28b958f Add comments support to posts (Ariel Caplan, 4 months ago)
+a713ef2 Merge pull request #478 from 'ABC121-make-post-template-cooler' (Ariel Caplan, 3 months ago)
+0827ed1 Replace hero image with cooler ninja (Ariel Caplan, 4 months ago)
+dae8999 Darken post background (Ariel Caplan, 4 months ago)
+</code></p>
+
+<p>In this case, I can clearly see which set of commits corresponds to which pull
+request, which then links a set of several commits with a ticket as a unit of
+work done.  YMMV, but I find this to be an incredibly helpful way of figuring
+out how individual commits fit into a sequence without compromising on the
+limited first-line space.</p>
+
+<p>Of course, to make this work, you probably want to ensure your pull requests are
+rebased off your main branch just before merging. Otherwise, your commits end up
+in a big jumble and it&rsquo;s harder to make sense of things. Regardless of whether
+you follow my suggestion in terms of ticket numbers, I consider it a best
+practice to make sure related commits are grouped linearly in your Git history.
+It will save you a lot of confusion in the long run.</p>
+
+<h3>Parting Thoughts</h3>
+
+<p>This might seem like a lot of nitpicking for not a lot of value. In truth, I
+can&rsquo;t guarantee immediate results because there won&rsquo;t be any. It takes time, and
+the cooperation of a full team, to make the most of good Git commit practices.
+I can, however, attest to these practices having saved me countless hours in
+figuring out what happened in the past, why decisions were made, and even just
+the basics of which code additions and changes are interrelated.</p>
+
+<p>I will close with one thought: Whatever your decisions, you only get one
+chance<sup>1</sup> to write history. Make it count.</p>
+
+<hr />
+
+
+<p><sup>1</sup>With Git, technically you can rewrite history whenever you want, but of
+course practically it doesn&rsquo;t happen past a few commits.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
@@ -739,168 +940,6 @@ is a comforting universality to ethics.</p>
 <li><p>I will always consider myself a regular member of society with access to extra information and power.  My skills give me no right to exert greater influence on other human beings.</p></li>
 </ol>
 </blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T09:55:53+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
-market.  Personally, I think it&rsquo;s all hogwash.</p>
-
-<p>There are plenty of great programmers out there, but companies aren&rsquo;t actually
-looking for them.  What they really want is a plug-n-play solution, a programmer
-who knows what they need him/her to know, who can churn out code and build
-software solutions.</p>
-
-<p>The problem is that engineering is an art and a discipline, and you can&rsquo;t just
-expect to hire someone and have them show up batteries included.  A company that
-refuses to train its coders is a company that won&rsquo;t find enough people to meet
-its needs.</p>
-
-<!-- more -->
-
-
-<h2>What Not To Do</h2>
-
-<p>Recently, I saw an ad for a job that required, among other things:</p>
-
-<ol>
-<li>5+ years experience</li>
-<li>A college degree (no &ldquo;or equivalent training and experience&rdquo;)</li>
-<li>Being comfortable with the Microsoft stack, Java, Angular, and Node</li>
-<li>Knowledge of data privacy practices and laws</li>
-<li>Understanding of SSO and SAML</li>
-<li>Project management experience</li>
-<li>Experience in the healthcare technology industry</li>
-</ol>
-
-
-<p>In other words, the ad was for a college-educated senior front-end/back-end
-developer, security expert, and project manager with healthcare tech experience,
-all rolled into one.</p>
-
-<p>The &ldquo;Accountabilities and Activities&rdquo; section was equally incoherent,
-essentially requiring involvement with every part of the stack, from end-users
-to business plans to documentation to configuration to application architecture.
-(Interestingly, out of 11 bullet points, only one indirectly mentioned coding at
-all: &ldquo;Develop new or modify existing applications and systems as required.&rdquo;)</p>
-
-<p>I could tolerate advertising for a generalist, even though that&rsquo;s already a
-unicorn.  But what really bothers me is the list of requirements.  That list
-severely narrows the already-tiny population that would be relevant to the job,
-for no good reason.  In fact, it narrows it for a very bad reason: The company
-is simply unwilling to train new hires.  Any programmer it picks up must be
-plug-n-play, no instructions necessary.</p>
-
-<p>I have no idea whether that job ad picked up anyone, but I&rsquo;m 99% certain that if
-it did, it was someone who had no more than 3-4 of the points I mentioned.
-Because the unicorn they&rsquo;re seeking just doesn&rsquo;t exist, but overconfident people
-certainly do.</p>
-
-<h2>What To Do?</h2>
-
-<p>If you&rsquo;re interested in opening up your application pool to people who are worth
-hiring, people who will be great to work with, and maybe don&rsquo;t have 100% of the
-skills you need, try toning down your job ads.  Limit requirements to the
-absolute minimum you can imagine.</p>
-
-<p>But there&rsquo;s more than that.  Think of it as a sales pitch.  You don&rsquo;t sell a
-product by saying, &ldquo;Look at how much money you&rsquo;ll get to pay for it!  And did we
-mention that tax is not even included in the price?&rdquo;  You sell
-a product on its features.  &ldquo;Look at what this product can do!  It will
-revolutionize your lifestyle!&rdquo;</p>
-
-<p>Most job ads sell the job as &ldquo;Here&rsquo;s what <em>we</em>, the company, want you to do, and
-this is what <em>we</em> think you need to do it.&rdquo;  Maybe think about it from the job
-seeker&rsquo;s perspective for a change.  Why should I, as a programmer in high
-demand, focus the majority of my waking hours on building your product?  What&rsquo;s
-my motivation?  What can you do to help me build my career?  Will your company
-give me the time to actually enjoy the salary you&rsquo;re paying me?</p>
-
-<p>I wrote a sample job ad for a made-up company, to demonstrate the sort of perks
-that might appeal to software developers.  Some might even appeal to
-business-oriented folks as well.  (I&rsquo;ve erred on the side of having this run too
-long, since I hope companies will be able to use this as a brainstorming
-example.  Your actual job ad should be way shorter than this.)</p>
-
-<blockquote><p>Do you care about teamwork, learning, and professional development?  Want to
-work with a smart, diverse group, solving complex problems?  Do you feel
-satisfaction from writing clean code with excellent test coverage?  Do you enjoy
-even more when a teammate shows you how to improve your code?</p>
-
-<p>If you answered &ldquo;yes&rdquo; to those questions, SawftWearLy would love to chat with
-you.  We&rsquo;ve built a professional environment where we constantly iterate on our
-practices, both human and technical.</p>
-
-<p>At SawftWearLy, we seek to create value above all, so we&rsquo;re less nitpicky
-about the where and when of how you work.  We do believe, though, that pair
-programming and code review are building blocks of better code and professional
-development, so we&rsquo;ll ask you to make sure your hours are conducive to
-teamwork.</p>
-
-<p>We understand that it&rsquo;s easier to build great developers than to recruit them,
-so we won&rsquo;t demand X years of experience in Y.  We&rsquo;re looking for devs who are
-bright and eager to learn, and we&rsquo;ll provide the support that we can to help you
-be awesome.  We maintain a library of hard-copy and Kindle books, and we&rsquo;ll
-get you a CodeSchool or PluralSight subscription if you&rsquo;d like.  Our engineers
-attend and speak at conferences and local meetups.  We also arrange frequent
-internal presentations where developers can speak about anything related to
-coding.  We contribute to open source, even during work hours.</p>
-
-<p>SawftWearLy tries to create an enjoyable, dynamic work atmosphere, but we know
-your work isn&rsquo;t your whole life.  We want to minimize the tension between work
-and your other priorities. To make sure you feel comfortable taking time off and
-relaxing, we have a minimum/maximum PTO policy, so everyone needs to take a
-vacation, and you know how much is too much.</p>
-
-<p>Rather than beer kegs or ping-pong tables, we&rsquo;ve decided to invest in your
-future with a partial matching 401(k) plan.  We have top-notch health and life
-insurance options, so you&rsquo;ll have peace of mind knowing that you and your loved
-ones are covered.</p>
-
-<p>Compensation is standardized per job category, so you will know you&rsquo;re getting
-fairly compensated.  However, we do award bonuses based on performance, so we
-can recognize employees who display initiative and creativity in their work.</p>
-
-<p>SawftWearLy is a workplace where managers speak to their team members to make
-sure they have the support they need.  It&rsquo;s a collaborative space where we make
-time to talk about what we can do better, or just bounce ideas off each other.
-We celebrate questions, and value answers that convey not just information, but
-understanding.</p>
-
-<p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#58;&#100;&#x65;&#118;&#64;&#115;&#x61;&#x77;&#102;&#x74;&#119;&#x65;&#x61;&#114;&#x2e;&#x6c;&#x79;&#x2e;">&#x64;&#x65;&#x76;&#64;&#x73;&#x61;&#x77;&#x66;&#116;&#119;&#101;&#97;&#114;&#46;&#x6c;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
-now, and something you like doing outside of programming.</p></blockquote>
-
-<p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
-actually need a coder who&rsquo;s familiar with your technical stack, or your business
-domain.  They&rsquo;ll figure it out in a couple months.  (Would you rather spend 2-3
-months training a new hire, or wasting your efforts on continued attempts to
-find someone who knows it all already?)  But you need people who are smart and
-motivated, and who know how to program well.  And you need to keep them happy,
-because there are plenty of other companies out there.</p>
-
-<h2>The Catch</h2>
-
-<p>Some of you might be thinking, &ldquo;That sounds great, but we don&rsquo;t actually do that
-at our company!&rdquo;  Well, guess what?  That&rsquo;s exactly the point.</p>
-
-<p>If you want awesome developers to work for you, you need to be an awesome place
-for developers to work at.  It&rsquo;s impossible, without lying outright, to have an
-awesome job ad without being an awesome workplace.</p>
-
-<p>So the actual secret to hiring great developers is to treat the ones you have
-really well, and let your job ads reflect that.  Really, we don&rsquo;t demand much &ndash;
-give us learning opportunities and good people to work with, and chill out if we
-want to work from 11AM to 7PM, or 7AM to 3PM, or work from home 3 days a week.</p>
-
-<p>On my team, I&rsquo;ve been a major evangelist for pair programming, I&rsquo;ve been very
-involved with training newer folks, and I do it across an ocean at +7 hours.
-Especially in this field, it&rsquo;s so important to be open to creative solutions for
-getting good people to work together, because good people are hard to come by.</p>
 ]]></content>
   </entry>
   

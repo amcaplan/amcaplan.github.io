@@ -9,8 +9,9 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="On the Vitals Choice team, we have divided our product into a number of apps.
-Each of those apps has one running instance per environment , and we &hellip;">
+  <meta name="description" content="Note: Part I will be more theoretical. If you already know about feature
+flags and want to learn about the rollout and degrade
+gems, check out Part &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,68 @@ Each of those apps has one running instance per environment , and we &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Feature Flags in Ruby, Part I: What and Why</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-18T23:07:26+02:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Note: Part I will be more theoretical.  If you already know about feature
+flags and want to learn about the <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>
+gems, check out <a href="/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a> and
+<a href="/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>.</em></p>
+
+<h2>What are Feature Flags?</h2>
+
+<p>Glad you asked!</p>
+
+<p>Feature flags, also known as &ldquo;feature flippers,&rdquo; &ldquo;feature toggles,&rdquo;
+<a href="http://en.wikipedia.org/wiki/Feature_toggle">and more</a>, are a way to simply turn bits of code on and
+off in a live, running application.</p>
+
+<p>While we won&rsquo;t get into too many of the details in this post, here&rsquo;s a simple
+way to think about it.  Let&rsquo;s say you run a bowling alley.  Most of the time,
+it&rsquo;s a straightforward establishment &ndash; lanes, balls, scoring computers, shoes&hellip;
+you get the idea.  However, every Tuesday night you turn over the place, and now
+it&rsquo;s Cosmic Bowling night!  You&rsquo;re blasting music, shining blacklights, the
+disco ball is spinning&hellip; it&rsquo;s a different world.  How are you going to carry
+out this operation?</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -591,10 +654,14 @@ the way.</p>
     
       
         <li class="post">
-          <a href="/blog/2016/12/25/8-crazy-blog-posts/">8 Crazy Blog Posts!</a>
+          <a href="/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a>
         </li>
       
     
+      
+        <li class="post">
+          <a href="/blog/2016/12/25/8-crazy-blog-posts/">8 Crazy Blog Posts!</a>
+        </li>
       
     
       
@@ -613,6 +680,8 @@ the way.</p>
       
     
       
+    
+      
         <li class="post">
           <a href="/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/">Building a Better OpenStruct - RubyConf 2016</a>
         </li>
@@ -627,12 +696,6 @@ the way.</p>
       
         <li class="post">
           <a href="/talks/2016/05/05/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a>
-        </li>
-      
-    
-      
-        <li class="post">
-          <a href="/talks/2016/05/04/understanding-building-and-integrating-rails-engines/">Understanding, Building, and Integrating Rails Engines</a>
         </li>
       
     

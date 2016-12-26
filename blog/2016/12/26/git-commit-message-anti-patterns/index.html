@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git Commit Message Anti-Patterns - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Have you ever experienced this before? You&rsquo;ve just finished a unit of work, and
+you&rsquo;re rightfully proud of what you&rsquo;ve accomplished &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Git Commit Message Anti-Patterns" />
+    
+    <meta name="twitter:description" content="Do your coworkers secretly hate your commit messages? Recognizing these 5 anti-patterns will help you hone the art of the commit." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git Commit Message Anti-Patterns</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-26T12:11:32+02:00" pubdate data-updated="true">Dec 26<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
+you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
+commit and push.  So let&rsquo;s just <code>git commit -am "</code>&hellip; what exactly?  Filling in
+that line can be really tricky, and you never know when another developer—or
+future you—will curse your name for an unhelpful commit message.</p>
+
+<p>Fortunately, many common harmful practices can be summed up into a few
+anti-patterns.  In this post, we&rsquo;ll cover 5 critical mistakes to avoid.</p>
+
+<!-- more -->
+
+
+<h3>1. The One-Liner</h3>
+
+<p>One of the most common mistakes programmers make (not just junior developers!)
+is overuse of the <code>-m</code> flag.  It&rsquo;s awfully convenient to write out your message
+on the command line, never having to drop into Vim to edit a commit message.</p>
+
+<p>Unfortunately, <code>-m</code> also means you can&rsquo;t (easily) write a multi-line commit.
+Often, a multi-line commit is the perfect place to add a comment about why a
+decision was made, the business purpose of a feature, or how something performs
+(you can even include benchmarks!).  When commits are viewed in the short form,
+only the first line will show up, but if someone dives deeper into that commit,
+they&rsquo;ll find all the juicy stuff you left for them.  And if you make multi-line
+commits a regular practice, you&rsquo;ll find that the team starts looking for them
+more and more, further increasing their value.</p>
+
+<p>If you don&rsquo;t like using Vim, guess what?  You don&rsquo;t have to!  Just set the
+<code>$GIT_EDITOR</code> bash variable in your <code>.bash_profile</code> and you can switch it to
+any editor you want.  I&rsquo;m partial to MacVim, so I&rsquo;ve set:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">GIT_EDITOR</span><span class="o">=</span><span class="s2">&quot;mvim +star -f&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to start MacVim in Insert mode.  You can add whatever command line flags you
+wish to really customize your git editor.</p>
+
+<p>I&rsquo;ve also aliased <code>gc</code> to <code>git commit -v</code>, which prints out a diff in my text
+editor below the message area.  It&rsquo;s not included in the message, just for me to
+see while I&rsquo;m writing.  This way, I have a quick opportunity to look over all my
+changes and make sure my message properly reflects what changed in this commit.</p>
+
+<h3>2. The File List</h3>
+
+<p>Commits are often headlined with <code>Update file.rb and other_file.js</code>.  This
+misses the point of a commit.</p>
+
+<p>If I want to know what files were updated in a commit, I&rsquo;ll dive deeper with
+<code>git show</code>.  The commit tagline serves a different purpose: explaining the
+semantic nature of your changes.</p>
+
+<p>Consider this git history:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>db68160 Add _posts/talks/2016-05-05-this-is-your-brain-on-ruby.markdown <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>42adaf2 Add _posts/talks/2015-11-06-start-your-rails-engines.markdown <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>2c2d151 Add <span class="nb">source</span>/railsconf2016/index.html and PDF <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>28b958f Remove <span class="nb">source</span>/_includes/asides/github.html and edit layout files <span class="o">(</span>Ariel Caplan, 6 months ago<span class="o">)</span>
+</span><span class='line'>9e09be5 Edit _posts/talks/2015-11-24-threads-and-processes.markdown <span class="o">(</span>Ariel Caplan, 6 months ago<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now consider this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>db68160 Add This Is Your Brain on Ruby as a talk <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>42adaf2 Add RailsConf Rails Engines workshop as a talk <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>2c2d151 Add RailsConf2016 slides <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>28b958f Remove GitHub repos aside <span class="o">(</span>Ariel Caplan, 6 months ago<span class="o">)</span>
+</span><span class='line'>9e09be5 Add video <span class="k">for </span>RailsIsrael talk <span class="o">(</span>Ariel Caplan, 6 months ago<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which one tells a more coherent story, months or years later?  And keep in mind,
+this is just for a blog with a bunch of unrelated posts; now think about an
+application which has a nontrivial history of interrelated commits.</p>
+
+<p>Making the point differently, the file list tells the How, but your commit
+history is about telling the What: What happened to this repo over the course of
+time?  How has it changed and developed?</p>
+
+<h3>3. Bugfix</h3>
+
+<p>Very often we justify a quick &ldquo;Bugfix&rdquo; commit message with the thought that it&rsquo;s
+just a bugfix so it&rsquo;s not important.  That could not be further from the truth!</p>
+
+<p>A bug is no more or less than an application doing exactly what you told it to
+do.  The problem is always that you told it to do something different than you
+really had in mind.  Fixing a bug is a change in behavior; it deserves to be
+documented appropriately in your commit message.</p>
+
+<p>What was the incorrect behavior you observed?  How does your change address it?
+What steps did you take to ensure the bug won&rsquo;t happen again: Extra tests, a
+guard clause, a refactor to avoid the problem?  All of this is useful
+information when you need to revisit that code.</p>
+
+<h3>4. &ldquo;It was the best of times, it was the worst of times&hellip;&rdquo;</h3>
+
+<p>This tip is simple: Keep it short!</p>
+
+<p>It&rsquo;s definitely important to go into detail in your commit messages.  But the
+one-line summary isn&rsquo;t the place for it.  Make sure your first line is no more
+or less detailed than necessary, and then expand to your heart&rsquo;s content in the
+following lines.</p>
+
+<p><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Tim Pope recommends</a> that you keep the first line below 50
+characters.  I stretch that limit on occasion, but it&rsquo;s a decent rule of thumb.</p>
+
+<p>Keep in mind, when you run <code>git log</code>, you&rsquo;ll be reading the messages on your
+screen in a big wall of text.  Make sure the important words pop out (capitalize
+appropriately!) and don&rsquo;t create more visual noise than necessary.  As
+Shakespeare wrote, &ldquo;Brevity is the soul of wit.&rdquo;</p>
+
+<p>To get to the point: You have 1 line to work with, so get to the point!</p>
+
+<h3>5. ABC123</h3>
+
+<p>This one might be a little controversial, but hear me out.</p>
+
+<p>Some shops might have a convention of prefacing a commit message with a ticket
+number:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>ABC123<span class="o">]</span> Implement admin workflow <span class="k">for </span>comments
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This might seem like a good idea.  However, keep in mind that it adds
+significant noise to the commit message and removes focus from the substance of
+the commit, all while impinging on your precious 50 characters.</p>
+
+<p>More importantly, the ticket number is helpful for searching, but not for
+eyeballing.  The one-liner&rsquo;s main goal should be to quickly run through history
+and figure out what to focus on.  Once you spot the commit you want, you can
+dive into details.  At that point, information like ticket number is useful—and
+that&rsquo;s why you have the remainder of your commit message.</p>
+
+<p>My personal preference is to always include the ticket number in the branch name
+and pull request title, and to always merge the pull request with a merge
+commit.  That way, the commit messages are broken into chunks, bracketed by pull
+request titles which sum up the last few commits and link them to a ticket.  So
+instead of:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>db68160 <span class="o">[</span>ABC123<span class="o">]</span> Implement admin workflow <span class="k">for </span>comments <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>42adaf2 <span class="o">[</span>ABC123<span class="o">]</span> Moderate comments by default <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>2c2d151 <span class="o">[</span>ABC123<span class="o">]</span> Filter comments <span class="k">for </span>spam <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>28b958f <span class="o">[</span>ABC123<span class="o">]</span> Add comments support to posts <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>0827ed1 <span class="o">[</span>ABC121<span class="o">]</span> Replace hero image with cooler ninja <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>dae8999 <span class="o">[</span>ABC121<span class="o">]</span> Darken post background <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>we might see this instead:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>9e09be5 Merge pull request <span class="c">#478 from &#39;ABC123-add-comment-support-to-posts&#39; (Ariel Caplan, 3 months ago)</span>
+</span><span class='line'>db68160 Implement admin workflow <span class="k">for </span>comments <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>42adaf2 Moderate comments by default <span class="o">(</span>Ariel Caplan, 3 months ago<span class="o">)</span>
+</span><span class='line'>2c2d151 Filter comments <span class="k">for </span>spam <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>28b958f Add comments support to posts <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>a713ef2 Merge pull request <span class="c">#478 from &#39;ABC121-make-post-template-cooler&#39; (Ariel Caplan, 3 months ago)</span>
+</span><span class='line'>0827ed1 Replace hero image with cooler ninja <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span><span class='line'>dae8999 Darken post background <span class="o">(</span>Ariel Caplan, 4 months ago<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case, I can clearly see which set of commits corresponds to which pull
+request, which then links a set of several commits with a ticket as a unit of
+work done.  YMMV, but I find this to be an incredibly helpful way of figuring
+out how individual commits fit into a sequence without compromising on the
+limited first-line space.</p>
+
+<p>Of course, to make this work, you probably want to ensure your pull requests are
+rebased off your main branch just before merging. Otherwise, your commits end up
+in a big jumble and it&rsquo;s harder to make sense of things. Regardless of whether
+you follow my suggestion in terms of ticket numbers, I consider it a best
+practice to make sure related commits are grouped linearly in your Git history.
+It will save you a lot of confusion in the long run.</p>
+
+<h3>Parting Thoughts</h3>
+
+<p>This might seem like a lot of nitpicking for not a lot of value. In truth, I
+can&rsquo;t guarantee immediate results because there won&rsquo;t be any. It takes time, and
+the cooperation of a full team, to make the most of good Git commit practices.
+I can, however, attest to these practices having saved me countless hours in
+figuring out what happened in the past, why decisions were made, and even just
+the basics of which code additions and changes are interrelated.</p>
+
+<p>I will close with one thought: Whatever your decisions, you only get one
+chance<sup>1</sup> to write history. Make it count.</p>
+
+<hr />
+
+
+<p><sup>1</sup>With Git, technically you can rewrite history whenever you want, but of
+course practically it doesn&rsquo;t happen past a few commits.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-26T12:11:32+02:00" pubdate data-updated="true">Dec 26<span>th</span>, 2016</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2016/12/25/8-crazy-blog-posts/" title="Previous Post: 8 Crazy Blog Posts!">&laquo; 8 Crazy Blog Posts!</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code"><img id="logo" src="http://amcaplan.ninja/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="http://amcaplan.ninja" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://amcaplan.ninja"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://amcaplan.ninja/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="http://amcaplan.ninja/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://amcaplan.ninja/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="http://amcaplan.ninja/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/25/8-crazy-blog-posts/">8 Crazy Blog Posts!</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/">Building a Better OpenStruct - RubyConf 2016</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2016/09/16/building-a-better-openstruct/">Building a Better OpenStruct - WindyCityRails 2016</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2016/05/05/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
