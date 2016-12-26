@@ -1,9 +1,8 @@
 ---
 layout: post
 title: "Git Commit Message Anti-Patterns"
-date: 2016-12-26 11:11:32 +0300
+date: 2016-12-26 13:11:32 +0300
 comments: true
-published: false
 categories:
 - blog
 twitter:
