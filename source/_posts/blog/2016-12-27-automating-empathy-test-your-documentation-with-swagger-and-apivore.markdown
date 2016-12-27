@@ -3,7 +3,6 @@ layout: post
 title: "Automating Empathy: Test Your Documentation With Swagger and Apivore"
 date: 2016-12-27 21:54:20 +0200
 comments: true
-published: false
 categories:
 - blog
 twitter:
