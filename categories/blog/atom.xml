@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-26T21:32:01+02:00</updated>
+  <updated>2016-12-27T16:26:44+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,411 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
+    <updated>2016-12-27T21:54:20+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
+painful to keep in sync with your code.  A tremendous amount of cognitive
+overhead is added by having to remember everything you&rsquo;ve documented and update
+it any time a change happens.</p>
+
+<p>Also, you probably fail a lot.  And you&rsquo;re not alone!  Most teams fail miserably
+at the task of documentation upkeep.  It reaches the point where you have to
+wonder:</p>
+
+<ol>
+<li>Is there a problem with the team if we can&rsquo;t get this right?</li>
+<li>Is this an intractable problem that is destined to plague us, and all API
+maintainers, forever?</li>
+<li>Is the problem with the task itself?</li>
+</ol>
+
+
+<p>Most of the material you&rsquo;ll find centers around practices that will help the
+team prioritize documentation, organize it better, etc.  I think that&rsquo;s a load
+of hooey (pardon my French).  Documentation is really hard because we haven&rsquo;t
+figured out how to automatically check that it&rsquo;s accurate, and people can&rsquo;t
+reasonably be expected to keep it all in our heads.</p>
+
+<p>Until now.</p>
+
+<!-- more -->
+
+
+<h3>Introducing Swagger</h3>
+
+<p><a href="http://swagger.io">Swagger</a>, also known as OpenAPI, is a nifty tool to help you
+write the docs for RESTful APIs.  It ultimately boils down to a JSON endpoint in
+your app that spits out a standardized description of how your app works.  This
+endpoint is completely independent of the language or framework you use in your
+app.</p>
+
+<p>I&rsquo;ll mention at the bottom how you might go about incorporating Swagger into a
+Ruby app, but first I want to convince you to use it!  So&hellip;</p>
+
+<p>The really cool thing about Swagger isn&rsquo;t the rules, but the power that comes
+with following them.  Standards allow us to build powerful shared tools, and
+Swagger is a shining example.</p>
+
+<p>Once you&rsquo;ve assembled your standardized docs, you can use Swagger Codegen to
+spit out generated client libraries for over 40 different languages.  (Warning:
+The code will be about as good as you&rsquo;d expect from generated code.  Sometimes
+that&rsquo;s good enough!)  Perhaps more practically, you can plug your docs into
+<a href="http://swagger.io/swagger-ui/">Swagger UI</a>, which interprets your docs into a
+friendly, human-readable format.  Significantly, Swagger UI allows you to fill
+in the expected query/data params and submit an HTTP request, leading to a far
+happier experience for whoever has to actually use your API.  You can even
+generate OAuth tokens right from the web interface!  Check out a
+<a href="http://petstore.swagger.io/">sample documentation UI</a> to see how much you get
+for free by following the Swagger standard.  You can get Swagger UI bundled as
+<a href="https://hub.docker.com/r/schickling/swagger-ui/">a Docker image</a> if you&rsquo;re into
+that.  (I am!)</p>
+
+<p>But we haven&rsquo;t even hit the coolest thing about Swagger, which is:</p>
+
+<h3>Documentation as Specification</h3>
+
+<p>There are <a href="http://swagger.io/open-source-integrations/">a host of OSS libraries around Swagger</a>
+for nearly any language used in modern web development.  I&rsquo;ll focus on Ruby, but
+a quick perusal of the documentation shows that similar tools exists for
+JavaScript, Java, Elixir, PHP, and Python.</p>
+
+<p>I&rsquo;ll specifically discuss Apivore, though it&rsquo;s not the only Ruby solution.  Bad
+news for MiniTest fans, though: All the current tools for Ruby, including
+Apivore, are RSpec-only.</p>
+
+<p>After including the gem, you&rsquo;ll write the basic layout of your Apivore suite:</p>
+
+<p>
+```ruby</p>
+
+<h1>Source: <a href="https://github.com/westfieldlabs/apivore#usage">https://github.com/westfieldlabs/apivore#usage</a></h1>
+
+<p>require &lsquo;spec_helper&rsquo;</p>
+
+<p>RSpec.describe &lsquo;the API&rsquo;, type: :apivore, order: :defined do
+  subject { Apivore::SwaggerChecker.instance_for(&lsquo;/swagger.json&rsquo;) }</p>
+
+<p>  context &lsquo;has valid paths&rsquo; do</p>
+
+<pre><code># tests go here
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &lsquo;and&rsquo; do</p>
+
+<pre><code>it 'tests all documented routes' do
+  expect(subject).to validate_all_paths
+end
+</code></pre>
+
+<p>  end
+end
+```
+</p>
+
+<p>You feed it the endpoint that serves your documentation, then write specs for
+every endpoint in your documentation.  Finally, you specify that all paths have
+been tested.  This last spec is really important, because otherwise you might
+forget and leave out a path!  It&rsquo;s also nice as a way to test-drive writing
+specs for all the routes, since the failure message tells you exactly which
+paths and response codes have yet to be tested:</p>
+
+<p>```
+the API
+  and</p>
+
+<pre><code>tests all documented routes (FAILED - 1)
+</code></pre>
+
+<p>Failures:</p>
+
+<p>  1) the API and tests all documented routes</p>
+
+<pre><code> Failure/Error: expect(subject).to validate_all_paths
+
+   get /posts is untested for response code 200
+   post /posts is untested for response code 201
+   post /posts is untested for response code 422
+   get /posts/{id} is untested for response code 200
+   get /posts/{id} is untested for response code 404
+   put /posts/{id} is untested for response code 200
+   put /posts/{id} is untested for response code 404
+   delete /posts/{id} is untested for response code 200
+   delete /posts/{id} is untested for response code 410
+# ./spec/requests/api_spec.rb:39:in `block (3 levels) in &lt;top (required)&gt;'
+</code></pre>
+
+<p>```</p>
+
+<p>Now that you&rsquo;ve got a failing test, let&rsquo;s see how to write an Apivore spec.
+Remember that the <code>subject</code> in every spec is the <code>Apivore::SwaggerChecker</code>
+instance for your documentation endpoint.  This is important because it keeps
+track of validated routes, so it can verify at the end that all routes were
+validated.</p>
+
+<p>Here&rsquo;s what a sample spec might look like:</p>
+
+<p>
+```ruby
+describe &lsquo;validating post paths&rsquo; do
+  context &lsquo;an individual post&rsquo; do</p>
+
+<pre><code>let(:params) {{ "id" =&gt; 1 }}
+it { is_expected.to validate( :get, '/posts/{id}.json', 200, params ) }
+</code></pre>
+
+<p>  end
+end
+```
+</p>
+
+<p>Here, <code>params</code> refers to the dynamic pieces of the requested path, in this case
+just the <code>id</code> of the requested post.  The <code>params</code> hash may also include
+information intended for the headers, query string, or data body of the request.
+These are specified by special keys, as follows:</p>
+
+<p>
+```ruby
+describe &lsquo;validating post paths&rsquo; do
+  context &lsquo;updating a post&rsquo; do</p>
+
+<pre><code>let(:params) {{
+  "id" =&gt; 1,
+  "_headers" =&gt; { "accept" =&gt; "application/json" },
+  "_query_string" =&gt; "api_key=abcdef123456789",
+  "_data" =&gt; "This is a post."
+}}
+it { is_expected.to validate( :put, '/posts/{id}.json', 200, params ) }
+</code></pre>
+
+<p>  end
+end
+```
+</p>
+
+<p>When you validate a path, Apivore will check that the status code and format of
+the response exactly match your Swagger specification, including required keys
+and data types.  Any deviance is noted in a failure message with a helpful diff.</p>
+
+<h3>Why Bother?</h3>
+
+<p>This may seem like a lot of work.  But you know what&rsquo;s a lot more work?  Dealing
+with annoyed customers and clients who find the API doesn&rsquo;t work as expected.</p>
+
+<p>Let me share a personal experience.  I added Apivore to our app a while ago,
+thinking it was a neat idea.  I thought it would take me just a couple of days
+to get everything in order and build out the test suite.</p>
+
+<p>Wow, was I wrong.  It took a full month.</p>
+
+<p>That&rsquo;s not a matter of how fast I code, but rather because writing the
+documentation and testing it this way uncovered a large degree of variance
+between our documentation and what the API actually provided.  This, in turn,
+was often rooted in differing fundamental assumptions about how things should
+work.  Cleaning up all that mess took weeks!  And I&rsquo;m proud to say with
+confidence that we don&rsquo;t have a mess like that anymore, because our &ldquo;docspecs&rdquo;
+(as I call them fondly) ensure that our docs are always up to date.</p>
+
+<p>You&rsquo;re probably messing up as much as we were.  The scary part is, you don&rsquo;t
+know where or how, and even a full manual audit wouldn&rsquo;t prevent it from
+happening again.</p>
+
+<p>Rather than driving ourselves crazy keeping code and documentation in sync, why
+not leverage our documentation to help us write better code?</p>
+
+<h3>Why Not Use Auto-Generated Docs?</h3>
+
+<p>Some will argue that this approach is backwards.  Isn&rsquo;t the code the main thing?
+Why do we want to maintain documentation plus specs around it?  There are tools
+to derive documentation from our specs or from making API requests, so why not
+just use those?</p>
+
+<p>I argue that that approach is actually backwards.  Our documentation should
+exactly detail the service we provide to clients and consumers.  Our code is
+merely the implementation of that service.  So it makes sense for the
+documentation to be the canonical reference, while the code is tested to ensure
+it falls in line with the documentation.</p>
+
+<p>Another benefit is that working in this way allows Documentation-Driven
+Development, where you make a change to the docs, then let the failing test
+drive you to implement the change or new feature.  This leads to much cleaner
+design, focused directly on the ultimate value you provide your API clients.
+I&rsquo;ve found this practice also dramatically speeds up new development on the
+project.</p>
+
+<h3>#Protips</h3>
+
+<p>There are a few gotchas with Apivore, so let me be upfront and help you make the
+most of your docspec experience:</p>
+
+<ol>
+<li><p>Apivore doesn't test query parameters.  Sorry.  I've filed a
+<a href="https://github.com/westfieldlabs/apivore/issues/91">GitHub Issue</a>
+complaining about it, but so far no dice.  I think it would be even more useful
+if it did validate query parameters, but I find it pretty awesome even without
+that feature.</p></li>
+
+<li><p>Apivore specs need to run using RSpec's <code>defined</code> order,
+meaning they'll run from top to bottom every time.  This exposes you to false
+success, because you won't detect order-dependent failures.  You can get around
+this by running all the endpoint specs within an RSpec <code>context</code> that
+uses <code>order: random</code>, so just the last spec will always go last, but
+everything else will be randomized.
+</li></p>
+
+<li></p>It can get irritating to merge multiple kinds of params every time.  I
+use a few <code>let</code> statements for all Apivore specs to help keep
+individual specs clean:
+
+``` ruby
+let(:url_params) {{}}
+let(:headers) {{}}
+let(:query_string_params) {{}}
+let(:data_params) {{}}
+let(:params) {
+  url_params.merge(
+    '_headers' => headers,
+    '_query_string' => query_string_params.to_query,
+    '_data' => data_params
+  )
+}
+```
+
+Then, I simply override the special params hashes where necessary.</p></li>
+
+<li><p>You'll find that your Apivore specs quickly become way too big for one file.
+I've found RSpec's shared examples work quite well.  First, for semantics, I
+aliased <code>it_behaves_like</code> to <code>it_serves_up</code>, so my
+endpoint specs look like:</p>
+```ruby
+context 'has valid paths', order: :random do
+  it_serves_up 'posts endpoints'
+  it_serves_up 'comments endpoints'
+  # etc.
+end
+```
+<p>For organization purposed, I define the shared examples in a
+<code>spec/requests/api</code> directory, and make sure they have names that
+don't end in <code>_spec.rb</code>.  Finally, I require all those examples
+before running my specs:</p>
+```ruby
+current_dir = File.dirname(File.expand_path(__FILE__))
+Dir[current_dir + '/api/*.rb'].each do |file|
+  require file
+end
+```
+<p>Now I just defined shared examples in those directories.</p></li>
+</ol>
+
+
+<p>With all these special modifications, here&rsquo;s a sample <code>spec/requests/api_spec.rb</code>
+for a Rails app:</p>
+
+<p>
+```ruby
+require &lsquo;rails_helper&rsquo;</p>
+
+<p>current_dir = File.dirname(File.expand_path(<strong>FILE</strong>))
+Dir[current_dir + &lsquo;/api/*.rb&rsquo;].each do |file|
+  require file
+end</p>
+
+<p>RSpec.describe &lsquo;the API&rsquo;, type: :apivore, order: :defined do
+  subject { Apivore::SwaggerChecker.instance_for(&lsquo;/api/docs.json&rsquo;) }
+  let(:query_string_params) {{</p>
+
+<pre><code>api_key: client.api_key
+</code></pre>
+
+<p>  }}
+  let(:url_params) {{}}
+  let(:headers) {{}}
+  let(:query_string_params) {{}}
+  let(:data_params) {{}}
+  let(:params) {</p>
+
+<pre><code>url_params.merge(
+  '_headers' =&gt; headers,
+  '_query_string' =&gt; query_string_params.to_query,
+  '_data' =&gt; data_params
+)
+</code></pre>
+
+<p>  }</p>
+
+<p>  context &lsquo;has valid paths&rsquo;, order: :random do</p>
+
+<pre><code>it_serves_up 'posts endpoints'
+it_serves_up 'comments endpoints'
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &lsquo;tying it all together&rsquo; do</p>
+
+<pre><code>it 'tests all documented routes' do
+  expect(subject).to validate_all_paths
+end
+</code></pre>
+
+<p>  end
+end
+```
+</p>
+
+<p>with actual specs defined in shared examples elsewhere.</p>
+
+<h3>How Do I Get Started?</h3>
+
+<p>Luckily this isn&rsquo;t too complicated, and there&rsquo;s plenty of Googlable help.  You
+have 2 basic approaches: Either integrate deeply with your programming language,
+or just edit the JSON directly (or edit as YAML).  In the case of Ruby,
+<a href="https://github.com/fotinakis/swagger-blocks"><code>swagger-blocks</code></a> seems to be a
+popular solution, and we&rsquo;ve found it useful.  It&rsquo;s pretty low-level, though, and
+there are other solutions which might work better as higher-level constructs
+depending on which framework you use.  The Swagger site maintains
+<a href="http://swagger.io/open-source-integrations/">a useful list of language-specific tools</a>.</p>
+
+<p>I&rsquo;ve seen another team just use the <a href="http://editor.swagger.io">Swagger editor</a>
+to edit their specification, and it works well for them.</p>
+
+<p>There isn&rsquo;t a right answer here; it all depends on whether you prefer the docs
+to live closer to or further from your code.</p>
+
+<p>There is a learning curve to understand how to use Swagger, but the tooling is
+fantastic, which helps a lot.  I&rsquo;d recommend looking at a sample specification
+to get a feel for it, then edit to match your own API.</p>
+
+<h3>A Shift in Perspective</h3>
+
+<p>Working with Swagger has changed how I think about the API I work on every day.
+I often used to fall into the trap of thinking we&rsquo;re building it to build it,
+and the documentation is &ldquo;just for the users.&rdquo;</p>
+
+<p>Following a Documentation-Driven Development path with Swagger and Apivore, I&rsquo;ve
+found that the user is brought to the forefront.  Everything we build is in
+service of the product, as described in the Swagger specification, and our
+docspec suite ensures we don&rsquo;t let our users down.</p>
+
+<p>Part of the reason teams have trouble with documentation is that the users are
+relegated to an afterthought.  It&rsquo;s difficult to develop empathy for them when
+their mental model of the app is likely so far removed from our own.</p>
+
+<p>By enforcing accurate documentation, we ensure that we&rsquo;ve specified a full
+explanation of what the user can expect from our API.  Since we&rsquo;re also
+responsible for maintaining that explanation, it becomes a tool to change us,
+helping us maintain a user-centric design approach.  No longer do we build
+features and then expose them to the user; instead, we start with the allowed
+requests, then build the implementation beneath the surface.  Starting the
+development process from the user&rsquo;s vantage point leads to cleaner APIs, a
+better user experience, and ultimately happier customers.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
@@ -864,82 +1269,6 @@ players, building value creation potential alongside addressing current needs.
 And I would like to see us viewing our developers (and everyone who works with
 them) as an actual team, where individuals working and learning together
 multiply the value created individually.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T15:42:16+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
-    <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
-attempted to formulate the ethical principles that should guide programmers.  It
-was an interesting concept, but I immediately felt it could use a rewrite.</p>
-
-<p>Although I agree that everything in his version is a good idea, I disagree with
-the formulation as an ethical guideline for programmers.  Simply put, the
-principles of Agile are brilliant.  But they hardly deserve mention in a list of
-ethics, and &ndash; I would contend &ndash; detract from the list.</p>
-
-<!-- more -->
-
-
-<p>There are most certainly cases where following Agile practices would be the
-unethical thing to do; it all depends on the needs and policies of the client or
-company.  For example, consider Principle 5:</p>
-
-<blockquote><p>I will fearlessly and relentlessly improve the code at every opportunity. I
-will never make the code worse.</p></blockquote>
-
-<p>Sometimes, what&rsquo;s needed is a quick fix for production, followed by a more
-well-thought-out solution that will take some time to produce.  Will that make
-the code worse in the meantime?  You betcha.  Is it the right thing to do
-anyway?  Very likely.</p>
-
-<p>Let&rsquo;s consider Principle 7:</p>
-
-<blockquote><p>I will continuously ensure that others can cover for me, and that I can cover
-for them.</p></blockquote>
-
-<p>Again, I totally agree.  But if there are 2 developers in a tiny, bootstrapped
-startup, maybe you don&rsquo;t have enough time to share all the information all the
-time.  Principle 7 is true for most business cases.  But as soon as it&rsquo;s
-specific to a business case, you can tell that this is less of a moral principle
-and more of a strategy for success in accomplishing something else.</p>
-
-<p>In both cases, the principles are really ways of &ndash; in the average business case
-&ndash; helping the employer/client to be more stable and able to continually improve
-its product.  So when it comes to the ethical piece, these principles &ndash; in fact,
-at least half of the oath &ndash; boils down to:</p>
-
-<blockquote><p>I will be an honest employee or contract worker, making sincere effort to
-produce value for those who pay the bills, in both the short and long term.</p></blockquote>
-
-<p>That&rsquo;s a statement of ethics, and it might belong in a programmer&rsquo;s oath.</p>
-
-<p>Thinking about it further, I came up with my own version of the programmer&rsquo;s
-oath, heavily based on the <a href="https://en.wikipedia.org/w/index.php?title=Hippocratic_Oath&amp;oldid=688739951#Modern_version">version</a> of the Hippocratic
-Oath currently used in many medical schools.  I was honestly surprised at how
-much could be lightly edited and incorporated into a programmer&rsquo;s oath.  There
-is a comforting universality to ethics.</p>
-
-<p>Let me know your thoughts!</p>
-
-<blockquote><p>I swear to fulfill, to the best of my ability and judgment, this covenant:</p>
-
-<ol>
-<li><p>I appreciate the work of past generations, who overcame hardware and software limitations to produce the programming environment of today, and I will collaborate with colleagues in the present to further improve the future of our trade.  I recognize that I have received instruction from those who preceded me, and I will repay in kind by sharing my knowledge with those who will follow.</p></li>
-<li><p>I will strive to efficiently produce the solution which best fits the needs as best as I can perceive them.  I will not shortchange through either overengineering or underdesigning.  I will provide verification, to whatever degree is reasonable given constraints of time and finances, that the solution I have generated works as expected.</p></li>
-<li><p>I will treat clients and coworkers with respect and warmth.  I will listen to their ideas, using their input to sharpen my own understanding.  When disagreement arises, I will collaborate with the other parties to reach mutual understanding and agreement.  I will never reject or insult anyone I work with.</p></li>
-<li><p>I will not be afraid to say &ldquo;I don&rsquo;t know&rdquo; and I will respect others for their admission of the same.  I will not be afraid to ask questions.</p></li>
-<li><p>I will never attempt to deceive those who rely on my honesty.</p></li>
-<li><p>I will respect the privacy of my company and/or clients, barring unethical or illegal behavior on their part.</p></li>
-<li><p>I take full and complete responsibility for the ethical implications of every line of code I write.  I will value the guidance of my own moral conscience above my company&rsquo;s or client&rsquo;s desire for profit.</p></li>
-<li><p>I will remember at all times that all of my code will interact with people; it will influence the lives of human beings.</p></li>
-<li><p>When the problem is people, rather than code, I will address the people problem directly, rather than incurring the technical debt of excess code.</p></li>
-<li><p>I will always consider myself a regular member of society with access to extra information and power.  My skills give me no right to exert greater influence on other human beings.</p></li>
-</ol>
-</blockquote>
 ]]></content>
   </entry>
   

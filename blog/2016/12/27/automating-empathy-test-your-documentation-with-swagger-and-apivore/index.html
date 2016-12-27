@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Automating Empathy: Test Your Documentation With Swagger and Apivore - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="If you&rsquo;re responsible for an API, you may have noticed that API documentation is
+painful to keep in sync with your code. A tremendous amount of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Automating Empathy: Test Your Documentation With Swagger and Apivore" />
+    
+    <meta name="twitter:description" content="Tired of your API docs falling out of date? Force yourself to keep them current and keep your users happy!" />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Automating Empathy: Test Your Documentation With Swagger and Apivore</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-27T21:54:20+02:00" pubdate data-updated="true">Dec 27<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
+painful to keep in sync with your code.  A tremendous amount of cognitive
+overhead is added by having to remember everything you&rsquo;ve documented and update
+it any time a change happens.</p>
+
+<p>Also, you probably fail a lot.  And you&rsquo;re not alone!  Most teams fail miserably
+at the task of documentation upkeep.  It reaches the point where you have to
+wonder:</p>
+
+<ol>
+<li>Is there a problem with the team if we can&rsquo;t get this right?</li>
+<li>Is this an intractable problem that is destined to plague us, and all API
+maintainers, forever?</li>
+<li>Is the problem with the task itself?</li>
+</ol>
+
+
+<p>Most of the material you&rsquo;ll find centers around practices that will help the
+team prioritize documentation, organize it better, etc.  I think that&rsquo;s a load
+of hooey (pardon my French).  Documentation is really hard because we haven&rsquo;t
+figured out how to automatically check that it&rsquo;s accurate, and people can&rsquo;t
+reasonably be expected to keep it all in our heads.</p>
+
+<p>Until now.</p>
+
+<!-- more -->
+
+
+<h3>Introducing Swagger</h3>
+
+<p><a href="http://swagger.io">Swagger</a>, also known as OpenAPI, is a nifty tool to help you
+write the docs for RESTful APIs.  It ultimately boils down to a JSON endpoint in
+your app that spits out a standardized description of how your app works.  This
+endpoint is completely independent of the language or framework you use in your
+app.</p>
+
+<p>I&rsquo;ll mention at the bottom how you might go about incorporating Swagger into a
+Ruby app, but first I want to convince you to use it!  So&hellip;</p>
+
+<p>The really cool thing about Swagger isn&rsquo;t the rules, but the power that comes
+with following them.  Standards allow us to build powerful shared tools, and
+Swagger is a shining example.</p>
+
+<p>Once you&rsquo;ve assembled your standardized docs, you can use Swagger Codegen to
+spit out generated client libraries for over 40 different languages.  (Warning:
+The code will be about as good as you&rsquo;d expect from generated code.  Sometimes
+that&rsquo;s good enough!)  Perhaps more practically, you can plug your docs into
+<a href="http://swagger.io/swagger-ui/">Swagger UI</a>, which interprets your docs into a
+friendly, human-readable format.  Significantly, Swagger UI allows you to fill
+in the expected query/data params and submit an HTTP request, leading to a far
+happier experience for whoever has to actually use your API.  You can even
+generate OAuth tokens right from the web interface!  Check out a
+<a href="http://petstore.swagger.io/">sample documentation UI</a> to see how much you get
+for free by following the Swagger standard.  You can get Swagger UI bundled as
+<a href="https://hub.docker.com/r/schickling/swagger-ui/">a Docker image</a> if you&rsquo;re into
+that.  (I am!)</p>
+
+<p>But we haven&rsquo;t even hit the coolest thing about Swagger, which is:</p>
+
+<h3>Documentation as Specification</h3>
+
+<p>There are <a href="http://swagger.io/open-source-integrations/">a host of OSS libraries around Swagger</a>
+for nearly any language used in modern web development.  I&rsquo;ll focus on Ruby, but
+a quick perusal of the documentation shows that similar tools exists for
+JavaScript, Java, Elixir, PHP, and Python.</p>
+
+<p>I&rsquo;ll specifically discuss Apivore, though it&rsquo;s not the only Ruby solution.  Bad
+news for MiniTest fans, though: All the current tools for Ruby, including
+Apivore, are RSpec-only.</p>
+
+<p>After including the gem, you&rsquo;ll write the basic layout of your Apivore suite:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Source: https://github.com/westfieldlabs/apivore#usage</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="s1">&#39;the API&#39;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:apivore</span><span class="p">,</span> <span class="ss">order</span><span class="p">:</span> <span class="ss">:defined</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="ss">Apivore</span><span class="p">:</span><span class="ss">:SwaggerChecker</span><span class="o">.</span><span class="n">instance_for</span><span class="p">(</span><span class="s1">&#39;/swagger.json&#39;</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;has valid paths&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="c1"># tests go here</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;and&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;tests all documented routes&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">validate_all_paths</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You feed it the endpoint that serves your documentation, then write specs for
+every endpoint in your documentation.  Finally, you specify that all paths have
+been tested.  This last spec is really important, because otherwise you might
+forget and leave out a path!  It&rsquo;s also nice as a way to test-drive writing
+specs for all the routes, since the failure message tells you exactly which
+paths and response codes have yet to be tested:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">the</span> <span class="no">API</span>
+</span><span class='line'>  <span class="ow">and</span>
+</span><span class='line'>    <span class="n">tests</span> <span class="n">all</span> <span class="n">documented</span> <span class="n">routes</span> <span class="p">(</span><span class="no">FAILED</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Failures</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="mi">1</span><span class="p">)</span> <span class="n">the</span> <span class="no">API</span> <span class="ow">and</span> <span class="n">tests</span> <span class="n">all</span> <span class="n">documented</span> <span class="n">routes</span>
+</span><span class='line'>     <span class="no">Failure</span><span class="o">/</span><span class="ss">Error</span><span class="p">:</span> <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">validate_all_paths</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="n">get</span> <span class="sr">/posts is untested for response code 200</span>
+</span><span class='line'><span class="sr">       post /</span><span class="n">posts</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">201</span>
+</span><span class='line'>       <span class="n">post</span> <span class="sr">/posts is untested for response code 422</span>
+</span><span class='line'><span class="sr">       get /</span><span class="n">posts</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">200</span>
+</span><span class='line'>       <span class="n">get</span> <span class="sr">/posts/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">404</span>
+</span><span class='line'>       <span class="n">put</span> <span class="sr">/posts/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">200</span>
+</span><span class='line'>       <span class="n">put</span> <span class="sr">/posts/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">404</span>
+</span><span class='line'>       <span class="n">delete</span> <span class="sr">/posts/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">200</span>
+</span><span class='line'>       <span class="n">delete</span> <span class="sr">/posts/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span> <span class="n">is</span> <span class="n">untested</span> <span class="k">for</span> <span class="n">response</span> <span class="n">code</span> <span class="mi">410</span>
+</span><span class='line'>    <span class="c1"># ./spec/requests/api_spec.rb:39:in `block (3 levels) in &lt;top (required)&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now that you&rsquo;ve got a failing test, let&rsquo;s see how to write an Apivore spec.
+Remember that the <code>subject</code> in every spec is the <code>Apivore::SwaggerChecker</code>
+instance for your documentation endpoint.  This is important because it keeps
+track of validated routes, so it can verify at the end that all routes were
+validated.</p>
+
+<p>Here&rsquo;s what a sample spec might look like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;validating post paths&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;an individual post&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:params</span><span class="p">)</span> <span class="p">{{</span> <span class="s2">&quot;id&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">}}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="o">.</span><span class="n">to</span> <span class="n">validate</span><span class="p">(</span> <span class="ss">:get</span><span class="p">,</span> <span class="s1">&#39;/posts/{id}.json&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">params</span> <span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, <code>params</code> refers to the dynamic pieces of the requested path, in this case
+just the <code>id</code> of the requested post.  The <code>params</code> hash may also include
+information intended for the headers, query string, or data body of the request.
+These are specified by special keys, as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;validating post paths&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;updating a post&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:params</span><span class="p">)</span> <span class="p">{{</span>
+</span><span class='line'>      <span class="s2">&quot;id&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;_headers&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;accept&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;application/json&quot;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="s2">&quot;_query_string&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;api_key=abcdef123456789&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;_data&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;This is a post.&quot;</span>
+</span><span class='line'>    <span class="p">}}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="o">.</span><span class="n">to</span> <span class="n">validate</span><span class="p">(</span> <span class="ss">:put</span><span class="p">,</span> <span class="s1">&#39;/posts/{id}.json&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">params</span> <span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you validate a path, Apivore will check that the status code and format of
+the response exactly match your Swagger specification, including required keys
+and data types.  Any deviance is noted in a failure message with a helpful diff.</p>
+
+<h3>Why Bother?</h3>
+
+<p>This may seem like a lot of work.  But you know what&rsquo;s a lot more work?  Dealing
+with annoyed customers and clients who find the API doesn&rsquo;t work as expected.</p>
+
+<p>Let me share a personal experience.  I added Apivore to our app a while ago,
+thinking it was a neat idea.  I thought it would take me just a couple of days
+to get everything in order and build out the test suite.</p>
+
+<p>Wow, was I wrong.  It took a full month.</p>
+
+<p>That&rsquo;s not a matter of how fast I code, but rather because writing the
+documentation and testing it this way uncovered a large degree of variance
+between our documentation and what the API actually provided.  This, in turn,
+was often rooted in differing fundamental assumptions about how things should
+work.  Cleaning up all that mess took weeks!  And I&rsquo;m proud to say with
+confidence that we don&rsquo;t have a mess like that anymore, because our &ldquo;docspecs&rdquo;
+(as I call them fondly) ensure that our docs are always up to date.</p>
+
+<p>You&rsquo;re probably messing up as much as we were.  The scary part is, you don&rsquo;t
+know where or how, and even a full manual audit wouldn&rsquo;t prevent it from
+happening again.</p>
+
+<p>Rather than driving ourselves crazy keeping code and documentation in sync, why
+not leverage our documentation to help us write better code?</p>
+
+<h3>Why Not Use Auto-Generated Docs?</h3>
+
+<p>Some will argue that this approach is backwards.  Isn&rsquo;t the code the main thing?
+Why do we want to maintain documentation plus specs around it?  There are tools
+to derive documentation from our specs or from making API requests, so why not
+just use those?</p>
+
+<p>I argue that that approach is actually backwards.  Our documentation should
+exactly detail the service we provide to clients and consumers.  Our code is
+merely the implementation of that service.  So it makes sense for the
+documentation to be the canonical reference, while the code is tested to ensure
+it falls in line with the documentation.</p>
+
+<p>Another benefit is that working in this way allows Documentation-Driven
+Development, where you make a change to the docs, then let the failing test
+drive you to implement the change or new feature.  This leads to much cleaner
+design, focused directly on the ultimate value you provide your API clients.
+I&rsquo;ve found this practice also dramatically speeds up new development on the
+project.</p>
+
+<h3>#Protips</h3>
+
+<p>There are a few gotchas with Apivore, so let me be upfront and help you make the
+most of your docspec experience:</p>
+
+<ol>
+<li><p>Apivore doesn&#8217;t test query parameters.  Sorry.  I&#8217;ve filed a
+<a href="https://github.com/westfieldlabs/apivore/issues/91">GitHub Issue</a>
+complaining about it, but so far no dice.  I think it would be even more useful
+if it did validate query parameters, but I find it pretty awesome even without
+that feature.</p></li>
+
+<li><p>Apivore specs need to run using RSpec&#8217;s <code>defined</code> order,
+meaning they&#8217;ll run from top to bottom every time.  This exposes you to false
+success, because you won&#8217;t detect order-dependent failures.  You can get around
+this by running all the endpoint specs within an RSpec <code>context</code> that
+uses <code>order: random</code>, so just the last spec will always go last, but
+everything else will be randomized.
+</li></p>
+
+<li></p>It can get irritating to merge multiple kinds of params every time.  I
+use a few <code>let</code> statements for all Apivore specs to help keep
+individual specs clean:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:url_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:headers</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:query_string_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:data_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:params</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">url_params</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+</span><span class='line'>    <span class="s1">&#39;_headers&#39;</span> <span class="o">=&gt;</span> <span class="n">headers</span><span class="p">,</span>
+</span><span class='line'>    <span class="s1">&#39;_query_string&#39;</span> <span class="o">=&gt;</span> <span class="n">query_string_params</span><span class="o">.</span><span class="n">to_query</span><span class="p">,</span>
+</span><span class='line'>    <span class="s1">&#39;_data&#39;</span> <span class="o">=&gt;</span> <span class="n">data_params</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Then, I simply override the special params hashes where necessary.</p></li>
+
+<li><p>You&#8217;ll find that your Apivore specs quickly become way too big for one file.
+I&#8217;ve found RSpec&#8217;s shared examples work quite well.  First, for semantics, I
+aliased <code>it_behaves_like</code> to <code>it_serves_up</code>, so my
+endpoint specs look like:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s1">&#39;has valid paths&#39;</span><span class="p">,</span> <span class="ss">order</span><span class="p">:</span> <span class="ss">:random</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it_serves_up</span> <span class="s1">&#39;posts endpoints&#39;</span>
+</span><span class='line'>  <span class="n">it_serves_up</span> <span class="s1">&#39;comments endpoints&#39;</span>
+</span><span class='line'>  <span class="c1"># etc.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>For organization purposed, I define the shared examples in a
+<code>spec/requests/api</code> directory, and make sure they have names that
+don&#8217;t end in <code>_spec.rb</code>.  Finally, I require all those examples
+before running my specs:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">current_dir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span>
+</span><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="n">current_dir</span> <span class="o">+</span> <span class="s1">&#39;/api/*.rb&#39;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="n">file</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>Now I just defined shared examples in those directories.</p></li>
+</ol>
+
+
+<p>With all these special modifications, here&rsquo;s a sample <code>spec/requests/api_spec.rb</code>
+for a Rails app:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">current_dir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span>
+</span><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="n">current_dir</span> <span class="o">+</span> <span class="s1">&#39;/api/*.rb&#39;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="n">file</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="s1">&#39;the API&#39;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:apivore</span><span class="p">,</span> <span class="ss">order</span><span class="p">:</span> <span class="ss">:defined</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="ss">Apivore</span><span class="p">:</span><span class="ss">:SwaggerChecker</span><span class="o">.</span><span class="n">instance_for</span><span class="p">(</span><span class="s1">&#39;/api/docs.json&#39;</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:query_string_params</span><span class="p">)</span> <span class="p">{{</span>
+</span><span class='line'>    <span class="n">api_key</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">api_key</span>
+</span><span class='line'>  <span class="p">}}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:url_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:headers</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:query_string_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:data_params</span><span class="p">)</span> <span class="p">{{}}</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:params</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">url_params</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+</span><span class='line'>      <span class="s1">&#39;_headers&#39;</span> <span class="o">=&gt;</span> <span class="n">headers</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;_query_string&#39;</span> <span class="o">=&gt;</span> <span class="n">query_string_params</span><span class="o">.</span><span class="n">to_query</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;_data&#39;</span> <span class="o">=&gt;</span> <span class="n">data_params</span>
+</span><span class='line'>    <span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;has valid paths&#39;</span><span class="p">,</span> <span class="ss">order</span><span class="p">:</span> <span class="ss">:random</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it_serves_up</span> <span class="s1">&#39;posts endpoints&#39;</span>
+</span><span class='line'>    <span class="n">it_serves_up</span> <span class="s1">&#39;comments endpoints&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;tying it all together&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;tests all documented routes&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">validate_all_paths</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with actual specs defined in shared examples elsewhere.</p>
+
+<h3>How Do I Get Started?</h3>
+
+<p>Luckily this isn&rsquo;t too complicated, and there&rsquo;s plenty of Googlable help.  You
+have 2 basic approaches: Either integrate deeply with your programming language,
+or just edit the JSON directly (or edit as YAML).  In the case of Ruby,
+<a href="https://github.com/fotinakis/swagger-blocks"><code>swagger-blocks</code></a> seems to be a
+popular solution, and we&rsquo;ve found it useful.  It&rsquo;s pretty low-level, though, and
+there are other solutions which might work better as higher-level constructs
+depending on which framework you use.  The Swagger site maintains
+<a href="http://swagger.io/open-source-integrations/">a useful list of language-specific tools</a>.</p>
+
+<p>I&rsquo;ve seen another team just use the <a href="http://editor.swagger.io">Swagger editor</a>
+to edit their specification, and it works well for them.</p>
+
+<p>There isn&rsquo;t a right answer here; it all depends on whether you prefer the docs
+to live closer to or further from your code.</p>
+
+<p>There is a learning curve to understand how to use Swagger, but the tooling is
+fantastic, which helps a lot.  I&rsquo;d recommend looking at a sample specification
+to get a feel for it, then edit to match your own API.</p>
+
+<h3>A Shift in Perspective</h3>
+
+<p>Working with Swagger has changed how I think about the API I work on every day.
+I often used to fall into the trap of thinking we&rsquo;re building it to build it,
+and the documentation is &ldquo;just for the users.&rdquo;</p>
+
+<p>Following a Documentation-Driven Development path with Swagger and Apivore, I&rsquo;ve
+found that the user is brought to the forefront.  Everything we build is in
+service of the product, as described in the Swagger specification, and our
+docspec suite ensures we don&rsquo;t let our users down.</p>
+
+<p>Part of the reason teams have trouble with documentation is that the users are
+relegated to an afterthought.  It&rsquo;s difficult to develop empathy for them when
+their mental model of the app is likely so far removed from our own.</p>
+
+<p>By enforcing accurate documentation, we ensure that we&rsquo;ve specified a full
+explanation of what the user can expect from our API.  Since we&rsquo;re also
+responsible for maintaining that explanation, it becomes a tool to change us,
+helping us maintain a user-centric design approach.  No longer do we build
+features and then expose them to the user; instead, we start with the allowed
+requests, then build the implementation beneath the surface.  Starting the
+development process from the user&rsquo;s vantage point leads to cleaner APIs, a
+better user experience, and ultimately happier customers.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-27T21:54:20+02:00" pubdate data-updated="true">Dec 27<span>th</span>, 2016</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2016/12/26/git-commit-message-anti-patterns/" title="Previous Post: Git Commit Message Anti-Patterns">&laquo; Git Commit Message Anti-Patterns</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="/" title="AMC: Aspiring Master of Code"><img id="logo" src="/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="/" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="/"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/25/8-crazy-blog-posts/">8 Crazy Blog Posts!</a>
+        </li>
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/">Building a Better OpenStruct - RubyConf 2016</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2016/09/16/building-a-better-openstruct/">Building a Better OpenStruct - WindyCityRails 2016</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
