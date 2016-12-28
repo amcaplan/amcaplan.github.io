@@ -208,7 +208,7 @@ did, and what type of impact it had on yourself, your code, and your team.
 
     var noSelectionMade = '&lt;NO SELECTION MADE&gt;';
 
-    var inputText = function(input){ return input.labels[0].textContent; }
+    var inputText = function(input){ return input.nextElementSibling.textContent; }
     var liIfy = function(text) { return "<li>" + text + "</li>"; };
 
     var setResultsHTML = function(selected) {
