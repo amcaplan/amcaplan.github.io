@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T12:37:23+02:00</updated>
+  <updated>2016-12-28T13:21:25+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -43,10 +43,32 @@ out the explanatory video, or read on.</p>
 
 <h3>The Inspiration</h3>
 
+<p><strong><em>LANGUAGE WARNING!  Unlike my usual style, this post uses some particularly
+salty language.  Not by my choice, but because these are technical terms.  I&rsquo;ve
+gone ahead and censored them for you.  Feel free to disable, though:</em></strong>
+<a href="javascript:toggleCensoring();"><button>Toggle the Censoring</button></a></p>
+
+<script type="text/javascript">
+  // Toggle the "shown" class on all span.censored elements.
+  // Thanks http://youmightnotneedjquery.com/ !
+
+  window.toggleCensoring = function(){
+    var elements = document.querySelectorAll(".censored");
+    Array.prototype.forEach.call(elements, function(el, i){
+      if (el.innerText === "uck") {
+        el.innerText = "***"
+      } else {
+        el.innerText = "uck"
+      }
+   });
+  };
+</script>
+
+
 <p>In 1993, Urban Müller created a minimalistic, Turing-complete language called
-Brainfuck.  The language is written as a contiguous String using 8 characters,
-each of which indicates a command to the interpreter.  Here&rsquo;s a Hello World
-program:</p>
+Brainf<span class="censored">***</span>.  The language is written as a
+contiguous String using 8 characters, each of which indicates a command to the
+interpreter.  Here&rsquo;s a Hello World program:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.</span></code></pre></td></tr></table></div></figure>
@@ -56,11 +78,13 @@ program:</p>
 boundaries of what&rsquo;s possible to do in programming language design.  How can we
 do the most with the least?</p>
 
-<p>Unsurprisingly, many <a href="https://esolangs.org/wiki/Category:Brainfuck_derivatives">derivatives of Brainfuck</a> exist,
-each pushing the boundaries (or adding a few commands) in its own way.</p>
+<p>Unsurprisingly, many
+<a href="https://esolangs.org/wiki/Category:Brainfuck_derivatives">derivatives of Brainf<span class="censored">***</span></a>
+exist, each pushing the boundaries (or adding a few commands) in its own way.</p>
 
 <p>I was never all that interested in esoteric languages, but I was intrigued by a
-Brainfuck-like &ldquo;language&rdquo;: <a href="http://www.jsfuck.com/">JSFuck</a>, a 6-character
+Brainf<span class="censored">***</span>-like &ldquo;language&rdquo;:
+<a href="http://www.jsfuck.com/">JSF<span class="censored">***</span></a>, a 6-character
 JavaScript programming style which correlates 1-to-1 with any JavaScript code
 you might write normally.</p>
 
@@ -86,7 +110,7 @@ programming style that would follow 4 rules:</p>
 
 <h3>The Challenge</h3>
 
-<p>JSFuck uses a simple strategy:</p>
+<p>JSF<span class="censored">***</span> uses a simple strategy:</p>
 
 <ol>
 <li>Create a String containing your program</li>
@@ -2005,7 +2029,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#101;&#118;&#64;&#x73;&#97;&#119;&#102;&#x74;&#x77;&#x65;&#97;&#x72;&#x2e;&#108;&#x79;&#x2e;">&#100;&#101;&#x76;&#64;&#x73;&#97;&#x77;&#102;&#116;&#x77;&#101;&#x61;&#114;&#46;&#x6c;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x64;&#101;&#x76;&#64;&#x73;&#97;&#x77;&#102;&#x74;&#119;&#x65;&#x61;&#114;&#46;&#108;&#x79;&#46;">&#100;&#101;&#x76;&#x40;&#115;&#97;&#119;&#102;&#116;&#119;&#101;&#97;&#x72;&#x2e;&#x6c;&#x79;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
