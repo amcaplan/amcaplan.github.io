@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T13:21:25+02:00</updated>
+  <updated>2016-12-28T17:45:45+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -49,7 +49,7 @@ gone ahead and censored them for you.  Feel free to disable, though:</em></stron
 <a href="javascript:toggleCensoring();"><button>Toggle the Censoring</button></a></p>
 
 <script type="text/javascript">
-  // Toggle the "shown" class on all span.censored elements.
+  // Toggle the content of all span.censored elements.
   // Thanks http://youmightnotneedjquery.com/ !
 
   window.toggleCensoring = function(){
@@ -117,7 +117,7 @@ programming style that would follow 4 rules:</p>
 </ol>
 
 
-<p>It&rsquo;s possible to do that in JavaScript because any JavaScript character can be
+<p>It&rsquo;s possible to do that in JavaScript because any JavaScript String can be
 created using the 6 allowed characters (<a href="https://github.com/aemkei/jsfuck/blob/8be56024ac0daaf76296856405475220e803bdcb/jsfuck.js">this file</a> should
 give you some idea of how it&rsquo;s done), and you can <code>eval</code> any code using:</p>
 
