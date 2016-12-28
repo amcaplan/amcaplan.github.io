@@ -1,9 +1,8 @@
 ---
 layout: post
 title: "This Is Your Brain on Ruby"
-date: 2016-12-28 14:08:26 +0200
+date: 2016-12-28 12:08:26 +0200
 comments: true
-published: false
 categories:
 - blog
 twitter:
