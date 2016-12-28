@@ -31,10 +31,31 @@ out the explanatory video, or read on.
 
 ### The Inspiration
 
+***LANGUAGE WARNING!  Unlike my usual style, this post uses some particularly
+salty language.  Not by my choice, but because these are technical terms.  I've
+gone ahead and censored them for you.  Feel free to disable, though:***
+[<button>Toggle the Censoring</button>](javascript:toggleCensoring(\);)
+
+<script type="text/javascript">
+  // Toggle the "shown" class on all span.censored elements.
+  // Thanks http://youmightnotneedjquery.com/ !
+
+  window.toggleCensoring = function(){
+    var elements = document.querySelectorAll(".censored");
+    Array.prototype.forEach.call(elements, function(el, i){
+      if (el.innerText === "uck") {
+        el.innerText = "***"
+      } else {
+        el.innerText = "uck"
+      }
+   });
+  };
+</script>
+
 In 1993, Urban Müller created a minimalistic, Turing-complete language called
-Brainfuck.  The language is written as a contiguous String using 8 characters,
-each of which indicates a command to the interpreter.  Here's a Hello World
-program:
+Brainf<span class="censored">***</span>.  The language is written as a
+contiguous String using 8 characters, each of which indicates a command to the
+interpreter.  Here's a Hello World program:
 
 ```
 ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
@@ -44,11 +65,13 @@ Obviously, this isn't intended for production code.  Instead, it pushes the
 boundaries of what's possible to do in programming language design.  How can we
 do the most with the least?
 
-Unsurprisingly, many [derivatives of Brainfuck][Brainfuck derivatives] exist,
-each pushing the boundaries (or adding a few commands) in its own way.
+Unsurprisingly, many
+[derivatives of Brainf<span class="censored">***</span>][Brainfuck derivatives]
+exist, each pushing the boundaries (or adding a few commands) in its own way.
 
 I was never all that interested in esoteric languages, but I was intrigued by a
-Brainfuck-like "language": [JSFuck](http://www.jsfuck.com/), a 6-character
+Brainf<span class="censored">***</span>-like "language":
+[JSF<span class="censored">***</span>](http://www.jsfuck.com/), a 6-character
 JavaScript programming style which correlates 1-to-1 with any JavaScript code
 you might write normally.
 
@@ -70,7 +93,7 @@ programming style that would follow 4 rules:
 
 ### The Challenge
 
-JSFuck uses a simple strategy:
+JSF<span class="censored">***</span> uses a simple strategy:
 
 1. Create a String containing your program
 2. Eval that String
