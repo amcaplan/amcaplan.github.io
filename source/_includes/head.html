@@ -44,4 +44,9 @@
   {% include custom/head.html %}
   {% include google_analytics.html %}
   <style>html{background: url({{ root_url }}/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+  {% if page.style %}
+    <style type="text/css">
+      {{ page.style }}
+    </style>
+  {% endif %}
 </head>
