@@ -98,7 +98,7 @@ JSF<span class="censored">***</span> uses a simple strategy:
 1. Create a String containing your program
 2. Eval that String
 
-It's possible to do that in JavaScript because any JavaScript character can be
+It's possible to do that in JavaScript because any JavaScript String can be
 created using the 6 allowed characters ([this file][JSFuck translations] should
 give you some idea of how it's done), and you can `eval` any code using:
 
