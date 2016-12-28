@@ -107,7 +107,10 @@ give you some idea of how it's done), and you can `eval` any code using:
 ```
 
 For BrainRuby, both steps were fairly challenging.  We'll start by building up
-a String, and then address how to `eval` it.
+a String, and then address how to `eval` it.  Ultimately, BrainRuby needs just
+these 10 characters to work:
+
+    $#<>{}/+"`
 
 ### From 5 Characters to Any Ruby String
 
