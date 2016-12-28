@@ -37,7 +37,7 @@ gone ahead and censored them for you.  Feel free to disable, though:***
 [<button>Toggle the Censoring</button>](javascript:toggleCensoring(\);)
 
 <script type="text/javascript">
-  // Toggle the "shown" class on all span.censored elements.
+  // Toggle the content of all span.censored elements.
   // Thanks http://youmightnotneedjquery.com/ !
 
   window.toggleCensoring = function(){
