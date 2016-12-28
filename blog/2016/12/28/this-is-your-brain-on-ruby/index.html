@@ -209,7 +209,11 @@ give you some idea of how it&rsquo;s done), and you can <code>eval</code> any co
 
 
 <p>For BrainRuby, both steps were fairly challenging.  We&rsquo;ll start by building up
-a String, and then address how to <code>eval</code> it.</p>
+a String, and then address how to <code>eval</code> it.  Ultimately, BrainRuby needs just
+these 10 characters to work:</p>
+
+<pre><code>$#&lt;&gt;{}/+"`
+</code></pre>
 
 <h3>From 5 Characters to Any Ruby String</h3>
 

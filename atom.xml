@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T17:45:45+02:00</updated>
+  <updated>2016-12-28T17:51:21+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -128,7 +128,11 @@ give you some idea of how it&rsquo;s done), and you can <code>eval</code> any co
 
 
 <p>For BrainRuby, both steps were fairly challenging.  We&rsquo;ll start by building up
-a String, and then address how to <code>eval</code> it.</p>
+a String, and then address how to <code>eval</code> it.  Ultimately, BrainRuby needs just
+these 10 characters to work:</p>
+
+<pre><code>$#&lt;&gt;{}/+"`
+</code></pre>
 
 <h3>From 5 Characters to Any Ruby String</h3>
 
@@ -2029,7 +2033,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#101;&#118;&#64;&#x73;&#x61;&#119;&#x66;&#116;&#x77;&#101;&#x61;&#114;&#x2e;&#x6c;&#x79;&#46;">&#x64;&#x65;&#x76;&#x40;&#x73;&#x61;&#119;&#102;&#116;&#119;&#101;&#x61;&#x72;&#x2e;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x64;&#101;&#x76;&#x40;&#115;&#97;&#x77;&#x66;&#x74;&#119;&#101;&#97;&#x72;&#46;&#108;&#x79;&#x2e;">&#x64;&#101;&#x76;&#64;&#x73;&#97;&#119;&#102;&#116;&#x77;&#x65;&#97;&#x72;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t

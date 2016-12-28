@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T17:45:45+02:00</updated>
+  <updated>2016-12-28T17:51:21+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -126,7 +126,11 @@ give you some idea of how it&rsquo;s done), and you can <code>eval</code> any co
 </code></p>
 
 <p>For BrainRuby, both steps were fairly challenging.  We&rsquo;ll start by building up
-a String, and then address how to <code>eval</code> it.</p>
+a String, and then address how to <code>eval</code> it.  Ultimately, BrainRuby needs just
+these 10 characters to work:</p>
+
+<pre><code>$#&lt;&gt;{}/+"`
+</code></pre>
 
 <h3>From 5 Characters to Any Ruby String</h3>
 
