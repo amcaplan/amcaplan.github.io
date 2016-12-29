@@ -3,7 +3,6 @@ layout: post
 title: "Diversify Your Learning"
 date: 2016-12-29 14:13:00 +0200
 comments: true
-published: false
 categories:
 - blog
 twitter:
@@ -14,11 +13,11 @@ twitter:
 As a programmer, I'm privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
 during the workweek for exploration and side projects.  Companies pay for their
-employees to attend conferences, buy books, and sponsor subscription to online
+employees to attend conferences, buy books, and sponsor subscriptions to online
 learning resources.
 
 There's a wealth of information I can access, and more is being created
-constantly than I could ever hope to consume.  So prioritization is key.  What
+constantly than I could ever hope to consume.  Prioritization is key.  What
 should take precedence in my learning?  What will contribute most to my
 professional development as a programmer?
 
@@ -34,12 +33,12 @@ It starts with a bit of wisdom imparted over 1,600 years ago.
 
 ### The Jewish System of Learning: A Multi-Tiered Approach
 
-The _Talmud_ records a profound suggestion which bears a surprising degree of
-relation to programming:
+[The _Talmud_](https://en.wikipedia.org/wiki/Talmud) records a profound
+suggestion which bears a surprising degree of relevance to programming:
 
 > Rabbi Safra stated in the name of Rabbi Yehoshua ben Chananya... A man should
 > divide his learning [literally "years"] into three: one-third _Mikra_,
-> one-third _Mishnah_, one-third _Talmud_.
+> one-third _Mishnah_, one-third _Talmud_. (_Kiddushin_ 30a)
 
 Rabbi Safra describes a method of learning where one studies multiple degrees of
 abstraction simultaneously.
@@ -53,18 +52,21 @@ detail the multitude of laws governing every moment of private and public life
 for the committed Jew.
 
 * At the lowest level of abstraction, one studies _Talmud_, the probing analyses
-and debates which provide the rationale for the concrete laws.  One cannot
-effectively function at this level of abstraction all the time; it would
-overload the mind.  But understanding the rationale for the laws helps in terms
-of understanding and handling edge cases, as well as situations that prior
+and debates which provide the rationale for the concrete laws.  (This isn't to
+be confused with what is today called _Talmud_, which constitutes a canonized
+subset of the _Talmud_ referred to by Rabbi Safra.  Naming things is hard.)  One
+cannot effectively function at this level of low-level details all the time; it
+would overload the mind.  But understanding the rationale for the laws helps in
+terms of understanding and handling edge cases, as well as situations that prior
 legal decisions have yet to address.
 
 ### A Bit of Interpretation
 
 In contrast to many other religions, Judaism is extremely concerned with
-practice.  Jews don't talk about who's a believer; we describe religious people
-as "observant," meaning they observe at least a major subset of mandated
-religious practices.
+practice.  Jews (at least Orthodox Jews, whose practice most closely mirrors the
+Talmud's vision of Judaism) don't generally describe the faithful as "believers";
+instead, the usual term is "observant," meaning they observe at least a major
+subset of mandated religious practices.
 
 With that sort of attitude, it's clearly _Mishnah_ which describes how Jews
 engage with their religion on a daily basis.  For daily guidance, nothing could
@@ -119,7 +121,8 @@ same time:
 studying to understand how to design intuitive products and interfaces.
 * My current _Mishnah_ is the Martin Fowler classic
 [Refactoring: Improving the Design of Existing Code][Refactoring], which details
-the process of refactoring as repeatable, easily communicable steps.
+the process of refactoring as repeatable, easily communicable steps.  Better
+understanding refactoring will make me more effective in my daily coding.
 * My current _Talmud_ is [The Elements of Computing Systems: Building a Modern Computer from First Principles][nand2tetris],
 affectionately known as [Nand2Tetris](http://www.nand2tetris.org/).  Through the
 book and its accompanying projects, I'm learning how computers are built from
@@ -128,7 +131,7 @@ logic gates all the way up to high-level languages.
 Certainly, some people will do better learning one thing only at a time. YMMV.
 Personally, I've found that having several tracks of study allows me to jump
 back and forth based on interest and energy, and I progress faster this way than
-if I had only one book to read at a time.
+if I had only one subject to study at a time.
 
 One significant outcome of study at all three levels has been a significant
 broadening of perspective.  I've become less afraid of low-level programming or
