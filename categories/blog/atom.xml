@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T17:51:21+02:00</updated>
+  <updated>2016-12-29T18:17:31+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,165 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Diversify Your Learning]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
+    <updated>2016-12-29T14:13:00+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
+    <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
+of as part of my job.  Many enlightened companies specifically dedicate time
+during the workweek for exploration and side projects.  Companies pay for their
+employees to attend conferences, buy books, and sponsor subscriptions to online
+learning resources.</p>
+
+<p>There&rsquo;s a wealth of information I can access, and more is being created
+constantly than I could ever hope to consume.  Prioritization is key.  What
+should take precedence in my learning?  What will contribute most to my
+professional development as a programmer?</p>
+
+<p>There are many approaches, ranging from &ldquo;Follow your heart and specialize,&rdquo; all
+the way to &ldquo;Learn a bit of everything.&rdquo;  Some emphasize learning a full stack of
+technologies, others think you should just get really good with the tools you
+use every day.</p>
+
+<p>My approach falls somewhere in the middle, and I&rsquo;d like to share it with you.
+It starts with a bit of wisdom imparted over 1,600 years ago.</p>
+
+<!-- more -->
+
+
+<h3>The Jewish System of Learning: A Multi-Tiered Approach</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Talmud">The <em>Talmud</em></a> records a profound
+suggestion which bears a surprising degree of relevance to programming:</p>
+
+<blockquote><p>Rabbi Safra stated in the name of Rabbi Yehoshua ben Chananya&hellip; A man should
+divide his learning [literally &ldquo;years&rdquo;] into three: one-third <em>Mikra</em>,
+one-third <em>Mishnah</em>, one-third <em>Talmud</em>. (<em>Kiddushin</em> 30a)</p></blockquote>
+
+<p>Rabbi Safra describes a method of learning where one studies multiple degrees of
+abstraction simultaneously.</p>
+
+<ul>
+<li><p>At the highest level, one studies <em>Mikra</em>, the 24 books of the Bible.  These
+books are light on detail, but establish the ethics and certain core laws which
+form the foundation of Jewish life.</p></li>
+<li><p>One layer deeper, one studies <em>Mishnah</em>, the 60 tractates which extensively
+detail the multitude of laws governing every moment of private and public life
+for the committed Jew.</p></li>
+<li><p>At the lowest level of abstraction, one studies <em>Talmud</em>, the probing analyses
+and debates which provide the rationale for the concrete laws.  (This isn&rsquo;t to
+be confused with what is today called <em>Talmud</em>, which constitutes a canonized
+subset of the <em>Talmud</em> referred to by Rabbi Safra.  Naming things is hard.)  One
+cannot effectively function at this level of low-level details all the time; it
+would overload the mind.  But understanding the rationale for the laws helps in
+terms of understanding and handling edge cases, as well as situations that prior
+legal decisions have yet to address.</p></li>
+</ul>
+
+
+<h3>A Bit of Interpretation</h3>
+
+<p>In contrast to many other religions, Judaism is extremely concerned with
+practice.  Jews (at least Orthodox Jews, whose practice most closely mirrors the
+Talmud&rsquo;s vision of Judaism) don&rsquo;t generally describe the faithful as &ldquo;believers&rdquo;;
+instead, the usual term is &ldquo;observant,&rdquo; meaning they observe at least a major
+subset of mandated religious practices.</p>
+
+<p>With that sort of attitude, it&rsquo;s clearly <em>Mishnah</em> which describes how Jews
+engage with their religion on a daily basis.  For daily guidance, nothing could
+be more critical than the Law itself.</p>
+
+<p>So why not suffice with study of <em>Mishnah</em>?  Apparently Rabbi Safra saw great
+value in reaching up and down one layer of abstraction.  Reaching up, <em>Mikra</em>
+provides inspiration, motivation, and guiding principles.  Reaching down,
+<em>Talmud</em> provides a depth of understanding which gives its own form of meaning
+to practice.  Both are necessary in building a holistic religious personality.</p>
+
+<p>In programming, we tend to operate mainly at a single layer of abstraction.  As
+a result, when we think about learning, we often equate our own layer with the
+sum total of relevant knowledge, then learn more about it.  In doing so, we miss
+the opportunity to make ourselves more effective professionals, and to broaden
+ourselves as people.</p>
+
+<h3>Missing the Forest for the Trees</h3>
+
+<p>As programmers, we&rsquo;re called upon to solve human problems through technology.
+Often we focus so much on the technology that we forget our goal is to solve
+problems for real people.</p>
+
+<p>Rabbi Safra reminds us: Study <em>Mikra</em>.  Don&rsquo;t get bogged down in languages and
+frameworks without understanding why you write code in the first place.  Figure
+out what motivates people, and how to communicate more effectively.  Study how
+to design your products in a way that matches human intuition.  Don&rsquo;t simply
+hack on an app; build a whole product that actively meets the needs of your
+users and creates value for them.</p>
+
+<h3>Missing the Trees for the Forest</h3>
+
+<p>If you program in a high-level language (as I do), it&rsquo;s easy to forget about all
+the magic which has to happen on a lower level just to get started.  There&rsquo;s a
+whole beautiful world of hardware, machine language, operating systems, systems
+programming, and highly efficient algorithms.  Most of it won&rsquo;t matter in
+day-to-day programming.  But on the rare occasions when it does matter, this
+knowledge will allow you to provide enormous value to your team, or contribute
+meaningfully to the programming community through Open Source projects.  You
+might even submit a patch to your favorite high-level language!</p>
+
+<p>As Rabbi Safra instructs us: Study <em>Talmud</em>.  Don&rsquo;t take the tools you see at
+face value; tear them apart, learn how they work, and figure out what you can do
+to make them better.</p>
+
+<h3>Learning in Parallel</h3>
+
+<p>As a personal example, I&rsquo;m currently working through 3 different books at the
+same time:</p>
+
+<ul>
+<li>My current <em>Mikra</em> is <a href="https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654">The Design of Everyday Things</a>, which I&rsquo;m
+studying to understand how to design intuitive products and interfaces.</li>
+<li>My current <em>Mishnah</em> is the Martin Fowler classic
+<a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672">Refactoring: Improving the Design of Existing Code</a>, which details
+the process of refactoring as repeatable, easily communicable steps.  Better
+understanding refactoring will make me more effective in my daily coding.</li>
+<li>My current <em>Talmud</em> is <a href="https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686/ref=ed_oe_p">The Elements of Computing Systems: Building a Modern Computer from First Principles</a>,
+affectionately known as <a href="http://www.nand2tetris.org/">Nand2Tetris</a>.  Through the
+book and its accompanying projects, I&rsquo;m learning how computers are built from
+logic gates all the way up to high-level languages.</li>
+</ul>
+
+
+<p>Certainly, some people will do better learning one thing only at a time. YMMV.
+Personally, I&rsquo;ve found that having several tracks of study allows me to jump
+back and forth based on interest and energy, and I progress faster this way than
+if I had only one subject to study at a time.</p>
+
+<p>One significant outcome of study at all three levels has been a significant
+broadening of perspective.  I&rsquo;ve become less afraid of low-level programming or
+hardware concepts, and my ability to think about business value and UX has
+improved, all while building skills relevant to my primary daily work activities.</p>
+
+<h3>What About Specialization?</h3>
+
+<p>Learning isn&rsquo;t just about broadening our horizons.  It&rsquo;s also a tool in service
+of career progression.  Why not just specialize at one level, and get really
+good at doing one thing?</p>
+
+<p>I actually wouldn&rsquo;t discourage that at all.  Specialization is healthy, normal,
+and probably unavoidable.  There&rsquo;s just too much to know to really know
+everything!</p>
+
+<p>Still, having a window into the layers above and below your specialty will make
+you better at doing what you&rsquo;re actually paid to do.  No one is paid to think
+only at one level of abstraction; your job is to make your code work for the
+next level up through understanding the next level down.</p>
+
+<p>You don&rsquo;t have to learn everything.  You don&rsquo;t have time to learn everything.
+Just make sure to always be expanding your horizons both within and beyond your
+primary level of abstraction.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
@@ -947,373 +1106,6 @@ schedule but basically functions as 8 regular days.</p>
 <p>If you&rsquo;re first visiting the blog, I do have an <a href="/about/">About Page</a>.  I
 have lots of <a href="/archives/">thoughts about stuff</a>, and occasionally
 <a href="/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
-    <updated>2016-01-04T00:04:10+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
-    <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
-a chord with others, and I want to develop the point a bit more.</p>
-
-<p>So let&rsquo;s start with this: What are some constraints you feel in your day-to-day
-coding?  Which factors are limiting your ability to produce new, shippable
-features?  Consider the following list:</p>
-
-<div id="constraints-checklist">
-  <input type="checkbox" id="time" name="time" value="Time"><label for="time">Time/Deadline</label><br/>
-  <input type="checkbox" id="money" name="money" value="Money"><label for="money">Money</label><br/>
-  <input type="checkbox" id="legacy" name="legacy" value="Legacy Code"><label for="legacy">Legacy Code/Projects</label><br/>
-  <input type="checkbox" id="performance-requirements" name="performance-requirements" value="Performance Requirements"><label for="performance-requirements">Performance Requirements</label><br/>
-  <input type="checkbox" id="legal" name="legal" value="Legal Regulations"><label for="legal">Legal Regulations</label><br/>
-  <input type="checkbox" id="clients" name="clients" value="Client Restrictions"><label for="clients">Client Restrictions</label><br/>
-  <input type="checkbox" id="hardware" name="hardware" value="Hardware"><label for="hardware">Hardware</label><br/>
-  <input type="checkbox" id="competing-projects" name="competing-projects" value="Competing Projects"><label for="competing-projects">Competing Projects</label><br/>
-  <input type="checkbox" id="skills" name="skills" value="Skills"><label for="skills">Team Members' Skills</label>
-</div>
-
-
-<br/>
-
-
-<p>Take a moment and check off the 3 biggest pain points in your current job.</p>
-
-<!-- more -->
-
-
-<p>You&rsquo;ve selected:</p>
-
-<ul id="constraints-results"></ul>
-
-
-<p>Hold that thought; let&rsquo;s talk for a moment about the most significant force
-behind your (and all developers') frustrations, and how it underlies the factors
-you&rsquo;ve chosen.</p>
-
-<h3>The Triple Constraint</h3>
-
-<p>The Triple Constraint, also known as the Project Management Triangle, is
-well-known as a classic line developers tell overzealous managers:</p>
-
-<blockquote><p>We can build it with every feature, on time, and on budget.  Pick two.</p></blockquote>
-
-<p>The Triple Constraint sets up a fundamental tension between three factors:</p>
-
-<ol>
-<li>Time (how quickly the project is done)</li>
-<li>Cost (how much it costs to complete the project)</li>
-<li>Scope (how many features are built, and how well)</li>
-</ol>
-
-
-<p>Any time you make greater demands in one aspect, at least one of the others will
-have to give.  If you reduce the time for the project, you&rsquo;ll need to pay more
-or (more realistically) cut scope.  Want to save money?  Cut scope, or hire
-developers who will do it more slowly.  To increase the scope, pay more, or
-better, developers, to work on it for the same amount of time, or increase the
-length of time allotted for the project.</p>
-
-<p>Let&rsquo;s see how the Triple Constraint applies to the problems you&rsquo;ve selected:</p>
-
-<p id="constraints-interpretation"></p>
-
-
-<p>So it looks like <span id="biggest-problems"></span>.  With that in mind, let&rsquo;s
-think about a more active approach to controlling and choosing our constraints.</p>
-
-<h3>Constraints: A Choice of Which, Not Whether</h3>
-
-<p>The point of the Triple Constraint is to emphasize that constraints will exist
-on every project, and we are responsible for managing them realistically.  There
-is great temptation to assume that with extra effort we can cheat the system and
-push for a better outcome on all 3 constraints.  That&rsquo;s just not possible.</p>
-
-<p>However, by acknowledging and embracing our constraints, we can maximize the
-outcome.  We cannot build every feature, on time, and on budget.  But we can
-build the right set of features, given the right amount of time and an
-appropriate budget.</p>
-
-<p>Let&rsquo;s think about this in the context of the issues you selected.</p>
-
-<div id="constraints-suggestions"></div>
-
-
-<p>The main point here is that each of Cost, Scope, and Time constraints will get
-the best of you, unless you actively acknowledge the conflict, and make sure
-your efforts reflect the true business priorities.  Attempting to maximize all
-three is impossible and will usually lead to significant shortcomings in all
-three areas.</p>
-
-<h3>Adding More Constraints</h3>
-
-<p>This is the Tweetstorm (yes, my own) that originally got me thinking:</p>
-
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Your current constraints ultimately train you to operate effectively within precisely those constraints. Choose your constraints wisely.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030185106907136">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Take on too much work for the time allotted, you will learn to overwork and underdeliver, and you&#39;ll stop noticing that it&#39;s happening.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030975620005890">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Always make time for testing, pairing, knowledge sharing, and learning. Eventually they will happen automatically without special effort.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031382144528385">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Took me &gt;1yr to get used to TDD. But now it comes free, without thinking about it, and the benefits are tangible.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031749641076737">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>Now that I&rsquo;ve thought things through more clearly, let&rsquo;s summarize using the
-terms above.  You already work within constraints of Cost, Scope, and Time.  If
-you ignore the competitive nature of those constraints, you will overwork
-yourself, fail to deliver the entire Scope, miss the deadline, or—even worse—all
-three.  This will become the <em>de facto</em> mode of operation, much to the
-consternation of yourself, your colleagues, and your managers.  Worse, you will
-take on the Cost of long-term technical debt because it allows you to expand
-Scope and minimize Time in the short term.</p>
-
-<p>The only solution is to embrace the fact that you just can&rsquo;t do everything, and
-take on constraints that will safeguard you from the poor decision-making that
-brings on long-term troubles.</p>
-
-<p>The four constraints I recommend budgeting for, as mentioned above, are:</p>
-
-<ol>
-<li><p><strong>Testing:</strong> Insist on meaningful test coverage.  There are advantages to
-writing your tests first, but at least make sure you end up with solidly tested
-code.</p>
-
-<ul>
-<li>You will know your code works, and it will be much easier to change or
-extend later without breaking everything.</li>
-<li>It&rsquo;s hard to know you&rsquo;ve accomplished the appropriate Scope without a
-reproducible test, and not testing increases the Cost of adding features
-later.</li>
-</ul>
-</li>
-<li><p><strong>Pairing:</strong> Don&rsquo;t let a sprint go by without finding an opportunity to pair
-on something, anything.</p>
-
-<ul>
-<li>Pairing is not always the best use of resources (you might say it&rsquo;s double
-the Cost), but often the synergy of two coders talking things out nets an
-overall gain in productivity.</li>
-<li>Pairing also provides a host of benefits for the long term, in terms of
-team relationships and knowledge sharing.  Which brings us to the next
-point&hellip;</li>
-</ul>
-</li>
-<li><p><strong>Knowledge Sharing:</strong> Make time in your workflow to share knowledge, both
-formally and informally.</p>
-
-<ul>
-<li>Meet weekly with your team and have someone present their recent work.
-Eventually everyone will take a (temporary or permanent) vacation, and
-someone else will need to fill their role.  Pay down the Cost of a weekly
-hour-long meeting, so your team isn&rsquo;t frozen when one person takes a
-much-needed break.</li>
-<li>Look for opportunities to pair junior and senior developers together.  Or
-if someone is unfamiliar with part of the codebase, assign them a ticket
-that requires them to learn it, and designate a knowledgeable pair. The
-stronger each member of your team becomes, the more quickly you can build
-new features in a stable fashion.</li>
-</ul>
-</li>
-<li><p><strong>Learning:</strong> I expect this to be controversial, but here goes.  Make time in
-your workday for something code-related that has nothing to do with your work.
-Try out a new language or framework.  Write a script to automate something at
-home.  Read an article from one of
-<a href="http://peterc.org/#ap3">Peter Cooper&rsquo;s newsletters</a> or watch a talk on
-<a href="http://confreaks.tv/events">Confreaks</a>.  Follow the Twitter account of a
-developer you respect and read what they post.  Broaden your horizons in code,
-and you&rsquo;ll find that some of your most brilliant ideas at work will come from
-your explorations.  You can&rsquo;t be inspired without inspiration.</p></li>
-</ol>
-
-
-<p>The crazy thing about these practices is that if you constrain yourself for long
-enough, they become second nature, and you don&rsquo;t notice the time they take up.
-Eventually, your budget will automatically include these activities.  Yet you
-will be able to crank out features at a quicker, more stable pace, precisely
-<em>because</em> you are taking the time to invest in yourself and your code.</p>
-
-<p>You will also notice a greater sense of team cohesiveness.  These practices
-encourage the team to work together, to learn together, and to help each other
-grow in capacity to produce excellent software.  These practices bring out the
-synergetic relationships that make team-built software qualitatively better than
-software produced by individuals.</p>
-
-<p>Sometimes, it will be difficult to get buy-in from the more business-minded
-stakeholders in your company.  For this reason, make sure to couch the
-conversation in terms of risk avoidance and long-term business objectives, which
-honestly should be your goal, too.</p>
-
-<h3>A Call to Action</h3>
-
-<p>Let&rsquo;s end with a challenge, shall we?  Commit to one—just one—of these four
-practices for the next two weeks.  Then let&rsquo;s hear some feedback about how you
-did, and what type of impact it had on yourself, your code, and your team.</p>
-
-<ul>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20insist%20on%20meaningful%20test%20coverage%20for%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Testing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20make%20time%20for%20pairing%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Pairing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20organize%20a%20regular%20knowledge%20sharing%20session%20starting%20in%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Knowledge Sharing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20dedicate%20time%20to%20non-work-related%20programming%20learning%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Learning</a></li>
-</ul>
-
-
-<script type="text/javascript">
-  (function(){
-    var inputs = document.getElementById('constraints-checklist').getElementsByTagName('input');
-
-    var selectedInputs = function() {
-      checkedInputs = [];
-
-      for (var i = 0; i < inputs.length; i++) {
-        input = inputs[i]
-        if (input.checked) { checkedInputs.push(input); }
-      }
-
-      return checkedInputs;
-    };
-
-    var noSelectionMade = '&lt;NO SELECTION MADE&gt;';
-
-    var inputText = function(input){ return input.nextElementSibling.textContent; }
-    var liIfy = function(text) { return "<li>" + text + "</li>"; };
-
-    var setResultsHTML = function(selected) {
-      if (selected.length === 0) { html = noSelectionMade; }
-      else {
-        html = selected.map(inputText).map(liIfy).join('');
-      }
-      document.getElementById('constraints-results').innerHTML = html;
-    };
-
-    var interpretations = {
-      "time": "Time is <strong>Time</strong>, easy enough.",
-      "money": "Money is one element of <strong>Cost</strong>.",
-      "legacy": "When you pay down technical debt on legacy code and projects, you encounter the <strong>Cost</strong> of a past project, except that you incur those costs now.",
-      "performance-requirements": "Performance requirements are an aspect of <strong>Scope</strong>.",
-      "legal": "Legal requirements are an aspect of <strong>Scope</strong>.",
-      "clients": "Client requirements are an aspect of <strong>Scope</strong>.",
-      "hardware": "Insufficient hardware resources reflect an upper bound on <strong>Cost</strong>.",
-      "competing-projects": "Assigning developers to too many simultaneous projects reflects unwillingness to accept the true <strong>Cost</strong> of each project.",
-      "skills": "When team members lack the skills to complete the task, the learning involved becomes part of the <strong>Cost</strong> of the project."
-    };
-    var interpretation = function(input) { return interpretations[input.name]; }
-
-    var setInterpretationHTML = function(selected) {
-      if (selected.length === 0) { html = ''; }
-      else {
-        html = '<ul>' +
-          selected.map(interpretation).map(liIfy).join('') +
-          '</ul>';
-      }
-      document.getElementById('constraints-interpretation').innerHTML = html;
-    }
-
-    var problems = {
-      "time": "Time",
-      "money": "Cost",
-      "legacy": "Cost",
-      "performance-requirements": "Scope",
-      "legal": "Scope",
-      "clients": "Scope",
-      "hardware": "Cost",
-      "competing-projects": "Cost",
-      "skills": "Cost"
-    };
-    var problemList = function(selected) {
-      var list = [];
-      selected.forEach(function(input) {
-        var problem = problems[input.name];
-        if (list.indexOf(problem) === -1) { list.push(problem); }
-      });
-      return list.sort();
-    };
-    var outputProblemList = function(list) {
-      switch(list.length) {
-        case 0:
-          return "your biggest problems are &lt;UNKNOWN - FILL IN PLEASE&gt;";
-        case 1:
-          return "your biggest problem is " + list[0];
-        case 2:
-          return "your biggest problems are " + list[0] + " and " + list[1];
-        case 3:
-          return "you are struggling on all 3 fronts: Cost, Scope, and Time"
-      }
-    };
-    var updateProblemList = function(inputs) {
-      document.getElementById('biggest-problems').innerHTML =
-        outputProblemList(problemList(inputs));
-    };
-
-    var suggestions = {
-      "time": "<strong>Time/Deadlines:</strong> Sometimes, your product's greatest feature is time - for example, it must capture the market before competitors arrive.  In other cases, time is less crucial than other factors.  So it's important to evaluate the significance of the deadline in your situation.  Often the right answer is multifaceted - for example, extending the deadline by a month along with cutting scope in certain ways.",
-      "money": "<strong>Money:</strong> This question will be fundamentally different depending on the scenario.  In a small startup launching its first product, you may not have the leeway to increase Cost.  This is why startups tend to build small, streamlined products that are sold on their simplicity; they cut Scope, because money is limited, and a long time-to-market will kill the company financially.  In a large company, though, the right answer may be to build the product with full scope, but extend the Time or accept increased Cost.",
-      "legacy": "<strong>Legacy Infrastructure:</strong> If you struggle with legacy code or even full applications, congratulations!  Your product has been around for a while, it's hopefully well-established, but it comes with the messiness of decisions which—as you can see using your 20/20 hindsight—have turned out for the worse.  The answer is usually to minimize Cost by paying down technical debt when possible, but accept that sometimes the value of Time will triumph.  Usually businesspeople err on the side of not paying down technical debt; your job as developer is to counter that trend, diplomatically of course.",
-      "performance-requirements": "<strong>Performance:</strong> Whether you're building for desktop, mobile, tablet, or the web, performance is going to be a make-or-break for your product.  And performance has a tangible Cost in terms of developer attention and effort.  The company needs to accept that performance will require massive attention, especially over time as more and more features are added.  The right answer is usually to cut feature Scope when performance becomes a problem, and not before.  It's also important to understand how valuable performance gains are in any situation, and make sure a proportional amount of developer resources are dedicated to performance improvements.  Too little attention and performance problems will be the death of your product; too much attention and your product's feature set will go nowhere.",
-      "legal": "<strong>Legal Requirements:</strong> These are generally non-negotiable.  Once we accept that, it's important to view fulfillment of legal requirements as a Scope achievement, and cut other Scope considerations as necessary.  Better 2 new features than 3 features plus a lawsuit.",
-      "clients": "<strong>Client Requirements:</strong> Keep in mind, your client is the one paying your bills.  However, clients often use that position to demand more features than are healthy for your product.  It's important to be honest with clients about the limitations of your team, and explain that you want your product to grow stably in the long term.  Pushing lots of features out the door quickly will limit your product's ability to grow, and that will hurt your clients as well later on.  Negotiate your clients down to a reasonable feature set given the Time and Cost constraints of your project—and make sure to deliver.",
-      "hardware": "<strong>Hardware Limitations:</strong> These cases generally fall into two categories.  One is a small company with severe financial constraints.  In that case, the answer is probably to wait on certain features until the company begins to gather more revenue.  Small companies have a tendency to try to scale too early; wait until the need arises.  (In other words, limit the Scope of your operations until the market demands more.)  Larger companies have the opposite problem; they know the scale is necessary, but may not have financial resources available now, or the process of getting appropriate hardware may take time.  The right answer is usually to shelve the project for now; there are probably many other projects deserving of attention that would provide value immediately.",
-      "competing-projects": "<strong>Competing Projects</strong>: Companies are often unaware of the Cost of context switching.  To minimize Cost, a developer should work on only one project at a time.  If multiple projects need attention, every effort should be made to limit Scope or extend Time in a way that allows each developer to give their undivided attention to one project, perhaps switching back and forth at intervals of one to two weeks.  Greater flexibility will pay off in increased productivity.",
-      "skills": "<strong>Team Members' Skills:</strong> Developers, contrary to popular belief, are not code-generation machines.  They are human beings who know some things and do not know other things.  Part of the Cost of a project is the need for developers to educate themselves about the necessary tools and the problem space.  This must be considered as a factor that will challenge Time and Scope."
-    };
-
-    var suggestionList = function(inputs) {
-      if (inputs.length === 0) { return [noSelectionMade]; }
-      return inputs.map(function(input) {
-        return '<li>' + suggestions[input.name] + '</li>';
-      });
-    };
-
-    var updateSuggestionList = function(inputs) {
-      document.getElementById('constraints-suggestions').innerHTML =
-        '<ul>' + suggestionList(inputs).join('') + '</ul>';
-    };
-
-    var uncheckIfFourth = function() {
-      if (selectedInputs().length > 3) { this.checked = false; }
-    };
-
-    var updateFields = function(){
-      selected = selectedInputs();
-      setResultsHTML(selected);
-      setInterpretationHTML(selected);
-      updateProblemList(selected);
-      updateSuggestionList(selected);
-    }
-
-    for (var i = 0; i < inputs.length; i++) {
-      input = inputs[i];
-      input.addEventListener('change', uncheckIfFourth, false);
-      input.addEventListener('change', updateFields, false);
-    }
-
-    document.addEventListener('DOMContentLoaded',function(){
-      updateFields();
-    });
-  })()
-</script>
-
 ]]></content>
   </entry>
   

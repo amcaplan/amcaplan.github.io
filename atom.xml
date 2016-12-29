@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-28T17:51:21+02:00</updated>
+  <updated>2016-12-29T18:17:31+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,165 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Diversify Your Learning]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
+    <updated>2016-12-29T14:13:00+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
+    <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
+of as part of my job.  Many enlightened companies specifically dedicate time
+during the workweek for exploration and side projects.  Companies pay for their
+employees to attend conferences, buy books, and sponsor subscriptions to online
+learning resources.</p>
+
+<p>There&rsquo;s a wealth of information I can access, and more is being created
+constantly than I could ever hope to consume.  Prioritization is key.  What
+should take precedence in my learning?  What will contribute most to my
+professional development as a programmer?</p>
+
+<p>There are many approaches, ranging from &ldquo;Follow your heart and specialize,&rdquo; all
+the way to &ldquo;Learn a bit of everything.&rdquo;  Some emphasize learning a full stack of
+technologies, others think you should just get really good with the tools you
+use every day.</p>
+
+<p>My approach falls somewhere in the middle, and I&rsquo;d like to share it with you.
+It starts with a bit of wisdom imparted over 1,600 years ago.</p>
+
+<!-- more -->
+
+
+<h3>The Jewish System of Learning: A Multi-Tiered Approach</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Talmud">The <em>Talmud</em></a> records a profound
+suggestion which bears a surprising degree of relevance to programming:</p>
+
+<blockquote><p>Rabbi Safra stated in the name of Rabbi Yehoshua ben Chananya&hellip; A man should
+divide his learning [literally &ldquo;years&rdquo;] into three: one-third <em>Mikra</em>,
+one-third <em>Mishnah</em>, one-third <em>Talmud</em>. (<em>Kiddushin</em> 30a)</p></blockquote>
+
+<p>Rabbi Safra describes a method of learning where one studies multiple degrees of
+abstraction simultaneously.</p>
+
+<ul>
+<li><p>At the highest level, one studies <em>Mikra</em>, the 24 books of the Bible.  These
+books are light on detail, but establish the ethics and certain core laws which
+form the foundation of Jewish life.</p></li>
+<li><p>One layer deeper, one studies <em>Mishnah</em>, the 60 tractates which extensively
+detail the multitude of laws governing every moment of private and public life
+for the committed Jew.</p></li>
+<li><p>At the lowest level of abstraction, one studies <em>Talmud</em>, the probing analyses
+and debates which provide the rationale for the concrete laws.  (This isn&rsquo;t to
+be confused with what is today called <em>Talmud</em>, which constitutes a canonized
+subset of the <em>Talmud</em> referred to by Rabbi Safra.  Naming things is hard.)  One
+cannot effectively function at this level of low-level details all the time; it
+would overload the mind.  But understanding the rationale for the laws helps in
+terms of understanding and handling edge cases, as well as situations that prior
+legal decisions have yet to address.</p></li>
+</ul>
+
+
+<h3>A Bit of Interpretation</h3>
+
+<p>In contrast to many other religions, Judaism is extremely concerned with
+practice.  Jews (at least Orthodox Jews, whose practice most closely mirrors the
+Talmud&rsquo;s vision of Judaism) don&rsquo;t generally describe the faithful as &ldquo;believers&rdquo;;
+instead, the usual term is &ldquo;observant,&rdquo; meaning they observe at least a major
+subset of mandated religious practices.</p>
+
+<p>With that sort of attitude, it&rsquo;s clearly <em>Mishnah</em> which describes how Jews
+engage with their religion on a daily basis.  For daily guidance, nothing could
+be more critical than the Law itself.</p>
+
+<p>So why not suffice with study of <em>Mishnah</em>?  Apparently Rabbi Safra saw great
+value in reaching up and down one layer of abstraction.  Reaching up, <em>Mikra</em>
+provides inspiration, motivation, and guiding principles.  Reaching down,
+<em>Talmud</em> provides a depth of understanding which gives its own form of meaning
+to practice.  Both are necessary in building a holistic religious personality.</p>
+
+<p>In programming, we tend to operate mainly at a single layer of abstraction.  As
+a result, when we think about learning, we often equate our own layer with the
+sum total of relevant knowledge, then learn more about it.  In doing so, we miss
+the opportunity to make ourselves more effective professionals, and to broaden
+ourselves as people.</p>
+
+<h3>Missing the Forest for the Trees</h3>
+
+<p>As programmers, we&rsquo;re called upon to solve human problems through technology.
+Often we focus so much on the technology that we forget our goal is to solve
+problems for real people.</p>
+
+<p>Rabbi Safra reminds us: Study <em>Mikra</em>.  Don&rsquo;t get bogged down in languages and
+frameworks without understanding why you write code in the first place.  Figure
+out what motivates people, and how to communicate more effectively.  Study how
+to design your products in a way that matches human intuition.  Don&rsquo;t simply
+hack on an app; build a whole product that actively meets the needs of your
+users and creates value for them.</p>
+
+<h3>Missing the Trees for the Forest</h3>
+
+<p>If you program in a high-level language (as I do), it&rsquo;s easy to forget about all
+the magic which has to happen on a lower level just to get started.  There&rsquo;s a
+whole beautiful world of hardware, machine language, operating systems, systems
+programming, and highly efficient algorithms.  Most of it won&rsquo;t matter in
+day-to-day programming.  But on the rare occasions when it does matter, this
+knowledge will allow you to provide enormous value to your team, or contribute
+meaningfully to the programming community through Open Source projects.  You
+might even submit a patch to your favorite high-level language!</p>
+
+<p>As Rabbi Safra instructs us: Study <em>Talmud</em>.  Don&rsquo;t take the tools you see at
+face value; tear them apart, learn how they work, and figure out what you can do
+to make them better.</p>
+
+<h3>Learning in Parallel</h3>
+
+<p>As a personal example, I&rsquo;m currently working through 3 different books at the
+same time:</p>
+
+<ul>
+<li>My current <em>Mikra</em> is <a href="https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654">The Design of Everyday Things</a>, which I&rsquo;m
+studying to understand how to design intuitive products and interfaces.</li>
+<li>My current <em>Mishnah</em> is the Martin Fowler classic
+<a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672">Refactoring: Improving the Design of Existing Code</a>, which details
+the process of refactoring as repeatable, easily communicable steps.  Better
+understanding refactoring will make me more effective in my daily coding.</li>
+<li>My current <em>Talmud</em> is <a href="https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686/ref=ed_oe_p">The Elements of Computing Systems: Building a Modern Computer from First Principles</a>,
+affectionately known as <a href="http://www.nand2tetris.org/">Nand2Tetris</a>.  Through the
+book and its accompanying projects, I&rsquo;m learning how computers are built from
+logic gates all the way up to high-level languages.</li>
+</ul>
+
+
+<p>Certainly, some people will do better learning one thing only at a time. YMMV.
+Personally, I&rsquo;ve found that having several tracks of study allows me to jump
+back and forth based on interest and energy, and I progress faster this way than
+if I had only one subject to study at a time.</p>
+
+<p>One significant outcome of study at all three levels has been a significant
+broadening of perspective.  I&rsquo;ve become less afraid of low-level programming or
+hardware concepts, and my ability to think about business value and UX has
+improved, all while building skills relevant to my primary daily work activities.</p>
+
+<h3>What About Specialization?</h3>
+
+<p>Learning isn&rsquo;t just about broadening our horizons.  It&rsquo;s also a tool in service
+of career progression.  Why not just specialize at one level, and get really
+good at doing one thing?</p>
+
+<p>I actually wouldn&rsquo;t discourage that at all.  Specialization is healthy, normal,
+and probably unavoidable.  There&rsquo;s just too much to know to really know
+everything!</p>
+
+<p>Still, having a window into the layers above and below your specialty will make
+you better at doing what you&rsquo;re actually paid to do.  No one is paid to think
+only at one level of abstraction; your job is to make your code work for the
+next level up through understanding the next level down.</p>
+
+<p>You don&rsquo;t have to learn everything.  You don&rsquo;t have time to learn everything.
+Just make sure to always be expanding your horizons both within and beyond your
+primary level of abstraction.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
@@ -2033,7 +2192,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x64;&#101;&#x76;&#x40;&#115;&#97;&#x77;&#x66;&#x74;&#119;&#101;&#97;&#x72;&#46;&#108;&#x79;&#x2e;">&#x64;&#101;&#x76;&#64;&#x73;&#97;&#119;&#102;&#116;&#x77;&#x65;&#97;&#x72;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#100;&#x65;&#118;&#x40;&#x73;&#97;&#x77;&#102;&#116;&#119;&#x65;&#x61;&#x72;&#46;&#108;&#121;&#x2e;">&#x64;&#x65;&#x76;&#64;&#x73;&#97;&#119;&#102;&#116;&#119;&#101;&#97;&#x72;&#46;&#108;&#121;&#46;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -3361,32 +3520,6 @@ rehash and expansion of the material delivered there.</em></p>
 
 <p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
 passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flag Your Features with Rollout and Degrade]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/"/>
-    <updated>2015-01-14T20:05:10+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade</id>
-    <content type="html"><![CDATA[<p>Check out the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>!  You can also read the
-<a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">three</a> <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">blog</a>
-<a href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">posts</a> I wrote about feature flags.</p>
-
-<script async class="speakerdeck-embed" data-id="de78df307d8c0132f67712a273297520" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<p>In light of James Golick&rsquo;s recent untimely passing, here&rsquo;s a brief overview of <a href="https://github.com/FetLife/rollout">rollout</a> and <a href="https://github.com/jamesgolick/degrade">degrade</a>, 2 gems which provide a simple interface for dynamic activation and deactivation of your app&rsquo;s features. We&rsquo;ll discuss why we might want to use feature flags and how to implement them using James&#8217; gems.</p>
-
-<p>Links:</p>
-
-<!-- more -->
-
-
-<p><a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20</a>
-<a href="https://news.ycombinator.com/item?id=8804624">https://news.ycombinator.com/item?id=8804624</a>
-<a href="https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920">https://medium.com/@benkaufman/remembering-james-golick-23c1dc3ab920</a>
-<a href="https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6">https://medium.com/@jill380/the-adventurous-life-of-james-golick-bda4a33137b6</a></p>
 ]]></content>
   </entry>
   

@@ -9,9 +9,8 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Note: Part III assumes familiarity with the idea of feature flags, and their
-practical implementation using the rollout gem. For the
-theoretical &hellip;">
+  <meta name="description" content="So I built this thing&hellip; The Challenge Here&rsquo;s the problem we were having at work. We have a bunch of microservices
+which communicate with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +73,58 @@ theoretical &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/21/the-making-of-persistentopenstruct/">The Making of PersistentOpenStruct</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-05-21T03:39:23+03:00" pubdate data-updated="true">May 21<span>st</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So I built this thing&hellip;</p>
+
+<h2>The Challenge</h2>
+
+<p>Here&rsquo;s the problem we were having at work.  We have a bunch of microservices
+which communicate with each other via HTTP.  Since they&rsquo;re passing around raw
+data, and the shape often changes, we decided quite some time ago to use classes
+inheriting from <code>OpenStruct</code>, that magical schema-free class, as a data container.</p>
+
+<p>The problem is, <code>OpenStruct</code> is also ridiculously slow&hellip;</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/05/21/the-making-of-persistentopenstruct/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -532,128 +583,6 @@ the way.</p>
         </article>
     
   
-    
-      
-        <article>
-          
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/05/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-05T02:32:48+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Let&rsquo;s say you have Player and BasketballTeam classes that are defined and used as follows:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Player</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:number</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
-</span><span class='line'>    <span class="vi">@number</span> <span class="o">=</span> <span class="n">number</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">BasketballTeam</span>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:player1</span><span class="p">,</span> <span class="ss">:player2</span><span class="p">,</span> <span class="ss">:player3</span><span class="p">,</span> <span class="ss">:player4</span><span class="p">,</span> <span class="ss">:player5</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">,</span> <span class="n">player3</span><span class="p">,</span> <span class="n">player4</span><span class="p">,</span> <span class="n">player5</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@player1</span> <span class="o">=</span> <span class="n">player1</span>
-</span><span class='line'>    <span class="vi">@player2</span> <span class="o">=</span> <span class="n">player2</span>
-</span><span class='line'>    <span class="vi">@player3</span> <span class="o">=</span> <span class="n">player3</span>
-</span><span class='line'>    <span class="vi">@player4</span> <span class="o">=</span> <span class="n">player4</span>
-</span><span class='line'>    <span class="vi">@player5</span> <span class="o">=</span> <span class="n">player5</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">starting_lineup</span>
-</span><span class='line'>    <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Ladies and Gentlemen, here is the starting lineup!</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>    <span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">player</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;player</span><span class="si">#{</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">#</span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">str</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">team</span> <span class="o">=</span> <span class="no">BasketballTeam</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Magic Johnson&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Michael Jordan&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
-</span><span class='line'>  <span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Larry Bird&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Charles Barkley&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span><span class="no">Player</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Patrick Ewing&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">puts</span> <span class="n">team</span><span class="o">.</span><span class="n">starting_lineup</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this case, since there are always exactly 5 players, I don&rsquo;t want to pull out an array every time and write <code>team.players[0]</code>, and instead I&rsquo;ve chosen to use 5 similarly named instance variables, so I can do <code>team.player1</code>.  This looks nice, but also isn&rsquo;t ideal.  If I want to access player n, this starts to get ugly: <code>team.send("player#{n}")</code>.</p>
-
-<p>Well, here&rsquo;s the good news&colon; as usual, Ruby has a better way for you to do it.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/05/struct-rubys-quickie-class/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-    
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -707,6 +636,12 @@ the way.</p>
     
       
         <li class="post">
+          <a href="/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+        </li>
+      
+    
+      
+        <li class="post">
           <a href="/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a>
         </li>
       
@@ -729,8 +664,6 @@ the way.</p>
         </li>
       
     
-      
-    
   </ul>
 </section>
 
@@ -746,10 +679,6 @@ the way.</p>
     
       
     
-      
-        <li class="post">
-          <a href="/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/">Building a Better OpenStruct - RubyConf 2016</a>
-        </li>
       
     
   </ul>
