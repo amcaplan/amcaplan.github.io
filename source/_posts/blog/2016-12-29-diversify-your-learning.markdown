@@ -157,6 +157,8 @@ You don't have to learn everything.  You don't have time to learn everything.
 Just make sure to always be expanding your horizons both within and beyond your
 primary level of abstraction.
 
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+
 [Design book]: https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654
 [Refactoring]: https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672
 [nand2tetris]: https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686/ref=ed_oe_p

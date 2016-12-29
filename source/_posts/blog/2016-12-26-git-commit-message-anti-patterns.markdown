@@ -197,7 +197,9 @@ the basics of which code additions and changes are interrelated.
 I will close with one thought: Whatever your decisions, you only get one
 chance<sup>1</sup> to write history. Make it count.
 
-<hr />
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+
+---
 
 <sup>1</sup>With Git, technically you can rewrite history whenever you want, but of
 course practically it doesn't happen past a few commits.

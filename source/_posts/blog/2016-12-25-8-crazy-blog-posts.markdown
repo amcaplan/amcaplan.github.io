@@ -83,6 +83,15 @@ If you're first visiting the blog, I do have an [About Page][About Page].  I
 have lots of [thoughts about stuff][Posts Page], and occasionally
 [speak at meetups and conferences][Talks Page].  You know, programmer stuff?
 
+---
+
+***Update!!! These are the posts I've written as part of this challenge:***
+
+* ***[Git Commit Message Anti-Patterns](../../26/git-commit-message-anti-patterns/)***
+* ***[Automating Empathy: Test Your Documentation With Swagger and Apivore](../../27/automating-empathy-test-your-documentation-with-swagger-and-apivore/)***
+* ***[This Is Your Brain on Ruby](../../28/this-is-your-brain-on-ruby/)***
+* ***[Diversify Your Learning](../../29/diversify-your-learning/)***
+
 [About Page]: /about/
 [Posts Page]: /archives/
 [Talks Page]: /talks/
