@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-29T18:17:31+02:00</updated>
+  <updated>2016-12-29T18:36:43+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -169,6 +169,8 @@ next level up through understanding the next level down.</p>
 <p>You don&rsquo;t have to learn everything.  You don&rsquo;t have time to learn everything.
 Just make sure to always be expanding your horizons both within and beyond your
 primary level of abstraction.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -418,6 +420,8 @@ tweak it, and finally see it working!</p>
 sharing that experience and seeing what&rsquo;s under the hood.  Please let me know in
 the comments if you learned something from what I shared; I certainly hope you
 did.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -823,6 +827,8 @@ features and then expose them to the user; instead, we start with the allowed
 requests, then build the implementation beneath the surface.  Starting the
 development process from the user&rsquo;s vantage point leads to cleaner APIs, a
 better user experience, and ultimately happier customers.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -1019,8 +1025,9 @@ the basics of which code additions and changes are interrelated.</p>
 <p>I will close with one thought: Whatever your decisions, you only get one
 chance<sup>1</sup> to write history. Make it count.</p>
 
-<hr />
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 
+<hr />
 
 <p><sup>1</sup>With Git, technically you can rewrite history whenever you want, but of
 course practically it doesn&rsquo;t happen past a few commits.</p>
@@ -1106,6 +1113,18 @@ schedule but basically functions as 8 regular days.</p>
 <p>If you&rsquo;re first visiting the blog, I do have an <a href="/about/">About Page</a>.  I
 have lots of <a href="/archives/">thoughts about stuff</a>, and occasionally
 <a href="/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
+
+<hr />
+
+<p><strong><em>Update!!! These are the posts I&rsquo;ve written as part of this challenge:</em></strong></p>
+
+<ul>
+<li><strong><em><a href="../../26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a></em></strong></li>
+<li><strong><em><a href="../../27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a></em></strong></li>
+<li><strong><em><a href="../../28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a></em></strong></li>
+<li><strong><em><a href="../../29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
+</ul>
+
 ]]></content>
   </entry>
   
