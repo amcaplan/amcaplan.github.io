@@ -7,7 +7,8 @@ categories:
 - blog
 twitter:
   description: Great programmers never stop learning. But there's so much to
-    learn! How do you decide where to focus?
+    learn! How do you decide where to focus? An ancient teaching may hold the
+    answer.
 ---
 
 As a programmer, I'm privileged to be part of a field where learning is thought
