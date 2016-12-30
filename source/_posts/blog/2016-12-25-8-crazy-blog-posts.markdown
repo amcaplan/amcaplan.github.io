@@ -87,10 +87,10 @@ have lots of [thoughts about stuff][Posts Page], and occasionally
 
 ***Update!!! These are the posts I've written as part of this challenge:***
 
-* ***[Git Commit Message Anti-Patterns](../../26/git-commit-message-anti-patterns/)***
-* ***[Automating Empathy: Test Your Documentation With Swagger and Apivore](../../27/automating-empathy-test-your-documentation-with-swagger-and-apivore/)***
-* ***[This Is Your Brain on Ruby](../../28/this-is-your-brain-on-ruby/)***
-* ***[Diversify Your Learning](../../29/diversify-your-learning/)***
+* ***[Git Commit Message Anti-Patterns](/blog/2016/12/26/git-commit-message-anti-patterns/)***
+* ***[Automating Empathy: Test Your Documentation With Swagger and Apivore](/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/)***
+* ***[This Is Your Brain on Ruby](/blog/2016/12/28/this-is-your-brain-on-ruby/)***
+* ***[Diversify Your Learning](/blog/2016/12/29/diversify-your-learning/)***
 
 [About Page]: /about/
 [Posts Page]: /archives/
