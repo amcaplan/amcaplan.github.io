@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-29T18:39:38+02:00</updated>
+  <updated>2016-12-30T12:10:58+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,338 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
+    <updated>2016-12-30T12:53:38+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
+    <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
+serious programmer:</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">for each desired change, make the change easy (warning: this may be hard), then make the easy change</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/250733358307500032">September 25, 2012</a></blockquote>
+
+
+<p>The immediate context of the quote is changing code.  But truth be told, it
+actually applies to a whole host of problems on multiple levels.  It can help us
+fundamentally alter our practices, our teams, and all elements of the quality of
+our software.</p>
+
+<p>Let&rsquo;s understand how and why.</p>
+
+<!-- more -->
+
+
+<h3>The Chemistry of Change</h3>
+
+<p>Let&rsquo;s begin with a metaphor from the world of chemistry.  Any chemical reaction
+is bound by activation energy, the minimum amount of energy which must be
+available in the environment for it to proceed.  Even if the result is a
+lower-energy, higher-entropy configuration (a fancy way to say the universe will
+be happier after the reaction), the activation barrier must be surmounted in
+order for the reaction to proceed.</p>
+
+<p>A catalyst is nothing more or less than an entity which lowers the activation
+barrier.  Here&rsquo;s a diagram of how a catalyst works:</p>
+
+<p><img src="/images/activation_energy.svg" alt="Activation energy" /></p>
+
+<p>The right side represents the higher-energy (i.e., not preferred) state, while
+the left side is the lower-energy (stabler) state.  To cross from one to the
+other, there must be enough energy available to cross the peak in the center.  A
+catalyst lowers the activation barrier such that we only need enough energy to
+conquer the smaller, red-dotted peak.</p>
+
+<p>Also note that the activation barrier looks different from the two sides.  From
+the right side, it&rsquo;s decently high, unless a catalyst is present.  From the
+left, stabler side, it&rsquo;s really tall even with the catalyst there.  This is why
+the form on the left side is likely to stick around.</p>
+
+<p>Now let&rsquo;s apply all this to programming practices.  The right represents a bad,
+or less-than-optimal practice, you currently employ.  The left represents a
+better way of doing things.  It&rsquo;s stabler &ndash; it will yield better software that
+will make you happier.</p>
+
+<p>If you want to transition from the worse practice to the better one, you have 2
+issues to consider:</p>
+
+<ol>
+<li>What&rsquo;s the barrier to adopting the new practice?</li>
+<li>How much value does the new practice provide?</li>
+</ol>
+
+
+<p>By lowering the barrier, and maximizing the value—or lowering the cost—of a good
+practice, you&rsquo;ll help yourself and others adopt the right practice and stick
+with it.  Let&rsquo;s give some examples of how this works on a number of levels.</p>
+
+<h3>Bash Shortcuts for Better Git Usage</h3>
+
+<p>Whatever shell you use, you get a configuration file with the opportunity to
+define aliases and functions.  Rather than giving general principles, I&rsquo;ll point
+to a few concrete things I&rsquo;ve done to encourage myself to do the right thing.</p>
+
+<p>Sometimes a simple alias is enough.  One of my favorite aliases is</p>
+
+<p><code>sh
+alias gc="git commit -v"
+</code></p>
+
+<p>Short and sweet.  Instead of typing out <code>git commit</code>, I just type 2 characters
+and I&rsquo;m ready to go.  But that comes with a distinct advantage.  The <code>-v</code> flag
+shows a diff of the commit, so I have all the changes fresh in my mind as I
+write a commit message, and end up writing a clearer message.  Sometimes I&rsquo;ll
+see the diff and rethink my decision to commit the current set of changes; it&rsquo;s
+a chance to give one last audit to the commit contents themselves.</p>
+
+<p>Here&rsquo;s another great git alias:</p>
+
+<p><code>sh
+alias gap="git add -p"
+</code></p>
+
+<p>Instead of adding whole files, you can use <code>-p</code> to visually inspect every change
+and only include changes to certain lines in one commit, saving other changes
+for later.  By aliasing the <code>-p</code> version of <code>git add</code>, I&rsquo;ve made the <code>-p</code> option
+more attractive than typing out <code>git add filename</code>, or even worse, <code>git add .</code>.
+I have caught a significant number of mistakes (often leaving in a <code>binding.pry</code>
+call!) this way.</p>
+
+<p>Here&rsquo;s another.  Ever been tempted to <code>git push --force</code>?  OK, that was a funny
+joke.  Not only have you been tempted, you&rsquo;ve probably done it in the past hour,
+despite knowing it&rsquo;s fraught with danger.</p>
+
+<p>There&rsquo;s a better way, though: <code>--force-with-lease</code>.  It works like <code>--force</code>,
+but backs out if your changes would overwrite someone else&rsquo;s changes.  Once
+<code>--force-with-lease</code> exists, there&rsquo;s not usually a good reason to <code>push --force</code>
+except for the fact that it&rsquo;s so much less typing.</p>
+
+<p>Problem solved!</p>
+
+<p><code>sh
+alias gpf="git push --force-with-lease"
+</code></p>
+
+<p>Bash shortcuts lower the activation energy by reducing the friction involved in
+remembering and adding particular flags and options.  They also make the better
+practice stabler by lowering the long-term cost of sticking with it.</p>
+
+<h3>Bash Shortcuts for Healthier Development Practices</h3>
+
+<p>One line I&rsquo;ll frequently write into my terminal won&rsquo;t make any sense to you:</p>
+
+<p><code>sh
+gup &amp;&amp; safely prom
+</code></p>
+
+<p>This line will update a branch with the most current version of the <code>master</code>
+branch on GitHub, run a build locally, and if everything still goes green,
+initiate a pull request.</p>
+
+<p><code>gup</code> is (in my brain) short for &ldquo;git update&rdquo;, and is aliased to:</p>
+
+<p><code>sh
+git fetch origin master:master &amp;&amp; git rebase master
+</code></p>
+
+<p>That pulls the latest <code>master</code> from GitHub into my local <code>master</code> branch, then
+rebases the current branch off of master.  The goal is to ensure that I don&rsquo;t
+submit a pull request before making sure I&rsquo;m working with the most updated
+version of the code, in case recent changes conflict with something I changed.</p>
+
+<p>Next is <code>safely</code>.  This is a quick'n'dirty shell function:</p>
+
+<p><code>sh
+function safely() {
+  drspec &amp;&amp; cop &amp;&amp; "$@"
+}
+</code></p>
+
+<p>Hmmm, those don&rsquo;t really make sense either, because they also break down into
+shortcuts:</p>
+
+<p>```sh
+function drspec() {
+  docker-compose run web bundle exec rspec &ldquo;$@&rdquo;
+}</p>
+
+<p>alias cop=&ldquo;docker-compose run web bundle exec rubocop &mdash;rails &mdash;fail-level autocorrect&rdquo;
+```</p>
+
+<p>Let&rsquo;s take it from the top.  We run our apps as sets of containers, which need
+to be run with <code>docker-compose</code>.  We run the <code>web</code> container to run our tests,
+and the actual command is <code>bundle exec rspec</code> followed by whatever arguments we
+passed <code>drspec</code>.  (<code>"$@"</code> just passes on the arguments passed to our function.
+So if we ran <code>drspec spec/models/user_spec.rb --fail-fast</code>, that would equate to
+<code>docker-compose run web bundle exec rspec spec/models/user_spec.rb --fail-fast</code>.)</p>
+
+<p>Next is <code>cop</code>, which launches a container to run Rubocop with a bunch of options.</p>
+
+<p>Going up a level, <code>safely</code> just runs those 2, then executes whatever you passed
+it, short-circuiting if any of the checks fail (hence the name <code>safely</code>).
+Finally, we have <code>prom</code>:</p>
+
+<p>```sh
+function pro() {
+  pr_url=$(hub pull-request -b $1)
+  if [[ $? == 0 ]]; then</p>
+
+<pre><code>open $pr_url
+</code></pre>
+
+<p>  fi
+}</p>
+
+<p>function prom() { pro master; }
+```</p>
+
+<p><code>prom</code> uses <a href="https://hub.github.com">GitHub&rsquo;s <code>hub</code> tool</a> to open a pull request
+against the <code>master</code> branch.</p>
+
+<p>Ultimately, here&rsquo;s what I wrote:</p>
+
+<p><code>sh
+gup &amp;&amp; safely prom
+</code></p>
+
+<p>And here&rsquo;s what happened:</p>
+
+<p>```sh
+git fetch origin master:master &amp;&amp; git rebase master &amp;&amp; \
+  docker-compose run web bundle exec rspec &amp;&amp; \
+  docker-compose run web bundle exec rubocop &mdash;rails &mdash;fail-level autocorrect &amp;&amp; \
+  hub pull-request -b master</p>
+
+<h1>After this I&rsquo;d have to highlight the output from hub, open the browser, and</h1>
+
+<h1>paste the URL, to check everything worked. The bash function does that for me.</h1>
+
+<p>```</p>
+
+<p>No way am I going to type all that every time!  It&rsquo;s sorely tempting to just
+open a pull request and hope for the best, but that wastes CI resources, and if
+I broke something badly, I just wasted other people&rsquo;s time.  By setting up a few
+bash shortcuts, I make it easy to set the process in motion, go off and do
+something else, and come back in a few minutes to make sure it completed
+properly.</p>
+
+<p>It&rsquo;s also worth noting that <code>drspec</code> is pretty valuable on its own.  It&rsquo;s not so
+much for the time saved, but more because if testing requires a lot of typing,
+it may not happen nearly as frequently as it should.  Some use <code>guard</code> to solve
+this problem by running tests automatically without typing at all.</p>
+
+<h3>Making Things Faster</h3>
+
+<p>If you ask people why they don&rsquo;t run their tests more frequently, 9 times out of
+10 they&rsquo;ll say it&rsquo;s because it takes too long.  They want to run their tests
+more regularly throughout the development process, but the overhead of a single
+run is too much of a break in development to apparently justify the time sink.</p>
+
+<p>Many things work the same way.  We want to change our ways, but the cost of
+doing things the better way is too high.  We can often lower the cost by making
+things faster.  This isn&rsquo;t the place to talk about speeding up tests (that&rsquo;s
+worth a post in itself), but I&rsquo;ll give a simpler example.</p>
+
+<p>As mentioned previously, I work with a containerized app.  We use
+<code>bundle package</code> to package the gems in the Gemfile into the app directory, then
+copy them over to the container image amongst everything else in the Rails root.
+This means that any gem updates require rebuilding the container image.
+Building the image used to take about 10 minutes, certainly enough time to
+totally distract you from whatever you were doing.  This, in turn, meant we were
+unlikely to upgrade gems as we go, because the subsequent container rebuild was
+a time-consuming process.</p>
+
+<p>I recently dug in to figure out what was taking so long.  It turns out that we
+copy every file and then change the ownership from the root user to the
+application&rsquo;s user.  Copying followed by <code>chown</code>ing was taking the vast majority
+of time.  I discovered that not only were we copying app code, we also copied
+over every file in the <code>.git</code> directory!  Since git produces a lot of files, we
+had an ever-increasing amount of <code>chown</code>ing to do.  I learned that I can exclude
+<code>.git</code> from the copy operation using a <code>.dockerignore</code> file, and that brought
+down build time from 10 minutes to 3.</p>
+
+<p>3 minutes is still a lot of time, but it&rsquo;s low enough that upgrading gems is
+less of a hassle.  And lowering that activation barrier means we&rsquo;re more likely
+to keep our gems current.</p>
+
+<h3>Opening Up the Option</h3>
+
+<p>As I stated in the intro, there are many types of problem you can solve by
+thinking about activation barriers.  Here&rsquo;s an example of solving a people
+problem in this way.</p>
+
+<p>On my team, we believe strongly in the value of pair programming, but we often
+have a difficult time actually making it happen.  We&rsquo;re a distributed team with
+a chat-heavy culture, and even when pairing seems to be a good idea, it often
+fails to materialize.</p>
+
+<p>Recently we made some changes to the way we work, and I pushed hard to have a
+daily standup on video chat.  One major motivation was to open up the option of
+pairing.  If we already see each other face to face, there&rsquo;s a much lower
+activation barrier to saying, &ldquo;Hey, this is a difficult task.  Can you help me
+out with it?&rdquo;  Or perhaps more importantly, &ldquo;Oh, I didn&rsquo;t know you were working
+on that.  Maybe I can pair with you on it?  I want to learn more.&rdquo;</p>
+
+<p>Another example of this type of thinking is having regular retrospectives.
+Everyone wants to improve the team, but feedback loops don&rsquo;t tend to open
+themselves up.  It&rsquo;s critical to create opportunities for team members to give
+feedback without having to demand to be heard.  (The same applies to 1-on-1
+employee-manager meetings, too.)  To lower the barrier even more, you can take
+steps to make sure people feel safe giving honest feedback, such as using a tool
+that anonymizes the identity of the person giving feedback.</p>
+
+<h3>Temporary Constraints</h3>
+
+<p>I&rsquo;m not going to talk about this too much, since I already developed this idea
+at length in <a href="/blog/2016/01/04/choose-your-constraints/">another post</a>.  You can
+constrain yourself to follow certain practices, train yourself to become more
+comfortable with them, and in the long run adopt the practices happily.  Here,
+rather than focusing on the activation barrier, you accept that it will be
+difficult to change.  But the commitment means you increase the value and
+decrease the cost such that it&rsquo;s eventually more difficult to go back.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Your current constraints ultimately train you to operate effectively within precisely those constraints. Choose your constraints wisely.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030185106907136">November 27, 2015</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en" data-conversation="none"><p lang="en" dir="ltr">Always make time for testing, pairing, knowledge sharing, and learning. Eventually they will happen automatically without special effort.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031382144528385">November 27, 2015</a></blockquote>
+
+
+<p>Some of the best practices actually cost very little, once you become
+comfortable with them.  When it comes to TDD, for example, I struggled a lot at
+the beginning, but now I develop more quickly in a TDD workflow than when I try
+to test afterwards.  It took practice and discipline to get here, but at this
+point I&rsquo;d have to work hard to go back, and that&rsquo;s exactly the point.</p>
+
+<p>Figure out what major change you want to make to your practices, and commit to
+it wholeheartedly.  Think about how to adopt the practice with the least
+possible disturbance to your workflow, and reevaluate as you go.  Eventually you
+should find that your standard workflow has come to encompass this practice, at
+little to no extra cost.</p>
+
+<h3>If You Make the Change Easy, They Will Come</h3>
+
+<p>Any self-aware programmer or team tries to be conscious of its shortcomings and
+work on improving them.  Often we make a mistake in trying just to push
+ourselves to do better.  Instead, we might be better off focusing on lowering
+barriers to improvement.  If it&rsquo;s just as easy to do the right thing, we&rsquo;ll find
+ourselves doing it more and more, and improvement will happen without adding
+unnecessary stress.</p>
+
+<p>We are often encouraged to be catalysts for change.  It&rsquo;s worth remembering what
+a catalyst is.  A catalyst doesn&rsquo;t push or prod or apply pressure.  Instead, it
+lowers a barrier and enables change to happen.</p>
+
+<p>The same is true for changing our teams.  You can&rsquo;t force others to do things
+your way.  But you can serve as a catalyst, removing obstacles while helping
+them to understand the value your suggested change will provide.  If the change
+is legitimately valuable and the team is open-minded, usually they&rsquo;ll come
+around.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
@@ -1031,100 +1363,6 @@ chance<sup>1</sup> to write history. Make it count.</p>
 
 <p><sup>1</sup>With Git, technically you can rewrite history whenever you want, but of
 course practically it doesn&rsquo;t happen past a few commits.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
-    <updated>2016-12-25T16:01:56+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
-    <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
-
-<p>I&rsquo;m certainly proud of (most of) the content.  It&rsquo;s shown significant
-development in complexity and depth since I started.  But I have a lot of ideas
-running around my head all the time, some of them even good ideas, and I&rsquo;d like
-the blog to reflect more of them.</p>
-
-<p>So I&rsquo;ve decided to give myself a Chanukah gift: I&rsquo;m requiring myself to make
-every effort to come up with one blog post every day of Chanukah.</p>
-
-<p>This probably makes you wonder a few things.</p>
-
-<!-- more -->
-
-
-<h3>What?</h3>
-
-<p>It&rsquo;s really simple.  I want to make my blog better, and I think it&rsquo;ll be better
-if I&rsquo;m more inclined to post things when I have ideas which are useful to
-others.  I&rsquo;ve gotten out of the habit of blogging, with the result that lots of
-smaller, useful-tech-tips type blog posts, and some larger thinkpiece posts,
-just never happened.  That means people Googling to find a solution to their
-problem might not find what they&rsquo;re looking for, and I&rsquo;ve lost the amazing
-conversations and learning that come from publishing thinkpieces.</p>
-
-<p>Also, I really like writing.</p>
-
-<p>To change my habits, I&rsquo;m going to try to publish 8 posts in 8 days.  That&rsquo;s a
-big deal for me; it&rsquo;ll add 50% to my current total of posts.  But desperate
-times call for desperate measures.</p>
-
-<h3>When?</h3>
-
-<p>The 25th of Kislev through the 3rd of Tevet, which this year happens to coincide
-with December 25th through January 1st.  Those dates aren&rsquo;t related in any
-significant way; in 2013, for example, the first Day of Chanukah coincided with
-American Thanksgiving.</p>
-
-<p>As I&rsquo;ll clarify below, Chanukah wasn&rsquo;t chosen for any religious reason; it&rsquo;s
-just a convenient (for me) cluster of 8 days to focus a rather ambitious goal!</p>
-
-<h3>How?</h3>
-
-<p>Honestly, I&rsquo;m not quite sure.  I&rsquo;m cheating by counting this as one post, and I
-have one high-quality post already written up.  I also have an idea for a third.
-Beyond that, I&rsquo;ll have to get creative!</p>
-
-<h3>Why?</h3>
-
-<p>Now&rsquo;s when I&rsquo;m supposed to offer some platitude about &ldquo;This is my Chanukah gift
-to you,&rdquo; or &ldquo;You can think of it as a Christmas present,&rdquo; or whatever.  But I
-don&rsquo;t feel comfortable with just about anything explicitly interfaith, and I
-don&rsquo;t think I need a religious (or pseudo-religious) reason to do something
-valuable.  Also I don&rsquo;t believe in Chanukah presents, coming from a family that
-eschewed the practice since TBQH it seems pretty Christian.  So basically, no
-presents.  Deal.</p>
-
-<p>To be perfectly honest, this is an experiment to see whether I can get my
-creative juices flowing.  I happen to have a little extra time now, between days
-off and the fact that people seem to disappear for well-deserved vacation around
-this time of year so essentially nothing work-related gets done.</p>
-
-<p>In other words, it&rsquo;s the best time of year to engage in an experiment that takes
-a lot of time, for someone like myself who isn&rsquo;t celebrating anything in
-particular, unless you count Chanukah, which adds maybe 20 minutes to my daily
-schedule but basically functions as 8 regular days.</p>
-
-<p>It should be fun.  There&rsquo;s some good stuff down the pipeline!</p>
-
-<h3>Who are you exactly?</h3>
-
-<p>If you&rsquo;re first visiting the blog, I do have an <a href="/about/">About Page</a>.  I
-have lots of <a href="/archives/">thoughts about stuff</a>, and occasionally
-<a href="/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
-
-<hr />
-
-<p><strong><em>Update!!! These are the posts I&rsquo;ve written as part of this challenge:</em></strong></p>
-
-<ul>
-<li><strong><em><a href="../../26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a></em></strong></li>
-<li><strong><em><a href="../../27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a></em></strong></li>
-<li><strong><em><a href="../../28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a></em></strong></li>
-<li><strong><em><a href="../../29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
-</ul>
-
 ]]></content>
   </entry>
   

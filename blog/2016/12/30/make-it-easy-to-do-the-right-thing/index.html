@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Make It Easy to Do the Right Thing - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
+serious programmer: for each desired change, make the change easy ( &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Make It Easy to Do the Right Thing" />
+    
+    <meta name="twitter:description" content="There's one small trick that makes it far easier to act the way you should:
+Reduce the cost of doing it right.
+" />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+  
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Make It Easy to Do the Right Thing</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-30T12:53:38+02:00" pubdate data-updated="true">Dec 30<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
+serious programmer:</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">for each desired change, make the change easy (warning: this may be hard), then make the easy change</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/250733358307500032">September 25, 2012</a></blockquote>
+
+
+<p>The immediate context of the quote is changing code.  But truth be told, it
+actually applies to a whole host of problems on multiple levels.  It can help us
+fundamentally alter our practices, our teams, and all elements of the quality of
+our software.</p>
+
+<p>Let&rsquo;s understand how and why.</p>
+
+<!-- more -->
+
+
+<h3>The Chemistry of Change</h3>
+
+<p>Let&rsquo;s begin with a metaphor from the world of chemistry.  Any chemical reaction
+is bound by activation energy, the minimum amount of energy which must be
+available in the environment for it to proceed.  Even if the result is a
+lower-energy, higher-entropy configuration (a fancy way to say the universe will
+be happier after the reaction), the activation barrier must be surmounted in
+order for the reaction to proceed.</p>
+
+<p>A catalyst is nothing more or less than an entity which lowers the activation
+barrier.  Here&rsquo;s a diagram of how a catalyst works:</p>
+
+<p><img src="/images/activation_energy.svg" alt="Activation energy" /></p>
+
+<p>The right side represents the higher-energy (i.e., not preferred) state, while
+the left side is the lower-energy (stabler) state.  To cross from one to the
+other, there must be enough energy available to cross the peak in the center.  A
+catalyst lowers the activation barrier such that we only need enough energy to
+conquer the smaller, red-dotted peak.</p>
+
+<p>Also note that the activation barrier looks different from the two sides.  From
+the right side, it&rsquo;s decently high, unless a catalyst is present.  From the
+left, stabler side, it&rsquo;s really tall even with the catalyst there.  This is why
+the form on the left side is likely to stick around.</p>
+
+<p>Now let&rsquo;s apply all this to programming practices.  The right represents a bad,
+or less-than-optimal practice, you currently employ.  The left represents a
+better way of doing things.  It&rsquo;s stabler &ndash; it will yield better software that
+will make you happier.</p>
+
+<p>If you want to transition from the worse practice to the better one, you have 2
+issues to consider:</p>
+
+<ol>
+<li>What&rsquo;s the barrier to adopting the new practice?</li>
+<li>How much value does the new practice provide?</li>
+</ol>
+
+
+<p>By lowering the barrier, and maximizing the value—or lowering the cost—of a good
+practice, you&rsquo;ll help yourself and others adopt the right practice and stick
+with it.  Let&rsquo;s give some examples of how this works on a number of levels.</p>
+
+<h3>Bash Shortcuts for Better Git Usage</h3>
+
+<p>Whatever shell you use, you get a configuration file with the opportunity to
+define aliases and functions.  Rather than giving general principles, I&rsquo;ll point
+to a few concrete things I&rsquo;ve done to encourage myself to do the right thing.</p>
+
+<p>Sometimes a simple alias is enough.  One of my favorite aliases is</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">gc</span><span class="o">=</span><span class="s2">&quot;git commit -v&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Short and sweet.  Instead of typing out <code>git commit</code>, I just type 2 characters
+and I&rsquo;m ready to go.  But that comes with a distinct advantage.  The <code>-v</code> flag
+shows a diff of the commit, so I have all the changes fresh in my mind as I
+write a commit message, and end up writing a clearer message.  Sometimes I&rsquo;ll
+see the diff and rethink my decision to commit the current set of changes; it&rsquo;s
+a chance to give one last audit to the commit contents themselves.</p>
+
+<p>Here&rsquo;s another great git alias:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">gap</span><span class="o">=</span><span class="s2">&quot;git add -p&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Instead of adding whole files, you can use <code>-p</code> to visually inspect every change
+and only include changes to certain lines in one commit, saving other changes
+for later.  By aliasing the <code>-p</code> version of <code>git add</code>, I&rsquo;ve made the <code>-p</code> option
+more attractive than typing out <code>git add filename</code>, or even worse, <code>git add .</code>.
+I have caught a significant number of mistakes (often leaving in a <code>binding.pry</code>
+call!) this way.</p>
+
+<p>Here&rsquo;s another.  Ever been tempted to <code>git push --force</code>?  OK, that was a funny
+joke.  Not only have you been tempted, you&rsquo;ve probably done it in the past hour,
+despite knowing it&rsquo;s fraught with danger.</p>
+
+<p>There&rsquo;s a better way, though: <code>--force-with-lease</code>.  It works like <code>--force</code>,
+but backs out if your changes would overwrite someone else&rsquo;s changes.  Once
+<code>--force-with-lease</code> exists, there&rsquo;s not usually a good reason to <code>push --force</code>
+except for the fact that it&rsquo;s so much less typing.</p>
+
+<p>Problem solved!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">gpf</span><span class="o">=</span><span class="s2">&quot;git push --force-with-lease&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bash shortcuts lower the activation energy by reducing the friction involved in
+remembering and adding particular flags and options.  They also make the better
+practice stabler by lowering the long-term cost of sticking with it.</p>
+
+<h3>Bash Shortcuts for Healthier Development Practices</h3>
+
+<p>One line I&rsquo;ll frequently write into my terminal won&rsquo;t make any sense to you:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gup <span class="o">&amp;&amp;</span> safely prom
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This line will update a branch with the most current version of the <code>master</code>
+branch on GitHub, run a build locally, and if everything still goes green,
+initiate a pull request.</p>
+
+<p><code>gup</code> is (in my brain) short for &ldquo;git update&rdquo;, and is aliased to:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git fetch origin master:master <span class="o">&amp;&amp;</span> git rebase master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That pulls the latest <code>master</code> from GitHub into my local <code>master</code> branch, then
+rebases the current branch off of master.  The goal is to ensure that I don&rsquo;t
+submit a pull request before making sure I&rsquo;m working with the most updated
+version of the code, in case recent changes conflict with something I changed.</p>
+
+<p>Next is <code>safely</code>.  This is a quick&#8217;n&#8217;dirty shell function:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">function </span>safely<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  drspec <span class="o">&amp;&amp;</span> cop <span class="o">&amp;&amp;</span> <span class="s2">&quot;$@&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hmmm, those don&rsquo;t really make sense either, because they also break down into
+shortcuts:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">function </span>drspec<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  docker-compose run web bundle <span class="nb">exec </span>rspec <span class="s2">&quot;$@&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cop</span><span class="o">=</span><span class="s2">&quot;docker-compose run web bundle exec rubocop --rails --fail-level autocorrect&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s take it from the top.  We run our apps as sets of containers, which need
+to be run with <code>docker-compose</code>.  We run the <code>web</code> container to run our tests,
+and the actual command is <code>bundle exec rspec</code> followed by whatever arguments we
+passed <code>drspec</code>.  (<code>"$@"</code> just passes on the arguments passed to our function.
+So if we ran <code>drspec spec/models/user_spec.rb --fail-fast</code>, that would equate to
+<code>docker-compose run web bundle exec rspec spec/models/user_spec.rb --fail-fast</code>.)</p>
+
+<p>Next is <code>cop</code>, which launches a container to run Rubocop with a bunch of options.</p>
+
+<p>Going up a level, <code>safely</code> just runs those 2, then executes whatever you passed
+it, short-circuiting if any of the checks fail (hence the name <code>safely</code>).
+Finally, we have <code>prom</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">function </span>pro<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nv">pr_url</span><span class="o">=</span><span class="k">$(</span>hub pull-request -b <span class="nv">$1</span><span class="k">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> <span class="o">==</span> 0 <span class="o">]]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span>open <span class="nv">$pr_url</span>
+</span><span class='line'>  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>prom<span class="o">()</span> <span class="o">{</span> pro master; <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>prom</code> uses <a href="https://hub.github.com">GitHub&rsquo;s <code>hub</code> tool</a> to open a pull request
+against the <code>master</code> branch.</p>
+
+<p>Ultimately, here&rsquo;s what I wrote:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gup <span class="o">&amp;&amp;</span> safely prom
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here&rsquo;s what happened:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git fetch origin master:master <span class="o">&amp;&amp;</span> git rebase master <span class="o">&amp;&amp;</span> <span class="se">\</span>
+</span><span class='line'>  docker-compose run web bundle <span class="nb">exec </span>rspec <span class="o">&amp;&amp;</span> <span class="se">\</span>
+</span><span class='line'>  docker-compose run web bundle <span class="nb">exec </span>rubocop --rails --fail-level autocorrect <span class="o">&amp;&amp;</span> <span class="se">\</span>
+</span><span class='line'>  hub pull-request -b master
+</span><span class='line'><span class="c"># After this I&#39;d have to highlight the output from hub, open the browser, and</span>
+</span><span class='line'><span class="c"># paste the URL, to check everything worked. The bash function does that for me.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>No way am I going to type all that every time!  It&rsquo;s sorely tempting to just
+open a pull request and hope for the best, but that wastes CI resources, and if
+I broke something badly, I just wasted other people&rsquo;s time.  By setting up a few
+bash shortcuts, I make it easy to set the process in motion, go off and do
+something else, and come back in a few minutes to make sure it completed
+properly.</p>
+
+<p>It&rsquo;s also worth noting that <code>drspec</code> is pretty valuable on its own.  It&rsquo;s not so
+much for the time saved, but more because if testing requires a lot of typing,
+it may not happen nearly as frequently as it should.  Some use <code>guard</code> to solve
+this problem by running tests automatically without typing at all.</p>
+
+<h3>Making Things Faster</h3>
+
+<p>If you ask people why they don&rsquo;t run their tests more frequently, 9 times out of
+10 they&rsquo;ll say it&rsquo;s because it takes too long.  They want to run their tests
+more regularly throughout the development process, but the overhead of a single
+run is too much of a break in development to apparently justify the time sink.</p>
+
+<p>Many things work the same way.  We want to change our ways, but the cost of
+doing things the better way is too high.  We can often lower the cost by making
+things faster.  This isn&rsquo;t the place to talk about speeding up tests (that&rsquo;s
+worth a post in itself), but I&rsquo;ll give a simpler example.</p>
+
+<p>As mentioned previously, I work with a containerized app.  We use
+<code>bundle package</code> to package the gems in the Gemfile into the app directory, then
+copy them over to the container image amongst everything else in the Rails root.
+This means that any gem updates require rebuilding the container image.
+Building the image used to take about 10 minutes, certainly enough time to
+totally distract you from whatever you were doing.  This, in turn, meant we were
+unlikely to upgrade gems as we go, because the subsequent container rebuild was
+a time-consuming process.</p>
+
+<p>I recently dug in to figure out what was taking so long.  It turns out that we
+copy every file and then change the ownership from the root user to the
+application&rsquo;s user.  Copying followed by <code>chown</code>ing was taking the vast majority
+of time.  I discovered that not only were we copying app code, we also copied
+over every file in the <code>.git</code> directory!  Since git produces a lot of files, we
+had an ever-increasing amount of <code>chown</code>ing to do.  I learned that I can exclude
+<code>.git</code> from the copy operation using a <code>.dockerignore</code> file, and that brought
+down build time from 10 minutes to 3.</p>
+
+<p>3 minutes is still a lot of time, but it&rsquo;s low enough that upgrading gems is
+less of a hassle.  And lowering that activation barrier means we&rsquo;re more likely
+to keep our gems current.</p>
+
+<h3>Opening Up the Option</h3>
+
+<p>As I stated in the intro, there are many types of problem you can solve by
+thinking about activation barriers.  Here&rsquo;s an example of solving a people
+problem in this way.</p>
+
+<p>On my team, we believe strongly in the value of pair programming, but we often
+have a difficult time actually making it happen.  We&rsquo;re a distributed team with
+a chat-heavy culture, and even when pairing seems to be a good idea, it often
+fails to materialize.</p>
+
+<p>Recently we made some changes to the way we work, and I pushed hard to have a
+daily standup on video chat.  One major motivation was to open up the option of
+pairing.  If we already see each other face to face, there&rsquo;s a much lower
+activation barrier to saying, &ldquo;Hey, this is a difficult task.  Can you help me
+out with it?&rdquo;  Or perhaps more importantly, &ldquo;Oh, I didn&rsquo;t know you were working
+on that.  Maybe I can pair with you on it?  I want to learn more.&rdquo;</p>
+
+<p>Another example of this type of thinking is having regular retrospectives.
+Everyone wants to improve the team, but feedback loops don&rsquo;t tend to open
+themselves up.  It&rsquo;s critical to create opportunities for team members to give
+feedback without having to demand to be heard.  (The same applies to 1-on-1
+employee-manager meetings, too.)  To lower the barrier even more, you can take
+steps to make sure people feel safe giving honest feedback, such as using a tool
+that anonymizes the identity of the person giving feedback.</p>
+
+<h3>Temporary Constraints</h3>
+
+<p>I&rsquo;m not going to talk about this too much, since I already developed this idea
+at length in <a href="/blog/2016/01/04/choose-your-constraints/">another post</a>.  You can
+constrain yourself to follow certain practices, train yourself to become more
+comfortable with them, and in the long run adopt the practices happily.  Here,
+rather than focusing on the activation barrier, you accept that it will be
+difficult to change.  But the commitment means you increase the value and
+decrease the cost such that it&rsquo;s eventually more difficult to go back.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Your current constraints ultimately train you to operate effectively within precisely those constraints. Choose your constraints wisely.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030185106907136">November 27, 2015</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en" data-conversation="none"><p lang="en" dir="ltr">Always make time for testing, pairing, knowledge sharing, and learning. Eventually they will happen automatically without special effort.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031382144528385">November 27, 2015</a></blockquote>
+
+
+<p>Some of the best practices actually cost very little, once you become
+comfortable with them.  When it comes to TDD, for example, I struggled a lot at
+the beginning, but now I develop more quickly in a TDD workflow than when I try
+to test afterwards.  It took practice and discipline to get here, but at this
+point I&rsquo;d have to work hard to go back, and that&rsquo;s exactly the point.</p>
+
+<p>Figure out what major change you want to make to your practices, and commit to
+it wholeheartedly.  Think about how to adopt the practice with the least
+possible disturbance to your workflow, and reevaluate as you go.  Eventually you
+should find that your standard workflow has come to encompass this practice, at
+little to no extra cost.</p>
+
+<h3>If You Make the Change Easy, They Will Come</h3>
+
+<p>Any self-aware programmer or team tries to be conscious of its shortcomings and
+work on improving them.  Often we make a mistake in trying just to push
+ourselves to do better.  Instead, we might be better off focusing on lowering
+barriers to improvement.  If it&rsquo;s just as easy to do the right thing, we&rsquo;ll find
+ourselves doing it more and more, and improvement will happen without adding
+unnecessary stress.</p>
+
+<p>We are often encouraged to be catalysts for change.  It&rsquo;s worth remembering what
+a catalyst is.  A catalyst doesn&rsquo;t push or prod or apply pressure.  Instead, it
+lowers a barrier and enables change to happen.</p>
+
+<p>The same is true for changing our teams.  You can&rsquo;t force others to do things
+your way.  But you can serve as a catalyst, removing obstacles while helping
+them to understand the value your suggested change will provide.  If the change
+is legitimately valuable and the team is open-minded, usually they&rsquo;ll come
+around.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-30T12:53:38+02:00" pubdate data-updated="true">Dec 30<span>th</span>, 2016</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2016/12/29/diversify-your-learning/" title="Previous Post: Diversify Your Learning">&laquo; Diversify Your Learning</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="/" title="AMC: Aspiring Master of Code"><img id="logo" src="/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="/" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="/"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do the Right Thing</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
