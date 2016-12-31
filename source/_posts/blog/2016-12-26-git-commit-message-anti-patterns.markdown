@@ -197,7 +197,7 @@ the basics of which code additions and changes are interrelated.
 I will close with one thought: Whatever your decisions, you only get one
 chance<sup>1</sup> to write history. Make it count.
 
-***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](/blog/2016/12/25/8-crazy-blog-posts).***
 
 ---
 

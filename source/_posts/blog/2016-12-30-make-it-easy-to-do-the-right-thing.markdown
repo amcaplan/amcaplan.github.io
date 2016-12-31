@@ -319,4 +319,4 @@ them to understand the value your suggested change will provide.  If the change
 is legitimately valuable and the team is open-minded, usually they'll come
 around.
 
-***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](/blog/2016/12/25/8-crazy-blog-posts).***

@@ -373,4 +373,4 @@ requests, then build the implementation beneath the surface.  Starting the
 development process from the user's vantage point leads to cleaner APIs, a
 better user experience, and ultimately happier customers.
 
-***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](/blog/2016/12/25/8-crazy-blog-posts).***

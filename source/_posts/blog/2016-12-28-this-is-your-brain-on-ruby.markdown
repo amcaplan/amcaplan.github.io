@@ -238,7 +238,7 @@ sharing that experience and seeing what's under the hood.  Please let me know in
 the comments if you learned something from what I shared; I certainly hope you
 did.
 
-***Written as part of the 2016 [8 Crazy Blog Posts Challenge](../../25/8-crazy-blog-posts).***
+***Written as part of the 2016 [8 Crazy Blog Posts Challenge](/blog/2016/12/25/8-crazy-blog-posts).***
 
 [TIMTOWTDI]: https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it
 [One-Line FizzBuzz]: https://commandercoriander.net/blog/2013/02/03/fizzbuzz-in-one-line/
