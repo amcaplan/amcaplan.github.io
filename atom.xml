@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2016-12-30T12:10:58+02:00</updated>
+  <updated>2017-01-01T00:51:20+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,279 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
+    <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
+    <updated>2016-12-31T20:50:21+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
+    <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
+ideas and technologies, to be inspired with the latest and greatest of what the
+programming community has to offer.</p>
+
+<p>But once people are actually at a conference, especially a larger conference,
+the number of things to do and to absorb can be overwhelming.  There are talks,
+maybe even multiple talks at once, there&rsquo;s the hallway track, vendor booths, and
+of course the great big world outside where people escape when they want a
+break.  Everyone competes for attention, offering excitement, swag, fun hacking
+activities, and/or the alluring prospect of job opportunities.</p>
+
+<p>Then there&rsquo;s the new practice of posting talks online.  This opens up talks to
+new audiences who couldn&rsquo;t make it, which is fantastic.  It also means that if
+the community loves a talk, it could be see by thousands more people than were
+at the conference!  The downside is that conference attendees may be more likely
+to skip talks because they&rsquo;re all online later anyway, meaning that speakers
+lose the opportunity to build off the speaker-audience interaction.</p>
+
+<p>What&rsquo;s a speaker to do?</p>
+
+<!-- more -->
+
+
+<h3>One Core Principle</h3>
+
+<p>I have to admit something upfront.  This post isn&rsquo;t really about how to give a
+great conference talk per se.  It&rsquo;s about how to give a conference talk I&rsquo;m
+going to want to watch.  And as a conference-goer, I want to watch a talk that
+tells a coherent, interesting story.</p>
+
+<p>The good news is that, according to science, the other attendees think the same
+way.  Stories impact the brain in a truly wild fashion.</p>
+
+<ul>
+<li><a href="https://blogs.scientificamerican.com/guest-blog/it-is-in-our-nature-to-need-stories/">Stories match the way our not-always-logical brains think about the world</a>.</li>
+<li><a href="https://blog.bufferapp.com/science-of-storytelling-why-telling-a-story-is-the-most-powerful-way-to-activate-our-brains">Stories activate many parts of the brain, involving our entire brain rather than just language centers.</a></li>
+<li><a href="http://greatergood.berkeley.edu/article/item/how_stories_change_brain">We feel empathy for storytellers.</a></li>
+<li><a href="https://www.theguardian.com/media-network/media-network-blog/2014/aug/28/science-storytelling-digital-marketing">We remember stories better than we remember facts.</a></li>
+</ul>
+
+
+<p>Of course, much of this makes sense if we reflect on our own lives.  When you
+watch a movie, you worry about what will happen to the characters, even though
+you know they&rsquo;re not real.  When a character is maimed or killed, you feel pain,
+even though no one has hurt you.</p>
+
+<p>When you read dry statistics about suffering, it probably doesn&rsquo;t motivate you
+to action.  When you see a video with a tearful person describing some horror
+they suffered&mdash;well, that&rsquo;s another matter entirely.  This is why charities
+seeking donations rely mostly on monologue videos, stories, and even handwritten
+thank-you letters, rather than facts and figures.
+<a href="http://greatergood.berkeley.edu/article/item/how_stories_change_brain">Stories motivate people to act.</a></p>
+
+<p>Think about how many religions don&rsquo;t have founding myths.  Can you think of any?
+Me neither.  People don&rsquo;t dedicate their lives to ideals, noble though that may
+sound.  A compelling story, though&hellip; now we&rsquo;re talking.</p>
+
+<p>You want to give an interesting talk.  You want the conference attendees to
+come, and you want the online crowd to hear out the whole talk, not leave the
+video after 2 minutes.</p>
+
+<p>You want your conference talk to make an impact.  You want people to remember it
+and talk about it.  You want people to learn from it and apply your ideas in
+their own lives.</p>
+
+<p>Tell a story.</p>
+
+<h3>Story Type 1: The Audience as Protagonist</h3>
+
+<p>No blog post about stories would be complete without a few personal stories,
+right?  Well, get ready, because here they come!</p>
+
+<p>My first conference talk was at RailsConf 2016, where I spoke about Rails
+engines.  This was the abstract:</p>
+
+<blockquote><p>Want to split up your Rails app into pieces but not sure where to begin? Wish
+you could share controller code among microservices but don’t know how? Do you
+work on lots of projects and have boilerplate Rails code repeated in each?</p>
+
+<p>Rails Engines may be your answer.</p>
+
+<p>By building a simple Rails engine together, we will better understand how this
+app-within-an-app architecture can help you write more modular code, which can
+be gemified and reused across multiple projects.</p></blockquote>
+
+<p>It doesn&rsquo;t appear to be a story at first glance, but read it again.  In case you
+missed it, here&rsquo;s the story:</p>
+
+<blockquote><p>Once upon a time, you had a messy app that was suffering for lack of
+modularity.  Or, you kept writing the same boilerplate multiple times.</p>
+
+<p>Then, a conference talk showed you how to build Rails engines, and you were
+able to take control and conquer your mess.  You were awesomer and your apps
+were healthier.</p>
+
+<p>The end.</p></blockquote>
+
+<p>One of the best stories you can offer people is that you will make their lives
+happier and better.  (Unfortunately this tendency can be abused by
+ill-intentioned people out to make a buck.)  In this case, though, I made a
+simple value proposition which I truly believed in, and the result was that
+every chair in the workshop had a butt in it, and 130 people walked out having
+built their first Rails engine.</p>
+
+<h3>Story Type 2: The Code as Protagonist</h3>
+
+<p>I&rsquo;d like to focus for a moment on a feature of the Rails engines talk which
+stood out dramatically for me.</p>
+
+<p>In the introductory portion to my workshop, I had to convey that Rails can route
+a request to any Rack app.  This point is critical to understanding Rails
+engines, because they take advantage of this feature of Rails to tie into Rails
+apps.  I wanted my audience to build an accurate mental model of how Rails
+engines are integrated under the hood, and this was the critical point for them
+to understand.</p>
+
+<p>I could have thrown that information on a slide, said a few words about it, and
+moved on.  But information conveyed that way is easily missed, and I didn&rsquo;t want
+to lose people through confusion about this point.</p>
+
+<p>So I told a story.</p>
+
+<p>I told my audience I would build, before their eyes, a perfectly functional
+Rails application without using models, views, or controllers.  I created a new,
+blank Rails application, and added an empty lambda to my <code>routes.rb</code> file.
+Then, step by step, I let the errors guide me to building out that lambda into a
+minimal Rack application serving a response to a single endpoint.</p>
+
+<p>Could I have just pre-built a Rails app containing a Rack app?  Yes, of course.
+But building up the tension through live code, and letting errors drive the
+coding, let the audience discover with me the ability to hook Rack applications
+into Rails apps.</p>
+
+<p>After the talk (as well as in practice runs before), this was the part that
+generated the most positive feedback.  It wasn&rsquo;t all that difficult to do, but
+the experience of watching code develop incrementally was riveting for the
+audience.  It has all the parts of classic storytelling: Facing a seemingly
+impossible challenge, a hero must discover heretofore unknown abilities, and
+then is able to surmount the obstacle.  In this case, the impossible challenge
+was building a Rails app without controllers, and the unknown ability was using
+a barebones Rack app.</p>
+
+<p>That talk unfortunately wasn&rsquo;t recorded, but I can give a favorite example: the
+late Jim Weirich&rsquo;s <a href="https://www.youtube.com/watch?v=FITJMJjASUs">legendary talk on the Y combinator</a>.
+The experience of watching a master develop an idea through code is enough to
+send chills down my spine.</p>
+
+<p>Of course, live coding isn&rsquo;t for everyone.  But if you present code in your
+talk, I&rsquo;d strongly recommend starting with the problem the code has to solve,
+then building out the solution incrementally.  Don&rsquo;t just show what your code
+does; talk about the obstacles it has to overcome, and the process of getting
+there.</p>
+
+<h3>Story Type 3: The Speaker as Protagonist</h3>
+
+<p>My most recent talk was given at WindyCityRails 2016 then repeated (and
+improved!) at RubyConf 2016.  The approach here was different.  The subject of
+the talk was improvements to Ruby&rsquo;s <code>OpenStruct</code> library, but I also came in
+with a lot of personal experience.  I had dealt with <code>OpenStruct</code>-related
+performance problems in the past, which let me to publishing 2 alternative
+solutions.</p>
+
+<p>In the first half of the talk, I established the importance of <code>OpenStruct</code> to
+the Ruby ecosystem, and the reasons for its performance problems.  Then I made
+it personal, by talking about how these performance issues affected my company&rsquo;s
+projects.</p>
+
+<p>With the tension established, I spoke about 4 different approaches to the
+problem, framing it in terms of my own experience with each solution, and how
+they succeeded or failed in solving the problems I was having.</p>
+
+<p>Since 2 of the approaches were libraries I had personally written, I was able to
+convey a sense of personal triumph in the degree of success they achieved.  And
+when I concluded my talk with some lessons learned, they weren&rsquo;t just logically
+derivable ideas; they were thing I had personally learned through my experience.</p>
+
+<p>I was originally worried that the very personal nature of the talk would hurt
+its reception.  Then something amazing happened.</p>
+
+<p>WindyCityRails asks participants for written feedback after the conference, then
+collects and summarizes the responses for the speakers as an exercise in
+reflection and self-improvement.  There were many really nice, general comments,
+but 2 specific responses stuck with me:</p>
+
+<blockquote><p>I enjoyed the narrative, &ldquo;I tried, I failed, I tried again&rdquo; aspect of this.</p></blockquote>
+
+<!-- comment needed in Markdown to separate comments ☹️ -->
+
+
+<blockquote><p>Best presentation of the conference. Connected with me.</p></blockquote>
+
+<p>It turns out, people really like hearing a good story.  I didn&rsquo;t just tell them
+about an abstract problem and some ways to handle it.  (We&rsquo;ve all heard lots of
+talks which do exactly that!)  I told them the story of my problem, and how I
+used tools like benchmarking, profiling, and reading code to find a solution
+that worked for me.  I told my story in a way that conveyed to the audience that
+they, too, can use these tools to solve problems they face.</p>
+
+<p>As a speaker, you may be afraid to make your talk too personal.
+<a href="https://www.youtube.com/watch?v=V69Sinlp6Ew">Some</a>
+<a href="https://www.youtube.com/watch?v=cGuTmOUdFbo">of</a>
+<a href="https://www.youtube.com/watch?v=wewAC5X_CZ8">the</a>
+<a href="https://www.youtube.com/watch?v=gTAghAJcO1o">best</a>
+<a href="https://www.youtube.com/watch?v=aApmOZwdPqA">talks</a>
+<a href="https://www.youtube.com/watch?v=gX4FwSJ4JwI">I&rsquo;ve</a>
+<a href="https://vimeo.com/148927676">watched</a>
+mostly or entirely follow a narrative or set of highly personal narratives.  And
+they&rsquo;re all the more engaging for it.</p>
+
+<h3>A Story Within a Story</h3>
+
+<p>You don&rsquo;t have to choose just one method or one story.  Even within a story, you
+can use a deeper level of story to great effect.</p>
+
+<p>In my <code>OpenStruct</code> talk, for example, I had to explain how
+<code>OpenStruct</code>&mdash;a hash-like data store&mdash;and its alternatives work.  It&rsquo;s
+generally notoriously difficult to explain code and algorithms in a short span
+of time.</p>
+
+<p>To counteract the problem, I kept things as concrete and story-like as possible.
+I introduced the code one piece at a time, following the trajectory of a single
+key-value pair inserted into the <code>OpenStruct</code> (or alternative) instance.  By
+following a linear narrative, I was able to convey the information to the
+audience quickly and effectively, without them realizing how much data I was
+streaming into their brains.</p>
+
+<p>The same principle is at play when someone spends a few minutes of a talk live
+coding, or telling a quick personal anecdote to drive the point home.  By
+incorporating short stories (or story-like experiences like live coding) into
+the framework of a talk, you can make your presentation more engaging, connect
+with your audience, and help them walk away having gained the maximum from your
+presentation.</p>
+
+<p>One really great example is <a href="https://www.youtube.com/watch?v=EkLdO-SphxA">this talk about effective feedback</a>,
+where (just after the 20-minute mark) <a href="https://twitter.com/pyluftig">the speaker</a>
+uses a personal anecdote to illustrate both ineffective and effective feedback.
+The story drives home the ideas conveyed earlier in the entire talk.</p>
+
+<h3>Writing Your Story</h3>
+
+<p>Great talks aren&rsquo;t made in a day, or even a few days.  It can take years to
+write a great talk.  The best talks aren&rsquo;t from people who woke up with bright
+ideas; they come from people who experienced something over months and years,
+and share their experiences in a personal, intellectually and emotionally
+captivating fashion.</p>
+
+<p>If you want to give an amazing tech talk, don&rsquo;t start by making slides or
+sketching out bullet points.  Go out and do something.  Experiment, try a new
+way of working, build an OSS library or contribute to one.  Get involved in your
+local tech community, be a mentor at work, volunteer in your free time.  Do
+interesting things, have experiences, and then think long and hard about them,
+learn what you can, and synthesize your learning&mdash;along with the story of
+what taught you those lessons&mdash;into the next great talk.</p>
+
+<p>People like to hear from experts.  You are the world expert on your life, your
+emotions, your projects, your history, and your growth.  And you&rsquo;ll be surprised
+by how much people are interested in learning about that.</p>
+
+<p>To give a great conference talk, take the time to build a story worth telling.
+And then share it with the world.  But don&rsquo;t just bring the facts and figures
+and details to the stage.</p>
+
+<p>Bring yourself.  Be yourself.  Share yourself.</p>
+
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
@@ -363,7 +636,7 @@ them to understand the value your suggested change will provide.  If the change
 is legitimately valuable and the team is open-minded, usually they&rsquo;ll come
 around.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -524,7 +797,7 @@ next level up through understanding the next level down.</p>
 Just make sure to always be expanding your horizons both within and beyond your
 primary level of abstraction.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -790,7 +1063,7 @@ sharing that experience and seeing what&rsquo;s under the hood.  Please let me k
 the comments if you learned something from what I shared; I certainly hope you
 did.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -1264,7 +1537,7 @@ requests, then build the implementation beneath the surface.  Starting the
 development process from the user&rsquo;s vantage point leads to cleaner APIs, a
 better user experience, and ultimately happier customers.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
@@ -1487,7 +1760,7 @@ the basics of which code additions and changes are interrelated.</p>
 <p>I will close with one thought: Whatever your decisions, you only get one
 chance<sup>1</sup> to write history. Make it count.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="../../25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 
 <hr />
 
@@ -1586,6 +1859,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a></em></strong></li>
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do The Right Thing</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a></em></strong></li>
 </ul>
 
 ]]></content>
@@ -2566,7 +2840,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#101;&#x76;&#64;&#115;&#x61;&#x77;&#102;&#116;&#x77;&#101;&#x61;&#x72;&#46;&#x6c;&#x79;&#46;">&#x64;&#x65;&#x76;&#64;&#115;&#x61;&#x77;&#102;&#116;&#x77;&#x65;&#97;&#114;&#46;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#101;&#118;&#x40;&#x73;&#97;&#x77;&#102;&#x74;&#119;&#101;&#x61;&#114;&#46;&#108;&#x79;&#46;">&#100;&#101;&#118;&#64;&#115;&#x61;&#x77;&#x66;&#x74;&#x77;&#101;&#97;&#114;&#x2e;&#108;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -3355,357 +3629,6 @@ necessary</p></li>
 
 
 <p>Let me know about your experiences in the comments!</p>
-
-<hr />
-
-<p><em>Recently I gave a <a href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
-<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
-rehash and expansion of the material delivered there.</em></p>
-
-<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
-passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Feature Flags in Ruby, Part II: How and Where]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/"/>
-    <updated>2015-01-19T05:16:18+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where</id>
-    <content type="html"><![CDATA[<p><em>Note: Part II assumes familiarity with the idea of feature flags.  For the
-theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.</em></p>
-
-<p>Alright, you&rsquo;re convinced that feature flags are a necessary tool for your app.
-Let&rsquo;s discuss a gem, created by the late <a href="http://jamesgolick.com">James Golick</a>, which
-make the process of feature flagging as simple as could be.</p>
-
-<!-- more -->
-
-
-<h2>Rollout: A Feature Flagging Tool</h2>
-
-<p><a href="https://github.com/FetLife/rollout">Rollout</a> is a super-simple gem for feature flagging. To get started,
-you&rsquo;ll need a redis instance accessible to your app.  You likely have this in
-place already.  If not, you can pass in a reference to any object that accepts
-<code>set</code> and <code>get</code> methods.  But as redis is becoming a more and more common part
-of the standard stack, you should probably just set up a redis instance.</p>
-
-<p>Now let&rsquo;s get started.</p>
-
-<h3>Install the gem</h3>
-
-<p>First, you&rsquo;ll need to <code>gem install rollout</code> or add <code>gem "rollout"</code> to your
-Gemfile and <code>bundle install</code>.</p>
-
-<h3>Instantiate the <code>rollout</code> object</h3>
-
-<p>Next, assuming you have a <code>redis</code> variable which is an instance of
-<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span> <span class="o">=</span> <span class="no">Rollout</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">redis</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and you have your <code>rollout</code> object.  The <a href="https://github.com/redis/redis-rb">official docs</a>
-recommend assigning it to a global variable (<code>$rollout</code>), but if you&rsquo;d rather
-avoid that, you can assign a <code>rollout</code> variable at the global scope.  (In a
-Rails app, this code would belong in an initializer.)</p>
-
-<h3>Flipping Switches</h3>
-
-<p>Now you get to become a <a href="https://www.youtube.com/watch?v=eb9GREgzQYQ">switch-flipper</a>!  Turning a feature on
-or off is as simple as:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># activate for all users</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:chat</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># deactivate for all users</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:chat</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The rollout object will always be able to tell you whether a feature is active:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_cool_feature</span><span class="p">)</span> <span class="c1">#=&gt; false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Partial Activation</h3>
-
-<p>Sometimes you may want to activate a feature for a particular set of
-users.  Let&rsquo;s say we want to grant our premium users access to the beta version
-of our product.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">define_group</span><span class="p">(</span><span class="ss">:premium_users</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="o">.</span><span class="n">premium?</span> <span class="p">}</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate_group</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="ss">:premium_users</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">premium_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">premium</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="n">premium_user</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">regular_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">premium</span><span class="p">:</span> <span class="kp">false</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
-</span><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:beta</span><span class="p">,</span> <span class="n">regular_user</span><span class="p">)</span> <span class="c1">#=&gt; false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Rollout knows that only <code>premium_users</code>, as defined by the block
-<code>{ |user| user.premium? }</code>, have the <code>beta</code> feature active, and will return true
-or false based on the user passed in to <code>#active?</code>.</p>
-
-<p>Sometimes you may want to activate a feature for a random percentage of users.
-Rollout can handle that too:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rollout</span><span class="o">.</span><span class="n">activate_percentage</span><span class="p">(</span><span class="ss">:chat</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now 20% of users will have chat activated.  Rollout also makes sure that it&rsquo;s
-the same set of 20% of users who have chat available, so users don&rsquo;t have a
-disjointed experience.</p>
-
-<h3>Inserting Branch Points</h3>
-
-<p>The trickiest part of using feature flags is figuring out where to branch your
-code.  Ideally, the code should only need one call to <code>rollout#active?</code> to
-invoke the correct behavior.</p>
-
-<h4>Controller-Level Branch Points</h4>
-
-<p>Sometimes, the simplest place to branch is in a controller.  Let&rsquo;s say we want
-to feature-flag an entire endpoint in a Rails app:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ExperimentalController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@entities</span> <span class="o">=</span> <span class="no">MyFeature</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">respond_with</span> <span class="vi">@entities</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">head</span><span class="p">(</span><span class="ss">:service_unavailable</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If <code>my_feature</code> is active, the controller does its usual work of calling models
-and views.  If <code>my_feature</code> is deactivated, the controller responds with a
-<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503</a>.
-This is a pretty clean example of an <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">&ldquo;On/Off&rdquo; feature flag</a>.</p>
-
-<p>This pattern is very useful for experimental API endpoints, as well as debugging
-utilities which will often be inactive.  It is also a good place to halt
-requests which, to succeed, will require a call to an external service that is
-currently experiencing downtime.</p>
-
-<h4>Model-Level Branch Points</h4>
-
-<p>Sometimes we want our application to display fundamentally different behavior
-depending on the situation.</p>
-
-<p>In this sample scenario, we already have a GitHub API integration, and we&rsquo;re
-trying out a BitBucket API integration as well.  When we fetch the user&rsquo;s repos,
-we want to control at runtime whether we&rsquo;re just getting the GitHub repos or
-also checking BitBucket.  Here&rsquo;s the code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span>
-</span><span class='line'>  <span class="c1"># ...</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">repos</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:bitbucket</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">github_repos</span> <span class="o">+</span> <span class="n">bitbucket_repos</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">github_repos</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># ... </span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It might take hundreds of lines of code across multiple classes to fetch and
-format those <code>bitbucket_repos</code> for the User, but we found one point in our code
-where we can decide whether or not all that code gets executed.</p>
-
-<h4>View/Decorator-Level Branch Points</h4>
-
-<p>Placing feature-related conditionals in our views is (almost) always a bad
-practice, so let&rsquo;s not address it here.  But we can sometimes make the case that
-a decorator class is the right place for a feature flag.</p>
-
-<p>Let&rsquo;s say that our API currently returns a top-level JSON Array, which is a
-<a href="http://flask.pocoo.org/docs/0.10/security/#json-security">Bad Practice™</a>.  We want to follow the Good Practice and return
-a top-level JavaScript object.  But we realize that clients may not be ready to
-handle that.  We can set up a feature flag to switch over to the new format once
-our clients have had ample time to prepare:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ResponseFormatter</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:array</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@array</span> <span class="o">=</span> <span class="n">array</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">output</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:safe_json_format</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">{</span> <span class="s1">&#39;array&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">array</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is a very clear example of a <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/#feature-flag-types">This/That feature flag</a>.</p>
-
-<h2>Back to Flipping Switches</h2>
-
-<p>We&rsquo;ve spoken about how to set up switches, and how to flip them in code.  How do
-we flip the switches when our code is running live in production?</p>
-
-<p>Unfortunately, the rollout gem doesn&rsquo;t provide any sort of UI, and you basically
-need to SSH into your production server and modify the value in redis.  In the
-case of Rails, you would enter the Rails console, and execute the command
-<code>rollout.activate(:my_feature)</code> or <code>rollout.deactivate(:my_feature)</code>.</p>
-
-<p>Is there a better way?</p>
-
-<h3>Improvement 1: Set Up an HTTP Endpoint</h3>
-
-<p>If we&rsquo;re running web apps, we can always add endpoints!  This is how a Rails app
-might handle feature flipping via HTTP requests:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FeaturesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
-</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_sym</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">head</span> <span class="ss">:ok</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">destroy</span>
-</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_sym</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">head</span> <span class="ss">:ok</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You probably want to have a <code>before_filter</code> to require authentication as well.</p>
-
-<p>At any rate, this allows you to easily activate and deactivate features without
-needing to SSH anywhere.</p>
-
-<h3>Improvement 2: Use Hubot</h3>
-
-<p>Hubot comes with a simple, powerful system for making HTTP requests.  Using this
-system, you can set up Hubot to hit these endpoints when instructed via chat
-command.  If you have a running Hubot instance, it&rsquo;s very simple to set up.
-This is the code to activate a feature:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">robot</span><span class="p">.</span><span class="nx">respond</span> <span class="sr">/activate (\w+)$/i</span><span class="p">,</span> <span class="nf">(msg) -&gt;</span>
-</span><span class='line'>  <span class="nv">feature = </span><span class="nx">msg</span><span class="p">.</span><span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">msg</span><span class="p">.</span><span class="nx">http</span><span class="p">(</span><span class="s">&quot;http://my-app.com/features/</span><span class="si">#{</span><span class="nx">feature</span><span class="si">}</span><span class="s">&quot;</span><span class="p">).</span><span class="nx">put</span><span class="p">()</span> <span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nx">msg</span><span class="p">.</span><span class="nx">reply</span> <span class="s">&quot;Activated </span><span class="si">#{</span><span class="nx">feature</span><span class="si">}</span><span class="s">!&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now, when I say <code>hubot activate a_feature</code>, it takes care of it, then responds,
-<code>Activated a_feature!</code>  Suddenly, managing feature flags becomes a breeze.</p>
-
-<h2>Wrapping Up</h2>
-
-<p>We&rsquo;ve discovered how to use rollout to easily turn bits of code on and off in a
-live application.  In <a href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/">Part III</a>, we will discuss how to
-automatically turn off feature flags when an external service experiences
-downtime.</p>
 
 <hr />
 
