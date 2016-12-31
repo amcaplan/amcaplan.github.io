@@ -92,6 +92,7 @@ have lots of [thoughts about stuff][Posts Page], and occasionally
 * ***[This Is Your Brain on Ruby](/blog/2016/12/28/this-is-your-brain-on-ruby/)***
 * ***[Diversify Your Learning](/blog/2016/12/29/diversify-your-learning/)***
 * ***[Make It Easy to Do The Right Thing](/blog/2016/12/30/make-it-easy-to-do-the-right-thing/)***
+* ***[How to Give a Great Tech Conference Talk](/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/)***
 
 [About Page]: /about/
 [Posts Page]: /archives/
