@@ -93,6 +93,7 @@ have lots of [thoughts about stuff][Posts Page], and occasionally
 * ***[Diversify Your Learning](/blog/2016/12/29/diversify-your-learning/)***
 * ***[Make It Easy to Do The Right Thing](/blog/2016/12/30/make-it-easy-to-do-the-right-thing/)***
 * ***[How to Give a Great Tech Conference Talk](/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/)***
+* ***[Reflections on 8 Days of Blog Posts](/blog/2017/01/01/reflections-on-8-days-of-blog-posts/)***
 
 [About Page]: /about/
 [Posts Page]: /archives/
