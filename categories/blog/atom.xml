@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-01-01T00:51:20+02:00</updated>
+  <updated>2017-01-01T13:10:56+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,194 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
+    <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
+    <updated>2017-01-01T12:09:02+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
+    <content type="html"><![CDATA[<p>I started the <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
+as a way to stretch myself and get back in the habit of writing.  As in writing
+software, blogging regularly is difficult when there&rsquo;s no pressure to ship.</p>
+
+<p>It certainly got me to release more material than has been my recent practice,
+but it&rsquo;s worth analyzing the process, the outcomes, and the cost.</p>
+
+<!-- more -->
+
+
+<h3>The Creative Process</h3>
+
+<p>My usual blogging workflow (if such a thing can exist) looks something like
+this:</p>
+
+<ol>
+<li>Wait for something to really interest or bother me</li>
+<li>Let it simmer for a while as more complex ideas develop</li>
+<li>Figure out what I want to say about it</li>
+<li>When I have time, develop the ideas into the beginnings of a post</li>
+<li>Sit on it some more</li>
+<li>Come back to it eventually and finish the post</li>
+<li>Edit heavily</li>
+<li>Ship It</li>
+</ol>
+
+
+<p>This leads to a smaller number of (hopefully) high-quality writings worth
+sharing.  In contrast, my workflow this week looked more like this:</p>
+
+<ol>
+<li>Freak out about an impending self-imposed deadline</li>
+<li>Frantically brainstorm until coming up with an idea that seems worthwhile</li>
+<li>Flesh out the idea as I write</li>
+<li>Edit lightly</li>
+<li>Ship It</li>
+</ol>
+
+
+<p>The result was a lot more content, but on occasion I wondered whether the stuff
+I was publishing was worth reading.  Trying to be faithful to my arbitrary
+commitment, I may have pushed through an idea that wasn&rsquo;t perfect, or wasn&rsquo;t
+fully developed in my head yet.</p>
+
+<p>Interestingly, though, I found that the very act of writing was less capturing
+thoughts and more creating them.  Starting with just the nugget of a thought,
+the experience of writing allowed the thought to develop into a full-blown
+argument or hypothesis.</p>
+
+<p>I know everyone writes differently.  Some people start with an outline, then
+fill it in with details as they go.  I have never worked that way as long as I
+can remember.  In elementary school, when teachers would ask for an outline as
+the first step of an essay, I would hand in my outline, get it graded, then
+throw it out and actually begin writing.  To me, the written word is a river; I
+go where it flows.  My words and myself are partners in creativity, building
+crude thoughts into concrete concepts and coherent frameworks.</p>
+
+<p>Incidentally, this is also how I write poetry.  I don&rsquo;t have a destination in
+mind; I write the first line, then the second, and let the words guide me
+wherever they may.  Of course, in poetry and prose, there are editorial steps as
+well, but those merely optimize the core of the idea as it stands when first
+composed.</p>
+
+<p>In truth, the artificial time pressure made room for a workflow more suited to
+how I naturally write.  I&rsquo;m not in a place to judge the end product, of course.
+I leave that as an exercise for you, dear reader.</p>
+
+<h3>Outcomes</h3>
+
+<p>I can&rsquo;t say whether or not my (small) audience did or didn&rsquo;t enjoy my posts.  I
+can, however, comment on their more objective elements.</p>
+
+<p>One easily quantifiable measure is the ratio of technical to non-technical
+posts.  We can knock out the first, introductory post, as well as this one,
+leaving us with 6 posts to analyze.</p>
+
+<p><a href="/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a> was
+decidedly technical. <a href="/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+and <a href="/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
+were decidedly not.  The remaining 3 posts focused on the area where I&rsquo;m most
+comfortable and (I think) most effective, namely the human side of technology.</p>
+
+<p>Comparing this to the past, through mid-2015 I only wrote technical posts, then
+I abruptly released 5 straight completely non-technical posts.  In that light,
+this exercise was a recalibration for me, centering me between the purely human
+and purely technical.</p>
+
+<p>Another significant outcome for me was the ability to flesh out some back-burner
+thoughts into ideas that I may now use to submit to conference CFPs.  Some of
+the stuff I wrote about was never fully developed, and having this obligation
+helped me to realize that there was significant depth where I hadn&rsquo;t perceived
+any in the past.</p>
+
+<p>One final note is in order.  I&rsquo;ll readily admit to being an attention seeker,
+and this exercise brought out the worst in me in that regard.  I tweeted daily
+about the experiment, and watched my Twitter notifications and Google analytics
+to see if anyone noticed.</p>
+
+<p>No one did. (Well, except for this
+<a href="https://twitter.com/peterc/status/813033579982753793">really nice comment</a>
+from Peter Cooper.)  And honestly, it kind of hurt.</p>
+
+<p>Yes, I know it&rsquo;s a really busy time for the world.  People are with family, or
+taking vacations, or whatever.  Somehow the logic part of my brain resented it
+anyway.</p>
+
+<p>So it became an opportunity to exercise discipline, and accept that I write all
+this not because other people read it, but because it&rsquo;s worthwhile in itself.
+Expressing my ideas, and staying accountable by doing so in public, allows me to
+form a more concrete perception of who I am, and why I do what I do.  It also
+allows me to turn on myself with a critial eye, and figure out whether I&rsquo;m
+fooling myself into doing things that counter my self-interest or harm others.</p>
+
+<p>It&rsquo;s not an easy lesson to learn, but maybe it was more valuable to me to have
+my blog ignored than it would have been to have people reading and talking about
+it.</p>
+
+<h3>The Cost</h3>
+
+<p>Wowee.  It&rsquo;s been a long week.</p>
+
+<p>I started the challenge with 2 blog posts already written, 1 good idea, and the
+knowledge that the final post would be a &ldquo;lessons learned&rdquo; exercise.  That left
+6 posts to write, 4 of which needed ideas.  This is actually a pretty tall order
+for someone like me, who tries to keep the content high-quality and valuable to
+others.</p>
+
+<p>Coming up with post ideas mostly happened while walking around, or otherwise
+going about my daily business.  There was some dedicated brainstorming time, but
+that wasn&rsquo;t too significant.</p>
+
+<p>The real time sink was the writing process itself.  Writing and editing posts
+could easily take 3-4 hours apiece, more if I needed to add some custom
+JavaScript (as I did for the censoring functionality
+<a href="/2016/12/28/this-is-your-brain-on-ruby/">here</a> to make blog readers, and
+myself, more comfortable).  Those 3-4 hours needed to be highly focused, and I
+would walk away feeling drained and needing a break.</p>
+
+<p>It helped to have a lot of vacation time, and even working hours were pretty
+relaxed since lots of people take vacation in the last week of December.  That
+meant I had time even during work hours to be cranking out posts, though mostly
+they were done during personal time.</p>
+
+<p>Also not helpful: My 18-month-old got sick this week, sicker than she&rsquo;s ever
+been.  Seeing your child with a temperature of 40℃ (that&rsquo;s 104℉ for you
+imperialist Americans) is terrifying, and practically it forces you to drop
+everything.  The worst of it lasted about 2 days, during which time I didn&rsquo;t get
+much done in general.</p>
+
+<p>I had hoped to stay ahead of the curve throughout the 8 days, always at least
+one post ahead, but reality hit hard, and I ran out of headway by Friday.  I had
+to crank out one post on Friday morning, and another on Saturday night.
+(Anything computer-related is off-limits to me Friday evening through Saturday
+evening, since that&rsquo;s the Jewish Sabbath.)  So I made it, I guess, but it was
+down to the wire and quite stressful.</p>
+
+<p>Even when I was ahead of the curve, I found myself staying up hours later than
+usual just to get things done in time.  This made it much more difficult for me
+to function throughout the day.</p>
+
+<p>If I do something like this again, I realize I can&rsquo;t push myself this hard.
+It&rsquo;s just not worth it.  Releasing a post a day could be fun in the future, but
+I&rsquo;d want to have all, or nearly all, the posts ready well in advance.</p>
+
+<h3>Concluding the Conclusion</h3>
+
+<p>In the final calculus, I think it was a worthwhile experiment.  I paid a heavy
+price in terms of stress, but it helped me to think of blogging as part of what
+I normally do, and to find a more balanced voice with regard to the content of
+my posts.</p>
+
+<p>I hope this experiment will inspire me to keep growing as a writer, to keep
+developing interesting ideas, and to share them with you, my readers.</p>
+
+<p>Whenever you read this post, whether it be a day or a decade after I wrote it,
+I hope you find its contents, and the products of this week&rsquo;s efforts, valuable
+and interesting.  And I hope this week turns out to be the beginning of a very
+productive 2017!</p>
+
+<p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
@@ -1025,413 +1213,6 @@ tweak it, and finally see it working!</p>
 sharing that experience and seeing what&rsquo;s under the hood.  Please let me know in
 the comments if you learned something from what I shared; I certainly hope you
 did.</p>
-
-<p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
-    <updated>2016-12-27T21:54:20+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
-painful to keep in sync with your code.  A tremendous amount of cognitive
-overhead is added by having to remember everything you&rsquo;ve documented and update
-it any time a change happens.</p>
-
-<p>Also, you probably fail a lot.  And you&rsquo;re not alone!  Most teams fail miserably
-at the task of documentation upkeep.  It reaches the point where you have to
-wonder:</p>
-
-<ol>
-<li>Is there a problem with the team if we can&rsquo;t get this right?</li>
-<li>Is this an intractable problem that is destined to plague us, and all API
-maintainers, forever?</li>
-<li>Is the problem with the task itself?</li>
-</ol>
-
-
-<p>Most of the material you&rsquo;ll find centers around practices that will help the
-team prioritize documentation, organize it better, etc.  I think that&rsquo;s a load
-of hooey (pardon my French).  Documentation is really hard because we haven&rsquo;t
-figured out how to automatically check that it&rsquo;s accurate, and people can&rsquo;t
-reasonably be expected to keep it all in our heads.</p>
-
-<p>Until now.</p>
-
-<!-- more -->
-
-
-<h3>Introducing Swagger</h3>
-
-<p><a href="http://swagger.io">Swagger</a>, also known as OpenAPI, is a nifty tool to help you
-write the docs for RESTful APIs.  It ultimately boils down to a JSON endpoint in
-your app that spits out a standardized description of how your app works.  This
-endpoint is completely independent of the language or framework you use in your
-app.</p>
-
-<p>I&rsquo;ll mention at the bottom how you might go about incorporating Swagger into a
-Ruby app, but first I want to convince you to use it!  So&hellip;</p>
-
-<p>The really cool thing about Swagger isn&rsquo;t the rules, but the power that comes
-with following them.  Standards allow us to build powerful shared tools, and
-Swagger is a shining example.</p>
-
-<p>Once you&rsquo;ve assembled your standardized docs, you can use Swagger Codegen to
-spit out generated client libraries for over 40 different languages.  (Warning:
-The code will be about as good as you&rsquo;d expect from generated code.  Sometimes
-that&rsquo;s good enough!)  Perhaps more practically, you can plug your docs into
-<a href="http://swagger.io/swagger-ui/">Swagger UI</a>, which interprets your docs into a
-friendly, human-readable format.  Significantly, Swagger UI allows you to fill
-in the expected query/data params and submit an HTTP request, leading to a far
-happier experience for whoever has to actually use your API.  You can even
-generate OAuth tokens right from the web interface!  Check out a
-<a href="http://petstore.swagger.io/">sample documentation UI</a> to see how much you get
-for free by following the Swagger standard.  You can get Swagger UI bundled as
-<a href="https://hub.docker.com/r/schickling/swagger-ui/">a Docker image</a> if you&rsquo;re into
-that.  (I am!)</p>
-
-<p>But we haven&rsquo;t even hit the coolest thing about Swagger, which is:</p>
-
-<h3>Documentation as Specification</h3>
-
-<p>There are <a href="http://swagger.io/open-source-integrations/">a host of OSS libraries around Swagger</a>
-for nearly any language used in modern web development.  I&rsquo;ll focus on Ruby, but
-a quick perusal of the documentation shows that similar tools exists for
-JavaScript, Java, Elixir, PHP, and Python.</p>
-
-<p>I&rsquo;ll specifically discuss Apivore, though it&rsquo;s not the only Ruby solution.  Bad
-news for MiniTest fans, though: All the current tools for Ruby, including
-Apivore, are RSpec-only.</p>
-
-<p>After including the gem, you&rsquo;ll write the basic layout of your Apivore suite:</p>
-
-<p>
-```ruby</p>
-
-<h1>Source: <a href="https://github.com/westfieldlabs/apivore#usage">https://github.com/westfieldlabs/apivore#usage</a></h1>
-
-<p>require &lsquo;spec_helper&rsquo;</p>
-
-<p>RSpec.describe &lsquo;the API&rsquo;, type: :apivore, order: :defined do
-  subject { Apivore::SwaggerChecker.instance_for(&lsquo;/swagger.json&rsquo;) }</p>
-
-<p>  context &lsquo;has valid paths&rsquo; do</p>
-
-<pre><code># tests go here
-</code></pre>
-
-<p>  end</p>
-
-<p>  context &lsquo;and&rsquo; do</p>
-
-<pre><code>it 'tests all documented routes' do
-  expect(subject).to validate_all_paths
-end
-</code></pre>
-
-<p>  end
-end
-```
-</p>
-
-<p>You feed it the endpoint that serves your documentation, then write specs for
-every endpoint in your documentation.  Finally, you specify that all paths have
-been tested.  This last spec is really important, because otherwise you might
-forget and leave out a path!  It&rsquo;s also nice as a way to test-drive writing
-specs for all the routes, since the failure message tells you exactly which
-paths and response codes have yet to be tested:</p>
-
-<p>```
-the API
-  and</p>
-
-<pre><code>tests all documented routes (FAILED - 1)
-</code></pre>
-
-<p>Failures:</p>
-
-<p>  1) the API and tests all documented routes</p>
-
-<pre><code> Failure/Error: expect(subject).to validate_all_paths
-
-   get /posts is untested for response code 200
-   post /posts is untested for response code 201
-   post /posts is untested for response code 422
-   get /posts/{id} is untested for response code 200
-   get /posts/{id} is untested for response code 404
-   put /posts/{id} is untested for response code 200
-   put /posts/{id} is untested for response code 404
-   delete /posts/{id} is untested for response code 200
-   delete /posts/{id} is untested for response code 410
-# ./spec/requests/api_spec.rb:39:in `block (3 levels) in &lt;top (required)&gt;'
-</code></pre>
-
-<p>```</p>
-
-<p>Now that you&rsquo;ve got a failing test, let&rsquo;s see how to write an Apivore spec.
-Remember that the <code>subject</code> in every spec is the <code>Apivore::SwaggerChecker</code>
-instance for your documentation endpoint.  This is important because it keeps
-track of validated routes, so it can verify at the end that all routes were
-validated.</p>
-
-<p>Here&rsquo;s what a sample spec might look like:</p>
-
-<p>
-```ruby
-describe &lsquo;validating post paths&rsquo; do
-  context &lsquo;an individual post&rsquo; do</p>
-
-<pre><code>let(:params) {{ "id" =&gt; 1 }}
-it { is_expected.to validate( :get, '/posts/{id}.json', 200, params ) }
-</code></pre>
-
-<p>  end
-end
-```
-</p>
-
-<p>Here, <code>params</code> refers to the dynamic pieces of the requested path, in this case
-just the <code>id</code> of the requested post.  The <code>params</code> hash may also include
-information intended for the headers, query string, or data body of the request.
-These are specified by special keys, as follows:</p>
-
-<p>
-```ruby
-describe &lsquo;validating post paths&rsquo; do
-  context &lsquo;updating a post&rsquo; do</p>
-
-<pre><code>let(:params) {{
-  "id" =&gt; 1,
-  "_headers" =&gt; { "accept" =&gt; "application/json" },
-  "_query_string" =&gt; "api_key=abcdef123456789",
-  "_data" =&gt; "This is a post."
-}}
-it { is_expected.to validate( :put, '/posts/{id}.json', 200, params ) }
-</code></pre>
-
-<p>  end
-end
-```
-</p>
-
-<p>When you validate a path, Apivore will check that the status code and format of
-the response exactly match your Swagger specification, including required keys
-and data types.  Any deviance is noted in a failure message with a helpful diff.</p>
-
-<h3>Why Bother?</h3>
-
-<p>This may seem like a lot of work.  But you know what&rsquo;s a lot more work?  Dealing
-with annoyed customers and clients who find the API doesn&rsquo;t work as expected.</p>
-
-<p>Let me share a personal experience.  I added Apivore to our app a while ago,
-thinking it was a neat idea.  I thought it would take me just a couple of days
-to get everything in order and build out the test suite.</p>
-
-<p>Wow, was I wrong.  It took a full month.</p>
-
-<p>That&rsquo;s not a matter of how fast I code, but rather because writing the
-documentation and testing it this way uncovered a large degree of variance
-between our documentation and what the API actually provided.  This, in turn,
-was often rooted in differing fundamental assumptions about how things should
-work.  Cleaning up all that mess took weeks!  And I&rsquo;m proud to say with
-confidence that we don&rsquo;t have a mess like that anymore, because our &ldquo;docspecs&rdquo;
-(as I call them fondly) ensure that our docs are always up to date.</p>
-
-<p>You&rsquo;re probably messing up as much as we were.  The scary part is, you don&rsquo;t
-know where or how, and even a full manual audit wouldn&rsquo;t prevent it from
-happening again.</p>
-
-<p>Rather than driving ourselves crazy keeping code and documentation in sync, why
-not leverage our documentation to help us write better code?</p>
-
-<h3>Why Not Use Auto-Generated Docs?</h3>
-
-<p>Some will argue that this approach is backwards.  Isn&rsquo;t the code the main thing?
-Why do we want to maintain documentation plus specs around it?  There are tools
-to derive documentation from our specs or from making API requests, so why not
-just use those?</p>
-
-<p>I argue that that approach is actually backwards.  Our documentation should
-exactly detail the service we provide to clients and consumers.  Our code is
-merely the implementation of that service.  So it makes sense for the
-documentation to be the canonical reference, while the code is tested to ensure
-it falls in line with the documentation.</p>
-
-<p>Another benefit is that working in this way allows Documentation-Driven
-Development, where you make a change to the docs, then let the failing test
-drive you to implement the change or new feature.  This leads to much cleaner
-design, focused directly on the ultimate value you provide your API clients.
-I&rsquo;ve found this practice also dramatically speeds up new development on the
-project.</p>
-
-<h3>#Protips</h3>
-
-<p>There are a few gotchas with Apivore, so let me be upfront and help you make the
-most of your docspec experience:</p>
-
-<ol>
-<li><p>Apivore doesn't test query parameters.  Sorry.  I've filed a
-<a href="https://github.com/westfieldlabs/apivore/issues/91">GitHub Issue</a>
-complaining about it, but so far no dice.  I think it would be even more useful
-if it did validate query parameters, but I find it pretty awesome even without
-that feature.</p></li>
-
-<li><p>Apivore specs need to run using RSpec's <code>defined</code> order,
-meaning they'll run from top to bottom every time.  This exposes you to false
-success, because you won't detect order-dependent failures.  You can get around
-this by running all the endpoint specs within an RSpec <code>context</code> that
-uses <code>order: random</code>, so just the last spec will always go last, but
-everything else will be randomized.
-</li></p>
-
-<li></p>It can get irritating to merge multiple kinds of params every time.  I
-use a few <code>let</code> statements for all Apivore specs to help keep
-individual specs clean:
-
-``` ruby
-let(:url_params) {{}}
-let(:headers) {{}}
-let(:query_string_params) {{}}
-let(:data_params) {{}}
-let(:params) {
-  url_params.merge(
-    '_headers' => headers,
-    '_query_string' => query_string_params.to_query,
-    '_data' => data_params
-  )
-}
-```
-
-Then, I simply override the special params hashes where necessary.</p></li>
-
-<li><p>You'll find that your Apivore specs quickly become way too big for one file.
-I've found RSpec's shared examples work quite well.  First, for semantics, I
-aliased <code>it_behaves_like</code> to <code>it_serves_up</code>, so my
-endpoint specs look like:</p>
-```ruby
-context 'has valid paths', order: :random do
-  it_serves_up 'posts endpoints'
-  it_serves_up 'comments endpoints'
-  # etc.
-end
-```
-<p>For organization purposed, I define the shared examples in a
-<code>spec/requests/api</code> directory, and make sure they have names that
-don't end in <code>_spec.rb</code>.  Finally, I require all those examples
-before running my specs:</p>
-```ruby
-current_dir = File.dirname(File.expand_path(__FILE__))
-Dir[current_dir + '/api/*.rb'].each do |file|
-  require file
-end
-```
-<p>Now I just defined shared examples in those directories.</p></li>
-</ol>
-
-
-<p>With all these special modifications, here&rsquo;s a sample <code>spec/requests/api_spec.rb</code>
-for a Rails app:</p>
-
-<p>
-```ruby
-require &lsquo;rails_helper&rsquo;</p>
-
-<p>current_dir = File.dirname(File.expand_path(<strong>FILE</strong>))
-Dir[current_dir + &lsquo;/api/*.rb&rsquo;].each do |file|
-  require file
-end</p>
-
-<p>RSpec.describe &lsquo;the API&rsquo;, type: :apivore, order: :defined do
-  subject { Apivore::SwaggerChecker.instance_for(&lsquo;/api/docs.json&rsquo;) }
-  let(:query_string_params) {{</p>
-
-<pre><code>api_key: client.api_key
-</code></pre>
-
-<p>  }}
-  let(:url_params) {{}}
-  let(:headers) {{}}
-  let(:query_string_params) {{}}
-  let(:data_params) {{}}
-  let(:params) {</p>
-
-<pre><code>url_params.merge(
-  '_headers' =&gt; headers,
-  '_query_string' =&gt; query_string_params.to_query,
-  '_data' =&gt; data_params
-)
-</code></pre>
-
-<p>  }</p>
-
-<p>  context &lsquo;has valid paths&rsquo;, order: :random do</p>
-
-<pre><code>it_serves_up 'posts endpoints'
-it_serves_up 'comments endpoints'
-</code></pre>
-
-<p>  end</p>
-
-<p>  context &lsquo;tying it all together&rsquo; do</p>
-
-<pre><code>it 'tests all documented routes' do
-  expect(subject).to validate_all_paths
-end
-</code></pre>
-
-<p>  end
-end
-```
-</p>
-
-<p>with actual specs defined in shared examples elsewhere.</p>
-
-<h3>How Do I Get Started?</h3>
-
-<p>Luckily this isn&rsquo;t too complicated, and there&rsquo;s plenty of Googlable help.  You
-have 2 basic approaches: Either integrate deeply with your programming language,
-or just edit the JSON directly (or edit as YAML).  In the case of Ruby,
-<a href="https://github.com/fotinakis/swagger-blocks"><code>swagger-blocks</code></a> seems to be a
-popular solution, and we&rsquo;ve found it useful.  It&rsquo;s pretty low-level, though, and
-there are other solutions which might work better as higher-level constructs
-depending on which framework you use.  The Swagger site maintains
-<a href="http://swagger.io/open-source-integrations/">a useful list of language-specific tools</a>.</p>
-
-<p>I&rsquo;ve seen another team just use the <a href="http://editor.swagger.io">Swagger editor</a>
-to edit their specification, and it works well for them.</p>
-
-<p>There isn&rsquo;t a right answer here; it all depends on whether you prefer the docs
-to live closer to or further from your code.</p>
-
-<p>There is a learning curve to understand how to use Swagger, but the tooling is
-fantastic, which helps a lot.  I&rsquo;d recommend looking at a sample specification
-to get a feel for it, then edit to match your own API.</p>
-
-<h3>A Shift in Perspective</h3>
-
-<p>Working with Swagger has changed how I think about the API I work on every day.
-I often used to fall into the trap of thinking we&rsquo;re building it to build it,
-and the documentation is &ldquo;just for the users.&rdquo;</p>
-
-<p>Following a Documentation-Driven Development path with Swagger and Apivore, I&rsquo;ve
-found that the user is brought to the forefront.  Everything we build is in
-service of the product, as described in the Swagger specification, and our
-docspec suite ensures we don&rsquo;t let our users down.</p>
-
-<p>Part of the reason teams have trouble with documentation is that the users are
-relegated to an afterthought.  It&rsquo;s difficult to develop empathy for them when
-their mental model of the app is likely so far removed from our own.</p>
-
-<p>By enforcing accurate documentation, we ensure that we&rsquo;ve specified a full
-explanation of what the user can expect from our API.  Since we&rsquo;re also
-responsible for maintaining that explanation, it becomes a tool to change us,
-helping us maintain a user-centric design approach.  No longer do we build
-features and then expose them to the user; instead, we start with the allowed
-requests, then build the implementation beneath the surface.  Starting the
-development process from the user&rsquo;s vantage point leads to cleaner APIs, a
-better user experience, and ultimately happier customers.</p>
 
 <p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>

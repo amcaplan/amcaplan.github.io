@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-01-01T00:51:20+02:00</updated>
+  <updated>2017-01-01T13:10:56+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,194 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
+    <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
+    <updated>2017-01-01T12:09:02+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
+    <content type="html"><![CDATA[<p>I started the <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
+as a way to stretch myself and get back in the habit of writing.  As in writing
+software, blogging regularly is difficult when there&rsquo;s no pressure to ship.</p>
+
+<p>It certainly got me to release more material than has been my recent practice,
+but it&rsquo;s worth analyzing the process, the outcomes, and the cost.</p>
+
+<!-- more -->
+
+
+<h3>The Creative Process</h3>
+
+<p>My usual blogging workflow (if such a thing can exist) looks something like
+this:</p>
+
+<ol>
+<li>Wait for something to really interest or bother me</li>
+<li>Let it simmer for a while as more complex ideas develop</li>
+<li>Figure out what I want to say about it</li>
+<li>When I have time, develop the ideas into the beginnings of a post</li>
+<li>Sit on it some more</li>
+<li>Come back to it eventually and finish the post</li>
+<li>Edit heavily</li>
+<li>Ship It</li>
+</ol>
+
+
+<p>This leads to a smaller number of (hopefully) high-quality writings worth
+sharing.  In contrast, my workflow this week looked more like this:</p>
+
+<ol>
+<li>Freak out about an impending self-imposed deadline</li>
+<li>Frantically brainstorm until coming up with an idea that seems worthwhile</li>
+<li>Flesh out the idea as I write</li>
+<li>Edit lightly</li>
+<li>Ship It</li>
+</ol>
+
+
+<p>The result was a lot more content, but on occasion I wondered whether the stuff
+I was publishing was worth reading.  Trying to be faithful to my arbitrary
+commitment, I may have pushed through an idea that wasn&rsquo;t perfect, or wasn&rsquo;t
+fully developed in my head yet.</p>
+
+<p>Interestingly, though, I found that the very act of writing was less capturing
+thoughts and more creating them.  Starting with just the nugget of a thought,
+the experience of writing allowed the thought to develop into a full-blown
+argument or hypothesis.</p>
+
+<p>I know everyone writes differently.  Some people start with an outline, then
+fill it in with details as they go.  I have never worked that way as long as I
+can remember.  In elementary school, when teachers would ask for an outline as
+the first step of an essay, I would hand in my outline, get it graded, then
+throw it out and actually begin writing.  To me, the written word is a river; I
+go where it flows.  My words and myself are partners in creativity, building
+crude thoughts into concrete concepts and coherent frameworks.</p>
+
+<p>Incidentally, this is also how I write poetry.  I don&rsquo;t have a destination in
+mind; I write the first line, then the second, and let the words guide me
+wherever they may.  Of course, in poetry and prose, there are editorial steps as
+well, but those merely optimize the core of the idea as it stands when first
+composed.</p>
+
+<p>In truth, the artificial time pressure made room for a workflow more suited to
+how I naturally write.  I&rsquo;m not in a place to judge the end product, of course.
+I leave that as an exercise for you, dear reader.</p>
+
+<h3>Outcomes</h3>
+
+<p>I can&rsquo;t say whether or not my (small) audience did or didn&rsquo;t enjoy my posts.  I
+can, however, comment on their more objective elements.</p>
+
+<p>One easily quantifiable measure is the ratio of technical to non-technical
+posts.  We can knock out the first, introductory post, as well as this one,
+leaving us with 6 posts to analyze.</p>
+
+<p><a href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a> was
+decidedly technical. <a href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+and <a href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
+were decidedly not.  The remaining 3 posts focused on the area where I&rsquo;m most
+comfortable and (I think) most effective, namely the human side of technology.</p>
+
+<p>Comparing this to the past, through mid-2015 I only wrote technical posts, then
+I abruptly released 5 straight completely non-technical posts.  In that light,
+this exercise was a recalibration for me, centering me between the purely human
+and purely technical.</p>
+
+<p>Another significant outcome for me was the ability to flesh out some back-burner
+thoughts into ideas that I may now use to submit to conference CFPs.  Some of
+the stuff I wrote about was never fully developed, and having this obligation
+helped me to realize that there was significant depth where I hadn&rsquo;t perceived
+any in the past.</p>
+
+<p>One final note is in order.  I&rsquo;ll readily admit to being an attention seeker,
+and this exercise brought out the worst in me in that regard.  I tweeted daily
+about the experiment, and watched my Twitter notifications and Google analytics
+to see if anyone noticed.</p>
+
+<p>No one did. (Well, except for this
+<a href="https://twitter.com/peterc/status/813033579982753793">really nice comment</a>
+from Peter Cooper.)  And honestly, it kind of hurt.</p>
+
+<p>Yes, I know it&rsquo;s a really busy time for the world.  People are with family, or
+taking vacations, or whatever.  Somehow the logic part of my brain resented it
+anyway.</p>
+
+<p>So it became an opportunity to exercise discipline, and accept that I write all
+this not because other people read it, but because it&rsquo;s worthwhile in itself.
+Expressing my ideas, and staying accountable by doing so in public, allows me to
+form a more concrete perception of who I am, and why I do what I do.  It also
+allows me to turn on myself with a critial eye, and figure out whether I&rsquo;m
+fooling myself into doing things that counter my self-interest or harm others.</p>
+
+<p>It&rsquo;s not an easy lesson to learn, but maybe it was more valuable to me to have
+my blog ignored than it would have been to have people reading and talking about
+it.</p>
+
+<h3>The Cost</h3>
+
+<p>Wowee.  It&rsquo;s been a long week.</p>
+
+<p>I started the challenge with 2 blog posts already written, 1 good idea, and the
+knowledge that the final post would be a &ldquo;lessons learned&rdquo; exercise.  That left
+6 posts to write, 4 of which needed ideas.  This is actually a pretty tall order
+for someone like me, who tries to keep the content high-quality and valuable to
+others.</p>
+
+<p>Coming up with post ideas mostly happened while walking around, or otherwise
+going about my daily business.  There was some dedicated brainstorming time, but
+that wasn&rsquo;t too significant.</p>
+
+<p>The real time sink was the writing process itself.  Writing and editing posts
+could easily take 3-4 hours apiece, more if I needed to add some custom
+JavaScript (as I did for the censoring functionality
+<a href="http://amcaplan.ninja/2016/12/28/this-is-your-brain-on-ruby/">here</a> to make blog readers, and
+myself, more comfortable).  Those 3-4 hours needed to be highly focused, and I
+would walk away feeling drained and needing a break.</p>
+
+<p>It helped to have a lot of vacation time, and even working hours were pretty
+relaxed since lots of people take vacation in the last week of December.  That
+meant I had time even during work hours to be cranking out posts, though mostly
+they were done during personal time.</p>
+
+<p>Also not helpful: My 18-month-old got sick this week, sicker than she&rsquo;s ever
+been.  Seeing your child with a temperature of 40℃ (that&rsquo;s 104℉ for you
+imperialist Americans) is terrifying, and practically it forces you to drop
+everything.  The worst of it lasted about 2 days, during which time I didn&rsquo;t get
+much done in general.</p>
+
+<p>I had hoped to stay ahead of the curve throughout the 8 days, always at least
+one post ahead, but reality hit hard, and I ran out of headway by Friday.  I had
+to crank out one post on Friday morning, and another on Saturday night.
+(Anything computer-related is off-limits to me Friday evening through Saturday
+evening, since that&rsquo;s the Jewish Sabbath.)  So I made it, I guess, but it was
+down to the wire and quite stressful.</p>
+
+<p>Even when I was ahead of the curve, I found myself staying up hours later than
+usual just to get things done in time.  This made it much more difficult for me
+to function throughout the day.</p>
+
+<p>If I do something like this again, I realize I can&rsquo;t push myself this hard.
+It&rsquo;s just not worth it.  Releasing a post a day could be fun in the future, but
+I&rsquo;d want to have all, or nearly all, the posts ready well in advance.</p>
+
+<h3>Concluding the Conclusion</h3>
+
+<p>In the final calculus, I think it was a worthwhile experiment.  I paid a heavy
+price in terms of stress, but it helped me to think of blogging as part of what
+I normally do, and to find a more balanced voice with regard to the content of
+my posts.</p>
+
+<p>I hope this experiment will inspire me to keep growing as a writer, to keep
+developing interesting ideas, and to share them with you, my readers.</p>
+
+<p>Whenever you read this post, whether it be a day or a decade after I wrote it,
+I hope you find its contents, and the products of this week&rsquo;s efforts, valuable
+and interesting.  And I hope this week turns out to be the beginning of a very
+productive 2017!</p>
+
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
@@ -1860,6 +2048,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do The Right Thing</a></em></strong></li>
 <li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a></em></strong></li>
 </ul>
 
 ]]></content>
@@ -2840,7 +3029,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#101;&#118;&#x40;&#x73;&#97;&#x77;&#102;&#x74;&#119;&#101;&#x61;&#114;&#46;&#108;&#x79;&#46;">&#100;&#101;&#118;&#64;&#115;&#x61;&#x77;&#x66;&#x74;&#x77;&#101;&#97;&#114;&#x2e;&#108;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#x65;&#118;&#64;&#115;&#x61;&#x77;&#102;&#116;&#119;&#x65;&#97;&#114;&#x2e;&#x6c;&#121;&#46;">&#x64;&#101;&#x76;&#x40;&#115;&#x61;&#x77;&#102;&#x74;&#x77;&#x65;&#97;&#114;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -3339,305 +3528,6 @@ speaking, <code>PersistentOpenStruct</code> is about 25%-99% as fast as a regula
 <a href="http://github.com/amcaplan/persistent_open_struct">the gem&rsquo;s homepage</a> and give
 it a whirl.  Drop me a line &ndash; leave a comment or submit a GitHub issue &ndash; let me
 know what happens!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Feature Flags in Ruby, Part III: Who? (Automate Feature Flipping)]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/"/>
-    <updated>2015-01-19T23:49:19+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping</id>
-    <content type="html"><![CDATA[<p><em>Note: Part III assumes familiarity with the idea of feature flags, and their
-practical implementation using the <a href="https://github.com/FetLife/rollout">rollout gem</a>.  For the
-theoretical background, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/">Part I</a>.  For more info
-about rollout, see <a href="http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/">Part II</a>.</em></p>
-
-<p>You have feature flags in your application, letting you turn off calls to
-external services as necessary.  How can we make this happen automatically?</p>
-
-<!-- more -->
-
-
-<h2>Degrade: An Amputation Tool</h2>
-
-<p><a href="https://github.com/jamesgolick/degrade">Degrade</a> exists to cut off error-prone external services when they
-fail.  Let&rsquo;s go through a demo of how we might use it.</p>
-
-<p>Before starting, we should note that redis is absolutely required to use
-degrade.</p>
-
-<h3>Install the gem</h3>
-
-<p>First, <code>gem install degrade</code> or add <code>gem "degrade"</code> to your Gemfile and <code>bundle
-install</code>.</p>
-
-<h3>Instantiate the <code>degrade</code> object</h3>
-
-<p>Next, assuming you have a <code>redis</code> variable which is an instance of
-<a href="https://github.com/redis/redis-rb">Redis</a>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">degrade_my_feature</span> <span class="o">=</span> <span class="no">Degrade</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-</span><span class='line'>  <span class="n">redis</span><span class="p">,</span>
-</span><span class='line'>  <span class="nb">name</span><span class="p">:</span>             <span class="ss">:my_feature</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">sample</span><span class="p">:</span>           <span class="mi">5000</span><span class="p">,</span> <span class="c1"># The sample is reset after this number of requests.</span>
-</span><span class='line'>  <span class="ss">minimum</span><span class="p">:</span>          <span class="mi">100</span><span class="p">,</span>  <span class="c1"># Degrade won&#39;t check whether the threshold has been hit until this number of requests has been made.</span>
-</span><span class='line'>  <span class="ss">threshold</span><span class="p">:</span>        <span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The error rate (in this case, 10%) to deactivate the service</span>
-</span><span class='line'>  <span class="ss">errors</span><span class="p">:</span>           <span class="o">[</span><span class="no">StandardError</span><span class="o">]</span><span class="p">,</span> <span class="c1"># The errors which will label this request as a failure</span>
-</span><span class='line'>  <span class="n">failure_strategy</span><span class="p">:</span> <span class="o">-&gt;</span> <span class="p">{</span>  <span class="c1"># A lambda to be called when the error rate is reached</span>
-</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Whoa, that&rsquo;s a lot of options!  Most pieces are optional and should be
-fine-tuned to the needs of your application.  The important things are: you need
-to pass in a <code>redis</code> object, give your degrade object a <code>name</code>, and feed it a
-<code>failure_strategy</code> lambda which will run if the error threshold is reached.</p>
-
-<p>Let&rsquo;s discuss how to use your shiny new degrade object!</p>
-
-<h3>Wrap a call</h3>
-
-<p>Your <code>degrade</code> object comes with a <code>#perform</code> method that takes a block, thusly:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">degrade_my_feature</span><span class="o">.</span><span class="n">perform</span> <span class="k">do</span>
-</span><span class='line'>  <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mega-downtime.com&#39;</span><span class="p">,</span> <span class="s1">&#39;/data.json&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It will run the block without impacting the return value, only pausing to mark
-whether the block raised one of the specified errors.  As you can see from
-<a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L12-L20">the source code</a> for <code>#perform</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">perform</span>
-</span><span class='line'>  <span class="k">begin</span>
-</span><span class='line'>    <span class="n">mark_request</span>
-</span><span class='line'>    <span class="k">yield</span>
-</span><span class='line'>  <span class="k">rescue</span> <span class="o">*</span><span class="vi">@errors</span> <span class="o">=&gt;</span> <span class="n">e</span>
-</span><span class='line'>    <span class="n">mark_failure</span>
-</span><span class='line'>    <span class="k">raise</span> <span class="n">e</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It simply marks that a request is being made, and yields to your passed-in
-block. If all goes well, <code>perform</code> will return the return value of the block.
-If an error occurs, and it&rsquo;s one of the errors you&rsquo;ve selected to track, degrade
-will rescue, mark that this request ended in failure, and re-raise the error.</p>
-
-<p>It&rsquo;s important to understand that degrade won&rsquo;t automatically turn off a feature
-for you.  All it does is run the <code>failure_strategy</code> you&rsquo;ve given it.  You can
-use something like rollout to handle the failure situation.  Here is an example:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">rollout</span><span class="o">.</span><span class="n">active?</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">degrade_my_feature</span><span class="o">.</span><span class="n">perform</span> <span class="k">do</span>
-</span><span class='line'>    <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mega-downtime.com&#39;</span><span class="p">,</span> <span class="s1">&#39;/data.json&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">hashify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="p">{}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can, of course, cut off the request earlier in your code.  You might turn
-off a controller action entirely if the external service it needs is down.</p>
-
-<h2>Customizing Your <code>failure_strategy</code></h2>
-
-<p>The <code>failure_strategy</code> you pass to degrade is just a plain old lambda, so you
-can pass in any code that you want.  Let&rsquo;s say you create an <code>OutageNotifier</code>
-module which can send an email/text when the external service goes down.  Just
-call that code from the <code>failure_strategy</code>.  You can also set up a Sidekiq
-worker that will reactivate the service (i.e., try again) after a specified
-period of time.</p>
-
-<p>Here&rsquo;s how you might do all that in one <code>failure_strategy</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">degrade_my_feature</span> <span class="o">=</span> <span class="no">Degrade</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-</span><span class='line'>  <span class="n">redis</span><span class="p">,</span>
-</span><span class='line'>  <span class="nb">name</span><span class="p">:</span> <span class="ss">:my_feature</span><span class="p">,</span>
-</span><span class='line'>  <span class="n">failure_strategy</span><span class="p">:</span> <span class="o">-&gt;</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">deactivate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">OutageNotifier</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="ss">downtime</span><span class="p">:</span> <span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">MyFeatureActivatorWorker</span><span class="o">.</span><span class="n">perform_in</span><span class="p">(</span><span class="mi">30</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Reactivation</h3>
-
-<p>There is one catch to be aware of when reactivating.  Degrade does not
-automatically reset the sample when it runs the <code>failure_strategy</code>.  It has a
-private method to do that (after it hits the sample size max), but we&rsquo;ll respect
-that method&rsquo;s privacy.  Here&rsquo;s what <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L56-L61">that method</a> looks
-like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">reset_sample</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">requests</span> <span class="o">&gt;</span> <span class="vi">@sample</span>
-</span><span class='line'>    <span class="vi">@redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">requests_key</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">failures_key</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If we <a href="https://github.com/jamesgolick/degrade/blob/master/lib/degrade.rb#L31-L37">dive deeper</a>, we&rsquo;ll see that <code>requests_key</code> and
-<code>failures_key</code> are:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">requests_key</span>
-</span><span class='line'>  <span class="s2">&quot;status:</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">:requests&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">failures_key</span>
-</span><span class='line'>  <span class="s2">&quot;status:</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">:failures&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So if we copy those methods, all we have to do to reset the sample is copy that
-code into our worker.  Here&rsquo;s a simplified Sidekiq worker, where <code>#perform</code> will
-reset the sample and then reactivate the feature flag:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyFeatureActivatorWorker</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="ss">Sidekiq</span><span class="p">:</span><span class="ss">:Worker</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">perform</span>
-</span><span class='line'>    <span class="n">reset_sample</span>
-</span><span class='line'>    <span class="n">rollout</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="ss">:my_feature</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">reset_sample</span>
-</span><span class='line'>    <span class="n">redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">requests_key</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">redis</span><span class="o">.</span><span class="n">del</span><span class="p">(</span><span class="n">failures_key</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">requests_key</span>
-</span><span class='line'>    <span class="s2">&quot;status:my_feature:requests&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">failures_key</span>
-</span><span class='line'>    <span class="s2">&quot;status:my_feature:failures&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now you can use the line of code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">MyFeatureActivatorWorker</span><span class="o">.</span><span class="n">perform_in</span><span class="p">(</span><span class="mi">30</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>to reactivate the feature after a 30-minute delay.  If you&rsquo;re really clever, you
-can even set it up to increase the delay each time.  It all depends on the needs
-of your application.</p>
-
-<h2>Wrapping Up</h2>
-
-<p>In this series, we&rsquo;ve learned</p>
-
-<ul>
-<li><p>what feature flags are</p></li>
-<li><p>how to use feature flags with the rollout gem</p></li>
-<li><p>how to use degrade, building on rollout, to shut off external services as
-necessary</p></li>
-</ul>
-
-
-<p>Let me know about your experiences in the comments!</p>
-
-<hr />
-
-<p><em>Recently I gave a <a href="http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade">talk</a> at <a href="http://www.meetup.com/NYC-rb/">NYC.rb</a> about
-<a href="http://jamesgolick.com">James Golick</a>&rsquo;s <code>rollout</code> and <code>degrade</code> gems.  These posts are a
-rehash and expansion of the material delivered there.</em></p>
-
-<p><em>To learn more about James&rsquo;s life and the circumstances surrounding his untimely
-passing, see the links below the <a href="https://speakerdeck.com/amcaplan/flag-your-features-with-rollout-and-degrade">SpeakerDeck</a>.</em></p>
 ]]></content>
   </entry>
   
