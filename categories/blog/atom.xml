@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-01-01T13:10:56+02:00</updated>
+  <updated>2017-04-25T14:27:22-07:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
     <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
-    <updated>2017-01-01T12:09:02+02:00</updated>
+    <updated>2017-01-01T03:09:02-07:00</updated>
     <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
@@ -204,7 +204,7 @@ productive 2017!</p>
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T20:50:21+02:00</updated>
+    <updated>2016-12-31T11:50:21-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
@@ -477,7 +477,7 @@ and details to the stage.</p>
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
-    <updated>2016-12-30T12:53:38+02:00</updated>
+    <updated>2016-12-30T03:53:38-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
@@ -809,7 +809,7 @@ around.</p>
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
-    <updated>2016-12-29T14:13:00+02:00</updated>
+    <updated>2016-12-29T05:13:00-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
     <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
@@ -970,7 +970,7 @@ primary level of abstraction.</p>
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
-    <updated>2016-12-28T12:08:26+02:00</updated>
+    <updated>2016-12-28T03:08:26-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>There are plenty of ways to write a FizzBuzz program in any language,
 particularly Ruby with its <a href="https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it">TIMTOWTDI</a> philosophy.  Beyond the naive

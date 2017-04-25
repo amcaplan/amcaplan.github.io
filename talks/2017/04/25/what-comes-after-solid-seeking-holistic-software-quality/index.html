@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What Comes After SOLID? Seeking Holistic Software Quality - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="This talk was given at RailsConf 2017. Video will be added when published by
+Confreaks. (Slides will be added shortly after the talk.) <!--
+Here are &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="What Comes After SOLID? Seeking Holistic Software Quality" />
+    
+    <meta name="twitter:description" content="A new way to assess the quality of software, set the right goals, and find balance in our coding practices. Good Code isn't enough." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+  
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What Comes After SOLID? Seeking Holistic Software Quality</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-25T12:40:00-07:00" pubdate data-updated="true">Apr 25<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This talk was given at RailsConf 2017. Video will be added when published by
+Confreaks.</p>
+
+<p>(Slides will be added shortly after the talk.)</p>
+
+<!--
+Here are the slides:
+
+<script async class="speakerdeck-embed" data-id="7ed494d4b4244f26a453c97aa9efc75d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+&#8211;>
+
+
+
+
+<br/>
+
+
+<h4>Talk Description:</h4>
+
+<p>You care deeply about code quality and constantly strive to learn more. You
+devour books and blogs, watch conference talks, and practice code katas.</p>
+
+<p>That&rsquo;s excellent! But immaculately factored code and clean architecture alone
+won&rsquo;t guarantee quality software.</p>
+
+<p>As a developer, your job isn&rsquo;t to write Good Code. It&rsquo;s to deliver value for
+people. In that light, we&rsquo;ll examine the effects of a host of popular coding
+practices. What do they accomplish? Where do they fall short?</p>
+
+<p>We&rsquo;ll set meaningful goals for well-rounded, high-quality software that solves
+important problems for real people.</p>
+
+<h4>Exercise from the talk:</h4>
+
+<p>Download the exercise as a <a href="/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="/assets/railsconf-2017/exercise.pptx">PowerPoint</a> file.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-25T12:40:00-07:00" pubdate data-updated="true">Apr 25<span>th</span>, 2017</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="/" title="AMC: Aspiring Master of Code"><img id="logo" src="/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="/" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="/"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do the Right Thing</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+        <li class="post">
+          <a href="/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">What Comes After SOLID? Seeking Holistic Software Quality</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/';
+        var disqus_url = 'http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

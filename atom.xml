@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-01-01T13:10:56+02:00</updated>
+  <updated>2017-04-25T14:27:22-07:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,54 @@
 
   
   <entry>
+    <title type="html"><![CDATA[What Comes After SOLID? Seeking Holistic Software Quality]]></title>
+    <link href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
+    <updated>2017-04-25T12:40:00-07:00</updated>
+    <id>http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
+    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017. Video will be added when published by
+Confreaks.</p>
+
+<p>(Slides will be added shortly after the talk.)</p>
+
+<!--
+Here are the slides:
+
+<script async class="speakerdeck-embed" data-id="7ed494d4b4244f26a453c97aa9efc75d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+&#8211;>
+
+
+
+
+<br/>
+
+
+<h4>Talk Description:</h4>
+
+<p>You care deeply about code quality and constantly strive to learn more. You
+devour books and blogs, watch conference talks, and practice code katas.</p>
+
+<p>That&rsquo;s excellent! But immaculately factored code and clean architecture alone
+won&rsquo;t guarantee quality software.</p>
+
+<p>As a developer, your job isn&rsquo;t to write Good Code. It&rsquo;s to deliver value for
+people. In that light, we&rsquo;ll examine the effects of a host of popular coding
+practices. What do they accomplish? Where do they fall short?</p>
+
+<p>We&rsquo;ll set meaningful goals for well-rounded, high-quality software that solves
+important problems for real people.</p>
+
+<h4>Exercise from the talk:</h4>
+
+<p>Download the exercise as a <a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> file.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
     <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
-    <updated>2017-01-01T12:09:02+02:00</updated>
+    <updated>2017-01-01T03:09:02-07:00</updated>
     <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
@@ -204,7 +249,7 @@ productive 2017!</p>
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T20:50:21+02:00</updated>
+    <updated>2016-12-31T11:50:21-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
@@ -477,7 +522,7 @@ and details to the stage.</p>
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
-    <updated>2016-12-30T12:53:38+02:00</updated>
+    <updated>2016-12-30T03:53:38-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
@@ -831,7 +876,7 @@ around.</p>
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
-    <updated>2016-12-29T14:13:00+02:00</updated>
+    <updated>2016-12-29T05:13:00-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
     <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
@@ -992,7 +1037,7 @@ primary level of abstraction.</p>
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
-    <updated>2016-12-28T12:08:26+02:00</updated>
+    <updated>2016-12-28T03:08:26-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>There are plenty of ways to write a FizzBuzz program in any language,
 particularly Ruby with its <a href="https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it">TIMTOWTDI</a> philosophy.  Beyond the naive
@@ -1258,7 +1303,7 @@ did.</p>
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
-    <updated>2016-12-27T21:54:20+02:00</updated>
+    <updated>2016-12-27T12:54:20-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
 painful to keep in sync with your code.  A tremendous amount of cognitive
@@ -1732,7 +1777,7 @@ better user experience, and ultimately happier customers.</p>
   <entry>
     <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
-    <updated>2016-12-26T12:11:32+02:00</updated>
+    <updated>2016-12-26T03:11:32-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
     <content type="html"><![CDATA[<p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
 you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
@@ -1960,7 +2005,7 @@ course practically it doesn&rsquo;t happen past a few commits.</p>
   <entry>
     <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
-    <updated>2016-12-25T16:01:56+02:00</updated>
+    <updated>2016-12-25T07:01:56-07:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
     <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
 
@@ -2057,7 +2102,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
-    <updated>2016-11-10T21:01:52+02:00</updated>
+    <updated>2016-11-10T12:01:52-07:00</updated>
     <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
@@ -2091,7 +2136,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T19:25:09+03:00</updated>
+    <updated>2016-09-16T09:25:09-07:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
@@ -2127,7 +2172,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T17:32:24+03:00</updated>
+    <updated>2016-05-05T07:32:24-07:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -2139,7 +2184,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T17:20:43+03:00</updated>
+    <updated>2016-05-04T07:20:43-07:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -2158,9 +2203,9 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
-    <updated>2016-01-04T00:04:10+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
+    <updated>2016-01-03T15:04:10-07:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -2526,7 +2571,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T16:05:35+02:00</updated>
+    <updated>2015-12-02T07:05:35-07:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -2730,7 +2775,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T23:40:44+02:00</updated>
+    <updated>2015-11-24T14:40:44-07:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -2751,7 +2796,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T15:42:16+02:00</updated>
+    <updated>2015-11-18T06:42:16-07:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -2826,9 +2871,9 @@ is a comforting universality to ethics.</p>
   
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
-    <updated>2015-11-06T00:01:36+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
+    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
+    <updated>2015-11-05T15:01:36-07:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
 <p>This talk was given at RailsRemoteConf 2015.</p>
@@ -2901,9 +2946,9 @@ edited my notes from the live code portion, and published them at
   
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-02T09:55:53+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
+    <link href="http://amcaplan.ninja/blog/2015/08/01/recruit-software-engineers-with-this-1-weird-old-tip/"/>
+    <updated>2015-08-01T23:55:53-07:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/08/01/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
 
@@ -3029,7 +3074,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#x65;&#118;&#64;&#115;&#x61;&#x77;&#102;&#116;&#119;&#x65;&#97;&#114;&#x2e;&#x6c;&#121;&#46;">&#x64;&#101;&#x76;&#x40;&#115;&#x61;&#x77;&#102;&#x74;&#x77;&#x65;&#97;&#114;&#46;&#x6c;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#101;&#x76;&#x40;&#115;&#97;&#x77;&#102;&#116;&#x77;&#x65;&#97;&#x72;&#x2e;&#108;&#121;&#x2e;">&#100;&#x65;&#118;&#x40;&#x73;&#97;&#x77;&#x66;&#116;&#119;&#x65;&#x61;&#x72;&#x2e;&#x6c;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -3063,9 +3108,9 @@ getting good people to work together, because good people are hard to come by.</
   
   <entry>
     <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-29T01:01:19+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first</id>
+    <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
+    <updated>2015-06-28T15:01:19-07:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
     <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
 things a junior developer should accomplish within their first 3 months on the
 job.  Being at the end of my first year on the job, it was an excellent
@@ -3335,199 +3380,6 @@ on in their first few months on the job?  Share your thoughts in the comments!</
 </ol>
 </div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Making of PersistentOpenStruct]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/"/>
-    <updated>2015-05-21T03:39:23+03:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct</id>
-    <content type="html"><![CDATA[<p>So I built this thing&hellip;</p>
-
-<h2>The Challenge</h2>
-
-<p>Here&rsquo;s the problem we were having at work.  We have a bunch of microservices
-which communicate with each other via HTTP.  Since they&rsquo;re passing around raw
-data, and the shape often changes, we decided quite some time ago to use classes
-inheriting from <code>OpenStruct</code>, that magical schema-free class, as a data container.</p>
-
-<p>The problem is, <code>OpenStruct</code> is also ridiculously slow&hellip;</p>
-
-<!-- more -->
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="nb">require</span> <span class="s1">&#39;ostruct&#39;</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="nb">require</span> <span class="s1">&#39;benchmark/ips&#39;</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Benchmark</span><span class="o">.</span><span class="n">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">class</span> <span class="nc">RegularClass</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="kp">attr_accessor</span> <span class="ss">:foo</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">class</span> <span class="nc">OpenStructClass</span> <span class="o">&lt;</span> <span class="no">OpenStruct</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;regular class&#39;</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">r</span> <span class="o">=</span> <span class="no">RegularClass</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">r</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="ss">:bar</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">r</span><span class="o">.</span><span class="n">foo</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;OpenStruct class&#39;</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">o</span> <span class="o">=</span> <span class="no">OpenStructClass</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">o</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="ss">:bar</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>     <span class="n">o</span><span class="o">.</span><span class="n">foo</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span>   <span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">*</span> <span class="k">end</span>
-</span><span class='line'><span class="no">Calculating</span> <span class="o">-------------------------------------</span>
-</span><span class='line'>       <span class="n">regular</span> <span class="k">class</span>   <span class="mi">114</span><span class="o">.</span><span class="mi">702</span><span class="n">k</span> <span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="n">ms</span>
-</span><span class='line'>    <span class="no">OpenStruct</span> <span class="k">class</span>    <span class="mi">14</span><span class="o">.</span><span class="mi">400</span><span class="n">k</span> <span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="n">ms</span>
-</span><span class='line'><span class="o">-------------------------------------------------</span>
-</span><span class='line'>       <span class="n">regular</span> <span class="k">class</span>      <span class="mi">3</span><span class="o">.</span><span class="mi">901</span><span class="n">M</span> <span class="p">(</span><span class="err">±</span> <span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="sx">%) i/s -     19.499M</span>
-</span><span class='line'><span class="sx">    OpenStruct class    158.799k (± 7.1%)</span> <span class="n">i</span><span class="o">/</span><span class="n">s</span> <span class="o">-</span>    <span class="mi">792</span><span class="o">.</span><span class="mo">000</span><span class="n">k</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>From that benchmark, it seems like <code>OpenStruct</code> is 4% the speed of a regular
-class &ndash; not particularly helpful when performance is a significant concern.</p>
-
-<p>In our case, profiling with <code>StackProf</code> showed that <code>OpenStruct</code> was taking up
-13% of CPU time in many cases; in short, it was one of our worst offenders,
-performance-wise.</p>
-
-<p>However, we really wanted to stick with <code>OpenStruct</code> because of the flexibility
-it provides.  How could we bridge that gap?</p>
-
-<h2>Attempt 1: OpenFastStruct</h2>
-
-<p>I had read about a gem called <code>open_fast_struct</code> recently, which provides a
-different implementation of <code>OpenStruct</code>, with its own performance quirks.  In
-most use cases, it outperforms <code>OpenStruct</code> by a factor of 4.  It achieves this
-by skipping a step that <code>OpenStruct</code> does.</p>
-
-<p>Internally, every time I call a new method on and <code>OpenStruct</code> instance, it
-defines a new method for next time.  This is much more efficient if I&rsquo;m going to
-be calling that method hundreds of times.  However, if I&rsquo;m just calling it a few
-times, it&rsquo;s not worth it to define the method, and instead what I should really
-do is continue to rely on <code>#method_missing</code>.</p>
-
-<p>That idea is at the core of <code>OpenFastStruct</code>.  It just maintains an internal
-hash containing the data you insert, and any call to <code>#method_missing</code> interacts
-with that hash.  In contrast, <code>OpenStruct</code> also maintains an internal hash, but
-defines methods on-the-fly to interact with that hash.</p>
-
-<p>However, <code>OpenFastStruct</code> doesn&rsquo;t maintain the entire public interface of
-<code>OpenStruct</code>, and it became clear we would need to monkey-patch it quite a bit
-to get it to work for us.</p>
-
-<p>Additionally, I realized that we didn&rsquo;t really need <em>all</em> the flexibility of
-<code>OpenStruct</code>.  Instead, our needs would be best served by something that would
-define the shape of the class on-the-fly and then stick with it.</p>
-
-<h2>Attempt 2: PersistentOpenStruct</h2>
-
-<p>So I decided to build a new gem.  <code>PersistentOpenStruct</code>, as the name suggests,
-allows the construction of a class on-the-fly.  The major difference from
-<code>OpenStruct</code> is that it defines methods on the class, rather than defining
-singleton methods on the object.  This means that if I create 1,000 objects with
-the same 8 properties, <code>OpenStruct</code> will define 8,000 methods, and
-<code>PersistentOpenStruct</code> will define 8.</p>
-
-<p>To make sure I obeyed the entire public interface, I decided to put this
-together by subclassing <code>OpenStruct</code> and redefining the methods which would
-otherwise define singleton methods.  This has the nice benefit that the entire
-significant code in the gem is around 15 lines.  The downside is, of course,
-that <code>PersistentOpenStruct</code> can only be understood in the context of
-<code>OpenStruct</code> and depends on the internals of <code>OpenStruct</code>.  Still, I think the
-tradeoffs are in favor of keeping things simple for now, and letting things
-develop over time as needed.</p>
-
-<p>The other thing I did was literally copy over the tests that are used to test
-the original <code>OpenStruct</code> class.  The only changes I made were adjustments which
-made sense in this case (unlike <code>OpenStruct</code>, what happens to one object affects
-the <code>#respond_to?</code> answer of another), and adding some additional tests.</p>
-
-<p>Enough of my chitchat, though, it&rsquo;s time for the results!</p>
-
-<h2>PersistentOpenStruct Revealed</h2>
-
-<p>Here&rsquo;s some code which demonstrates how <code>PersistentOpenStruct</code> works.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyDataStructure</span> <span class="o">&lt;</span> <span class="no">PersistentOpenStruct</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">datum1</span> <span class="o">=</span> <span class="no">MyDataStructure</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">foo</span><span class="p">:</span> <span class="ss">:bar</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">datum2</span> <span class="o">=</span> <span class="no">MyDataStructure</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">datum2</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:baz</span><span class="p">)</span> <span class="c1">#=&gt; false</span>
-</span><span class='line'><span class="n">datum2</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:foo</span><span class="p">)</span> <span class="c1">#=&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Since <code>datum1</code> used <code>foo</code> as a key, every instance of <code>MyDataStructure</code> will
-now have a <code>foo</code> method.  Again, this happens because <code>MyDataStructure</code> has the
-<code>#foo=</code> and <code>foo</code> methods defined on the class as soon as any instance gets a
-<code>foo</code> property.</p>
-
-<p>As for performance?  You can download the gem and run the benchmarks yourself.
-Various actions (key/value assignment on initialization, key/value assignment
-after initialization, value access) have different comparisons, but generally
-speaking, <code>PersistentOpenStruct</code> is about 25%-99% as fast as a regular class.</p>
-
-<p>You can see the results I got on my Mac at the gem&rsquo;s homepage.</p>
-
-<h2>The Bottom Line</h2>
-
-<p>By simply dropping in <code>PersistentOpenStruct</code> in place of <code>OpenStruct</code>, we saw a
-10% reduction in response time for Sidekiq jobs that relied heavily on
-<code>OpenStruct</code>s.</p>
-
-<p>Sound interesting?  Check out
-<a href="http://github.com/amcaplan/persistent_open_struct">the gem&rsquo;s homepage</a> and give
-it a whirl.  Drop me a line &ndash; leave a comment or submit a GitHub issue &ndash; let me
-know what happens!</p>
 ]]></content>
   </entry>
   
