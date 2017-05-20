@@ -44,3 +44,19 @@ important problems for real people.
 Download the exercise as a [PDF](/assets/railsconf-2017/exercise.pdf),
 [Keynote](/assets/railsconf-2017/exercise.key), or
 [PowerPoint](/assets/railsconf-2017/exercise.pptx) file.
+
+#### Talk Errata:
+Reflecting afterwards, I noticed a few mistakes I made in the presentation, and
+would like to note them here:
+
+1. I confused [Cyclomatic Complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity)
+with the [ABC (Assignments, Branching, and Conditionals)](https://en.wikipedia.org/wiki/ABC_score)
+metric.  Branching is very similar to cyclomatic complexity, but technically
+[ABC is a software size metric, not a complexity metric](http://wiki.c2.com/?AbcMetric),
+and it encompasses more than cyclomatic complexity.
+1. I mentioned [Flay](http://ruby.sadi.st/Flay.html) when I had intended to
+reference [Flog](http://ruby.sadi.st/Flog.html); the former is a tool for
+locating duplication, while the latter is actually a measure of ABC in Ruby.
+1. Code Review is generally done after checking code into source control; the
+intention was that it's done before code is moved into the main (master) branch
+of a central repository.
