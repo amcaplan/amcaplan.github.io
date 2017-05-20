@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The 3 Keys to Software Quality - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Why do software projects fail? This question is difficult to answer precisely because there isn&rsquo;t a single
+answer. Sometimes the blame falls to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="The 3 Keys to Software Quality" />
+    
+    <meta name="twitter:description" content="What comes after SOLID? Usefulness, Sustainability, and Accuracy will reshape your thinking on software quality." />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+  
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The 3 Keys to Software Quality</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-05-17T19:02:22+03:00" pubdate data-updated="true">May 17<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Why do software projects fail?</p>
+
+<p>This question is difficult to answer precisely because there isn&rsquo;t a single
+answer.  Sometimes the blame falls to technical debt which hamstrings
+scalability, the ability to ship new features, or the ability to respond to
+market demands.  Other times it&rsquo;s the lack of business model, which sinks the
+entire company.  In certain situations, various parts of the organization not
+seeing eye-to-eye is the culprit; the lack of shared vision causes sales to
+over-promise, engineering to develop the wrong things, or marketing to pursue
+the wrong strategy.</p>
+
+<p>The causes are many and varied, yet somehow as engineers we focus a lot on &ldquo;Good
+Code&rdquo; (however we choose to define it), which fails to address most of these
+problems.  Why?</p>
+
+<!-- more -->
+
+
+<p>If I were to hazard a guess, I&rsquo;d say it&rsquo;s because we as technical people are
+trained (or believe we are trained) to understand issues of Good Code more
+easily than we can solve business challenges or organizational dysfunction.  As
+humans, we tend to favor investing time in the problems we know how to solve
+rather than the problems that most need careful solving (<a href="https://en.wikipedia.org/wiki/Law_of_triviality">Parkinson&rsquo;s Law of Triviality</a>).
+Good Code is a problem we think we know how to solve, so we try to solve it and
+forget about the larger questions that determine the success or failure of our
+endeavors.</p>
+
+<h3>What is Software Quality?</h3>
+
+<p>Traditionally, we see the role of engineers as outputting high-quality software
+that meets a particular need.  We then define &ldquo;high-quality&rdquo; in purely technical
+terms.  This has to end.</p>
+
+<p>The only point of writing software is to solve problems.  In the context of a
+business, every bit of software writing should be meant to target one of three
+fundamental problems every business faces:</p>
+
+<ul>
+<li>Generating Revenue (or, for a non-profit, doing good)</li>
+<li>Lowering Costs</li>
+<li>Reducing Risk</li>
+</ul>
+
+
+<p>For the remainder of this post, I&rsquo;ll include those 3 elements in the (badly
+defined) term &ldquo;business value.&rdquo;  Other places on the internet may define
+business value otherwise; that&rsquo;s fine, it&rsquo;s just for this post.</p>
+
+<p>If the purpose of software is to generate business value, it stands to reason
+that the quality of software is simply a matter of how much business value it
+generates.  &ldquo;Is it high-quality?&rdquo; becomes a question of &ldquo;How fit is it for
+purpose?&rdquo;</p>
+
+<p>That definition will probably make a lot of engineers uncomfortable.  Isn&rsquo;t my
+job to write code, and someone else can think about the business impact?</p>
+
+<p>Sure, you could look at it that way.  But that means that the fundamental
+question of whether your software is valuable&mdash;and, as I define it,
+high-quality&mdash;rests in the hands of other people without your input.</p>
+
+<p>So think of it this way: The more you involve yourself in understanding, and
+maybe even influencing, the business elements of your project, the more
+effective you&rsquo;ll be at creating the software your business/clients really need.</p>
+
+<h3>A New Framework</h3>
+
+<p>We do many things as engineers and as organizations to improve the quality of
+our software.  I believe all these practices really target one or more of 3
+primary objectives, which I term Usefulness, Sustainability, and Accuracy.
+(You&rsquo;ll note that the acronym is USA.  No, I didn&rsquo;t choose the words for the
+acronym, it sort of just happened.)  Let&rsquo;s define these terms a bit better:</p>
+
+<ul>
+<li><strong>Usefulness</strong> asks the question: &ldquo;Does the software solve the problem
+effectively?&rdquo;  It requires verifying both that the problem we imagine actually
+exists, and that our product solves the problem in the way that works best for
+the users.</li>
+<li><strong>Sustainability</strong> asks the question: &ldquo;Can we keep building without
+unnecessary obstacles?&rdquo;  Certainly, we need to think about the software itself.
+Is it written in a flexible way that will allow us to come back later and make
+the changes we need?  We also need to think about the development team, which
+likely undergoes far less churn than the code, and hence is even <em>more</em>
+important to the sustainability of your product than the software itself.  Are
+you building up the team to support constant improvement and open lines of
+communication?  Does the team have any instability that threatens future
+progress?</li>
+<li><strong>Accuracy</strong> asks the question: &ldquo;Does our software work the way we think it
+does?&rdquo;  It focuses on the relationship between ourselves and our code.  We must
+make sure that we&rsquo;ve accurately understood the problem and the codebase, and as
+new information comes in we must always ensure the state of the codebase
+reflects the current state of our understanding.</li>
+</ul>
+
+
+<p>With these 3 major objectives in mind, let&rsquo;s get into the weeds a bit and think
+about how they impact our day-to-day work.</p>
+
+<h3>Making it Concrete</h3>
+
+<p>Every team, project, and situation will have its own way of defining how various
+practices support (or don&rsquo;t) the 3 objectives.  I&rsquo;ll just give a few examples of
+practices that I&rsquo;ve found to be impactful on the teams where I&rsquo;ve worked.  Let&rsquo;s
+start with a visual map of how I see things:</p>
+
+<p><a href="/images/USA_map_large.png" target="_blank"><img src="/images/USA_map.png" alt="Map of USA practices" /></a></p>
+
+<p>Without getting into the gory details (though I did give <a href="/railsconf2017">a talk</a>
+about that), here&rsquo;s a guide to interpreting that picture.</p>
+
+<p>The blue circle on the bottom is probably easiest to understand.  It includes a
+variety of practices designed to increase confidence that what&rsquo;s in your head
+matches what&rsquo;s in the code.  This includes testing practices, programming
+language features, tools and techniques for reducing complexity, and increasing
+the number of programmers who see and interact with code before it&rsquo;s committed
+and deployed.</p>
+
+<p>The green circle on the top-right is about maintaining flexibility while
+avoiding elements of instability.  Anything that makes it easier to build
+without breaking things, creating a tangled mess, or backing yourself into a
+corner (from a perspective of product development) goes there.  Also included
+are practices that build the team, improve the skills of developers, and make it
+easy (in the context of a larger organization) to interoperate with other teams
+and/or move people across team boundaries.</p>
+
+<p>The top-left red circle is about connecting our applications to their purpose.
+Probably the most important piece is &ldquo;Focus on Delivering Value&rdquo;; all else can
+be derived from it.  The red circle is populated by practices that help you
+understand your users more effectively, keep their needs in mind as you code,
+and do the most important work first.  There are elements of both making the
+solution that works for them (researching their needs, making it performant) and
+making the solution work for them (providing it when they need it, with
+appropriate documentation, and the ability to find what they need).</p>
+
+<p>One non-obvious (and likely controversial) thing is the fact that I&rsquo;ve put a
+number of technical practices into the red circle.  I believe that when we have
+multiple people working on code, or we explicitly document how a system is to be
+used via integration testing, that helps us focus on the end value provided to
+the user, at least opening up space for having conversations about the business
+value created by our software.  I don&rsquo;t think we&rsquo;ve fulfilled our obligation to
+the Usefulness objective just by doing those things, but they&rsquo;re a good start.</p>
+
+<p>I&rsquo;ve also mentioned a few central practices, which are just my opinion (as is
+the rest of this map):</p>
+
+<ul>
+<li>I believe having a broad-based <strong>testing</strong> strategy provides meaningful signal on
+all 3, since it allows you to write correct code the first time, avoid breaking
+it later, and&mdash;if you write proper integration tests&mdash;helps you to
+keep user needs in mind.</li>
+<li><strong>Pairing</strong> and <strong>mobbing</strong> help you write code with fewer mistakes, build the
+team going forward, and provide space for conversations about the purpose of the
+current task and how to best accomplish it.</li>
+<li>The Single Responsibility Principle (<strong>SRP</strong>) is about making sure each part
+of your system does one thing, and does it well.  This makes it easier to write
+accurate code the first time; if the purpose is clearly defined, it&rsquo;s much
+easier to test whether the code actually achieves it.  It&rsquo;s also easier to come
+back later and make a change, since you know exactly what to change.  Finally,
+focusing on the purpose of your code helps keep in mind the big picture of why
+you&rsquo;re writing the code in the first place.</li>
+<li><strong>Frequent releases</strong> allow you to deliver value more quickly to the user.  If
+you think of value creation as represented by (<em>value created per time</em> ⨉ <em>time
+software is in use</em>), it&rsquo;s clear that shipping value earlier beats later.
+Frequent releases also allow you to find bugs more quickly (users are really
+good at figuring out when your software is broken!) and avoid building castles
+on top of flawed ideas you only find out are flawed months later (hence helping
+Sustainability).</li>
+</ul>
+
+
+<p>Again, these are just my own opinions, based on my experiences with these
+practices and how I&rsquo;ve seen them utilized on the teams I&rsquo;ve been part of.  Your
+team will derive more or less, and different, benefit(s) from these same
+practices, and that&rsquo;s normal and expected.</p>
+
+<p>As an exercise, I&rsquo;ve made a blank version of the map available in
+<a href="/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="/assets/railsconf-2017/exercise.pptx">PowerPoint</a> form for you to fill out with
+your own teams.  I&rsquo;d love to see how your maps stack up against mine!</p>
+
+<h3>Bridging the Gap</h3>
+
+<p>Bob Martin, citing Kent Beck, <a href="https://8thlight.com/blog/uncle-bob/2014/03/28/The-Corruption-of-Agile.html">wrote</a>
+that the Agile Manifesto was intended &ldquo;to heal the divide between development
+and business.&rdquo;  Unfortunately, 16 years later, that&rsquo;s nowhere near a solved
+problem.</p>
+
+<p>I believe that divide can be healed if we learn to speak a common language,
+relating elements of technical excellence to meeting business needs, showing how
+the things we care about as engineers are things everyone should care about.
+That means going beyond our technical peers to understand the needs of other
+parts of our organizations, and figuring out our role in meeting those needs.</p>
+
+<p>If we learn to speak the language of business, just a little bit, we can expect
+to see a lot more understanding and respect coming in the opposite direction,
+from businesspeople to developers.  Maybe we&rsquo;ll even develop psychological
+safety and trust.  Wouldn&rsquo;t that be great!</p>
+
+<p>We&rsquo;re all in this together.  Let&rsquo;s start acting like it.</p>
+
+<p><em>Note: Based on a talk given at RailsConf 2017. Check out the original
+talk <a href="/railsconf2017">here</a>.</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-05-17T19:02:22+03:00" pubdate data-updated="true">May 17<span>th</span>, 2017</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2017/01/01/reflections-on-8-days-of-blog-posts/" title="Previous Post: Reflections on 8 Days of Blog Posts">&laquo; Reflections on 8 Days of Blog Posts</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="/" title="AMC: Aspiring Master of Code"><img id="logo" src="/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="/" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="/"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2017/05/17/the-3-keys-to-software-quality/">The 3 Keys to Software Quality</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do the Right Thing</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">What Comes After SOLID? Seeking Holistic Software Quality</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/';
+        var disqus_url = 'http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

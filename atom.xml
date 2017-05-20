@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-04-25T16:38:37-07:00</updated>
+  <updated>2017-05-20T22:15:47+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,14 +14,228 @@
 
   
   <entry>
+    <title type="html"><![CDATA[The 3 Keys to Software Quality]]></title>
+    <link href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
+    <updated>2017-05-17T19:02:22+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
+    <content type="html"><![CDATA[<p>Why do software projects fail?</p>
+
+<p>This question is difficult to answer precisely because there isn&rsquo;t a single
+answer.  Sometimes the blame falls to technical debt which hamstrings
+scalability, the ability to ship new features, or the ability to respond to
+market demands.  Other times it&rsquo;s the lack of business model, which sinks the
+entire company.  In certain situations, various parts of the organization not
+seeing eye-to-eye is the culprit; the lack of shared vision causes sales to
+over-promise, engineering to develop the wrong things, or marketing to pursue
+the wrong strategy.</p>
+
+<p>The causes are many and varied, yet somehow as engineers we focus a lot on &ldquo;Good
+Code&rdquo; (however we choose to define it), which fails to address most of these
+problems.  Why?</p>
+
+<!-- more -->
+
+
+<p>If I were to hazard a guess, I&rsquo;d say it&rsquo;s because we as technical people are
+trained (or believe we are trained) to understand issues of Good Code more
+easily than we can solve business challenges or organizational dysfunction.  As
+humans, we tend to favor investing time in the problems we know how to solve
+rather than the problems that most need careful solving (<a href="https://en.wikipedia.org/wiki/Law_of_triviality">Parkinson&rsquo;s Law of Triviality</a>).
+Good Code is a problem we think we know how to solve, so we try to solve it and
+forget about the larger questions that determine the success or failure of our
+endeavors.</p>
+
+<h3>What is Software Quality?</h3>
+
+<p>Traditionally, we see the role of engineers as outputting high-quality software
+that meets a particular need.  We then define &ldquo;high-quality&rdquo; in purely technical
+terms.  This has to end.</p>
+
+<p>The only point of writing software is to solve problems.  In the context of a
+business, every bit of software writing should be meant to target one of three
+fundamental problems every business faces:</p>
+
+<ul>
+<li>Generating Revenue (or, for a non-profit, doing good)</li>
+<li>Lowering Costs</li>
+<li>Reducing Risk</li>
+</ul>
+
+
+<p>For the remainder of this post, I&rsquo;ll include those 3 elements in the (badly
+defined) term &ldquo;business value.&rdquo;  Other places on the internet may define
+business value otherwise; that&rsquo;s fine, it&rsquo;s just for this post.</p>
+
+<p>If the purpose of software is to generate business value, it stands to reason
+that the quality of software is simply a matter of how much business value it
+generates.  &ldquo;Is it high-quality?&rdquo; becomes a question of &ldquo;How fit is it for
+purpose?&rdquo;</p>
+
+<p>That definition will probably make a lot of engineers uncomfortable.  Isn&rsquo;t my
+job to write code, and someone else can think about the business impact?</p>
+
+<p>Sure, you could look at it that way.  But that means that the fundamental
+question of whether your software is valuable&mdash;and, as I define it,
+high-quality&mdash;rests in the hands of other people without your input.</p>
+
+<p>So think of it this way: The more you involve yourself in understanding, and
+maybe even influencing, the business elements of your project, the more
+effective you&rsquo;ll be at creating the software your business/clients really need.</p>
+
+<h3>A New Framework</h3>
+
+<p>We do many things as engineers and as organizations to improve the quality of
+our software.  I believe all these practices really target one or more of 3
+primary objectives, which I term Usefulness, Sustainability, and Accuracy.
+(You&rsquo;ll note that the acronym is USA.  No, I didn&rsquo;t choose the words for the
+acronym, it sort of just happened.)  Let&rsquo;s define these terms a bit better:</p>
+
+<ul>
+<li><strong>Usefulness</strong> asks the question: &ldquo;Does the software solve the problem
+effectively?&rdquo;  It requires verifying both that the problem we imagine actually
+exists, and that our product solves the problem in the way that works best for
+the users.</li>
+<li><strong>Sustainability</strong> asks the question: &ldquo;Can we keep building without
+unnecessary obstacles?&rdquo;  Certainly, we need to think about the software itself.
+Is it written in a flexible way that will allow us to come back later and make
+the changes we need?  We also need to think about the development team, which
+likely undergoes far less churn than the code, and hence is even <em>more</em>
+important to the sustainability of your product than the software itself.  Are
+you building up the team to support constant improvement and open lines of
+communication?  Does the team have any instability that threatens future
+progress?</li>
+<li><strong>Accuracy</strong> asks the question: &ldquo;Does our software work the way we think it
+does?&rdquo;  It focuses on the relationship between ourselves and our code.  We must
+make sure that we&rsquo;ve accurately understood the problem and the codebase, and as
+new information comes in we must always ensure the state of the codebase
+reflects the current state of our understanding.</li>
+</ul>
+
+
+<p>With these 3 major objectives in mind, let&rsquo;s get into the weeds a bit and think
+about how they impact our day-to-day work.</p>
+
+<h3>Making it Concrete</h3>
+
+<p>Every team, project, and situation will have its own way of defining how various
+practices support (or don&rsquo;t) the 3 objectives.  I&rsquo;ll just give a few examples of
+practices that I&rsquo;ve found to be impactful on the teams where I&rsquo;ve worked.  Let&rsquo;s
+start with a visual map of how I see things:</p>
+
+<p><a href="http://amcaplan.ninja/images/USA_map_large.png" target="_blank"><img src="http://amcaplan.ninja/images/USA_map.png" alt="Map of USA practices" /></a></p>
+
+<p>Without getting into the gory details (though I did give <a href="http://amcaplan.ninja/railsconf2017">a talk</a>
+about that), here&rsquo;s a guide to interpreting that picture.</p>
+
+<p>The blue circle on the bottom is probably easiest to understand.  It includes a
+variety of practices designed to increase confidence that what&rsquo;s in your head
+matches what&rsquo;s in the code.  This includes testing practices, programming
+language features, tools and techniques for reducing complexity, and increasing
+the number of programmers who see and interact with code before it&rsquo;s committed
+and deployed.</p>
+
+<p>The green circle on the top-right is about maintaining flexibility while
+avoiding elements of instability.  Anything that makes it easier to build
+without breaking things, creating a tangled mess, or backing yourself into a
+corner (from a perspective of product development) goes there.  Also included
+are practices that build the team, improve the skills of developers, and make it
+easy (in the context of a larger organization) to interoperate with other teams
+and/or move people across team boundaries.</p>
+
+<p>The top-left red circle is about connecting our applications to their purpose.
+Probably the most important piece is &ldquo;Focus on Delivering Value&rdquo;; all else can
+be derived from it.  The red circle is populated by practices that help you
+understand your users more effectively, keep their needs in mind as you code,
+and do the most important work first.  There are elements of both making the
+solution that works for them (researching their needs, making it performant) and
+making the solution work for them (providing it when they need it, with
+appropriate documentation, and the ability to find what they need).</p>
+
+<p>One non-obvious (and likely controversial) thing is the fact that I&rsquo;ve put a
+number of technical practices into the red circle.  I believe that when we have
+multiple people working on code, or we explicitly document how a system is to be
+used via integration testing, that helps us focus on the end value provided to
+the user, at least opening up space for having conversations about the business
+value created by our software.  I don&rsquo;t think we&rsquo;ve fulfilled our obligation to
+the Usefulness objective just by doing those things, but they&rsquo;re a good start.</p>
+
+<p>I&rsquo;ve also mentioned a few central practices, which are just my opinion (as is
+the rest of this map):</p>
+
+<ul>
+<li>I believe having a broad-based <strong>testing</strong> strategy provides meaningful signal on
+all 3, since it allows you to write correct code the first time, avoid breaking
+it later, and&mdash;if you write proper integration tests&mdash;helps you to
+keep user needs in mind.</li>
+<li><strong>Pairing</strong> and <strong>mobbing</strong> help you write code with fewer mistakes, build the
+team going forward, and provide space for conversations about the purpose of the
+current task and how to best accomplish it.</li>
+<li>The Single Responsibility Principle (<strong>SRP</strong>) is about making sure each part
+of your system does one thing, and does it well.  This makes it easier to write
+accurate code the first time; if the purpose is clearly defined, it&rsquo;s much
+easier to test whether the code actually achieves it.  It&rsquo;s also easier to come
+back later and make a change, since you know exactly what to change.  Finally,
+focusing on the purpose of your code helps keep in mind the big picture of why
+you&rsquo;re writing the code in the first place.</li>
+<li><strong>Frequent releases</strong> allow you to deliver value more quickly to the user.  If
+you think of value creation as represented by (<em>value created per time</em> ⨉ <em>time
+software is in use</em>), it&rsquo;s clear that shipping value earlier beats later.
+Frequent releases also allow you to find bugs more quickly (users are really
+good at figuring out when your software is broken!) and avoid building castles
+on top of flawed ideas you only find out are flawed months later (hence helping
+Sustainability).</li>
+</ul>
+
+
+<p>Again, these are just my own opinions, based on my experiences with these
+practices and how I&rsquo;ve seen them utilized on the teams I&rsquo;ve been part of.  Your
+team will derive more or less, and different, benefit(s) from these same
+practices, and that&rsquo;s normal and expected.</p>
+
+<p>As an exercise, I&rsquo;ve made a blank version of the map available in
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> form for you to fill out with
+your own teams.  I&rsquo;d love to see how your maps stack up against mine!</p>
+
+<h3>Bridging the Gap</h3>
+
+<p>Bob Martin, citing Kent Beck, <a href="https://8thlight.com/blog/uncle-bob/2014/03/28/The-Corruption-of-Agile.html">wrote</a>
+that the Agile Manifesto was intended &ldquo;to heal the divide between development
+and business.&rdquo;  Unfortunately, 16 years later, that&rsquo;s nowhere near a solved
+problem.</p>
+
+<p>I believe that divide can be healed if we learn to speak a common language,
+relating elements of technical excellence to meeting business needs, showing how
+the things we care about as engineers are things everyone should care about.
+That means going beyond our technical peers to understand the needs of other
+parts of our organizations, and figuring out our role in meeting those needs.</p>
+
+<p>If we learn to speak the language of business, just a little bit, we can expect
+to see a lot more understanding and respect coming in the opposite direction,
+from businesspeople to developers.  Maybe we&rsquo;ll even develop psychological
+safety and trust.  Wouldn&rsquo;t that be great!</p>
+
+<p>We&rsquo;re all in this together.  Let&rsquo;s start acting like it.</p>
+
+<p><em>Note: Based on a talk given at RailsConf 2017. Check out the original
+talk <a href="http://amcaplan.ninja/railsconf2017">here</a>.</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[What Comes After SOLID? Seeking Holistic Software Quality]]></title>
     <link href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
-    <updated>2017-04-25T12:40:00-07:00</updated>
+    <updated>2017-04-25T22:40:00+03:00</updated>
     <id>http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
-    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017. Video will be added when published by
-Confreaks.</p>
+    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017.  For a pared-down text version of the
+talk, see <a href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/">this post</a>.  For
+the real thing, here&rsquo;s the video:</p>
 
-<p>Here are the slides:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5wYcD1nfnWw" frameborder="0" allowfullscreen></iframe>
+
+
+<p>And the slides:</p>
 
 <script async class="speakerdeck-embed" data-id="13c5b841f7114d6ca8155dfabb1a9f93" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -57,7 +271,7 @@ important problems for real people.</p>
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
     <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
-    <updated>2017-01-01T03:09:02-07:00</updated>
+    <updated>2017-01-01T12:09:02+02:00</updated>
     <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
@@ -245,7 +459,7 @@ productive 2017!</p>
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T11:50:21-07:00</updated>
+    <updated>2016-12-31T20:50:21+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
@@ -518,7 +732,7 @@ and details to the stage.</p>
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
-    <updated>2016-12-30T03:53:38-07:00</updated>
+    <updated>2016-12-30T12:53:38+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
@@ -872,7 +1086,7 @@ around.</p>
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
-    <updated>2016-12-29T05:13:00-07:00</updated>
+    <updated>2016-12-29T14:13:00+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
     <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
@@ -1033,7 +1247,7 @@ primary level of abstraction.</p>
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
-    <updated>2016-12-28T03:08:26-07:00</updated>
+    <updated>2016-12-28T12:08:26+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>There are plenty of ways to write a FizzBuzz program in any language,
 particularly Ruby with its <a href="https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it">TIMTOWTDI</a> philosophy.  Beyond the naive
@@ -1299,7 +1513,7 @@ did.</p>
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
-    <updated>2016-12-27T12:54:20-07:00</updated>
+    <updated>2016-12-27T21:54:20+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
 painful to keep in sync with your code.  A tremendous amount of cognitive
@@ -1773,7 +1987,7 @@ better user experience, and ultimately happier customers.</p>
   <entry>
     <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
-    <updated>2016-12-26T03:11:32-07:00</updated>
+    <updated>2016-12-26T12:11:32+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
     <content type="html"><![CDATA[<p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
 you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
@@ -2001,7 +2215,7 @@ course practically it doesn&rsquo;t happen past a few commits.</p>
   <entry>
     <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
-    <updated>2016-12-25T07:01:56-07:00</updated>
+    <updated>2016-12-25T16:01:56+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
     <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
 
@@ -2098,7 +2312,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
-    <updated>2016-11-10T12:01:52-07:00</updated>
+    <updated>2016-11-10T21:01:52+02:00</updated>
     <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
@@ -2132,7 +2346,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T09:25:09-07:00</updated>
+    <updated>2016-09-16T19:25:09+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
@@ -2168,7 +2382,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T07:32:24-07:00</updated>
+    <updated>2016-05-05T17:32:24+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -2180,7 +2394,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T07:20:43-07:00</updated>
+    <updated>2016-05-04T17:20:43+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -2199,9 +2413,9 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T15:04:10-07:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
+    <updated>2016-01-04T00:04:10+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -2567,7 +2781,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T07:05:35-07:00</updated>
+    <updated>2015-12-02T16:05:35+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -2771,7 +2985,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T14:40:44-07:00</updated>
+    <updated>2015-11-24T23:40:44+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -2792,7 +3006,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T06:42:16-07:00</updated>
+    <updated>2015-11-18T15:42:16+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It
@@ -2867,9 +3081,9 @@ is a comforting universality to ethics.</p>
   
   <entry>
     <title type="html"><![CDATA[Start Your (Rails) Engines!]]></title>
-    <link href="http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/"/>
-    <updated>2015-11-05T15:01:36-07:00</updated>
-    <id>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines</id>
+    <link href="http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/"/>
+    <updated>2015-11-06T00:01:36+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines</id>
     <content type="html"><![CDATA[<h3>The Talk</h3>
 
 <p>This talk was given at RailsRemoteConf 2015.</p>
@@ -2942,9 +3156,9 @@ edited my notes from the live code portion, and published them at
   
   <entry>
     <title type="html"><![CDATA[Recruit Software Engineers with this 1 Weird Old Tip]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/08/01/recruit-software-engineers-with-this-1-weird-old-tip/"/>
-    <updated>2015-08-01T23:55:53-07:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/08/01/recruit-software-engineers-with-this-1-weird-old-tip</id>
+    <link href="http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/"/>
+    <updated>2015-08-02T09:55:53+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve read a lot recently about how hard it is to recruit programmers in today&rsquo;s
 market.  Personally, I think it&rsquo;s all hogwash.</p>
 
@@ -3070,7 +3284,7 @@ We celebrate questions, and value answers that convey not just information, but
 understanding.</p>
 
 <p>If SawftWearLy sounds like a good fit for you, drop us a line at
-<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x64;&#101;&#118;&#x40;&#115;&#x61;&#x77;&#x66;&#116;&#119;&#101;&#97;&#114;&#x2e;&#108;&#x79;&#x2e;">&#x64;&#x65;&#x76;&#64;&#115;&#x61;&#x77;&#x66;&#x74;&#x77;&#101;&#x61;&#114;&#x2e;&#108;&#x79;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
+<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x64;&#x65;&#118;&#x40;&#x73;&#x61;&#119;&#x66;&#x74;&#119;&#x65;&#x61;&#114;&#x2e;&#x6c;&#121;&#x2e;">&#100;&#x65;&#x76;&#64;&#x73;&#x61;&#119;&#x66;&#x74;&#119;&#x65;&#x61;&#x72;&#46;&#108;&#121;&#x2e;</a>  Tell us about something you&rsquo;ve built, what you&rsquo;re learning
 now, and something you like doing outside of programming.</p></blockquote>
 
 <p>Note that there weren&rsquo;t really any requirements here.  That&rsquo;s because you don&rsquo;t
@@ -3099,283 +3313,6 @@ want to work from 11AM to 7PM, or 7AM to 3PM, or work from home 3 days a week.</
 involved with training newer folks, and I do it across an ocean at +7 hours.
 Especially in this field, it&rsquo;s so important to be open to creative solutions for
 getting good people to work together, because good people are hard to come by.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Should a Junior Developer Work On First?]]></title>
-    <link href="http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/"/>
-    <updated>2015-06-28T15:01:19-07:00</updated>
-    <id>http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first</id>
-    <content type="html"><![CDATA[<p>Recently, a new member of our team asked me (and other coworkers) to list 3
-things a junior developer should accomplish within their first 3 months on the
-job.  Being at the end of my first year on the job, it was an excellent
-opportunity for reflection on what I have learned during this year which was
-most useful.</p>
-
-<p>After some thinking, I came up with 3 concrete goals, emblematic of 3
-big-picture objectives which should be guiding lights for the new developer.</p>
-
-<p>Here are my picks:</p>
-
-<ol>
-<li>Be reasonably comfortable with TDD</li>
-<li>Write good commit/PR messages</li>
-<li>Present at a team hangout</li>
-</ol>
-
-
-<p>These might seem like arbitrary goals, so they deserve some explanation.</p>
-
-<!-- more -->
-
-
-<p>First, you&rsquo;ll notice that I did not mention &ldquo;learn X language&rdquo; or &ldquo;become
-proficient in Y framework.&rdquo;  This is simply because languages and frameworks are
-important, but not inherent, goals.  The languages and libraries you use today
-will most likely fade with time, to be replaced by newer tools more appropriate
-for the tasks of tomorrow.  But <em>how</em> to write code will be just as relevant in
-30 years as it was 30 years ago.  Design principles evolve as well, but the idea
-of designing code, rather than just getting things to work, is the most
-important, and biggest, jump.</p>
-
-<p>Now, let&rsquo;s move on to expanding these concrete goals into coherent broad ideas.</p>
-
-<h2>TDD: A Design Tool</h2>
-
-<p>&ldquo;Why test?&rdquo; is a very complicated question with a lot of answers.  Justin Searls
-has <a href="https://www.youtube.com/watch?v=9_3RsSvgRd4">an excellent talk</a> listing about 10 different reasons
-for testing.  The reason I focus on TDD here is because it is the most powerful
-technique I know for learning how to design code from the outside in.</p>
-
-<p>As a new developer, you are probably focused on assimilating the multitude of
-new technologies you need to master to get things to work.  It probably seems
-odd that I would recommend focusing on technique, rather than just staying
-afloat.</p>
-
-<p>However, I would argue that feeling lost is just part of being a software
-developer today.  There is a constant influx of new languages, frameworks, and
-tools, and it is far too easy to be satisfied with just making things work.
-However, programmers who excel in their careers make sure to reserve time for
-becoming better at the basics of how to write good code.  If you don&rsquo;t make time
-for that now, when will you?</p>
-
-<p>There are many ways of becoming better.  You can get ideas from articles and
-conference lectures, books and blog posts.  But there is a jump to be made from
-the theoretical to the practical.</p>
-
-<h4>What is &ldquo;good code&rdquo;?</h4>
-
-<p>Good code, among other qualities, is modular and intuitive.</p>
-
-<ul>
-<li>By modular, I mean that each piece carries a responsibility appropriate for
-its size.  Methods do just one thing, and do it well.  Classes are the same, but
-a &ldquo;thing&rdquo; is a larger unit of work.  Collaborating objects form systems that
-accomplish yet larger things, but at every level, there is a single unifying
-theme to the system.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li>By intuitive, I mean that it acts in the way you would expect, both from the
-outside and once you open it up.  The outside piece of that statement means that
-its public API provides as few surprises as possible.  The input/output, as
-closely as possible, matches what the average programmer would expect it to be.
-Additionally, the innards are divvied up in a fashion that makes it easy for
-someone new to the codebase to interpret and reason about.  Clever hacks or
-thrown-together solutions are generally not intuitive, and tough to modify
-later.</li>
-</ul>
-
-
-<h4>So what does TDD have to do with all this?</h4>
-
-<p>TDD enforces (as much as is possible to enforce such things) code which is
-modular and intuitive.</p>
-
-<p>It is exceptionally difficult to write tests for code which is not modular.
-Generally speaking, code with intertwined responsibilities will also have deep
-interdependencies between modules.  This causes immense pain in testing,
-encouraging the programmer to think about how to tease apart responsibility and
-dependency.</p>
-
-<p>Yet beyond that testing pain, there is a larger point: it is very hard to test
-code when you don&rsquo;t understand its responsibility.  Usually, if you have not
-defined what code is supposed to do, it will be nearly impossible to write the
-tests first, because the tests are simply a concretion of the responsibilities
-of the code you are about to write.  By following the principles of TDD, you
-encourage yourself to state your goals, thereby breaking up your code before you
-have written a mess of intertwined modules.</p>
-
-<p>TDD also strongly encourages intuitive code.  When engaged in TDD, you should be
-testing only the public API of your code, defining inputs and expected outputs,
-before you figure out the implementation.  This means that your primary goal
-when writing the code itself is to meet the needs that you have already
-described in your tests.  This, in turn, means that you are thinking first about
-the user of your code, and only afterwards about the internal algorithms and
-details involved in your solution.  That leads to code which is friendlier for
-outside use.</p>
-
-<p>I don&rsquo;t think TDD necessarily offers much direction in terms of properly writing
-the internals of your code, but I never promised a single, all-encompassing
-solution, did I? 😉</p>
-
-<p>Based on all this, I think that becoming comfortable with TDD is a highly time-
-and effort-efficient method of speeding up the learning curve for excellent
-coding habits.  Even if it&rsquo;s not the approach you take all the time (and hey,
-<a href="http://www.quora.com/Does-Kent-Beck-use-TDD-at-Facebook-How">even Kent Beck doesn&rsquo;t think it should be</a>), it&rsquo;s a worthy
-exercise to practice skills and thought patterns which ultimately will be quite
-useful regardless of your workflow.</p>
-
-<h2>Commit and PR Messages: A Primary Source of Communication</h2>
-
-<p>One of the most important lessons to learn as a junior developer is that, unless
-you are the only developer on your team, your code is a shared entity.  Your job
-is not to be personally awesome, but rather to help your entire team be awesome.
-This means you need to sometimes sacrifice some of your own productivity in
-order to help everyone else be more productive.</p>
-
-<p>Commit messages are a prime example of this.  In just a few seconds per commit,
-you have the opportunity to lay out a trail of breadcrumbs to lead members of
-your team toward understanding why certain decisions were made, why this was
-added and that deleted.  You instruct them as to what code is relevant to a
-particular feature, and what dangers would be involved in deleting it.</p>
-
-<p>Pull request messages are, in a sense, just a broader repetition of the same
-motif.  Rather than explaining a small bit of work, they expound on the
-rationale for a set of adjustments to your application.  But if your team uses
-a pull request-based workflow, these messages are even more important.  Rather
-than reading your code and puzzling over what you were trying to accomplish,
-your teammates can quickly understand your goals, and then evaluate whether you
-achieved them in the best way possible.  A good pull request message can be the
-difference between &ldquo;It looks like code, guess I&rsquo;ll merge it!&rdquo; versus &ldquo;That was
-an interesting choice of how to tackle this issue, we should discuss it
-further.&rdquo;  If you invest in the quality of code review on your submissions, you
-will be rewarded with plenty of free advice on how to make your next bit of work
-even better.</p>
-
-<h4>Look Into Your Future&hellip;</h4>
-
-<p>Beyond the basic point of just being a good teammate, there is another
-compelling reason to write clear, thorough commit and PR messages: The next
-person who has to read them just might be you.</p>
-
-<p>Let&rsquo;s face it.  We might all talk about collective responsibility for a code
-base, but if you wrote the code, you will likely be called in to explain why it
-was written the way it was.  And you will also probably have forgotten by that
-point why you did things that way.</p>
-
-<p>If you leave yourself clear commit and PR messages, they will serve as memory
-jogs so you can figure things out far more quickly.  If you left a bunch of code
-with commit messages like &ldquo;fixed a thing&rdquo; and &ldquo;it works now&rdquo; &ndash; well, you&rsquo;re
-gonna have a bad time.  And you will probably misunderstand your own code, and
-break lots of things.</p>
-
-<p>Realistically, what percentage of commits or PR messages will you ever read
-again?  Probably no more than 5-10%.  But the amount of time you will save in
-those 5-10% of cases is well worth the small upfront investment of archiving
-your thoughts.</p>
-
-<p>So care about your teammates, and care about your future self.  Learn to write
-clear commit and PR messages, and you will thank yourself later when they are
-your &ldquo;primary source&rdquo; of information about days of coding past.</p>
-
-<h2>Presenting: The Code Is Not Enough</h2>
-
-<p>Software, like any slice of the human enterprise, is really more about the
-people making it than the product itself.  Most problems in software stem from
-the people making it.  It follows that software will be as coherent as is the
-communication amongst its developers.</p>
-
-<p>If you want to be a successful coder, you also need to be a successful
-communicator.</p>
-
-<p>There are many formats of communication, including commit and PR messages, as
-discussed above.  Most people can get along in one-on-one conversation, though
-some (including myself) struggle even with that.  But even for people who are
-natural conversationalists, presenting to a group can be difficult.  Yet it is
-also necessary to learn how to present one&rsquo;s ideas cogently and convincingly to
-a group.</p>
-
-<p>The other salient point is that many junior software engineers are convinced
-that they are no good, or at the very least so inferior to senior developers
-that nothing they themselves say could possibly be of interest to others with
-more experience.  Yet that could not be farther from the truth.</p>
-
-<h4>Junior Devs: A Critical Voice In Our Community</h4>
-
-<p>Junior developers need to understand: Your ideas are valuable.  You came into
-this profession, this artisans&#8217; guild, because you find beauty in well-organized
-code, you are awed by the power of loops and function calls and recursion, you
-draw excitement from optimizing an algorithm from <em>O(n<sup>2</sup>)</em> to <em>O(n)</em>.  (At
-least, I hope you do; otherwise, you&rsquo;ll be pretty bored in this business.)  You
-see opportunity in new technologies, and you are still developing heuristics to
-evaluate the tradeoffs inherent in choosing one over the other.</p>
-
-<p>You are a neophyte.  And neophytes tend to ask the most interesting questions,
-forcing people more experienced than themselves to articulate their opinions and
-perspectives on issues that matter to everyone.</p>
-
-<p>Because you are new to the trade, your ideas and experiences are valuable, and
-your enthusiasm gives light and warmth to those who may have forgotten the
-excitement of their earlier coding days.</p>
-
-<p>So even if you speak about a technical topic they are thoroughly familiar with,
-senior developers will still enjoy your presentation.</p>
-
-<h4>Senior Devs: Seeing Beyond the Pedestal</h4>
-
-<p>If you are not yet convinced, let me offer another argument.</p>
-
-<p>Senior developers are simply programmers with more experience writing (hopefully
-good) code, more familiarity with the breadth of languages and tools, and a
-better understanding of the system underlying all programming platforms.  But
-they are hardly godlike omniscient beings.  It&rsquo;s not too hard to find a topic
-that the senior developers on your team haven&rsquo;t delved into, or at least offer a
-fresh perspective which would be of interest to them.</p>
-
-<p>Even if they are generally familiar with a topic, even if they utilize that
-knowledge on a daily basis, there are still going to be some points that they
-have forgotten or never learned about, so they will walk away with some useful
-bits of knowledge from your presentation.</p>
-
-<p>Finally, seniors are often interested, for business reasons or out of altruistic
-motivations, in bringing in juniors and helping them to be as productive as
-possible.  Your struggles in your work are useful and informative to more senior
-folks on your team, helping them to reassess the process and iterate on their
-onboarding process for new junior developers.<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
-
-<p>Your thoughts and learning will be of value to others, and by presenting, you
-will develop a critical skill which &ndash; if not properly nurtured &ndash; could be the
-barrier between you and a highly successful career.</p>
-
-<h2>Summing It Up</h2>
-
-<p>Now that we&rsquo;ve provided some theoretical background, the 3 goals listed above
-might be stated as:</p>
-
-<ol>
-<li>Learning to design code effectively</li>
-<li>Being a communicative team player</li>
-<li>Gaining confidence in your worth as a coder</li>
-</ol>
-
-
-<p>Since I believe in concrete, rather than abstract, goals, I will stick with the
-list above as a more helpful set of discrete accomplishments to be aimed for in
-the first few months.  But with the broader goals in mind, hopefully the
-specifics make more sense as guideposts on the journey toward a long, enjoyable,
-successful career in code.</p>
-
-<p><em>What do </em>you<em> think are the most important things for junior developers to work
-on in their first few months on the job?  Share your thoughts in the comments!</em></p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>Modularity also often refers to the packaging of code into discrete bits which can be used elsewhere in your system.  I personally find the reuse of modules to be neither very common nor very fundamental to the practice of software engineering.  While it can be a useful technique on occasion, I hardly believe it to be one of the first few things a developer absolutely needs to learn. <a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-<li id="fn:2">
-<p>This applies in the open source community as well.  I am personally familiar with one meetup in NYC which often asks developers new to their open source project to speak about their experiences and challenges, to guide the maintainers towards providing useful tools and documentation for new users. <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
 ]]></content>
   </entry>
   
