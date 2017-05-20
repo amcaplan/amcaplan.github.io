@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-05-20T22:15:47+03:00</updated>
+  <updated>2017-05-21T00:10:26+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -55,6 +55,26 @@ important problems for real people.</p>
 <p>Download the exercise as a <a href="/assets/railsconf-2017/exercise.pdf">PDF</a>,
 <a href="/assets/railsconf-2017/exercise.key">Keynote</a>, or
 <a href="/assets/railsconf-2017/exercise.pptx">PowerPoint</a> file.</p>
+
+<h4>Talk Errata:</h4>
+
+<p>Reflecting afterwards, I noticed a few mistakes I made in the presentation, and
+would like to note them here:</p>
+
+<ol>
+<li>I confused <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">Cyclomatic Complexity</a>
+with the <a href="https://en.wikipedia.org/wiki/ABC_score">ABC (Assignments, Branching, and Conditionals)</a>
+metric.  Branching is very similar to cyclomatic complexity, but technically
+<a href="http://wiki.c2.com/?AbcMetric">ABC is a software size metric, not a complexity metric</a>,
+and it encompasses more than cyclomatic complexity.</li>
+<li>I mentioned <a href="http://ruby.sadi.st/Flay.html">Flay</a> when I had intended to
+reference <a href="http://ruby.sadi.st/Flog.html">Flog</a>; the former is a tool for
+locating duplication, while the latter is actually a measure of ABC in Ruby.</li>
+<li>Code Review is generally done after checking code into source control; the
+intention was that it&rsquo;s done before code is moved into the main (master) branch
+of a central repository.</li>
+</ol>
+
 ]]></content>
   </entry>
   
