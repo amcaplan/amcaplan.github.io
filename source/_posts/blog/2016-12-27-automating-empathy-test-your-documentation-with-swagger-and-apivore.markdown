@@ -297,9 +297,6 @@ end
 
 RSpec.describe 'the API', type: :apivore, order: :defined do
   subject { Apivore::SwaggerChecker.instance_for('/api/docs.json') }
-  let(:query_string_params) {{
-    api_key: client.api_key
-  }}
   let(:url_params) {{}}
   let(:headers) {{}}
   let(:query_string_params) {{}}
