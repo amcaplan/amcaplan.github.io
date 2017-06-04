@@ -476,9 +476,6 @@ for a Rails app:</p>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">current_dir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span>
@@ -488,9 +485,6 @@ for a Rails app:</p>
 </span><span class='line'>
 </span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="s1">&#39;the API&#39;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:apivore</span><span class="p">,</span> <span class="ss">order</span><span class="p">:</span> <span class="ss">:defined</span> <span class="k">do</span>
 </span><span class='line'>  <span class="n">subject</span> <span class="p">{</span> <span class="ss">Apivore</span><span class="p">:</span><span class="ss">:SwaggerChecker</span><span class="o">.</span><span class="n">instance_for</span><span class="p">(</span><span class="s1">&#39;/api/docs.json&#39;</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:query_string_params</span><span class="p">)</span> <span class="p">{{</span>
-</span><span class='line'>    <span class="n">api_key</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">api_key</span>
-</span><span class='line'>  <span class="p">}}</span>
 </span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:url_params</span><span class="p">)</span> <span class="p">{{}}</span>
 </span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:headers</span><span class="p">)</span> <span class="p">{{}}</span>
 </span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:query_string_params</span><span class="p">)</span> <span class="p">{{}}</span>
