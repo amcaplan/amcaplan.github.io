@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2017-06-05T01:16:45+03:00</updated>
+  <updated>2018-04-20T16:52:45-04:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,53 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
+    <link href="http://amcaplan.ninja/blog/2017/09/14/why-i-created-dev-empathy-book-club/"/>
+    <updated>2017-09-14T18:54:50-04:00</updated>
+    <id>http://amcaplan.ninja/blog/2017/09/14/why-i-created-dev-empathy-book-club</id>
+    <content type="html"><![CDATA[<p>I was just a few months out of the Flatiron School, had gotten my bearings in
+the codebase at my first job, and was starting to take on more responsibility. I
+was sitting with a product manager&mdash;let&rsquo;s call her Sierra&mdash;trying to
+explain the technical impact of a product idea she had proposed. And I was
+<em>frustrated</em>.</p>
+
+<p>No matter which way I explained it, she just kept getting confused. Why couldn&rsquo;t
+she understand that making these changes would drastically increase response
+time on a critical endpoint? It was a simple workflow involving 2 microservices
+and a NoSQL database, and she didn&rsquo;t even have to understand the details, just
+how they were connected together on a high level.</p>
+
+<p>At some point, I realized: No one had ever given Sierra any level of technical
+explanation of the system whose development she was supposed to guide every day.
+Instead of going further with the conversation, I asked, &ldquo;Why don&rsquo;t we set up a
+meeting just to describe the basic outline of the system? Nothing overly
+detailed, just enough to allow us to have a conversation about how product
+concepts will impact the real-life product when they&rsquo;re translated into code.&rdquo;</p>
+
+<p>To my surprise, she agreed. To my further astonishment, I actually enjoyed the
+meeting more than any other I&rsquo;d had since beginning my software development
+career. We slowly built up a diagram of the parts of the system relevant to her
+job, clarified confusing points, and made sure every bit of explanation was
+clear to her.</p>
+
+<p>At the end of the meeting, Sierra thanked me and said, &ldquo;You know, no one&rsquo;s ever
+done this for me. This is going to significantly improve my ability to come up
+with ideas and communicate with developers. I&rsquo;d really like to understand more
+about the technical elements of the project, but there never seem to be
+opportunities for me to learn.&rdquo;</p>
+
+<p>At that moment, I realized something that has become a theme in my career: The
+most significant impact you can make on a product isn&rsquo;t through design, code,
+marketing, sales, or customer support. It&rsquo;s building bridges, enabling people of
+varied backgrounds and skills, each with their own perspectives and spheres of
+understanding, to work together through effective communication.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[The 3 Keys to Software Quality]]></title>
     <link href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
-    <updated>2017-05-17T19:02:22+03:00</updated>
+    <updated>2017-05-17T12:02:22-04:00</updated>
     <id>http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
     <content type="html"><![CDATA[<p>Why do software projects fail?</p>
 
@@ -226,7 +270,7 @@ talk <a href="/railsconf2017">here</a>.</em></p>
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
     <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
-    <updated>2017-01-01T12:09:02+02:00</updated>
+    <updated>2017-01-01T05:09:02-05:00</updated>
     <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
@@ -414,7 +458,7 @@ productive 2017!</p>
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T20:50:21+02:00</updated>
+    <updated>2016-12-31T13:50:21-05:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
@@ -687,7 +731,7 @@ and details to the stage.</p>
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
-    <updated>2016-12-30T12:53:38+02:00</updated>
+    <updated>2016-12-30T05:53:38-05:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
@@ -1011,167 +1055,6 @@ your way.  But you can serve as a catalyst, removing obstacles while helping
 them to understand the value your suggested change will provide.  If the change
 is legitimately valuable and the team is open-minded, usually they&rsquo;ll come
 around.</p>
-
-<p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Diversify Your Learning]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
-    <updated>2016-12-29T14:13:00+02:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
-    <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
-of as part of my job.  Many enlightened companies specifically dedicate time
-during the workweek for exploration and side projects.  Companies pay for their
-employees to attend conferences, buy books, and sponsor subscriptions to online
-learning resources.</p>
-
-<p>There&rsquo;s a wealth of information I can access, and more is being created
-constantly than I could ever hope to consume.  Prioritization is key.  What
-should take precedence in my learning?  What will contribute most to my
-professional development as a programmer?</p>
-
-<p>There are many approaches, ranging from &ldquo;Follow your heart and specialize,&rdquo; all
-the way to &ldquo;Learn a bit of everything.&rdquo;  Some emphasize learning a full stack of
-technologies, others think you should just get really good with the tools you
-use every day.</p>
-
-<p>My approach falls somewhere in the middle, and I&rsquo;d like to share it with you.
-It starts with a bit of wisdom imparted over 1,600 years ago.</p>
-
-<!-- more -->
-
-
-<h3>The Jewish System of Learning: A Multi-Tiered Approach</h3>
-
-<p><a href="https://en.wikipedia.org/wiki/Talmud">The <em>Talmud</em></a> records a profound
-suggestion which bears a surprising degree of relevance to programming:</p>
-
-<blockquote><p>Rabbi Safra stated in the name of Rabbi Yehoshua ben Chananya&hellip; A man should
-divide his learning [literally &ldquo;years&rdquo;] into three: one-third <em>Mikra</em>,
-one-third <em>Mishnah</em>, one-third <em>Talmud</em>. (<em>Kiddushin</em> 30a)</p></blockquote>
-
-<p>Rabbi Safra describes a method of learning where one studies multiple degrees of
-abstraction simultaneously.</p>
-
-<ul>
-<li><p>At the highest level, one studies <em>Mikra</em>, the 24 books of the Bible.  These
-books are light on detail, but establish the ethics and certain core laws which
-form the foundation of Jewish life.</p></li>
-<li><p>One layer deeper, one studies <em>Mishnah</em>, the 60 tractates which extensively
-detail the multitude of laws governing every moment of private and public life
-for the committed Jew.</p></li>
-<li><p>At the lowest level of abstraction, one studies <em>Talmud</em>, the probing analyses
-and debates which provide the rationale for the concrete laws.  (This isn&rsquo;t to
-be confused with what is today called <em>Talmud</em>, which constitutes a canonized
-subset of the <em>Talmud</em> referred to by Rabbi Safra.  Naming things is hard.)  One
-cannot effectively function at this level of low-level details all the time; it
-would overload the mind.  But understanding the rationale for the laws helps in
-terms of understanding and handling edge cases, as well as situations that prior
-legal decisions have yet to address.</p></li>
-</ul>
-
-
-<h3>A Bit of Interpretation</h3>
-
-<p>In contrast to many other religions, Judaism is extremely concerned with
-practice.  Jews (at least Orthodox Jews, whose practice most closely mirrors the
-Talmud&rsquo;s vision of Judaism) don&rsquo;t generally describe the faithful as &ldquo;believers&rdquo;;
-instead, the usual term is &ldquo;observant,&rdquo; meaning they observe at least a major
-subset of mandated religious practices.</p>
-
-<p>With that sort of attitude, it&rsquo;s clearly <em>Mishnah</em> which describes how Jews
-engage with their religion on a daily basis.  For daily guidance, nothing could
-be more critical than the Law itself.</p>
-
-<p>So why not suffice with study of <em>Mishnah</em>?  Apparently Rabbi Safra saw great
-value in reaching up and down one layer of abstraction.  Reaching up, <em>Mikra</em>
-provides inspiration, motivation, and guiding principles.  Reaching down,
-<em>Talmud</em> provides a depth of understanding which gives its own form of meaning
-to practice.  Both are necessary in building a holistic religious personality.</p>
-
-<p>In programming, we tend to operate mainly at a single layer of abstraction.  As
-a result, when we think about learning, we often equate our own layer with the
-sum total of relevant knowledge, then learn more about it.  In doing so, we miss
-the opportunity to make ourselves more effective professionals, and to broaden
-ourselves as people.</p>
-
-<h3>Missing the Forest for the Trees</h3>
-
-<p>As programmers, we&rsquo;re called upon to solve human problems through technology.
-Often we focus so much on the technology that we forget our goal is to solve
-problems for real people.</p>
-
-<p>Rabbi Safra reminds us: Study <em>Mikra</em>.  Don&rsquo;t get bogged down in languages and
-frameworks without understanding why you write code in the first place.  Figure
-out what motivates people, and how to communicate more effectively.  Study how
-to design your products in a way that matches human intuition.  Don&rsquo;t simply
-hack on an app; build a whole product that actively meets the needs of your
-users and creates value for them.</p>
-
-<h3>Missing the Trees for the Forest</h3>
-
-<p>If you program in a high-level language (as I do), it&rsquo;s easy to forget about all
-the magic which has to happen on a lower level just to get started.  There&rsquo;s a
-whole beautiful world of hardware, machine language, operating systems, systems
-programming, and highly efficient algorithms.  Most of it won&rsquo;t matter in
-day-to-day programming.  But on the rare occasions when it does matter, this
-knowledge will allow you to provide enormous value to your team, or contribute
-meaningfully to the programming community through Open Source projects.  You
-might even submit a patch to your favorite high-level language!</p>
-
-<p>As Rabbi Safra instructs us: Study <em>Talmud</em>.  Don&rsquo;t take the tools you see at
-face value; tear them apart, learn how they work, and figure out what you can do
-to make them better.</p>
-
-<h3>Learning in Parallel</h3>
-
-<p>As a personal example, I&rsquo;m currently working through 3 different books at the
-same time:</p>
-
-<ul>
-<li>My current <em>Mikra</em> is <a href="https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654">The Design of Everyday Things</a>, which I&rsquo;m
-studying to understand how to design intuitive products and interfaces.</li>
-<li>My current <em>Mishnah</em> is the Martin Fowler classic
-<a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672">Refactoring: Improving the Design of Existing Code</a>, which details
-the process of refactoring as repeatable, easily communicable steps.  Better
-understanding refactoring will make me more effective in my daily coding.</li>
-<li>My current <em>Talmud</em> is <a href="https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686/ref=ed_oe_p">The Elements of Computing Systems: Building a Modern Computer from First Principles</a>,
-affectionately known as <a href="http://www.nand2tetris.org/">Nand2Tetris</a>.  Through the
-book and its accompanying projects, I&rsquo;m learning how computers are built from
-logic gates all the way up to high-level languages.</li>
-</ul>
-
-
-<p>Certainly, some people will do better learning one thing only at a time. YMMV.
-Personally, I&rsquo;ve found that having several tracks of study allows me to jump
-back and forth based on interest and energy, and I progress faster this way than
-if I had only one subject to study at a time.</p>
-
-<p>One significant outcome of study at all three levels has been a significant
-broadening of perspective.  I&rsquo;ve become less afraid of low-level programming or
-hardware concepts, and my ability to think about business value and UX has
-improved, all while building skills relevant to my primary daily work activities.</p>
-
-<h3>What About Specialization?</h3>
-
-<p>Learning isn&rsquo;t just about broadening our horizons.  It&rsquo;s also a tool in service
-of career progression.  Why not just specialize at one level, and get really
-good at doing one thing?</p>
-
-<p>I actually wouldn&rsquo;t discourage that at all.  Specialization is healthy, normal,
-and probably unavoidable.  There&rsquo;s just too much to know to really know
-everything!</p>
-
-<p>Still, having a window into the layers above and below your specialty will make
-you better at doing what you&rsquo;re actually paid to do.  No one is paid to think
-only at one level of abstraction; your job is to make your code work for the
-next level up through understanding the next level down.</p>
-
-<p>You don&rsquo;t have to learn everything.  You don&rsquo;t have time to learn everything.
-Just make sure to always be expanding your horizons both within and beyond your
-primary level of abstraction.</p>
 
 <p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>

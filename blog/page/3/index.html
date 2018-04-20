@@ -9,7 +9,7 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Ruby provides a number of options for non-instance-specific variables &ndash; class variables (of the form: @@var), constants (in all caps: VAR), and &hellip;">
+  <meta name="description" content="Recently at work, I spent over a day trying to get one failing test to pass. I tried everything in the code, but no dice. Finally, I realized that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,7 +79,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Asynchronous JavaScript - Without Failing Capybara Tests</a></h1>
     
     
       <p class="meta">
@@ -95,7 +95,54 @@
   
 
 
-<time datetime="2014-05-30T01:09:56+03:00" pubdate data-updated="true">May 30<span>th</span>, 2014</time>
+<time datetime="2014-07-17T13:04:57-04:00" pubdate data-updated="true">Jul 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently at work, I spent over a day trying to get one failing test to pass.  I tried everything in the code, but no dice.  Finally, I realized that the problem wasn&rsquo;t with my code &ndash; it was with the way Capybara works.  I want to save you the time I lost, so let&rsquo;s get to it.</p>
+
+<p>Capybara, to quote its creator <a href="https://github.com/jnicklas">Jonas Nicklas</a>, &ldquo;is ridiculously good at waiting for content.&rdquo;  It knows that when it&rsquo;s told to find something on the page, or click a link, and it&rsquo;s not there, don&rsquo;t sweat it &ndash; just keep trying until a default timeout (<code>Capybara.default_wait_time</code>) is hit.  When, and only when, that timeout is hit, Capybara will give you an <code>ElementNotFound</code> error.</p>
+
+<p>This works great for most use cases.  However, sometimes it just isn&rsquo;t enough.  Let&rsquo;s illustrate with a real-world example.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">How to Stay Classy With Ruby Variables</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-29T18:09:56-04:00" pubdate data-updated="true">May 29<span>th</span>, 2014</time>
         
       </p>
     
@@ -112,7 +159,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/">Read on &rarr;</a>
     </footer>
   
 
@@ -126,7 +173,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/02/coffeescript-101/">CoffeeScript 101</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/05/01/coffeescript-101/">CoffeeScript 101</a></h1>
     
     
       <p class="meta">
@@ -142,7 +189,7 @@
   
 
 
-<time datetime="2014-05-02T02:40:43+03:00" pubdate data-updated="true">May 2<span>nd</span>, 2014</time>
+<time datetime="2014-05-01T19:40:43-04:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time>
         
       </p>
     
@@ -159,7 +206,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/05/02/coffeescript-101/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/05/01/coffeescript-101/">Read on &rarr;</a>
     </footer>
   
 
@@ -189,7 +236,7 @@
   
 
 
-<time datetime="2014-04-02T07:59:32+03:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
+<time datetime="2014-04-02T00:59:32-04:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2014</time>
         
       </p>
     
@@ -226,7 +273,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Exploring Security and Secret Tokens Through Facebook Login</a></h1>
     
     
       <p class="meta">
@@ -242,7 +289,7 @@
   
 
 
-<time datetime="2014-03-19T02:56:00+02:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<time datetime="2014-03-18T20:56:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
         
       </p>
     
@@ -257,7 +304,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/">Read on &rarr;</a>
     </footer>
   
 
@@ -271,7 +318,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/05/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/03/04/struct-rubys-quickie-class/">Struct: Ruby&#8217;s Quickie Class</a></h1>
     
     
       <p class="meta">
@@ -287,7 +334,7 @@
   
 
 
-<time datetime="2014-03-05T02:32:48+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
+<time datetime="2014-03-04T19:32:48-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2014</time>
         
       </p>
     
@@ -379,7 +426,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/05/struct-rubys-quickie-class/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/03/04/struct-rubys-quickie-class/">Read on &rarr;</a>
     </footer>
   
 
@@ -393,7 +440,7 @@
           
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Lessons From a Failed Successful Gem</a></h1>
     
     
       <p class="meta">
@@ -409,7 +456,7 @@
   
 
 
-<time datetime="2014-02-19T02:55:54+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time>
+<time datetime="2014-02-18T19:55:54-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time>
         
       </p>
     
@@ -426,7 +473,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/02/19/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/02/18/lessons-from-a-failed-successful-gem/">Read on &rarr;</a>
     </footer>
   
 
@@ -484,6 +531,14 @@
   <ul id="recent_posts">
     
       
+    
+      
+        <li class="post">
+          <a href="/blog/2017/09/14/why-i-created-dev-empathy-book-club/">Why I Created Dev Empathy Book Club</a>
+        </li>
+      
+    
+      
         <li class="post">
           <a href="/blog/2017/05/17/the-3-keys-to-software-quality/">The 3 Keys to Software Quality</a>
         </li>
@@ -497,18 +552,6 @@
         </li>
       
     
-      
-        <li class="post">
-          <a href="/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
-        </li>
-      
-    
-      
-        <li class="post">
-          <a href="/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do the Right Thing</a>
-        </li>
-      
-    
   </ul>
 </section>
 
@@ -517,15 +560,19 @@
   <ul id="recent_talks">
     
       
-    
-      
         <li class="post">
-          <a href="/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">What Comes After SOLID? Seeking Holistic Software Quality</a>
+          <a href="/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/">Automating Empathy: Test Your Docs with Swagger and Apivore</a>
         </li>
       
     
       
     
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">What Comes After SOLID? Seeking Holistic Software Quality</a>
+        </li>
       
     
       
@@ -542,7 +589,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Ariel Caplan -
+  Copyright &copy; 2018 - Ariel Caplan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
