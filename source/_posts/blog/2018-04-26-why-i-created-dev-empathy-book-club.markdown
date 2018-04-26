@@ -56,7 +56,7 @@ I was doing.  Although I saw myself taking on more responsibility, there was no
 event that sparked a big change, until...
 
 In late 2016, I attended RubyConf in Cincinnatti, where I heard Paulette Luftig's
-talk, ["Finding Your Edge Through a Culture of Feedback"][edge].She ended with
+talk, ["Finding Your Edge Through a Culture of Feedback"][edge]. She ended with
 a few recommendations for books to read, and I decided that this should be the
 next step for me. There are many fantastic texts about developing skills in
 communication, team-building, empathy, and other soft skills; I'd be cheating
