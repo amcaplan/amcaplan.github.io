@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2018-04-20T16:52:45-04:00</updated>
+  <updated>2018-04-26T22:47:42+03:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -14,9 +14,168 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
+    <link href="http://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/"/>
+    <updated>2018-04-26T01:54:50+03:00</updated>
+    <id>http://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club</id>
+    <content type="html"><![CDATA[<p>I was just a few months out of the Flatiron School, had gotten my bearings in
+the codebase at my first job, and was starting to take on more responsibility. I
+was sitting with a product manager&mdash;let&rsquo;s call her Sierra&mdash;trying to
+explain the technical impact of a product idea she had proposed. And I was
+<em>frustrated</em>.</p>
+
+<p>No matter which way I explained it, she just kept getting confused. Why couldn&rsquo;t
+she understand that making these changes would drastically increase response
+time on a critical endpoint? It was a simple workflow involving 2 microservices
+and a NoSQL database, and she didn&rsquo;t even have to understand the details, just
+how they were connected together on a high level.</p>
+
+<p>At some point, I realized: No one had ever given Sierra any level of technical
+explanation of the system whose development she was supposed to guide every day.
+Instead of going further with the conversation, I asked, &ldquo;Why don&rsquo;t we set up a
+meeting just to describe the basic outline of the system? Nothing overly
+detailed, just enough to allow us to have a conversation about how product
+concepts will impact the real-life product when they&rsquo;re translated into code.&rdquo;</p>
+
+<!-- more -->
+
+
+<p>To my surprise, she agreed. To my further astonishment, I actually enjoyed the
+meeting more than any other I&rsquo;d had since beginning my software development
+career. We slowly built up a diagram of the parts of the system relevant to her
+job, clarified confusing points, and made sure every bit of explanation was
+clear to her.</p>
+
+<p>At the end of the meeting, Sierra thanked me and said, &ldquo;You know, no one&rsquo;s ever
+done this for me. This is going to significantly improve my ability to come up
+with ideas and communicate with developers. I&rsquo;d really like to understand more
+about the technical elements of the project, but there never seem to be
+opportunities for me to learn.&rdquo;</p>
+
+<p>At that moment, I realized something that has become a theme in my career: The
+most significant impact you can make on a product isn&rsquo;t through design, code,
+marketing, sales, or customer support. It&rsquo;s building bridges, enabling people of
+varied backgrounds and skills, each with their own perspectives and spheres of
+understanding, to work together through effective communication.</p>
+
+<h3>A Series of Fortunate Events</h3>
+
+<p>As I continued to mature and advance in my career, I ended up taking on the role
+of a more senior developer and mentor, as well as having more say in the work
+I was doing.  Although I saw myself taking on more responsibility, there was no
+event that sparked a big change, until&hellip;</p>
+
+<p>In late 2016, I attended RubyConf in Cincinnatti, where I heard Paulette Luftig&rsquo;s
+talk, <a href="https://www.youtube.com/watch?v=EkLdO-SphxA">&ldquo;Finding Your Edge Through a Culture of Feedback&rdquo;</a>.She ended with
+a few recommendations for books to read, and I decided that this should be the
+next step for me. There are many fantastic texts about developing skills in
+communication, team-building, empathy, and other soft skills; I&rsquo;d be cheating
+myself of personal and professional growth if I didn&rsquo;t take advantage!</p>
+
+<p>A few days after the conference, I bought a number of books recommended in that
+talk, plus a few I&rsquo;d seen suggested around the internet. And so the fun began&hellip;</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Anyone wanna <a href="https://twitter.com/hashtag/BookClub?src=hash&amp;ref_src=twsrc%5Etfw">#BookClub</a> on some of these?<br><br>Nonviolent Communication<br>Difficult Conversations<br>Emotional Intelligence<br>&amp; 2 Dale Carnegie classics <a href="https://t.co/8eXPyzNTGK">pic.twitter.com/8eXPyzNTGK</a></p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/798657955142828036?ref_src=twsrc%5Etfw">November 15, 2016</a></blockquote>
+
+
+<p>I wanted more, so I ordered books online. Like a good programmer, I was
+approaching stack overflow&hellip;</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">As a reminder, if you want to join me in journeying through these empathy- (&amp; sometimes dev- too!) related books, ping me, let&#39;s <a href="https://twitter.com/hashtag/BookClub?src=hash&amp;ref_src=twsrc%5Etfw">#BookClub</a>! <a href="https://t.co/z6IuWVDdbR">pic.twitter.com/z6IuWVDdbR</a></p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/803702628412751872?ref_src=twsrc%5Etfw">November 29, 2016</a></blockquote>
+
+
+<p>It was difficult to stay motivated and keep reading, so I knew I had to actually
+get serious about making this thing happen. Also, I would get a lot more out of
+it if I could discuss my thoughts with others. So I decided that RailsConf 2017
+would be the Big Bang for Dev Empathy Book Club. I designed a site, set up a
+book club on Goodreads, and walked into the conference ready to recruit.</p>
+
+<p><a href="https://twitter.com/jah2488?lang=en">Justin Herrick</a> gave a workshop about team-building and communication,
+so he seemed like a good person to try; he was! <a href="https://twitter.com/cdwort?lang=en">Amy Unger</a> approached me
+in response to a tweet and asked to join as well; I was certainly delighted to
+have another thoughtful voice actually approach me about the club! So we had a
+panel.</p>
+
+<p>I also gave a <a href="https://www.youtube.com/watch?v=KGi9wRHWvB0&amp;t=50m12s">lightning talk</a> (which I&rsquo;m far too proud of)
+about a silly little hack, and used the opportunity to plug the project. So we
+got a bit of free marketing.</p>
+
+<p>Then everyone went home, and the real work began.</p>
+
+<h3>Down to Reality</h3>
+
+<p>Reading a dense book and actually trying to incorporate some ideas into your
+life every 2 months is a reasonable but still significant commitment.
+Even more difficult is coordinating with other people to make time for a panel
+discussion, keeping online materials up to date, and generally promoting the
+project. Dev Empathy Book Club is important to me because I think it adds a
+much-needed voice of compassion and humanity to the commotion in our industry.
+But it takes a lot of time and effort.</p>
+
+<p>We also needed to evolve. Goodreads has a very unfriendly system for managing a
+club, and the forums weren&rsquo;t easy to use. So we moved to an open Slack channel.
+Then, we wanted to make it more interactive, less a pure announcements conduit,
+so we started a monthly open discussion in Slack.</p>
+
+<p>We also needed to be flexible. With a small number of panelists (though we&rsquo;re
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSeDXMso9kb_7tkiOH5PxC2h15VwXQsMxxi8KSWsmnXTEm5_WA/viewform">looking to grow</a>!), sticking to a schedule has been a real challenge,
+resulting in 5 instead of 6 books covered over the last year. We&rsquo;re hoping to do
+better this year, to provide a more consistent experience for participants in
+the club.</p>
+
+<h3>This Just Got Real</h3>
+
+<p>While being part of Dev Empathy Book Club, I took on an informal team lead role
+within my working group. Since we went through a few management-related books at
+the same time (<em>The Mythical Man-Month</em>, <em>Radical Candor</em>, <em>Peopleware</em>), I had
+the opportunity to think about the ideas conveyed and experiment in a real-life
+work environment. I saw that people respected me because I invested a lot of
+thought into how teams work in general, and how to make my specific team more
+effective and simultaneously much happier.</p>
+
+<p>Then, a month ago, I was informed that I would have an opportunity to move into
+a management role at my company.</p>
+
+<p>A year ago, I would have been terrified, if the opportunity had even been
+presented, which of course it wouldn&rsquo;t have. I wasn&rsquo;t ready. Now, while I didn&rsquo;t
+walk into the role as an expert (it takes a lot of experience to get there!), I
+could consider myself educated enough to know how to learn the rest. A year of
+investment truly paid off.</p>
+
+<h3>What Are You Waiting For?</h3>
+
+<p>Even if management will never be your thing, soft skills are the big
+differentiator between people who write code and people who solve real-world
+problems using code. They might save you wasted years of effort by solving the
+people problems that would otherwise have mandated countless lines of code. And
+they will definitely make you happier in your job. You have to deal with other
+people all the time; may as well learn to enjoy it and make the most of it!</p>
+
+<p>Becoming a more empathetic, compassionate, kind person with
+better communication skills will probably be the most valuable investment in
+your career (and possible your life in general).</p>
+
+<p>Is Dev Empathy Book Club right for you? If you&rsquo;re looking for something concrete
+and consistent to add to your routine to develop personally and professionally,
+check it out!</p>
+
+<p>If this isn&rsquo;t the right time for you to join, that&rsquo;s fine too. I&rsquo;d love if you
+would share this post, and the club, with friends, or tweet about it with the
+hashtag <a href="https://twitter.com/hashtag/DevEmpathy?src=hash">#DevEmpathy</a>. (Or just mention our Twitter account, <a href="https://twitter.com/DevEmpathy?lang=en">@DevEmpathy</a>!)</p>
+
+<p>You can find out more information on our site, <a href="http://devempathybook.club">devempathybook.club</a>.</p>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Docs with Swagger and Apivore]]></title>
     <link href="http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
-    <updated>2018-04-19T15:40:00-04:00</updated>
+    <updated>2018-04-19T22:40:00+03:00</updated>
     <id>http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018. Video coming soon! In the meantime, here
 are the slides:</p>
@@ -46,53 +205,9 @@ that will make your APIs better, your clients more satisfied, and you happier.</
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
-    <link href="http://amcaplan.ninja/blog/2017/09/14/why-i-created-dev-empathy-book-club/"/>
-    <updated>2017-09-14T18:54:50-04:00</updated>
-    <id>http://amcaplan.ninja/blog/2017/09/14/why-i-created-dev-empathy-book-club</id>
-    <content type="html"><![CDATA[<p>I was just a few months out of the Flatiron School, had gotten my bearings in
-the codebase at my first job, and was starting to take on more responsibility. I
-was sitting with a product manager&mdash;let&rsquo;s call her Sierra&mdash;trying to
-explain the technical impact of a product idea she had proposed. And I was
-<em>frustrated</em>.</p>
-
-<p>No matter which way I explained it, she just kept getting confused. Why couldn&rsquo;t
-she understand that making these changes would drastically increase response
-time on a critical endpoint? It was a simple workflow involving 2 microservices
-and a NoSQL database, and she didn&rsquo;t even have to understand the details, just
-how they were connected together on a high level.</p>
-
-<p>At some point, I realized: No one had ever given Sierra any level of technical
-explanation of the system whose development she was supposed to guide every day.
-Instead of going further with the conversation, I asked, &ldquo;Why don&rsquo;t we set up a
-meeting just to describe the basic outline of the system? Nothing overly
-detailed, just enough to allow us to have a conversation about how product
-concepts will impact the real-life product when they&rsquo;re translated into code.&rdquo;</p>
-
-<p>To my surprise, she agreed. To my further astonishment, I actually enjoyed the
-meeting more than any other I&rsquo;d had since beginning my software development
-career. We slowly built up a diagram of the parts of the system relevant to her
-job, clarified confusing points, and made sure every bit of explanation was
-clear to her.</p>
-
-<p>At the end of the meeting, Sierra thanked me and said, &ldquo;You know, no one&rsquo;s ever
-done this for me. This is going to significantly improve my ability to come up
-with ideas and communicate with developers. I&rsquo;d really like to understand more
-about the technical elements of the project, but there never seem to be
-opportunities for me to learn.&rdquo;</p>
-
-<p>At that moment, I realized something that has become a theme in my career: The
-most significant impact you can make on a product isn&rsquo;t through design, code,
-marketing, sales, or customer support. It&rsquo;s building bridges, enabling people of
-varied backgrounds and skills, each with their own perspectives and spheres of
-understanding, to work together through effective communication.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[The 3 Keys to Software Quality]]></title>
     <link href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
-    <updated>2017-05-17T12:02:22-04:00</updated>
+    <updated>2017-05-17T19:02:22+03:00</updated>
     <id>http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
     <content type="html"><![CDATA[<p>Why do software projects fail?</p>
 
@@ -302,7 +417,7 @@ talk <a href="http://amcaplan.ninja/railsconf2017">here</a>.</em></p>
   <entry>
     <title type="html"><![CDATA[What Comes After SOLID? Seeking Holistic Software Quality]]></title>
     <link href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
-    <updated>2017-04-25T15:40:00-04:00</updated>
+    <updated>2017-04-25T22:40:00+03:00</updated>
     <id>http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017.  For a pared-down text version of the
 talk, see <a href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/">this post</a>.  For
@@ -367,7 +482,7 @@ of a central repository.</li>
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
     <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
-    <updated>2017-01-01T05:09:02-05:00</updated>
+    <updated>2017-01-01T12:09:02+02:00</updated>
     <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
@@ -555,7 +670,7 @@ productive 2017!</p>
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T13:50:21-05:00</updated>
+    <updated>2016-12-31T20:50:21+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
@@ -828,7 +943,7 @@ and details to the stage.</p>
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
-    <updated>2016-12-30T05:53:38-05:00</updated>
+    <updated>2016-12-30T12:53:38+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
@@ -1182,7 +1297,7 @@ around.</p>
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
-    <updated>2016-12-29T07:13:00-05:00</updated>
+    <updated>2016-12-29T14:13:00+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
     <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
@@ -1343,7 +1458,7 @@ primary level of abstraction.</p>
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
-    <updated>2016-12-28T05:08:26-05:00</updated>
+    <updated>2016-12-28T12:08:26+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>There are plenty of ways to write a FizzBuzz program in any language,
 particularly Ruby with its <a href="https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it">TIMTOWTDI</a> philosophy.  Beyond the naive
@@ -1609,7 +1724,7 @@ did.</p>
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
-    <updated>2016-12-27T14:54:20-05:00</updated>
+    <updated>2016-12-27T21:54:20+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
 painful to keep in sync with your code.  A tremendous amount of cognitive
@@ -2077,7 +2192,7 @@ better user experience, and ultimately happier customers.</p>
   <entry>
     <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
-    <updated>2016-12-26T05:11:32-05:00</updated>
+    <updated>2016-12-26T12:11:32+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
     <content type="html"><![CDATA[<p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
 you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
@@ -2305,7 +2420,7 @@ course practically it doesn&rsquo;t happen past a few commits.</p>
   <entry>
     <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
     <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
-    <updated>2016-12-25T09:01:56-05:00</updated>
+    <updated>2016-12-25T16:01:56+02:00</updated>
     <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
     <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
 
@@ -2402,7 +2517,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
-    <updated>2016-11-10T14:01:52-05:00</updated>
+    <updated>2016-11-10T21:01:52+02:00</updated>
     <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
@@ -2436,7 +2551,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
     <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T12:25:09-04:00</updated>
+    <updated>2016-09-16T19:25:09+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
@@ -2472,7 +2587,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T10:32:24-04:00</updated>
+    <updated>2016-05-05T17:32:24+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
@@ -2484,7 +2599,7 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
     <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
-    <updated>2016-05-04T10:20:43-04:00</updated>
+    <updated>2016-05-04T17:20:43+03:00</updated>
     <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
@@ -2503,9 +2618,9 @@ have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>,
   
   <entry>
     <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/"/>
-    <updated>2016-01-03T17:04:10-05:00</updated>
-    <id>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints</id>
+    <link href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
+    <updated>2016-01-04T00:04:10+02:00</updated>
+    <id>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
     <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
 a chord with others, and I want to develop the point a bit more.</p>
 
@@ -2871,7 +2986,7 @@ did, and what type of impact it had on yourself, your code, and your team.</p>
   <entry>
     <title type="html"><![CDATA[Metrics That Matter]]></title>
     <link href="http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/"/>
-    <updated>2015-12-02T09:05:35-05:00</updated>
+    <updated>2015-12-02T16:05:35+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter</id>
     <content type="html"><![CDATA[<p>Many of us are familiar with the standard tirades against the use of metrics in
 judging developers.  Most of these arguments basically boil down to one of two
@@ -3075,7 +3190,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Threads and Processes]]></title>
     <link href="http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/"/>
-    <updated>2015-11-24T16:40:44-05:00</updated>
+    <updated>2015-11-24T23:40:44+02:00</updated>
     <id>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsIsrael 2015.</p>
 
@@ -3096,7 +3211,7 @@ multiply the value created individually.</p>
   <entry>
     <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
     <link href="http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T08:42:16-05:00</updated>
+    <updated>2015-11-18T15:42:16+02:00</updated>
     <id>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
     <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
 attempted to formulate the ethical principles that should guide programmers.  It

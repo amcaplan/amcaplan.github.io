@@ -1,201 +1,201 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://amcaplan.ninja/blog/2014/02/18/lessons-from-a-failed-successful-gem/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2014/02/19/lessons-from-a-failed-successful-gem/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2014/03/04/struct-rubys-quickie-class/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2014/03/05/struct-rubys-quickie-class/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2014/03/18/exploring-security-and-secret-tokens-through-facebook-login/
+            http://amcaplan.ninja/blog/2014/03/19/exploring-security-and-secret-tokens-through-facebook-login/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/04/02/using-helper-methods-to-dry-up-rails-forms/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2014/05/01/coffeescript-101/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2014/05/02/coffeescript-101/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2014/05/29/how-to-stay-classy-with-ruby-variables/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2014/05/30/how-to-stay-classy-with-ruby-variables/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/07/17/asynchronous-javascript-without-failing-capybara-tests/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/talks/2015/01/14/flag-your-features-with-rollout-and-degrade/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-i-what-and-why/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/01/18/feature-flags-in-ruby-part-ii-how-and-where/
+            http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-ii-how-and-where/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2015/01/19/feature-flags-in-ruby-part-iii-who-automate-feature-flipping/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2015/05/20/the-making-of-persistentopenstruct/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2015/05/21/the-making-of-persistentopenstruct/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
-            http://amcaplan.ninja/blog/2015/06/28/what-should-a-junior-developer-work-on-first/
+            http://amcaplan.ninja/blog/2015/06/29/what-should-a-junior-developer-work-on-first/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2015/08/02/recruit-software-engineers-with-this-1-weird-old-tip/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/talks/2015/11/05/start-your-rails-engines/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <loc>http://amcaplan.ninja/talks/2015/11/06/start-your-rails-engines/</loc>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/talks/2015/11/24/threads-and-processes/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2015/12/02/metrics-that-matter/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
-        <loc>http://amcaplan.ninja/blog/2016/01/03/choose-your-constraints/</loc>
-        <lastmod>2016-12-28T05:32:27-05:00</lastmod>
+        <loc>http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/</loc>
+        <lastmod>2016-12-28T12:32:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/
         </loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/
         </loc>
-        <lastmod>2016-12-25T17:48:57-05:00</lastmod>
+        <lastmod>2016-12-26T00:48:57+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/</loc>
-        <lastmod>2017-01-01T06:09:22-05:00</lastmod>
+        <lastmod>2017-01-01T13:09:22+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/</loc>
-        <lastmod>2016-12-31T17:50:18-05:00</lastmod>
+        <lastmod>2017-01-01T00:50:18+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/
         </loc>
-        <lastmod>2017-06-04T18:16:20-04:00</lastmod>
+        <lastmod>2017-06-05T01:16:20+03:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/</loc>
-        <lastmod>2016-12-31T17:49:58-05:00</lastmod>
+        <lastmod>2017-01-01T00:49:58+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/</loc>
-        <lastmod>2016-12-31T17:49:50-05:00</lastmod>
+        <lastmod>2017-01-01T00:49:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/</loc>
-        <lastmod>2016-12-31T17:49:43-05:00</lastmod>
+        <lastmod>2017-01-01T00:49:43+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/</loc>
-        <lastmod>2016-12-31T17:46:02-05:00</lastmod>
+        <lastmod>2017-01-01T00:46:02+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/</loc>
-        <lastmod>2017-01-01T06:10:18-05:00</lastmod>
+        <lastmod>2017-01-01T13:10:18+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/
         </loc>
-        <lastmod>2017-05-20T17:09:05-04:00</lastmod>
+        <lastmod>2017-05-21T00:09:05+03:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/</loc>
-        <lastmod>2017-05-17T14:09:58-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://amcaplan.ninja/blog/2017/09/14/why-i-created-dev-empathy-book-club/</loc>
-        <lastmod>2017-09-14T19:36:33-04:00</lastmod>
+        <lastmod>2017-05-17T21:09:58+03:00</lastmod>
     </url>
     <url>
         <loc>
             http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/
         </loc>
-        <lastmod>2018-04-20T16:50:11-04:00</lastmod>
+        <lastmod>2018-04-20T23:50:11+03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/</loc>
+        <lastmod>2018-04-26T22:44:34+03:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/404.html</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/about/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/archives/</loc>
-        <lastmod>2018-04-20T16:50:11-04:00</lastmod>
+        <lastmod>2018-04-26T22:44:34+03:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/</loc>
-        <lastmod>2018-04-20T16:50:11-04:00</lastmod>
+        <lastmod>2018-04-26T22:44:34+03:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/robots.txt</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
     <url>
         <loc>http://amcaplan.ninja/talks/</loc>
-        <lastmod>2016-12-25T17:42:20-05:00</lastmod>
+        <lastmod>2016-12-26T00:42:20+02:00</lastmod>
     </url>
 </urlset>
