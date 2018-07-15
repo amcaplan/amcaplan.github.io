@@ -18,13 +18,22 @@ twitter:
   description: Want reliable documentation that makes your users happy and saves
     you a lot of grief? Start testing it. Here's how.
 ---
+This talk was given at RailsConf 2018.  For a pared-down text version of the
+talk, see [this post](/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/).
+For the real thing, here's the video:
 
-This talk was given at RailsConf 2018. Video coming soon! In the meantime, here
-are the slides:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lqPZdvg49GU" frameborder="0" allowfullscreen></iframe>
+
+And the slides:
 
 <script async class="speakerdeck-embed" data-id="444eff9d3022491589ff0eebdb141ffd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 <br/>
+
+P.S. If you happen to subscribe to RubyTapas, you can also check out a brief,
+more technical take on the same material in my
+[guest episode](https://www.rubytapas.com/2018/05/21/automating-empathy-ariel-caplan/)!
+
 #### Talk Description:
 Ugh, documentation.
 
