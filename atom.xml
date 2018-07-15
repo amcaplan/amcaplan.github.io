@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="https://www.amcaplan.ninja/atom.xml" rel="self"/>
   <link href="https://www.amcaplan.ninja/"/>
-  <updated>2018-07-16T00:28:50+03:00</updated>
+  <updated>2018-07-16T00:32:22+03:00</updated>
   <id>https://www.amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -177,9 +177,10 @@ hashtag <a href="https://twitter.com/hashtag/DevEmpathy?src=hash">#DevEmpathy</a
     <link href="https://www.amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
     <updated>2018-04-19T22:40:00+03:00</updated>
     <id>https://www.amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
-    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  For a pared-down text version of the
-talk, see <a href="https://www.amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>.
-For the real thing, here&rsquo;s the video:</p>
+    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  If text is more your thing, you can see
+<a href="https://www.amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>
+which precipitated the talk; it gets into more nitty-gritty details.  If you&rsquo;d
+rather start with the why and get a bigger-picture sense, here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lqPZdvg49GU" frameborder="0" allowfullscreen></iframe>
 
