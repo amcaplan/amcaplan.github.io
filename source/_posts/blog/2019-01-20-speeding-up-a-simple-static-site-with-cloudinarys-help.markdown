@@ -46,7 +46,7 @@ no good reason for it, except that I didn't have the know-how to improve things,
 or the time to learn how to do it.
 
 ### Enter Cloudinary
-Cloudinary is a really straightforward service to upload, transform, and serve
+Cloudinary is a robust but easy-to-use service to upload, transform, and serve
 images and videos. The free tier contains way more than you'll ever need for a
 simple static site, so it's a great choice for e.g. personal sites with a few
 images you'd like to serve efficiently.
@@ -66,7 +66,8 @@ The URL consists of
 https://res.cloudinary.com/caplan/image/fetch/
 ```
 
-which tells Cloudinary you want to fetch an image for the `caplan` cloud, and
+which tells Cloudinary you want to fetch an image for the `caplan` cloud (you
+create a cloud with a unique identifier when you sign up for Cloudinary), and
 the rest is the URL where the image can be found:
 
 ```
@@ -102,9 +103,9 @@ https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.
 
 ![small ninja image](https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png)
 
-You can also crop, set gravity (focusing on a region of the image or on human
-faces), scale, add text layers or image overlays, and do a whole bunch more
-awesome stuff, just by adding to the URL.
+You can crop, set gravity (focusing on a region of the image or on human faces),
+scale, add text layers or image overlays, and do a whole bunch more awesome
+stuff, just by adding to the URL.
 
 This opens up the opportunity to create multiple versions for various
 breakpoints, driven via CSS. So if you take a large version as the original,
@@ -228,8 +229,8 @@ processing with it.
 Usually you'll want to use a [versioning strategy](https://css-tricks.com/strategies-for-cache-busting-css/#article-header-id-2)
 for your JS and CSS assets if you use a CDN, but the goal here was to be lazy on
 a static Jekyll site. Since there wasn't much custom CSS and JS, I simply left a
-few files that are loaded directly from the site, but things that won't change
-frequently (or ever) are served via CDN. You can see the code
+few files that are loaded directly from GitHub Pages, but things that won't
+change frequently (or ever) are served via Cloudinary's CDN. You can see the code
 [here](https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/_includes/head.html#L36-L56).
 
 ### Cut Waste
@@ -237,7 +238,8 @@ You might notice, if you looked at the code from the last section, that a number
 of lines were commented out. It turns out that the Jekyll template I used bundled
 with it a number of JS/CSS frameworks and plugins I didn't actually use. Removing
 them reduced the total page load size, and makes the page run faster, since
-there's a smaller load on the CPU. As they say, no code is faster than no code!
+there's less for the CPU to worry about. As they say, no code is faster than no
+code!
 
 ### The Outcome
 I wouldn't call the site blazing-fast now, but its PageSpeed mobile score went
