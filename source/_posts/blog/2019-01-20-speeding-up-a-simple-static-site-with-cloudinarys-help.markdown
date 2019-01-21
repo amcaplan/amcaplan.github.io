@@ -250,3 +250,6 @@ So go out, try these tips, and let me know in the comments how you did!
 
 As a reminder, I work at Cloudinary, so if you do find anything here difficult
 to implement, I can pass along your concerns to the right people... 😉
+
+_NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
+taken as representing anyone other than myself._
