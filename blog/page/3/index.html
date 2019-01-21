@@ -9,7 +9,8 @@
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="Recently at work, I spent over a day trying to get one failing test to pass. I tried everything in the code, but no dice. Finally, I realized that &hellip;">
+  <meta name="description" content="On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +73,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+    
+      
+        <article>
+          
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Closures and Callbacks: Running Arbitrary Task Sets Synchronously in JavaScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-24T23:25:29+03:00" pubdate data-updated="true">Aug 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the Vitals Choice team, we have divided our product into a number of apps.
+Each of those apps has one running instance per environment , and we have
+several environments.  So as you might imagine, making sure updated code
+gets propagated through all those places at the right time can be quite
+the task.  Luckily, we have a Hubot instance which does most of the heavy
+lifting, but even issuing all the Hubot commands for every single app makes you
+wonder: shouldn&rsquo;t there be a way to automate this better?</p>
+
+<p>Well, it turns out that an attempt had been made in the past, but we ran into
+a problem: JavaScript&rsquo;s asynchronicity.  The server hosting Hubot was suddenly
+told to update all the apps for a particular environment, and the simultaneous
+processes overwhelmed the CPU and memory.</p>
+
+<p>Considering the problem, I realized that callbacks were the way to go.  Hubot
+comes with an evented system, which we could utilize to force Hubot to only
+launch one app at a time.  Here&rsquo;s what I came up with, and what I learned along
+the way.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/24/closures-and-callbacks-running-arbitrary-task-sets-synchronously-in-javascript/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+    
   
     
       
@@ -532,6 +592,12 @@
     
       
         <li class="post">
+          <a href="/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/">Speeding up a Simple Static Site (With Help from Cloudinary!)</a>
+        </li>
+      
+    
+      
+        <li class="post">
           <a href="/blog/2018/04/26/why-i-created-dev-empathy-book-club/">Why I Created Dev Empathy Book Club</a>
         </li>
       
@@ -546,18 +612,14 @@
     
       
     
-      
-        <li class="post">
-          <a href="/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a>
-        </li>
-      
-    
   </ul>
 </section>
 
 <section>
   <h1>Recent Talks</h1>
   <ul id="recent_talks">
+    
+      
     
       
     
@@ -575,8 +637,6 @@
         </li>
       
     
-      
-    
   </ul>
 </section>
 
@@ -589,7 +649,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2018 - Ariel Caplan -
+  Copyright &copy; 2019 - Ariel Caplan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

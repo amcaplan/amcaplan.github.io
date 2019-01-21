@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="https://www.amcaplan.ninja/atom.xml" rel="self"/>
   <link href="https://www.amcaplan.ninja/"/>
-  <updated>2018-07-16T00:32:22+03:00</updated>
+  <updated>2019-01-21T11:36:36+02:00</updated>
   <id>https://www.amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,261 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Speeding up a Simple Static Site (With Help from Cloudinary!)]]></title>
+    <link href="https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/"/>
+    <updated>2019-01-20T15:09:04+02:00</updated>
+    <id>https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help</id>
+    <content type="html"><![CDATA[<h3>Diagnosing The Patient</h3>
+
+<p>For the last 2 years, I&rsquo;ve run <a href="https://devempathybook.club">Dev Empathy Book Club</a>,
+and the site hasn&rsquo;t changed much. I&rsquo;ve tried to keep it low-effort so I can focus
+on the community and the content we&rsquo;re producing. One casualty of this was that
+the site, while simple, wasn&rsquo;t very performant. (Google&rsquo;s
+<a href="https://developers.google.com/speed/pagespeed">PageSpeed Insights</a> gave it a
+very low score of 30/100 on mobile.)</p>
+
+<p>I recently began working at <a href="https://cloudinary.com">Cloudinary</a>, and I realized
+it&rsquo;s pretty embarrassing that, as an employee of a company whose product is all
+about optimizing media on the web, I have a personal site that does a terrible
+job of it.</p>
+
+<!-- more -->
+
+
+<p>The final bit of encouragement came from fellow Cloudinarian
+<a href="https://twitter.com/etportis">Eric Portis</a>, who published <a href="https://www.smashingmagazine.com/2017/07/website-speed-test-image-analysis-tool/">an article</a>
+about <a href="https://webspeedtest.cloudinary.com/">Website Speed Test</a>, a free tool
+from Cloudinary to grade image performance on your site. When I ran it against
+the Dev Empathy Book Club site, I saw that users had to download 1.5MB, which
+could be optimized down to 370kB, i.e. about &frac14; of their weight. I also knew
+these images were being served directly from GitHub Pages, without any CDN, so
+on mobile devices the page load was pretty slow.</p>
+
+<p>On top of all this, there was a good amount of render-blocking JS and CSS being
+downloaded without a CDN.</p>
+
+<p>All this meant slower load times, and lower scores in search results. There was
+no good reason for it, except that I didn&rsquo;t have the know-how to improve things,
+or the time to learn how to do it.</p>
+
+<h3>Enter Cloudinary</h3>
+
+<p>Cloudinary is a really straightforward service to upload, transform, and serve
+images and videos. The free tier contains way more than you&rsquo;ll ever need for a
+simple static site, so it&rsquo;s a great choice for e.g. personal sites with a few
+images you&rsquo;d like to serve efficiently.</p>
+
+<p>One awesome feature of Cloudinary which made this incredibly simple is the
+ability to <a href="https://cloudinary.com/documentation/upload_images#auto_fetching_remote_images">auto-fetch images</a>.</p>
+
+<p>For example, consider this URL:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/https://amcaplan.ninja/images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The URL consists of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which tells Cloudinary you want to fetch an image for the <code>caplan</code> cloud, and
+the rest is the URL where the image can be found:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://amcaplan.ninja/images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you hit this URL, Cloudinary will fetch the image in the background, and
+begin serving via CDN.</p>
+
+<p>Theoretically we could take all the images on the site and preface with the fetch
+incantation, but there&rsquo;s a better way. Cloudinary has another feature called
+Auto Upload, which lets you create folders which are proxies for web locations.
+So if we create a <code>ninja_images</code> directory mapped to <code>https://amcaplan.ninja/images/</code>,
+the URL looks like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/upload/ninja-images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Much better! Here&rsquo;s the result:</p>
+
+<p><img src="https://res.cloudinary.com/caplan/image/upload/ninja-images/ninja-cropped.png" alt="ninja image served via Cloudinary" /></p>
+
+<p>Now comes the fun part.</p>
+
+<p>Cloudinary lets you edit images by adding transformations right into the URL.
+For example, by adding <code>/w_100</code> before the image location, we creates a
+100-pixel-wide version of the same image:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png" alt="small ninja image" /></p>
+
+<p>You can also crop, set gravity (focusing on a region of the image or on human
+faces), scale, add text layers or image overlays, and do a whole bunch more
+awesome stuff, just by adding to the URL.</p>
+
+<p>This opens up the opportunity to create multiple versions for various
+breakpoints, driven via CSS. So if you take a large version as the original,
+you can tell Cloudinary to crop/scale the image as you see fit, no Photoshop
+skills required!</p>
+
+<p>As one concrete example, here&rsquo;s a large image for wide screens:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto/site/slider-bg.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto/site/slider-bg.jpg" alt="large image of girls holding hands" /></p>
+
+<p>You&rsquo;ll notice a couple transformations here: <code>f_auto</code>, which chooses the most
+bandwidth-optimized image format for the user&rsquo;s browser, and <code>q_auto</code>, which
+reduces image size by degrading image quality without being noticeable to the
+human eye.  Those 2 transformations already reduce the image size from 874kB to
+385kB, without any noticeable difference to the user!</p>
+
+<p>But we can do better on mobile, where this many pixels still aren&rsquo;t helping
+anyone. Here&rsquo;s a scaled-down version for mobile:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto,w_480,h_800,c_lfill,g_auto/site/slider-bg.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto,w_480,h_800,c_lfill,g_auto/site/slider-bg.jpg" alt="small image of girls holding hands" /></p>
+
+<p>In this case, we&rsquo;re creating a tall image bounded at 480px width, centered on
+what Cloudinary determines to be the most interesting part of the image, and
+using a <code>fill</code> approach to the crop (expressed as <code>c_lfill</code>) to ensure we cover
+the entire requested dimensions of 480x800.</p>
+
+<p>There are many parameters and even more options for those parameters, but the
+<a href="https://cloudinary.com/documentation/image_transformations">documentation</a> is
+quite thorough and the system is really powerful.</p>
+
+<p>To see a real-life example for what this might look like, check out <a href="https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/css/airspace.css#L866-L940">the CSS for
+Dev Empathy Book Club&rsquo;s site on GitHub</a>.</p>
+
+<h3>The Gravatar Challenge</h3>
+
+<p>At first I assumed that <a href="https://www.gravatar.com">Gravatars</a> (we display a few)
+on the site would work the same way, but I soon realized there is a big problem
+with Gravatar. The URL for an image looks something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=200</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with this result:</p>
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=200" alt="Ariel Caplan 200-pixel gravatar" /></p>
+
+<p>If I want a larger version, I just change the <code>s</code> query param. So for a 400px
+square, I&rsquo;d use this URL:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400" alt="Ariel Caplan 400-pixel gravatar" /></p>
+
+<p>Lacking the <code>s</code> parameter, Gravatar defaults to an 80px square:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg" alt="Ariel Caplan 80-pixel gravatar" /></p>
+
+<p>If you try to fetch a large Gravatar avatar with Cloudinary, here&rsquo;s the result:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400" alt="Ariel Caplan 80-pixel gravatar fetched through Cloudinary" /></p>
+
+<p>What happened? Cloudinary treats <code>?s=400</code> as a meaningless parameter passed to
+Cloudinary, and doesn&rsquo;t forward it to Gravatar.</p>
+
+<p>It turns out that someone at Cloudinary thought of this, and therefore built
+<a href="https://cloudinary.com/blog/placeholder_images_and_gravatar_integration_with_cloudinary">Gravatar support</a>
+directly into the platform. Unlike the <code>fetch</code> and <code>upload</code> image types we&rsquo;ve
+seen so far, there&rsquo;s also a <code>gravatar</code> image type which knows how to source a
+high-quality image from Gravatar, and even update it automatically (with a small
+delay) when someone changes their avatar!</p>
+
+<p>If you fetch images via Gravatar in this way, you can easily scale up or down
+using the normal <code>h_</code> and <code>w_</code> parameters. So here&rsquo;s that same 400px image of
+yours truly, fetched via Cloudinary:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/gravatar/w_400/7b5a451ee25044b9c869e3e98b79425d.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/gravatar/w_400/7b5a451ee25044b9c869e3e98b79425d.jpg" alt="Ariel Caplan 400-pixel gravatar fetched through Cloudinary" /></p>
+
+<p>Of course, once you&rsquo;ve done this, you can use <code>f_auto</code> and <code>q_auto</code> to optimize
+images further and reduce bandwidth use. Neat!</p>
+
+<h3>Not Just for Images!</h3>
+
+<p>One little-known fact about Cloudinary: They can serve anything via CDN, not just
+images and video! So if you have JS or CSS files, you can serve them through
+Cloudinary&rsquo;s CDN in the same fashion as mentioned above for images: Set up an
+Auto Upload folder and reference those URLs instead of the place where they&rsquo;re
+hosted on your site. So for example, instead of:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://devempathybook.club/css/bootstrap.min.css</span></code></pre></td></tr></table></div></figure>
+
+
+<p>we reference:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/raw/upload/css/bootstrap.min.css</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(where <code>css/</code> is a folder mapped to <code>https://devempathybook.club/css/</code>). Note
+that instead of <code>image</code> as before, we write <code>raw</code> to indicate that this should
+be considered an unknown file type and Cloudinary shouldn&rsquo;t try to do any image
+processing with it.</p>
+
+<p>Usually you&rsquo;ll want to use a <a href="https://css-tricks.com/strategies-for-cache-busting-css/#article-header-id-2">versioning strategy</a>
+for your JS and CSS assets if you use a CDN, but the goal here was to be lazy on
+a static Jekyll site. Since there wasn&rsquo;t much custom CSS and JS, I simply left a
+few files that are loaded directly from the site, but things that won&rsquo;t change
+frequently (or ever) are served via CDN. You can see the code
+<a href="https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/_includes/head.html#L36-L56">here</a>.</p>
+
+<h3>Cut Waste</h3>
+
+<p>You might notice, if you looked at the code from the last section, that a number
+of lines were commented out. It turns out that the Jekyll template I used bundled
+with it a number of JS/CSS frameworks and plugins I didn&rsquo;t actually use. Removing
+them reduced the total page load size, and makes the page run faster, since
+there&rsquo;s a smaller load on the CPU. As they say, no code is faster than no code!</p>
+
+<h3>The Outcome</h3>
+
+<p>I wouldn&rsquo;t call the site blazing-fast now, but its PageSpeed mobile score went
+up from 30 to 50 in a few simple steps taking a couple hours total. There are
+more things to optimize, but these quick tricks helped bring down page load time
+a lot already. Importantly, time to first paint on mobile was cut by about 50%.
+That&rsquo;s a much better experience for mobile users.</p>
+
+<p>So go out, try these tips, and let me know in the comments how you did!</p>
+
+<p>As a reminder, I work at Cloudinary, so if you do find anything here difficult
+to implement, I can pass along your concerns to the right people&hellip; 😉</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
@@ -177,10 +432,9 @@ hashtag <a href="https://twitter.com/hashtag/DevEmpathy?src=hash">#DevEmpathy</a
     <link href="https://www.amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
     <updated>2018-04-19T22:40:00+03:00</updated>
     <id>https://www.amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
-    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  If text is more your thing, you can see
-<a href="https://www.amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>
-which precipitated the talk; it gets into more nitty-gritty details.  If you&rsquo;d
-rather start with the why and get a bigger-picture sense, here&rsquo;s the video:</p>
+    <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  For a pared-down text version of the
+talk, see <a href="https://www.amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>.
+For the real thing, here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lqPZdvg49GU" frameborder="0" allowfullscreen></iframe>
 
@@ -3216,82 +3470,6 @@ multiply the value created individually.</p>
 <h4>Talk Description:</h4>
 
 <p>Many of us use threads and/or processes in our code, whether explicitly or implicitly. But do we really understand what threads and processes are? Can we clearly evaluate the pros and cons of each? We will attempt to clarify these concepts in a simple, concise fashion.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Formulating the Ethics of Programming]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming/"/>
-    <updated>2015-11-18T15:42:16+02:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2015/11/18/formulating-the-ethics-of-programming</id>
-    <content type="html"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Uncle Bob</a> recently published a <a href="http://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html">post</a> where he
-attempted to formulate the ethical principles that should guide programmers.  It
-was an interesting concept, but I immediately felt it could use a rewrite.</p>
-
-<p>Although I agree that everything in his version is a good idea, I disagree with
-the formulation as an ethical guideline for programmers.  Simply put, the
-principles of Agile are brilliant.  But they hardly deserve mention in a list of
-ethics, and &ndash; I would contend &ndash; detract from the list.</p>
-
-<!-- more -->
-
-
-<p>There are most certainly cases where following Agile practices would be the
-unethical thing to do; it all depends on the needs and policies of the client or
-company.  For example, consider Principle 5:</p>
-
-<blockquote><p>I will fearlessly and relentlessly improve the code at every opportunity. I
-will never make the code worse.</p></blockquote>
-
-<p>Sometimes, what&rsquo;s needed is a quick fix for production, followed by a more
-well-thought-out solution that will take some time to produce.  Will that make
-the code worse in the meantime?  You betcha.  Is it the right thing to do
-anyway?  Very likely.</p>
-
-<p>Let&rsquo;s consider Principle 7:</p>
-
-<blockquote><p>I will continuously ensure that others can cover for me, and that I can cover
-for them.</p></blockquote>
-
-<p>Again, I totally agree.  But if there are 2 developers in a tiny, bootstrapped
-startup, maybe you don&rsquo;t have enough time to share all the information all the
-time.  Principle 7 is true for most business cases.  But as soon as it&rsquo;s
-specific to a business case, you can tell that this is less of a moral principle
-and more of a strategy for success in accomplishing something else.</p>
-
-<p>In both cases, the principles are really ways of &ndash; in the average business case
-&ndash; helping the employer/client to be more stable and able to continually improve
-its product.  So when it comes to the ethical piece, these principles &ndash; in fact,
-at least half of the oath &ndash; boils down to:</p>
-
-<blockquote><p>I will be an honest employee or contract worker, making sincere effort to
-produce value for those who pay the bills, in both the short and long term.</p></blockquote>
-
-<p>That&rsquo;s a statement of ethics, and it might belong in a programmer&rsquo;s oath.</p>
-
-<p>Thinking about it further, I came up with my own version of the programmer&rsquo;s
-oath, heavily based on the <a href="https://en.wikipedia.org/w/index.php?title=Hippocratic_Oath&amp;oldid=688739951#Modern_version">version</a> of the Hippocratic
-Oath currently used in many medical schools.  I was honestly surprised at how
-much could be lightly edited and incorporated into a programmer&rsquo;s oath.  There
-is a comforting universality to ethics.</p>
-
-<p>Let me know your thoughts!</p>
-
-<blockquote><p>I swear to fulfill, to the best of my ability and judgment, this covenant:</p>
-
-<ol>
-<li><p>I appreciate the work of past generations, who overcame hardware and software limitations to produce the programming environment of today, and I will collaborate with colleagues in the present to further improve the future of our trade.  I recognize that I have received instruction from those who preceded me, and I will repay in kind by sharing my knowledge with those who will follow.</p></li>
-<li><p>I will strive to efficiently produce the solution which best fits the needs as best as I can perceive them.  I will not shortchange through either overengineering or underdesigning.  I will provide verification, to whatever degree is reasonable given constraints of time and finances, that the solution I have generated works as expected.</p></li>
-<li><p>I will treat clients and coworkers with respect and warmth.  I will listen to their ideas, using their input to sharpen my own understanding.  When disagreement arises, I will collaborate with the other parties to reach mutual understanding and agreement.  I will never reject or insult anyone I work with.</p></li>
-<li><p>I will not be afraid to say &ldquo;I don&rsquo;t know&rdquo; and I will respect others for their admission of the same.  I will not be afraid to ask questions.</p></li>
-<li><p>I will never attempt to deceive those who rely on my honesty.</p></li>
-<li><p>I will respect the privacy of my company and/or clients, barring unethical or illegal behavior on their part.</p></li>
-<li><p>I take full and complete responsibility for the ethical implications of every line of code I write.  I will value the guidance of my own moral conscience above my company&rsquo;s or client&rsquo;s desire for profit.</p></li>
-<li><p>I will remember at all times that all of my code will interact with people; it will influence the lives of human beings.</p></li>
-<li><p>When the problem is people, rather than code, I will address the people problem directly, rather than incurring the technical debt of excess code.</p></li>
-<li><p>I will always consider myself a regular member of society with access to extra information and power.  My skills give me no right to exert greater influence on other human beings.</p></li>
-</ol>
-</blockquote>
 ]]></content>
   </entry>
   

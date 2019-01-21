@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Speeding up a Simple Static Site (With Help from Cloudinary!) - AMC: Aspiring Master of Code</title>
+  <meta name="author" content="Ariel Caplan">
+
+  
+  <meta name="description" content="Diagnosing The Patient For the last 2 years, I&rsquo;ve run Dev Empathy Book Club,
+and the site hasn&rsquo;t changed much. I&rsquo;ve tried to keep &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@amcaplan" />
+    
+      <meta name="twitter:title" content="Speeding up a Simple Static Site (With Help from Cloudinary!)" />
+    
+    <meta name="twitter:description" content="Making static sites performant on many devices doesn't have to be a pain. A few simple steps can make a big difference!" />
+    
+      <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
+    
+  
+
+  
+  <link rel="canonical" href="https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="AMC: Aspiring Master of Code" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50838665-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+  
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Speeding Up a Simple Static Site (With Help From Cloudinary!)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2019-01-20T15:09:04+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2019</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Diagnosing The Patient</h3>
+
+<p>For the last 2 years, I&rsquo;ve run <a href="https://devempathybook.club">Dev Empathy Book Club</a>,
+and the site hasn&rsquo;t changed much. I&rsquo;ve tried to keep it low-effort so I can focus
+on the community and the content we&rsquo;re producing. One casualty of this was that
+the site, while simple, wasn&rsquo;t very performant. (Google&rsquo;s
+<a href="https://developers.google.com/speed/pagespeed">PageSpeed Insights</a> gave it a
+very low score of 30/100 on mobile.)</p>
+
+<p>I recently began working at <a href="https://cloudinary.com">Cloudinary</a>, and I realized
+it&rsquo;s pretty embarrassing that, as an employee of a company whose product is all
+about optimizing media on the web, I have a personal site that does a terrible
+job of it.</p>
+
+<!-- more -->
+
+
+<p>The final bit of encouragement came from fellow Cloudinarian
+<a href="https://twitter.com/etportis">Eric Portis</a>, who published <a href="https://www.smashingmagazine.com/2017/07/website-speed-test-image-analysis-tool/">an article</a>
+about <a href="https://webspeedtest.cloudinary.com/">Website Speed Test</a>, a free tool
+from Cloudinary to grade image performance on your site. When I ran it against
+the Dev Empathy Book Club site, I saw that users had to download 1.5MB, which
+could be optimized down to 370kB, i.e. about &frac14; of their weight. I also knew
+these images were being served directly from GitHub Pages, without any CDN, so
+on mobile devices the page load was pretty slow.</p>
+
+<p>On top of all this, there was a good amount of render-blocking JS and CSS being
+downloaded without a CDN.</p>
+
+<p>All this meant slower load times, and lower scores in search results. There was
+no good reason for it, except that I didn&rsquo;t have the know-how to improve things,
+or the time to learn how to do it.</p>
+
+<h3>Enter Cloudinary</h3>
+
+<p>Cloudinary is a really straightforward service to upload, transform, and serve
+images and videos. The free tier contains way more than you&rsquo;ll ever need for a
+simple static site, so it&rsquo;s a great choice for e.g. personal sites with a few
+images you&rsquo;d like to serve efficiently.</p>
+
+<p>One awesome feature of Cloudinary which made this incredibly simple is the
+ability to <a href="https://cloudinary.com/documentation/upload_images#auto_fetching_remote_images">auto-fetch images</a>.</p>
+
+<p>For example, consider this URL:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/https://amcaplan.ninja/images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The URL consists of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which tells Cloudinary you want to fetch an image for the <code>caplan</code> cloud, and
+the rest is the URL where the image can be found:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://amcaplan.ninja/images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you hit this URL, Cloudinary will fetch the image in the background, and
+begin serving via CDN.</p>
+
+<p>Theoretically we could take all the images on the site and preface with the fetch
+incantation, but there&rsquo;s a better way. Cloudinary has another feature called
+Auto Upload, which lets you create folders which are proxies for web locations.
+So if we create a <code>ninja_images</code> directory mapped to <code>https://amcaplan.ninja/images/</code>,
+the URL looks like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/upload/ninja-images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Much better! Here&rsquo;s the result:</p>
+
+<p><img src="https://res.cloudinary.com/caplan/image/upload/ninja-images/ninja-cropped.png" alt="ninja image served via Cloudinary" /></p>
+
+<p>Now comes the fun part.</p>
+
+<p>Cloudinary lets you edit images by adding transformations right into the URL.
+For example, by adding <code>/w_100</code> before the image location, we creates a
+100-pixel-wide version of the same image:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png" alt="small ninja image" /></p>
+
+<p>You can also crop, set gravity (focusing on a region of the image or on human
+faces), scale, add text layers or image overlays, and do a whole bunch more
+awesome stuff, just by adding to the URL.</p>
+
+<p>This opens up the opportunity to create multiple versions for various
+breakpoints, driven via CSS. So if you take a large version as the original,
+you can tell Cloudinary to crop/scale the image as you see fit, no Photoshop
+skills required!</p>
+
+<p>As one concrete example, here&rsquo;s a large image for wide screens:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto/site/slider-bg.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto/site/slider-bg.jpg" alt="large image of girls holding hands" /></p>
+
+<p>You&rsquo;ll notice a couple transformations here: <code>f_auto</code>, which chooses the most
+bandwidth-optimized image format for the user&rsquo;s browser, and <code>q_auto</code>, which
+reduces image size by degrading image quality without being noticeable to the
+human eye.  Those 2 transformations already reduce the image size from 874kB to
+385kB, without any noticeable difference to the user!</p>
+
+<p>But we can do better on mobile, where this many pixels still aren&rsquo;t helping
+anyone. Here&rsquo;s a scaled-down version for mobile:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto,w_480,h_800,c_lfill,g_auto/site/slider-bg.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/dev-empathy-book-club/image/upload/f_auto,q_auto,w_480,h_800,c_lfill,g_auto/site/slider-bg.jpg" alt="small image of girls holding hands" /></p>
+
+<p>In this case, we&rsquo;re creating a tall image bounded at 480px width, centered on
+what Cloudinary determines to be the most interesting part of the image, and
+using a <code>fill</code> approach to the crop (expressed as <code>c_lfill</code>) to ensure we cover
+the entire requested dimensions of 480x800.</p>
+
+<p>There are many parameters and even more options for those parameters, but the
+<a href="https://cloudinary.com/documentation/image_transformations">documentation</a> is
+quite thorough and the system is really powerful.</p>
+
+<p>To see a real-life example for what this might look like, check out <a href="https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/css/airspace.css#L866-L940">the CSS for
+Dev Empathy Book Club&rsquo;s site on GitHub</a>.</p>
+
+<h3>The Gravatar Challenge</h3>
+
+<p>At first I assumed that <a href="https://www.gravatar.com">Gravatars</a> (we display a few)
+on the site would work the same way, but I soon realized there is a big problem
+with Gravatar. The URL for an image looks something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=200</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with this result:</p>
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=200" alt="Ariel Caplan 200-pixel gravatar" /></p>
+
+<p>If I want a larger version, I just change the <code>s</code> query param. So for a 400px
+square, I&rsquo;d use this URL:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400" alt="Ariel Caplan 400-pixel gravatar" /></p>
+
+<p>Lacking the <code>s</code> parameter, Gravatar defaults to an 80px square:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg" alt="Ariel Caplan 80-pixel gravatar" /></p>
+
+<p>If you try to fetch a large Gravatar avatar with Cloudinary, here&rsquo;s the result:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg?s=400" alt="Ariel Caplan 80-pixel gravatar fetched through Cloudinary" /></p>
+
+<p>What happened? Cloudinary treats <code>?s=400</code> as a meaningless parameter passed to
+Cloudinary, and doesn&rsquo;t forward it to Gravatar.</p>
+
+<p>It turns out that someone at Cloudinary thought of this, and therefore built
+<a href="https://cloudinary.com/blog/placeholder_images_and_gravatar_integration_with_cloudinary">Gravatar support</a>
+directly into the platform. Unlike the <code>fetch</code> and <code>upload</code> image types we&rsquo;ve
+seen so far, there&rsquo;s also a <code>gravatar</code> image type which knows how to source a
+high-quality image from Gravatar, and even update it automatically (with a small
+delay) when someone changes their avatar!</p>
+
+<p>If you fetch images via Gravatar in this way, you can easily scale up or down
+using the normal <code>h_</code> and <code>w_</code> parameters. So here&rsquo;s that same 400px image of
+yours truly, fetched via Cloudinary:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/gravatar/w_400/7b5a451ee25044b9c869e3e98b79425d.jpg</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://res.cloudinary.com/caplan/image/gravatar/w_400/7b5a451ee25044b9c869e3e98b79425d.jpg" alt="Ariel Caplan 400-pixel gravatar fetched through Cloudinary" /></p>
+
+<p>Of course, once you&rsquo;ve done this, you can use <code>f_auto</code> and <code>q_auto</code> to optimize
+images further and reduce bandwidth use. Neat!</p>
+
+<h3>Not Just for Images!</h3>
+
+<p>One little-known fact about Cloudinary: They can serve anything via CDN, not just
+images and video! So if you have JS or CSS files, you can serve them through
+Cloudinary&rsquo;s CDN in the same fashion as mentioned above for images: Set up an
+Auto Upload folder and reference those URLs instead of the place where they&rsquo;re
+hosted on your site. So for example, instead of:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://devempathybook.club/css/bootstrap.min.css</span></code></pre></td></tr></table></div></figure>
+
+
+<p>we reference:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/dev-empathy-book-club/raw/upload/css/bootstrap.min.css</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(where <code>css/</code> is a folder mapped to <code>https://devempathybook.club/css/</code>). Note
+that instead of <code>image</code> as before, we write <code>raw</code> to indicate that this should
+be considered an unknown file type and Cloudinary shouldn&rsquo;t try to do any image
+processing with it.</p>
+
+<p>Usually you&rsquo;ll want to use a <a href="https://css-tricks.com/strategies-for-cache-busting-css/#article-header-id-2">versioning strategy</a>
+for your JS and CSS assets if you use a CDN, but the goal here was to be lazy on
+a static Jekyll site. Since there wasn&rsquo;t much custom CSS and JS, I simply left a
+few files that are loaded directly from the site, but things that won&rsquo;t change
+frequently (or ever) are served via CDN. You can see the code
+<a href="https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/_includes/head.html#L36-L56">here</a>.</p>
+
+<h3>Cut Waste</h3>
+
+<p>You might notice, if you looked at the code from the last section, that a number
+of lines were commented out. It turns out that the Jekyll template I used bundled
+with it a number of JS/CSS frameworks and plugins I didn&rsquo;t actually use. Removing
+them reduced the total page load size, and makes the page run faster, since
+there&rsquo;s a smaller load on the CPU. As they say, no code is faster than no code!</p>
+
+<h3>The Outcome</h3>
+
+<p>I wouldn&rsquo;t call the site blazing-fast now, but its PageSpeed mobile score went
+up from 30 to 50 in a few simple steps taking a couple hours total. There are
+more things to optimize, but these quick tricks helped bring down page load time
+a lot already. Importantly, time to first paint on mobile was cut by about 50%.
+That&rsquo;s a much better experience for mobile users.</p>
+
+<p>So go out, try these tips, and let me know in the comments how you did!</p>
+
+<p>As a reminder, I work at Cloudinary, so if you do find anything here difficult
+to implement, I can pass along your concerns to the right people&hellip; 😉</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ariel Caplan</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2019-01-20T15:09:04+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2019</time>
+      
+
+
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/" data-via="amcaplan" data-counturl="https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2015/12/02/metrics-that-matter/" title="Previous Post: Metrics That Matter">&laquo; Metrics That Matter</a>
+        
+        
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a href="/" title="AMC: Aspiring Master of Code"><img id="logo" src="/images/ninja-cropped.png" /></a>
+  <h1 id="site_title"><a href="/" title="AMC: Aspiring Master of Code">AMC: Aspiring Master of Code</a></h1>
+  <h3 id="site_subtitle">Constantly Improving Programming Skills.</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="/"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-microphone fa-lg"></i><a href="/talks/"> Talks </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="/about/"> About </a></li>
+    <li><i class="fa fa-rss fa-lg"></i><a href="/atom.xml"> Feed </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+    <a href="https://github.com/amcaplan" title="amcaplan"><i class="fa fa-github fa-2x"></i></a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/amcaplan" title="amcaplan"><i class="fa fa-twitter fa-2x"></i></a>
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      
+        <li class="post">
+          <a href="/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/">Speeding up a Simple Static Site (With Help from Cloudinary!)</a>
+        </li>
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2018/04/26/why-i-created-dev-empathy-book-club/">Why I Created Dev Empathy Book Club</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/blog/2017/05/17/the-3-keys-to-software-quality/">The 3 Keys to Software Quality</a>
+        </li>
+      
+    
+      
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Recent Talks</h1>
+  <ul id="recent_talks">
+    
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/">Automating Empathy: Test Your Docs with Swagger and Apivore</a>
+        </li>
+      
+    
+      
+    
+      
+        <li class="post">
+          <a href="/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/">What Comes After SOLID? Seeking Holistic Software Quality</a>
+        </li>
+      
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2019 - Ariel Caplan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amcaplan';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/';
+        var disqus_url = 'https://www.amcaplan.ninja/blog/2019/01/20/speeding-up-a-simple-static-site-with-cloudinarys-help/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
