@@ -134,7 +134,7 @@ or the time to learn how to do it.</p>
 
 <h3>Enter Cloudinary</h3>
 
-<p>Cloudinary is a really straightforward service to upload, transform, and serve
+<p>Cloudinary is a robust but easy-to-use service to upload, transform, and serve
 images and videos. The free tier contains way more than you&rsquo;ll ever need for a
 simple static site, so it&rsquo;s a great choice for e.g. personal sites with a few
 images you&rsquo;d like to serve efficiently.</p>
@@ -154,7 +154,8 @@ ability to <a href="https://cloudinary.com/documentation/upload_images#auto_fetc
 </pre></td><td class='code'><pre><code class=''><span class='line'>https://res.cloudinary.com/caplan/image/fetch/</span></code></pre></td></tr></table></div></figure>
 
 
-<p>which tells Cloudinary you want to fetch an image for the <code>caplan</code> cloud, and
+<p>which tells Cloudinary you want to fetch an image for the <code>caplan</code> cloud (you
+create a cloud with a unique identifier when you sign up for Cloudinary), and
 the rest is the URL where the image can be found:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -190,9 +191,9 @@ For example, by adding <code>/w_100</code> before the image location, we creates
 
 <p><img src="https://res.cloudinary.com/caplan/image/upload/w_100/ninja-images/ninja-cropped.png" alt="small ninja image" /></p>
 
-<p>You can also crop, set gravity (focusing on a region of the image or on human
-faces), scale, add text layers or image overlays, and do a whole bunch more
-awesome stuff, just by adding to the URL.</p>
+<p>You can crop, set gravity (focusing on a region of the image or on human faces),
+scale, add text layers or image overlays, and do a whole bunch more awesome
+stuff, just by adding to the URL.</p>
 
 <p>This opens up the opportunity to create multiple versions for various
 breakpoints, driven via CSS. So if you take a large version as the original,
@@ -322,8 +323,8 @@ processing with it.</p>
 <p>Usually you&rsquo;ll want to use a <a href="https://css-tricks.com/strategies-for-cache-busting-css/#article-header-id-2">versioning strategy</a>
 for your JS and CSS assets if you use a CDN, but the goal here was to be lazy on
 a static Jekyll site. Since there wasn&rsquo;t much custom CSS and JS, I simply left a
-few files that are loaded directly from the site, but things that won&rsquo;t change
-frequently (or ever) are served via CDN. You can see the code
+few files that are loaded directly from GitHub Pages, but things that won&rsquo;t
+change frequently (or ever) are served via Cloudinary&rsquo;s CDN. You can see the code
 <a href="https://github.com/dev-empathy-book-club/dev-empathy-book-club.github.io/blob/d78cf21daaa53ffe1d82059dadc3316fcccb9fa5/_includes/head.html#L36-L56">here</a>.</p>
 
 <h3>Cut Waste</h3>
@@ -332,7 +333,8 @@ frequently (or ever) are served via CDN. You can see the code
 of lines were commented out. It turns out that the Jekyll template I used bundled
 with it a number of JS/CSS frameworks and plugins I didn&rsquo;t actually use. Removing
 them reduced the total page load size, and makes the page run faster, since
-there&rsquo;s a smaller load on the CPU. As they say, no code is faster than no code!</p>
+there&rsquo;s less for the CPU to worry about. As they say, no code is faster than no
+code!</p>
 
 <h3>The Outcome</h3>
 
