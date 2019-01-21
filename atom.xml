@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="https://www.amcaplan.ninja/atom.xml" rel="self"/>
   <link href="https://www.amcaplan.ninja/"/>
-  <updated>2019-01-21T14:41:47+02:00</updated>
+  <updated>2019-01-21T15:09:17+02:00</updated>
   <id>https://www.amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -270,6 +270,14 @@ to implement, I can pass along your concerns to the right people&hellip; 😉</p
 
 <p><em>NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
 taken as representing anyone other than myself.</em></p>
+
+<p>P.S. If you use Jekyll or some other blogging framework, and you have many
+images on your site, it may be worth going further with automation using a
+plugin. For example, <a href="https://nhoizey.github.io/jekyll-cloudinary/">jekyll-cloudinary</a>
+lets you define transition presets, and does all the work to generate URLs for
+images at various screen sizes. It&rsquo;s pretty magical. Of course, if it&rsquo;s a dynamic
+site, Cloudinary has <a href="https://cloudinary.com/documentation">a host of SDKs</a>
+which can do everything discussed here, and much more!</p>
 ]]></content>
   </entry>
   
