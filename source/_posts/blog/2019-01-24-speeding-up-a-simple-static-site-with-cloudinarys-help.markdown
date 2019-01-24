@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Speeding up a Simple Static Site (With Help from Cloudinary!)"
-date: 2019-01-20 15:09:04 +0200
+date: 2019-01-24 20:09:04 +0200
 comments: true
 categories: 
 - blog
