@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
-  <link href="https://www.amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
-  <link href="https://www.amcaplan.ninja/"/>
-  <updated>2019-01-24T20:10:23+02:00</updated>
-  <id>https://www.amcaplan.ninja/</id>
+  <link href="https://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
+  <link href="https://amcaplan.ninja/"/>
+  <updated>2019-01-24T20:24:51+02:00</updated>
+  <id>https://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
     <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Speeding up a Simple Static Site (With Help from Cloudinary!)]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help/"/>
+    <link href="https://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help/"/>
     <updated>2019-01-24T20:09:04+02:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help</id>
+    <id>https://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help</id>
     <content type="html"><![CDATA[<h3>Diagnosing The Patient</h3>
 
 <p>For the last 2 years, I&rsquo;ve run <a href="https://devempathybook.club">Dev Empathy Book Club</a>,
@@ -279,9 +279,9 @@ which can do everything discussed here, and much more!</p>
   
   <entry>
     <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/"/>
+    <link href="https://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/"/>
     <updated>2018-04-26T01:54:50+03:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club</id>
+    <id>https://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club</id>
     <content type="html"><![CDATA[<p>I was just a few months out of the Flatiron School, had gotten my bearings in
 the codebase at my first job, and was starting to take on more responsibility. I
 was sitting with a product manager&mdash;let&rsquo;s call her Sierra&mdash;trying to
@@ -438,9 +438,9 @@ hashtag <a href="https://twitter.com/hashtag/DevEmpathy?src=hash">#DevEmpathy</a
   
   <entry>
     <title type="html"><![CDATA[The 3 Keys to Software Quality]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
+    <link href="https://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
     <updated>2017-05-17T19:02:22+03:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
+    <id>https://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
     <content type="html"><![CDATA[<p>Why do software projects fail?</p>
 
 <p>This question is difficult to answer precisely because there isn&rsquo;t a single
@@ -545,7 +545,7 @@ practices support (or don&rsquo;t) the 3 objectives.  I&rsquo;ll just give a few
 practices that I&rsquo;ve found to be impactful on the teams where I&rsquo;ve worked.  Let&rsquo;s
 start with a visual map of how I see things:</p>
 
-<p><a href="https://www.amcaplan.ninja/images/USA_map_large.png" target="_blank"><img src="/images/USA_map.png" alt="Map of USA practices" /></a></p>
+<p><a href="https://amcaplan.ninja/images/USA_map_large.png" target="_blank"><img src="/images/USA_map.png" alt="Map of USA practices" /></a></p>
 
 <p>Without getting into the gory details (though I did give <a href="/railsconf2017">a talk</a>
 about that), here&rsquo;s a guide to interpreting that picture.</p>
@@ -648,9 +648,9 @@ talk <a href="/railsconf2017">here</a>.</em></p>
   
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
+    <link href="https://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
     <updated>2017-01-01T12:09:02+02:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
+    <id>https://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
     <content type="html"><![CDATA[<p>I started the <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
 software, blogging regularly is difficult when there&rsquo;s no pressure to ship.</p>
@@ -836,9 +836,9 @@ productive 2017!</p>
   
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
-    <link href="https://www.amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
+    <link href="https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
     <updated>2016-12-31T20:50:21+02:00</updated>
-    <id>https://www.amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
+    <id>https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
 programming community has to offer.</p>

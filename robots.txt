@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.amcaplan.ninja/sitemap.xml
+Sitemap: https://amcaplan.ninja/sitemap.xml
