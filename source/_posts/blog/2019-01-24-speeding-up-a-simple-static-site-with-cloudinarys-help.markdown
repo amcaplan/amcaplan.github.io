@@ -253,9 +253,6 @@ So go out, try these tips, and let me know in the comments how you did!
 As a reminder, I work at Cloudinary, so if you do find anything here difficult
 to implement, I can pass along your concerns to the right people... 😉
 
-_NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
-taken as representing anyone other than myself._
-
 P.S. If you use Jekyll or some other blogging framework, and you have many
 images on your site, it may be worth going further with automation using a
 plugin. For example, [jekyll-cloudinary](https://nhoizey.github.io/jekyll-cloudinary/)
@@ -263,3 +260,6 @@ lets you define transition presets, and does all the work to generate URLs for
 images at various screen sizes. It's pretty magical. Of course, if it's a dynamic
 site, Cloudinary has [a host of SDKs](https://cloudinary.com/documentation)
 which can do everything discussed here, and much more!
+
+_NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
+taken as representing anyone other than myself._
