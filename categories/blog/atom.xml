@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="https://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="https://amcaplan.ninja/"/>
-  <updated>2019-01-24T22:50:44+02:00</updated>
+  <updated>2019-01-29T17:16:12+02:00</updated>
   <id>https://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -196,11 +196,27 @@ https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar
 <p>What happened? Cloudinary treats <code>?s=400</code> as a meaningless parameter passed to
 Cloudinary, and doesn&rsquo;t forward it to Gravatar.</p>
 
+<p>This can be fixed, though, by URL-encoding the <code>?</code> character as <code>%3F</code>, like so:</p>
+
+<p><code>
+https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg%3Fs=400
+</code></p>
+
+<p><img src="https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg%3Fs=400" alt="Ariel Caplan 80-pixel gravatar fetched through Cloudinary" /></p>
+
+<p>This technique should work for any characters you might need to include in the
+fetch URL.</p>
+
+<p>However, that&rsquo;s not the end of the story. What happens when someone updates their
+Gravatar image? Ideally, it would get updated on our site, too. But on the free
+plan, fetched images never change. (They can be configured to be updated on paid
+plans.)</p>
+
 <p>It turns out that someone at Cloudinary thought of this, and therefore built
 <a href="https://cloudinary.com/blog/placeholder_images_and_gravatar_integration_with_cloudinary">Gravatar support</a>
 directly into the platform. Unlike the <code>fetch</code> and <code>upload</code> image types we&rsquo;ve
 seen so far, there&rsquo;s also a <code>gravatar</code> image type which knows how to source a
-high-quality image from Gravatar, and even update it automatically (with a small
+high-quality image from Gravatar, and update it automatically (with a small
 delay) when someone changes their avatar!</p>
 
 <p>If you fetch images via Gravatar in this way, you can easily scale up or down
@@ -274,6 +290,9 @@ which can do everything discussed here, and much more!</p>
 
 <p><em>NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
 taken as representing anyone other than myself.</em></p>
+
+<p><strong><em>UPDATED 2019-01-29: Added option to include URL-encoded characters in a fetch
+URL.</em></strong></p>
 ]]></content>
   </entry>
   
