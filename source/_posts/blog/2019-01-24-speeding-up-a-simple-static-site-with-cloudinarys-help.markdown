@@ -188,12 +188,29 @@ https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar
 What happened? Cloudinary treats `?s=400` as a meaningless parameter passed to
 Cloudinary, and doesn't forward it to Gravatar.
 
+This can be fixed, though, by URL-encoding the `?` character as `%3F`, like so:
+
+```
+https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg%3Fs=400
+```
+
+![Ariel Caplan 80-pixel gravatar fetched through Cloudinary](https://res.cloudinary.com/caplan/image/fetch/https://secure.gravatar.com/avatar/7b5a451ee25044b9c869e3e98b79425d.jpg%3Fs=400)
+
+This technique should work for any characters you might need to include in the
+fetch URL.
+
+However, that's not the end of the story. What happens when someone updates their
+Gravatar image? Ideally, it would get updated on our site, too. But on the free
+plan, fetched images never change. (They can be configured to be updated on paid
+plans.)
+
 It turns out that someone at Cloudinary thought of this, and therefore built
 [Gravatar support](https://cloudinary.com/blog/placeholder_images_and_gravatar_integration_with_cloudinary)
 directly into the platform. Unlike the `fetch` and `upload` image types we've
 seen so far, there's also a `gravatar` image type which knows how to source a
-high-quality image from Gravatar, and even update it automatically (with a small
-delay) when someone changes their avatar!
+high-quality image from Gravatar, and update it automatically, with a small
+delay, when someone changes their avatar! (There are [similar systems](https://cloudinary.com/documentation/image_delivery_options)
+for other social networks, including Facebook, Google+, Instagram, and Twitter.)
 
 If you fetch images via Gravatar in this way, you can easily scale up or down
 using the normal `h_` and `w_` parameters. So here's that same 400px image of
@@ -263,3 +280,6 @@ which can do everything discussed here, and much more!
 
 _NOTE: Cloudinary did not ask me to write this. Nothing in this post should be
 taken as representing anyone other than myself._
+
+___UPDATED 2019-01-29: Added option to include URL-encoded characters in a fetch
+URL.___
