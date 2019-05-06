@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | AMC: Aspiring Master of Code]]></title>
   <link href="https://amcaplan.ninja/categories/blog/atom.xml" rel="self"/>
   <link href="https://amcaplan.ninja/"/>
-  <updated>2019-01-29T17:21:51+02:00</updated>
+  <updated>2019-05-06T21:43:14+03:00</updated>
   <id>https://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,277 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Baby's First Keynote]]></title>
+    <link href="https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote/"/>
+    <updated>2019-05-06T05:03:38+03:00</updated>
+    <id>https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m on a plane, traveling back from RailsConf 2019 where I was one of the keynote
+speakers. My head is full of thoughts and reflections on my experiences before,
+during, and after the talk.</p>
+
+<p>I&rsquo;ve given a few talks before, including several at previous RailsConfs, but this
+time was&hellip; different, somehow.</p>
+
+<p>I&rsquo;d like to share my experiences with you, in the hope that you&rsquo;ll learn
+something of value along the way.</p>
+
+<!-- more -->
+
+
+<h3>Genesis of the Talk</h3>
+
+<p>The process that led to my talk, <em>The Stories We Tell Our Children</em>, began circa
+2.5 years ago, when my wife bought our first Israeli children&rsquo;s book,
+<a href="http://www.ithl.org.il/page_13258"><em>A Tale of Five Balloons</em></a> by Miriam Roth. I
+started to read it to my daughter nearly every night, and she loved it, but I
+honestly was bothered by the book. It was sad through and through, and I
+couldn&rsquo;t figure out why it was clearly a popular book. It took me months to
+learn how it had become popular, and even then I wasn&rsquo;t fully comfortable with
+it. It took at least a year to make my peace with the book, and to start to
+appreciate and even love it.</p>
+
+<p>Through the process, I started to see how literature and the society within which
+it exists are intimately connected. It made me reconsider a lot of the American
+early childhood literature I grew up with. And the thoughts began to percolate
+around whether this could be something worth exploring in the context of a
+conference talk.</p>
+
+<p>Time went on, and I began to read further. More Israeli books came into my life,
+and I continued to follow the pattern and see the connections. I started to seek
+out Israeli children&rsquo;s classics actively, and try to perceive how each connected
+with Israeli history. I also read some literary criticism, mainly
+<a href="https://www.shimona.co.il/">that of Dr. Shimona Fogel</a>, which helped clarify
+things for me as well.</p>
+
+<p>About 9 months ago, I decided I had enough material for a talk, and I had a
+sense of what I wanted to talk about. I submitted the topic to the RubyConf CFP,
+and was waitlisted, meaning I still got a free conference ticket, but would only
+give the talk if someone backed out at the last minute. No one did. In
+retrospect, this was a blessing; the talk was still somewhat raw and unrefined.
+I&rsquo;m happy I got a few extra months to let things settle more in my head and on
+my slides.</p>
+
+<h3>Getting Accepted</h3>
+
+<p>Since I had been waitlisted rather than rejected, I already knew my proposal was
+pretty good. So I edited the proposal a bit more, and submitted it to RailsConf.</p>
+
+<p>In case you&rsquo;re wondering, I didn&rsquo;t submit the talk to smaller conferences, for
+two reasons:</p>
+
+<ol>
+<li><p>Small conferences tend to be on weekends. I don&rsquo;t go to conferences on
+Saturdays for religious reasons, and I also don&rsquo;t like the idea of making a long
+trip to a 2-day conference where one day is Saturday. Add the various Jewish
+holidays, and a great many conferences simply aren&rsquo;t relevant possibilities.
+RubyConf and RailsConf are wonderful exceptions to this rule, since they are
+specifically held midweek so as to interfere minimally  with attendees' lives
+and to let them have full weekends before and after the conference.</p></li>
+<li><p>Even if a relevant conference could be found, I had a sense this talk was
+special. It was certainly special to me. And I wanted to make sure I get to share
+it with as many people as possible. RubyCentral conferences would be my best shot
+at sharing these ideas with a large group, between the attendees and the many
+people who watch the Confreaks videos afterwards.</p></li>
+</ol>
+
+
+<p>At any rate, one day I got an email from the conference organizers, stating that
+they&rsquo;d decided my talk would make a great keynote, and they&rsquo;d like me to take
+one of the keynote slots. Especially given that I&rsquo;d been waitlisted last time,
+this wasn&rsquo;t what I had expected, so of course I was thrilled to have the
+opportunity!</p>
+
+<p>However, I was a little bit concerned. I knew I&rsquo;d be addressing some Israeli
+history, which can be a sensitive and emotional topic for many people, and I
+definitely didn&rsquo;t want to ruin someone&rsquo;s conference experience by saying
+something insensitive or biased. Furthermore, because it&rsquo;s a keynote rather than
+one talk of many in a multi-track slot, it wouldn&rsquo;t be a talk people chose to
+attend. Keynotes also generally don&rsquo;t get an abstract published in advance, and
+even whether to include the title in the program was a choice. (I decided yes.)
+So I wanted to make sure I&rsquo;d have resources available for content review. Once I
+received confirmation from the RubyCentral team that this would be made available
+to me, I accepted the slot and started improving the talk.</p>
+
+<h3>Cranking Up the Quality</h3>
+
+<p>I&rsquo;ve given <a href="/talks">several talks before</a>, but this was a keynote. That means a
+bigger audience and higher expectations. So I set a higher bar for this talk and
+made every attempt to meet it.</p>
+
+<p>I knew more or less what I wanted to say, but somehow all sorts of ancillary
+information always manages to creep its way into the talk. And there were some
+things I wanted to discuss which would have been ill-advised in consideration of
+the goal of not conjuring up uncomfortable feelings for people during my talk.</p>
+
+<p>I expanded and pared down, again and again, until I felt pretty ready. Sadly, my
+talk was significantly longer than the recommended 40-50 minutes, so aside from
+wanting general feedback, I needed advice on what to take out.</p>
+
+<p>Some folks from the US and UK were visiting the Cloudinary Israel office, and I
+figured it would be a good opportunity to get feedback from an audience that
+would be fairly representative of the people who would ultimately hear the talk.
+I invited the visitors, and ended up with a room of 5 participants in the
+audience. I got some great feedback, and ended up making many significant changes
+(additions and deletions) in response to their comments.</p>
+
+<p>I rehearsed the talk once every 1-2 days for two weeks, each time tweaking a bit
+more. Once I felt comfortable with the newly edited version, I did a second round
+of testing on a group of my Israeli peers. They corrected a few things which I
+had confused due to being less sensitive to some finer points about Israeli
+culture. (I am, after all, an immigrant!) They also made a few suggestions to
+help me make it appeal more to the audience.</p>
+
+<p>The most important bit of feedback I got in both rounds was to make sure to
+continuously ground the historical/cultural content in something practical. One
+of my reviewers put it  this way: I was forcing people to maintain a long buffer,
+to remember a large percentage of the talk over many minutes, in order to
+understand the takeaways  at the end. This made it harder for an audience member
+to maintain focus and understand what&rsquo;s important to hold onto over time.</p>
+
+<p>I sent a video of a rehearsal to the organizers and noted the parts that likely
+needed content review. It tooks some back-and-forth to make the review happen,
+and it wasn&rsquo;t completed until the day prior to the talk, but thankfully it
+worked out.  My test audiences' feedback had already put me in a place where no
+further changes would be necessary. This was a great relief for me as the time
+drew near.</p>
+
+<p>In the meantime, I continued making small tweaks, even on the plane ride, or in
+the conference hotel, and even the morning of the talk when something clicked in
+my head and I wanted to include the idea.</p>
+
+<p>Some people have to &ldquo;seal&rdquo; a talk some time before giving it, in order to
+rehearse a final version and feel comfortable onstage. For me, though, a talk is
+a living entity, not done being developed until the moment I&rsquo;m onstage and it&rsquo;s
+too late to make changes.  It&rsquo;s an outlet of my mind and my emotions, and it
+needs to reflect who I am and what I think and feel when I give the talk. That
+dynamism lets me bring my entire self to the presentation.</p>
+
+<h3>Giving the Talk</h3>
+
+<p>It was time. I headed over to the convention center, and reached the main
+ballroom 15 minutes early. I hooked up the microphone and laptop, and then spent
+a few minutes talking to some friends who had also arrived early. That helped
+calm my nerves a bit, but with around 5 minutes to go, I decided I needed some
+quiet time. I went backstage, and took a few moments just to breathe and relax.
+Abby, one of the organizers, got up to make the morning announcements, and then
+it was time!</p>
+
+<p>I got up, took in the round of applause, took a deep breath, and started. The
+first couple of slides were completely scripted, which helped me get into the
+rhythm of the talk, and the rest was bullet points and notes to let me  speak
+more naturally. I heard the crowd laughing, crying, even gasping at one point,
+and I fed on that energy and connection to bring even more of myself into the
+talk.</p>
+
+<p>It&rsquo;s a surreal experience, being in front of a huge crowd and conveying ideas
+you care about deeply. At some point, at least for me, the power of the ideas
+themselves begins to carry you. You feel like you&rsquo;re floating, you forget that
+your body exists, you simply become a conduit for thought and emotion, via the
+medium of words.</p>
+
+<p>My memories of the talk itself are fairly sparse. I know I covered all the
+slides, and I remember a few key moments in time, but most of it is a big blur.
+I was in another world, yet very much connected with the audience at the same
+time.</p>
+
+<h3>Recovery</h3>
+
+<p>In the past, I tend to take audience questions on the side after the talk, and
+then take a break for a while, and later in the day start going to talks again.
+This time, I had a couple of talks I really wanted to hear. So I went and
+listened. And then it was lunch break, but instead of eating I went back to my
+room, took a shower, put on more comfortable clothes, and went back to the
+conference with a clearer head. Still, it took a few hours to feel completely
+back to normal.</p>
+
+<h3>Reactions</h3>
+
+<p>I was overwhelmed and often surprised by people&rsquo;s reactions to my talk. I
+imagined I&rsquo;d get some interesting responses, but even so, a few things caught me
+by surprise. Some highlights:</p>
+
+<ul>
+<li>An attendee from Venezuela told me about how much he values hearing about other
+cultures, and expressed his frustration that Americans don&rsquo;t fully understand the
+situation in his country, and that&rsquo;s a story that needs to be told.</li>
+<li>An attendee originally from Pakistan (now living in the US) noted that he isn&rsquo;t
+legally allowed to visit Israel. For him, this was an enlightening experience
+and a chance to learn more about Israeli culture, to see the humanity of Israelis.</li>
+<li>An American Jewish attendee described to me how excited he was to see someone
+obviously Jewish onstage talking about Jewish history. He said it made him feel
+seen. He&rsquo;s never been actively excluded from the programming community, but it
+still meant a lot to him to have representation in this sort of public forum.</li>
+<li>Two Israeli Jews in attendance (probably the only ones aside from myself) told
+me about their feelings of shock and wonderment in seeing the books they read to
+their children onscreen at the biggest conference for Rails developers in the US.
+They were thrilled to have the opportunity to tell their family and friends back
+home what had  happened across the Atlantic.</li>
+<li>A father approached me to talk about the concerns he shares with me about the
+books he reads to his children. Sometimes he&rsquo;s noticed messages that he realizes
+are problematic, and he appreciated me raising awareness of the issue.</li>
+<li>A programmer who works for TED came over to compliment my presentation style,
+and we got into a scintillating discussion of how TED has impacted the way
+people give talks, for better and for worse.</li>
+<li>Someone I&rsquo;d met the previous day approached me and told me they have been
+dabbling in writing a children&rsquo;s book. They gave me a copy to look at and asked
+me to share my thoughts.</li>
+</ul>
+
+
+<p>Many other people approached me in the days following my talk. Some wanted to
+connect on a more practical level; I was invited to be a guest on two podcasts,
+which should be a fascinating experience. Mainly, though, people wanted to share
+all kinds of reflections, mostly centered around being more aware of the
+messages in children&rsquo;s books and in the stories we tell.</p>
+
+<h3>My Takeaways</h3>
+
+<p>I&rsquo;m still unpacking the experience, but I&rsquo;ve drawn a few lessons from my little
+adventure.</p>
+
+<p>First is the power of vulnerability. This talk put me in a potentially very
+vulnerable place. It involved many of my own feelings, both about literature and
+about the society in which my wife and I have chosen to live and raise our
+children. But I found that people were very receptive to my honesty and openness
+about myself. There are certainly limits, and I needed to take great care to
+ensure I wouldn&rsquo;t trod on someone else&rsquo;s feelings. But I was amazed at how
+positively people reacted to the talk and the content.</p>
+
+<p>Next is the value of letting ideas simmer. This talk came to be over a period of
+years, as the result of a personal journey. Even once I put together the initial
+abstract, nearly a year passed before I gave the talk onstage. The passage of
+time allowed me to clarify my goals in the talk and what exactly I wanted to
+convey in the time allotted.</p>
+
+<p>Third is the value of testing. I thought I had a pretty good talk, but I found
+out I was too close to the material. Hearing the reactions of a test audience
+helped me to notice the ways in which my talk could be improved and made more
+valuable for them. Because this isn&rsquo;t about me getting to spew at people. It&rsquo;s
+about what they carry with them when they exit the room.</p>
+
+<p>Fourth, I was prompted a few times to make the talk feel more  relevant. It&rsquo;s
+easy for a speaker to forget that you need to have a strong and clear answer to
+the question, &ldquo;Why should I care about any of this?&rdquo; And it needs to be stated
+early and often. I think my talk was much better received because I chose to
+scatter some of the takeaways and lessons throughout, rather than concentrating
+everything at the end of the talk.</p>
+
+<p>Finally, I was intrigued to see how different people took different things away
+from the talk. Some focused more on issues of literal children&rsquo;s literature,
+while others wanted to talk about messaging in media and in programmer culture.
+Everyone listened to the same talk, but heard something a bit different. This
+reminded me that as a speaker, you can&rsquo;t control what your audience will hear,
+but that&rsquo;s OK. Maybe everyone hears what they need to hear at that time. It&rsquo;s a
+gift to them; they choose what to do with it. And my job as speaker is to give
+up the illusion of control and allow each attendee to interpret in their own way.</p>
+
+<p>Thank you, dear reader, for listening. I hope it was worth the time and energy
+you&rsquo;ve invested, and you&rsquo;re a bit wiser now than you were before reading. I&rsquo;d
+love to hear what you learned from my experiences in the comments.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Speeding up a Simple Static Site (With Help from Cloudinary!)]]></title>
@@ -849,279 +1120,6 @@ developing interesting ideas, and to share them with you, my readers.</p>
 I hope you find its contents, and the products of this week&rsquo;s efforts, valuable
 and interesting.  And I hope this week turns out to be the beginning of a very
 productive 2017!</p>
-
-<p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
-    <updated>2016-12-31T20:50:21+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
-    <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
-ideas and technologies, to be inspired with the latest and greatest of what the
-programming community has to offer.</p>
-
-<p>But once people are actually at a conference, especially a larger conference,
-the number of things to do and to absorb can be overwhelming.  There are talks,
-maybe even multiple talks at once, there&rsquo;s the hallway track, vendor booths, and
-of course the great big world outside where people escape when they want a
-break.  Everyone competes for attention, offering excitement, swag, fun hacking
-activities, and/or the alluring prospect of job opportunities.</p>
-
-<p>Then there&rsquo;s the new practice of posting talks online.  This opens up talks to
-new audiences who couldn&rsquo;t make it, which is fantastic.  It also means that if
-the community loves a talk, it could be see by thousands more people than were
-at the conference!  The downside is that conference attendees may be more likely
-to skip talks because they&rsquo;re all online later anyway, meaning that speakers
-lose the opportunity to build off the speaker-audience interaction.</p>
-
-<p>What&rsquo;s a speaker to do?</p>
-
-<!-- more -->
-
-
-<h3>One Core Principle</h3>
-
-<p>I have to admit something upfront.  This post isn&rsquo;t really about how to give a
-great conference talk per se.  It&rsquo;s about how to give a conference talk I&rsquo;m
-going to want to watch.  And as a conference-goer, I want to watch a talk that
-tells a coherent, interesting story.</p>
-
-<p>The good news is that, according to science, the other attendees think the same
-way.  Stories impact the brain in a truly wild fashion.</p>
-
-<ul>
-<li><a href="https://blogs.scientificamerican.com/guest-blog/it-is-in-our-nature-to-need-stories/">Stories match the way our not-always-logical brains think about the world</a>.</li>
-<li><a href="https://blog.bufferapp.com/science-of-storytelling-why-telling-a-story-is-the-most-powerful-way-to-activate-our-brains">Stories activate many parts of the brain, involving our entire brain rather than just language centers.</a></li>
-<li><a href="http://greatergood.berkeley.edu/article/item/how_stories_change_brain">We feel empathy for storytellers.</a></li>
-<li><a href="https://www.theguardian.com/media-network/media-network-blog/2014/aug/28/science-storytelling-digital-marketing">We remember stories better than we remember facts.</a></li>
-</ul>
-
-
-<p>Of course, much of this makes sense if we reflect on our own lives.  When you
-watch a movie, you worry about what will happen to the characters, even though
-you know they&rsquo;re not real.  When a character is maimed or killed, you feel pain,
-even though no one has hurt you.</p>
-
-<p>When you read dry statistics about suffering, it probably doesn&rsquo;t motivate you
-to action.  When you see a video with a tearful person describing some horror
-they suffered&mdash;well, that&rsquo;s another matter entirely.  This is why charities
-seeking donations rely mostly on monologue videos, stories, and even handwritten
-thank-you letters, rather than facts and figures.
-<a href="http://greatergood.berkeley.edu/article/item/how_stories_change_brain">Stories motivate people to act.</a></p>
-
-<p>Think about how many religions don&rsquo;t have founding myths.  Can you think of any?
-Me neither.  People don&rsquo;t dedicate their lives to ideals, noble though that may
-sound.  A compelling story, though&hellip; now we&rsquo;re talking.</p>
-
-<p>You want to give an interesting talk.  You want the conference attendees to
-come, and you want the online crowd to hear out the whole talk, not leave the
-video after 2 minutes.</p>
-
-<p>You want your conference talk to make an impact.  You want people to remember it
-and talk about it.  You want people to learn from it and apply your ideas in
-their own lives.</p>
-
-<p>Tell a story.</p>
-
-<h3>Story Type 1: The Audience as Protagonist</h3>
-
-<p>No blog post about stories would be complete without a few personal stories,
-right?  Well, get ready, because here they come!</p>
-
-<p>My first conference talk was at RailsConf 2016, where I spoke about Rails
-engines.  This was the abstract:</p>
-
-<blockquote><p>Want to split up your Rails app into pieces but not sure where to begin? Wish
-you could share controller code among microservices but don’t know how? Do you
-work on lots of projects and have boilerplate Rails code repeated in each?</p>
-
-<p>Rails Engines may be your answer.</p>
-
-<p>By building a simple Rails engine together, we will better understand how this
-app-within-an-app architecture can help you write more modular code, which can
-be gemified and reused across multiple projects.</p></blockquote>
-
-<p>It doesn&rsquo;t appear to be a story at first glance, but read it again.  In case you
-missed it, here&rsquo;s the story:</p>
-
-<blockquote><p>Once upon a time, you had a messy app that was suffering for lack of
-modularity.  Or, you kept writing the same boilerplate multiple times.</p>
-
-<p>Then, a conference talk showed you how to build Rails engines, and you were
-able to take control and conquer your mess.  You were awesomer and your apps
-were healthier.</p>
-
-<p>The end.</p></blockquote>
-
-<p>One of the best stories you can offer people is that you will make their lives
-happier and better.  (Unfortunately this tendency can be abused by
-ill-intentioned people out to make a buck.)  In this case, though, I made a
-simple value proposition which I truly believed in, and the result was that
-every chair in the workshop had a butt in it, and 130 people walked out having
-built their first Rails engine.</p>
-
-<h3>Story Type 2: The Code as Protagonist</h3>
-
-<p>I&rsquo;d like to focus for a moment on a feature of the Rails engines talk which
-stood out dramatically for me.</p>
-
-<p>In the introductory portion to my workshop, I had to convey that Rails can route
-a request to any Rack app.  This point is critical to understanding Rails
-engines, because they take advantage of this feature of Rails to tie into Rails
-apps.  I wanted my audience to build an accurate mental model of how Rails
-engines are integrated under the hood, and this was the critical point for them
-to understand.</p>
-
-<p>I could have thrown that information on a slide, said a few words about it, and
-moved on.  But information conveyed that way is easily missed, and I didn&rsquo;t want
-to lose people through confusion about this point.</p>
-
-<p>So I told a story.</p>
-
-<p>I told my audience I would build, before their eyes, a perfectly functional
-Rails application without using models, views, or controllers.  I created a new,
-blank Rails application, and added an empty lambda to my <code>routes.rb</code> file.
-Then, step by step, I let the errors guide me to building out that lambda into a
-minimal Rack application serving a response to a single endpoint.</p>
-
-<p>Could I have just pre-built a Rails app containing a Rack app?  Yes, of course.
-But building up the tension through live code, and letting errors drive the
-coding, let the audience discover with me the ability to hook Rack applications
-into Rails apps.</p>
-
-<p>After the talk (as well as in practice runs before), this was the part that
-generated the most positive feedback.  It wasn&rsquo;t all that difficult to do, but
-the experience of watching code develop incrementally was riveting for the
-audience.  It has all the parts of classic storytelling: Facing a seemingly
-impossible challenge, a hero must discover heretofore unknown abilities, and
-then is able to surmount the obstacle.  In this case, the impossible challenge
-was building a Rails app without controllers, and the unknown ability was using
-a barebones Rack app.</p>
-
-<p>That talk unfortunately wasn&rsquo;t recorded, but I can give a favorite example: the
-late Jim Weirich&rsquo;s <a href="https://www.youtube.com/watch?v=FITJMJjASUs">legendary talk on the Y combinator</a>.
-The experience of watching a master develop an idea through code is enough to
-send chills down my spine.</p>
-
-<p>Of course, live coding isn&rsquo;t for everyone.  But if you present code in your
-talk, I&rsquo;d strongly recommend starting with the problem the code has to solve,
-then building out the solution incrementally.  Don&rsquo;t just show what your code
-does; talk about the obstacles it has to overcome, and the process of getting
-there.</p>
-
-<h3>Story Type 3: The Speaker as Protagonist</h3>
-
-<p>My most recent talk was given at WindyCityRails 2016 then repeated (and
-improved!) at RubyConf 2016.  The approach here was different.  The subject of
-the talk was improvements to Ruby&rsquo;s <code>OpenStruct</code> library, but I also came in
-with a lot of personal experience.  I had dealt with <code>OpenStruct</code>-related
-performance problems in the past, which let me to publishing 2 alternative
-solutions.</p>
-
-<p>In the first half of the talk, I established the importance of <code>OpenStruct</code> to
-the Ruby ecosystem, and the reasons for its performance problems.  Then I made
-it personal, by talking about how these performance issues affected my company&rsquo;s
-projects.</p>
-
-<p>With the tension established, I spoke about 4 different approaches to the
-problem, framing it in terms of my own experience with each solution, and how
-they succeeded or failed in solving the problems I was having.</p>
-
-<p>Since 2 of the approaches were libraries I had personally written, I was able to
-convey a sense of personal triumph in the degree of success they achieved.  And
-when I concluded my talk with some lessons learned, they weren&rsquo;t just logically
-derivable ideas; they were thing I had personally learned through my experience.</p>
-
-<p>I was originally worried that the very personal nature of the talk would hurt
-its reception.  Then something amazing happened.</p>
-
-<p>WindyCityRails asks participants for written feedback after the conference, then
-collects and summarizes the responses for the speakers as an exercise in
-reflection and self-improvement.  There were many really nice, general comments,
-but 2 specific responses stuck with me:</p>
-
-<blockquote><p>I enjoyed the narrative, &ldquo;I tried, I failed, I tried again&rdquo; aspect of this.</p></blockquote>
-
-<!-- comment needed in Markdown to separate comments ☹️ -->
-
-
-<blockquote><p>Best presentation of the conference. Connected with me.</p></blockquote>
-
-<p>It turns out, people really like hearing a good story.  I didn&rsquo;t just tell them
-about an abstract problem and some ways to handle it.  (We&rsquo;ve all heard lots of
-talks which do exactly that!)  I told them the story of my problem, and how I
-used tools like benchmarking, profiling, and reading code to find a solution
-that worked for me.  I told my story in a way that conveyed to the audience that
-they, too, can use these tools to solve problems they face.</p>
-
-<p>As a speaker, you may be afraid to make your talk too personal.
-<a href="https://www.youtube.com/watch?v=V69Sinlp6Ew">Some</a>
-<a href="https://www.youtube.com/watch?v=cGuTmOUdFbo">of</a>
-<a href="https://www.youtube.com/watch?v=wewAC5X_CZ8">the</a>
-<a href="https://www.youtube.com/watch?v=gTAghAJcO1o">best</a>
-<a href="https://www.youtube.com/watch?v=aApmOZwdPqA">talks</a>
-<a href="https://www.youtube.com/watch?v=gX4FwSJ4JwI">I&rsquo;ve</a>
-<a href="https://vimeo.com/148927676">watched</a>
-mostly or entirely follow a narrative or set of highly personal narratives.  And
-they&rsquo;re all the more engaging for it.</p>
-
-<h3>A Story Within a Story</h3>
-
-<p>You don&rsquo;t have to choose just one method or one story.  Even within a story, you
-can use a deeper level of story to great effect.</p>
-
-<p>In my <code>OpenStruct</code> talk, for example, I had to explain how
-<code>OpenStruct</code>&mdash;a hash-like data store&mdash;and its alternatives work.  It&rsquo;s
-generally notoriously difficult to explain code and algorithms in a short span
-of time.</p>
-
-<p>To counteract the problem, I kept things as concrete and story-like as possible.
-I introduced the code one piece at a time, following the trajectory of a single
-key-value pair inserted into the <code>OpenStruct</code> (or alternative) instance.  By
-following a linear narrative, I was able to convey the information to the
-audience quickly and effectively, without them realizing how much data I was
-streaming into their brains.</p>
-
-<p>The same principle is at play when someone spends a few minutes of a talk live
-coding, or telling a quick personal anecdote to drive the point home.  By
-incorporating short stories (or story-like experiences like live coding) into
-the framework of a talk, you can make your presentation more engaging, connect
-with your audience, and help them walk away having gained the maximum from your
-presentation.</p>
-
-<p>One really great example is <a href="https://www.youtube.com/watch?v=EkLdO-SphxA">this talk about effective feedback</a>,
-where (just after the 20-minute mark) <a href="https://twitter.com/pyluftig">the speaker</a>
-uses a personal anecdote to illustrate both ineffective and effective feedback.
-The story drives home the ideas conveyed earlier in the entire talk.</p>
-
-<h3>Writing Your Story</h3>
-
-<p>Great talks aren&rsquo;t made in a day, or even a few days.  It can take years to
-write a great talk.  The best talks aren&rsquo;t from people who woke up with bright
-ideas; they come from people who experienced something over months and years,
-and share their experiences in a personal, intellectually and emotionally
-captivating fashion.</p>
-
-<p>If you want to give an amazing tech talk, don&rsquo;t start by making slides or
-sketching out bullet points.  Go out and do something.  Experiment, try a new
-way of working, build an OSS library or contribute to one.  Get involved in your
-local tech community, be a mentor at work, volunteer in your free time.  Do
-interesting things, have experiences, and then think long and hard about them,
-learn what you can, and synthesize your learning&mdash;along with the story of
-what taught you those lessons&mdash;into the next great talk.</p>
-
-<p>People like to hear from experts.  You are the world expert on your life, your
-emotions, your projects, your history, and your growth.  And you&rsquo;ll be surprised
-by how much people are interested in learning about that.</p>
-
-<p>To give a great conference talk, take the time to build a story worth telling.
-And then share it with the world.  But don&rsquo;t just bring the facts and figures
-and details to the stage.</p>
-
-<p>Bring yourself.  Be yourself.  Share yourself.</p>
 
 <p><strong><em>Written as part of the 2016 <a href="/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
