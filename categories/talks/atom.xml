@@ -4,7 +4,7 @@
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
   <link href="https://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
   <link href="https://amcaplan.ninja/"/>
-  <updated>2019-05-07T00:16:34+03:00</updated>
+  <updated>2019-07-09T01:17:47+03:00</updated>
   <id>https://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Stories We Tell Our Children]]></title>
+    <link href="https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children/"/>
+    <updated>2019-05-01T20:00:00+03:00</updated>
+    <id>https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children</id>
+    <content type="html"><![CDATA[<p>This talk was given as a keynote at RailsConf 2019. Here&rsquo;s the video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XKqvtAxGQOs" frameborder="0" allowfullscreen></iframe>
+
+
+<p>And the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="4bcfdb16ac3840cb96c8844050d11a68" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+
+
+<br/>
+
+
+<h4>Talk Description:</h4>
+
+<p>Every society has its own stories, which draw on the specific characteristics of
+that group of people and speak to their emotional underpinnings. We might not
+even notice it in our own surroundings, but it becomes quite apparent when
+studying the literature of other cultures.</p>
+
+<p>In that vein, we&rsquo;ll examine several Israeli children&rsquo;s classics, seeing how they
+reflect the unique history and culture of the country. Reflecting upon that
+example, we&rsquo;ll think about what aspects of the Ruby community are reflected in
+the stories we tell the next generation, and which missing stories need to be told.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Docs with Swagger and Apivore]]></title>
@@ -187,18 +221,6 @@ of a central repository.</li>
 <h4>Link from the talk:</h4>
 
 <p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
-    <updated>2016-05-05T17:32:24+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
-    <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hVrNnc26oTs" frameborder="0" allowfullscreen></iframe>
-
 ]]></content>
   </entry>
   
