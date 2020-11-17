@@ -4,7 +4,7 @@
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
   <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
   <link href="http://amcaplan.ninja/"/>
-  <updated>2020-11-17T22:56:53+02:00</updated>
+  <updated>2020-11-17T22:59:01+02:00</updated>
   <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Humble Hash]]></title>
-    <link href="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/"/>
-    <updated>2020-11-16T21:00:00+02:00</updated>
-    <id>http://amcaplan.ninja/talks/2020/11/16/the-humble-hash</id>
+    <link href="http://amcaplan.ninja/talks/2020/11/17/the-humble-hash/"/>
+    <updated>2020-11-17T21:50:00+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2020/11/17/the-humble-hash</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2020. Video coming soon&hellip;</p>
 
 <p>Here are the slides:</p>
