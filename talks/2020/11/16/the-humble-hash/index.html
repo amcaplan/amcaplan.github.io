@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Building a Better OpenStruct - WindyCityRails 2016 - AMC: Aspiring Master of Code</title>
+  <title>The Humble Hash - AMC: Aspiring Master of Code</title>
   <meta name="author" content="Ariel Caplan">
 
   
-  <meta name="description" content="This talk was given at WindyCityRails 2016. Here&rsquo;s the official video: And the slides: Talk Description: OpenStruct, part of Ruby’s standard &hellip;">
+  <meta name="description" content="This talk was given at RubyConf 2020. Video coming soon&hellip; Here are the slides: Talk Description: Hashes seem simple. Set a key to a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,16 +21,16 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@amcaplan" />
     
-      <meta name="twitter:title" content="Building a Better OpenStruct - WindyCityRails 2016" />
+      <meta name="twitter:title" content="The Humble Hash" />
     
-    <meta name="twitter:description" content="OpenStruct provides a sweet API for data objects, but its performance is problematic. Can we build it better?" />
+    <meta name="twitter:description" content="The Humble Hash" />
     
       <meta name="twitter:image" content="http://amcaplan.ninja/images/ninja-octocat.jpg" />
     
   
 
   
-  <link rel="canonical" href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">
+  <link rel="canonical" href="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -75,7 +75,7 @@
   
   <header>
     
-      <h1 class="entry-title">Building a Better OpenStruct - WindyCityRails 2016</h1>
+      <h1 class="entry-title">The Humble Hash</h1>
     
     
       <p class="meta">
@@ -91,41 +91,32 @@
   
 
 
-<time datetime="2016-09-16T19:25:09+03:00" pubdate data-updated="true">Sep 16<span>th</span>, 2016</time>
+<time datetime="2020-11-16T21:00:00+02:00" pubdate data-updated="true">Nov 16<span>th</span>, 2020</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This talk was given at WindyCityRails 2016.</p>
+<div class="entry-content"><p>This talk was given at RubyConf 2020. Video coming soon&hellip;</p>
 
-<p>Here&rsquo;s the official video:</p>
+<p>Here are the slides:</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Te4Q3Os5QUA" frameborder="0" allowfullscreen></iframe>
-
-
-<p>And the slides:</p>
-
-<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<script async class="speakerdeck-embed" data-id="01beebb4b73b41e7bbb6ceec645ec9d4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 
 
 
-<br/>
+<br />
 
 
 <h4>Talk Description:</h4>
 
-<p>OpenStruct, part of Ruby’s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
+<p>Hashes seem simple. Set a key to a corresponding value, retrieve the value by key. What else is there to know?</p>
 
-<p>Recently, Rubyists have tried various approaches to speed up OpenStruct or provide alternatives. We will study these attempts, learning how to take advantage of the tools in our ecosystem while advancing the state of the Ruby community.</p>
+<p>A whole lot, it turns out! Ruby makes several surprising choices about how hashes work, which turn hashes into dynamic powerhouses of functionality.</p>
 
-<p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
-
-<h4>Link from the talk:</h4>
-
-<p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
+<p>We&rsquo;ll dive into how hashes work, understand how they form the groundwork for some extremely useful standard library utilities, and learn patterns to leverage the unparalleled versatility of the humble hash to write concise, performant, beautiful code.</p>
 </div>
 
 
@@ -148,7 +139,7 @@
   
 
 
-<time datetime="2016-09-16T19:25:09+03:00" pubdate data-updated="true">Sep 16<span>th</span>, 2016</time>
+<time datetime="2020-11-16T21:00:00+02:00" pubdate data-updated="true">Nov 16<span>th</span>, 2020</time>
       
 
 
@@ -158,7 +149,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/" data-via="amcaplan" data-counturl="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/" >Tweet</a>
   
   
   
@@ -292,8 +283,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/';
-        var disqus_url = 'http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/';
+        var disqus_identifier = 'http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/';
+        var disqus_url = 'http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/';
         var disqus_script = 'embed.js';
       
     (function () {

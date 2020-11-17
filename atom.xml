@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[AMC: Aspiring Master of Code]]></title>
-  <link href="https://amcaplan.ninja/atom.xml" rel="self"/>
-  <link href="https://amcaplan.ninja/"/>
-  <updated>2019-07-09T01:17:47+03:00</updated>
-  <id>https://amcaplan.ninja/</id>
+  <link href="http://amcaplan.ninja/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2020-11-17T22:56:53+02:00</updated>
+  <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
     <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
@@ -14,10 +14,37 @@
 
   
   <entry>
+    <title type="html"><![CDATA[The Humble Hash]]></title>
+    <link href="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/"/>
+    <updated>2020-11-16T21:00:00+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2020/11/16/the-humble-hash</id>
+    <content type="html"><![CDATA[<p>This talk was given at RubyConf 2020. Video coming soon&hellip;</p>
+
+<p>Here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="01beebb4b73b41e7bbb6ceec645ec9d4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+
+
+<br />
+
+
+<h4>Talk Description:</h4>
+
+<p>Hashes seem simple. Set a key to a corresponding value, retrieve the value by key. What else is there to know?</p>
+
+<p>A whole lot, it turns out! Ruby makes several surprising choices about how hashes work, which turn hashes into dynamic powerhouses of functionality.</p>
+
+<p>We&rsquo;ll dive into how hashes work, understand how they form the groundwork for some extremely useful standard library utilities, and learn patterns to leverage the unparalleled versatility of the humble hash to write concise, performant, beautiful code.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Baby's First Keynote]]></title>
-    <link href="https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote/"/>
+    <link href="http://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote/"/>
     <updated>2019-05-06T05:03:38+03:00</updated>
-    <id>https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote</id>
+    <id>http://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote</id>
     <content type="html"><![CDATA[<p>I&rsquo;m on a plane, traveling back from RailsConf 2019 where I was one of the keynote
 speakers. My head is full of thoughts and reflections on my experiences before,
 during, and after the talk.</p>
@@ -107,7 +134,7 @@ to me, I accepted the slot and started improving the talk.</p>
 
 <h3>Cranking Up the Quality</h3>
 
-<p>I&rsquo;ve given <a href="https://amcaplan.ninja/talks">several talks before</a>, but this was a keynote. That means a
+<p>I&rsquo;ve given <a href="http://amcaplan.ninja/talks">several talks before</a>, but this was a keynote. That means a
 bigger audience and higher expectations. So I set a higher bar for this talk and
 made every attempt to meet it.</p>
 
@@ -286,9 +313,9 @@ love to hear what you learned from my experiences in the comments.</p>
   
   <entry>
     <title type="html"><![CDATA[The Stories We Tell Our Children]]></title>
-    <link href="https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children/"/>
+    <link href="http://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children/"/>
     <updated>2019-05-01T20:00:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children</id>
+    <id>http://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children</id>
     <content type="html"><![CDATA[<p>This talk was given as a keynote at RailsConf 2019. Here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XKqvtAxGQOs" frameborder="0" allowfullscreen></iframe>
@@ -320,9 +347,9 @@ the stories we tell the next generation, and which missing stories need to be to
   
   <entry>
     <title type="html"><![CDATA[Speeding up a Simple Static Site (With Help from Cloudinary!)]]></title>
-    <link href="https://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help/"/>
+    <link href="http://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help/"/>
     <updated>2019-01-24T20:09:04+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help</id>
+    <id>http://amcaplan.ninja/blog/2019/01/24/speeding-up-a-simple-static-site-with-cloudinarys-help</id>
     <content type="html"><![CDATA[<h3>Diagnosing The Patient</h3>
 
 <p>For the last 2 years, I&rsquo;ve run <a href="https://devempathybook.club">Dev Empathy Book Club</a>,
@@ -608,9 +635,9 @@ URL.</em></strong></p>
   
   <entry>
     <title type="html"><![CDATA[Why I Created Dev Empathy Book Club]]></title>
-    <link href="https://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/"/>
+    <link href="http://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club/"/>
     <updated>2018-04-26T01:54:50+03:00</updated>
-    <id>https://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club</id>
+    <id>http://amcaplan.ninja/blog/2018/04/26/why-i-created-dev-empathy-book-club</id>
     <content type="html"><![CDATA[<p>I was just a few months out of the Flatiron School, had gotten my bearings in
 the codebase at my first job, and was starting to take on more responsibility. I
 was sitting with a product manager&mdash;let&rsquo;s call her Sierra&mdash;trying to
@@ -767,11 +794,11 @@ hashtag <a href="https://twitter.com/hashtag/DevEmpathy?src=hash">#DevEmpathy</a
   
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Docs with Swagger and Apivore]]></title>
-    <link href="https://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
+    <link href="http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
     <updated>2018-04-19T22:40:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
+    <id>http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  For a pared-down text version of the
-talk, see <a href="https://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>.
+talk, see <a href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>.
 For the real thing, here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lqPZdvg49GU" frameborder="0" allowfullscreen></iframe>
@@ -809,9 +836,9 @@ that will make your APIs better, your clients more satisfied, and you happier.</
   
   <entry>
     <title type="html"><![CDATA[The 3 Keys to Software Quality]]></title>
-    <link href="https://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
+    <link href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/"/>
     <updated>2017-05-17T19:02:22+03:00</updated>
-    <id>https://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
+    <id>http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality</id>
     <content type="html"><![CDATA[<p>Why do software projects fail?</p>
 
 <p>This question is difficult to answer precisely because there isn&rsquo;t a single
@@ -916,9 +943,9 @@ practices support (or don&rsquo;t) the 3 objectives.  I&rsquo;ll just give a few
 practices that I&rsquo;ve found to be impactful on the teams where I&rsquo;ve worked.  Let&rsquo;s
 start with a visual map of how I see things:</p>
 
-<p><a href="https://amcaplan.ninja/images/USA_map_large.png" target="_blank"><img src="https://amcaplan.ninja/images/USA_map.png" alt="Map of USA practices" /></a></p>
+<p><a href="http://amcaplan.ninja/images/USA_map_large.png" target="_blank"><img src="http://amcaplan.ninja/images/USA_map.png" alt="Map of USA practices" /></a></p>
 
-<p>Without getting into the gory details (though I did give <a href="https://amcaplan.ninja/railsconf2017">a talk</a>
+<p>Without getting into the gory details (though I did give <a href="http://amcaplan.ninja/railsconf2017">a talk</a>
 about that), here&rsquo;s a guide to interpreting that picture.</p>
 
 <p>The blue circle on the bottom is probably easiest to understand.  It includes a
@@ -987,9 +1014,9 @@ team will derive more or less, and different, benefit(s) from these same
 practices, and that&rsquo;s normal and expected.</p>
 
 <p>As an exercise, I&rsquo;ve made a blank version of the map available in
-<a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
-<a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
-<a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> form for you to fill out with
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> form for you to fill out with
 your own teams.  I&rsquo;d love to see how your maps stack up against mine!</p>
 
 <h3>Bridging the Gap</h3>
@@ -1013,17 +1040,17 @@ safety and trust.  Wouldn&rsquo;t that be great!</p>
 <p>We&rsquo;re all in this together.  Let&rsquo;s start acting like it.</p>
 
 <p><em>Note: Based on a talk given at RailsConf 2017. Check out the original
-talk <a href="https://amcaplan.ninja/railsconf2017">here</a>.</em></p>
+talk <a href="http://amcaplan.ninja/railsconf2017">here</a>.</em></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[What Comes After SOLID? Seeking Holistic Software Quality]]></title>
-    <link href="https://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
+    <link href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
     <updated>2017-04-25T22:40:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
+    <id>http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017.  For a pared-down text version of the
-talk, see <a href="https://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/">this post</a>.  For
+talk, see <a href="http://amcaplan.ninja/blog/2017/05/17/the-3-keys-to-software-quality/">this post</a>.  For
 the real thing, here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5wYcD1nfnWw" frameborder="0" allowfullscreen></iframe>
@@ -1056,9 +1083,9 @@ important problems for real people.</p>
 
 <h4>Exercise from the talk:</h4>
 
-<p>Download the exercise as a <a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
-<a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
-<a href="https://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> file.</p>
+<p>Download the exercise as a <a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pdf">PDF</a>,
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.key">Keynote</a>, or
+<a href="http://amcaplan.ninja/assets/railsconf-2017/exercise.pptx">PowerPoint</a> file.</p>
 
 <h4>Talk Errata:</h4>
 
@@ -1084,10 +1111,10 @@ of a central repository.</li>
   
   <entry>
     <title type="html"><![CDATA[Reflections on 8 Days of Blog Posts]]></title>
-    <link href="https://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
+    <link href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/"/>
     <updated>2017-01-01T12:09:02+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
-    <content type="html"><![CDATA[<p>I started the <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
+    <id>http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts</id>
+    <content type="html"><![CDATA[<p>I started the <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>
 as a way to stretch myself and get back in the habit of writing.  As in writing
 software, blogging regularly is difficult when there&rsquo;s no pressure to ship.</p>
 
@@ -1163,9 +1190,9 @@ can, however, comment on their more objective elements.</p>
 posts.  We can knock out the first, introductory post, as well as this one,
 leaving us with 6 posts to analyze.</p>
 
-<p><a href="https://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a> was
-decidedly technical. <a href="https://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
-and <a href="https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
+<p><a href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a> was
+decidedly technical. <a href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a>
+and <a href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a>
 were decidedly not.  The remaining 3 posts focused on the area where I&rsquo;m most
 comfortable and (I think) most effective, namely the human side of technology.</p>
 
@@ -1221,7 +1248,7 @@ that wasn&rsquo;t too significant.</p>
 <p>The real time sink was the writing process itself.  Writing and editing posts
 could easily take 3-4 hours apiece, more if I needed to add some custom
 JavaScript (as I did for the censoring functionality
-<a href="https://amcaplan.ninja/2016/12/28/this-is-your-brain-on-ruby/">here</a> to make blog readers, and
+<a href="http://amcaplan.ninja/2016/12/28/this-is-your-brain-on-ruby/">here</a> to make blog readers, and
 myself, more comfortable).  Those 3-4 hours needed to be highly focused, and I
 would walk away feeling drained and needing a break.</p>
 
@@ -1266,15 +1293,15 @@ I hope you find its contents, and the products of this week&rsquo;s efforts, val
 and interesting.  And I hope this week turns out to be the beginning of a very
 productive 2017!</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Give a Great Tech Conference Talk]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/"/>
     <updated>2016-12-31T20:50:21+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
+    <id>http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk</id>
     <content type="html"><![CDATA[<p>People come to tech conferences for many reasons.  They want to hear about new
 ideas and technologies, to be inspired with the latest and greatest of what the
 programming community has to offer.</p>
@@ -1539,15 +1566,15 @@ and details to the stage.</p>
 
 <p>Bring yourself.  Be yourself.  Share yourself.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Make It Easy to Do the Right Thing]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/"/>
     <updated>2016-12-30T12:53:38+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
+    <id>http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing</id>
     <content type="html"><![CDATA[<p>There&rsquo;s a great Kent Beck quote which should be etched on the mind of every
 serious programmer:</p>
 
@@ -1576,7 +1603,7 @@ order for the reaction to proceed.</p>
 <p>A catalyst is nothing more or less than an entity which lowers the activation
 barrier.  Here&rsquo;s a diagram of how a catalyst works:</p>
 
-<p><img src="https://amcaplan.ninja/images/activation_energy.svg" alt="Activation energy" /></p>
+<p><img src="http://amcaplan.ninja/images/activation_energy.svg" alt="Activation energy" /></p>
 
 <p>The right side represents the higher-energy (i.e., not preferred) state, while
 the left side is the lower-energy (stabler) state.  To cross from one to the
@@ -1847,7 +1874,7 @@ that anonymizes the identity of the person giving feedback.</p>
 <h3>Temporary Constraints</h3>
 
 <p>I&rsquo;m not going to talk about this too much, since I already developed this idea
-at length in <a href="https://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/">another post</a>.  You can
+at length in <a href="http://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/">another post</a>.  You can
 constrain yourself to follow certain practices, train yourself to become more
 comfortable with them, and in the long run adopt the practices happily.  Here,
 rather than focusing on the activation barrier, you accept that it will be
@@ -1893,15 +1920,15 @@ them to understand the value your suggested change will provide.  If the change
 is legitimately valuable and the team is open-minded, usually they&rsquo;ll come
 around.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Diversify Your Learning]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/"/>
     <updated>2016-12-29T14:13:00+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
+    <id>http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning</id>
     <content type="html"><![CDATA[<p>As a programmer, I&rsquo;m privileged to be part of a field where learning is thought
 of as part of my job.  Many enlightened companies specifically dedicate time
 during the workweek for exploration and side projects.  Companies pay for their
@@ -2054,15 +2081,15 @@ next level up through understanding the next level down.</p>
 Just make sure to always be expanding your horizons both within and beyond your
 primary level of abstraction.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/"/>
     <updated>2016-12-28T12:08:26+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
+    <id>http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>There are plenty of ways to write a FizzBuzz program in any language,
 particularly Ruby with its <a href="https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it">TIMTOWTDI</a> philosophy.  Beyond the naive
 implementation, you can write it <a href="https://commandercoriander.net/blog/2013/02/03/fizzbuzz-in-one-line/">in one line</a>,
@@ -2320,15 +2347,15 @@ sharing that experience and seeing what&rsquo;s under the hood.  Please let me k
 the comments if you learned something from what I shared; I certainly hope you
 did.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Documentation With Swagger and Apivore]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/"/>
     <updated>2016-12-27T21:54:20+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
+    <id>http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re responsible for an API, you may have noticed that API documentation is
 painful to keep in sync with your code.  A tremendous amount of cognitive
 overhead is added by having to remember everything you&rsquo;ve documented and update
@@ -2788,15 +2815,15 @@ requests, then build the implementation beneath the surface.  Starting the
 development process from the user&rsquo;s vantage point leads to cleaner APIs, a
 better user experience, and ultimately happier customers.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Git Commit Message Anti-Patterns]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/"/>
     <updated>2016-12-26T12:11:32+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
+    <id>http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns</id>
     <content type="html"><![CDATA[<p>Have you ever experienced this before?  You&rsquo;ve just finished a unit of work, and
 you&rsquo;re rightfully proud of what you&rsquo;ve accomplished.  All that&rsquo;s left is to
 commit and push.  So let&rsquo;s just <code>git commit -am "</code>&hellip; what exactly?  Filling in
@@ -3011,7 +3038,7 @@ the basics of which code additions and changes are interrelated.</p>
 <p>I will close with one thought: Whatever your decisions, you only get one
 chance<sup>1</sup> to write history. Make it count.</p>
 
-<p><strong><em>Written as part of the 2016 <a href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
+<p><strong><em>Written as part of the 2016 <a href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts">8 Crazy Blog Posts Challenge</a>.</em></strong></p>
 
 <hr />
 
@@ -3022,9 +3049,9 @@ course practically it doesn&rsquo;t happen past a few commits.</p>
   
   <entry>
     <title type="html"><![CDATA[8 Crazy Blog Posts!]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
+    <link href="http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts/"/>
     <updated>2016-12-25T16:01:56+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
+    <id>http://amcaplan.ninja/blog/2016/12/25/8-crazy-blog-posts</id>
     <content type="html"><![CDATA[<p>I have a confession to make.  I&rsquo;m embarrassed by my blog.</p>
 
 <p>I&rsquo;m certainly proud of (most of) the content.  It&rsquo;s shown significant
@@ -3096,22 +3123,22 @@ schedule but basically functions as 8 regular days.</p>
 
 <h3>Who are you exactly?</h3>
 
-<p>If you&rsquo;re first visiting the blog, I do have an <a href="https://amcaplan.ninja/about/">About Page</a>.  I
-have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>, and occasionally
-<a href="https://amcaplan.ninja/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
+<p>If you&rsquo;re first visiting the blog, I do have an <a href="http://amcaplan.ninja/about/">About Page</a>.  I
+have lots of <a href="http://amcaplan.ninja/archives/">thoughts about stuff</a>, and occasionally
+<a href="http://amcaplan.ninja/talks/">speak at meetups and conferences</a>.  You know, programmer stuff?</p>
 
 <hr />
 
 <p><strong><em>Update!!! These are the posts I&rsquo;ve written as part of this challenge:</em></strong></p>
 
 <ul>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do The Right Thing</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a></em></strong></li>
-<li><strong><em><a href="https://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/26/git-commit-message-anti-patterns/">Git Commit Message Anti-Patterns</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">Automating Empathy: Test Your Documentation With Swagger and Apivore</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/28/this-is-your-brain-on-ruby/">This Is Your Brain on Ruby</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/29/diversify-your-learning/">Diversify Your Learning</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/30/make-it-easy-to-do-the-right-thing/">Make It Easy to Do The Right Thing</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2016/12/31/how-to-give-a-great-tech-conference-talk/">How to Give a Great Tech Conference Talk</a></em></strong></li>
+<li><strong><em><a href="http://amcaplan.ninja/blog/2017/01/01/reflections-on-8-days-of-blog-posts/">Reflections on 8 Days of Blog Posts</a></em></strong></li>
 </ul>
 
 ]]></content>
@@ -3119,10 +3146,10 @@ have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>
   
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
+    <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
     <updated>2016-11-10T21:01:52+02:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
-    <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="https://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
+    <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
+    <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2IbJFCbBnQk" frameborder="0" allowfullscreen></iframe>
 
@@ -3153,9 +3180,9 @@ have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>
   
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
+    <link href="http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
     <updated>2016-09-16T19:25:09+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
+    <id>http://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
     <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
 
 <p>Here&rsquo;s the official video:</p>
@@ -3189,9 +3216,9 @@ have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>
   
   <entry>
     <title type="html"><![CDATA[This Is Your Brain on Ruby]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
+    <link href="http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby/"/>
     <updated>2016-05-05T17:32:24+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
+    <id>http://amcaplan.ninja/talks/2016/05/05/this-is-your-brain-on-ruby</id>
     <content type="html"><![CDATA[<p>This isn&rsquo;t technically a conference talk, just something I prepared for a lightning talk at RailsConf 2016.  Didn&rsquo;t end up giving the talk (they always sign up more people than they have time for), but this was so much fun I decided to make a 5-minute video and put it up online.  Enjoy!</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hVrNnc26oTs" frameborder="0" allowfullscreen></iframe>
@@ -3201,9 +3228,9 @@ have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>
   
   <entry>
     <title type="html"><![CDATA[Understanding, Building, and Integrating Rails Engines]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
+    <link href="http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines/"/>
     <updated>2016-05-04T17:20:43+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
+    <id>http://amcaplan.ninja/talks/2016/05/04/understanding-building-and-integrating-rails-engines</id>
     <content type="html"><![CDATA[<p>This workshop was given at RailsConf 2016.  The conference did not record workshops, so there&rsquo;s no video (though I intend to record one), but in the meantime, here are slides:</p>
 
 <script async class="speakerdeck-embed" data-id="a3cf8b8781614ebda2ba10ec2186dc1f" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
@@ -3216,373 +3243,6 @@ have lots of <a href="https://amcaplan.ninja/archives/">thoughts about stuff</a>
 <p>Rails Engines may be your answer.</p>
 
 <p>By building a simple Rails engine together, we will better understand how this app-within-an-app architecture can help you write more modular code, which can be gemified and reused across multiple projects.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Choose Your Constraints]]></title>
-    <link href="https://amcaplan.ninja/blog/2016/01/04/choose-your-constraints/"/>
-    <updated>2016-01-04T00:04:10+02:00</updated>
-    <id>https://amcaplan.ninja/blog/2016/01/04/choose-your-constraints</id>
-    <content type="html"><![CDATA[<p>A while back I published a few Tweets about constraints.  They seemed to strike
-a chord with others, and I want to develop the point a bit more.</p>
-
-<p>So let&rsquo;s start with this: What are some constraints you feel in your day-to-day
-coding?  Which factors are limiting your ability to produce new, shippable
-features?  Consider the following list:</p>
-
-<div id="constraints-checklist">
-  <input type="checkbox" id="time" name="time" value="Time"><label for="time">Time/Deadline</label><br/>
-  <input type="checkbox" id="money" name="money" value="Money"><label for="money">Money</label><br/>
-  <input type="checkbox" id="legacy" name="legacy" value="Legacy Code"><label for="legacy">Legacy Code/Projects</label><br/>
-  <input type="checkbox" id="performance-requirements" name="performance-requirements" value="Performance Requirements"><label for="performance-requirements">Performance Requirements</label><br/>
-  <input type="checkbox" id="legal" name="legal" value="Legal Regulations"><label for="legal">Legal Regulations</label><br/>
-  <input type="checkbox" id="clients" name="clients" value="Client Restrictions"><label for="clients">Client Restrictions</label><br/>
-  <input type="checkbox" id="hardware" name="hardware" value="Hardware"><label for="hardware">Hardware</label><br/>
-  <input type="checkbox" id="competing-projects" name="competing-projects" value="Competing Projects"><label for="competing-projects">Competing Projects</label><br/>
-  <input type="checkbox" id="skills" name="skills" value="Skills"><label for="skills">Team Members&#8217; Skills</label>
-</div>
-
-
-<br/>
-
-
-<p>Take a moment and check off the 3 biggest pain points in your current job.</p>
-
-<!-- more -->
-
-
-<p>You&rsquo;ve selected:</p>
-
-<ul id="constraints-results"></ul>
-
-
-<p>Hold that thought; let&rsquo;s talk for a moment about the most significant force
-behind your (and all developers&#8217;) frustrations, and how it underlies the factors
-you&rsquo;ve chosen.</p>
-
-<h3>The Triple Constraint</h3>
-
-<p>The Triple Constraint, also known as the Project Management Triangle, is
-well-known as a classic line developers tell overzealous managers:</p>
-
-<blockquote><p>We can build it with every feature, on time, and on budget.  Pick two.</p></blockquote>
-
-<p>The Triple Constraint sets up a fundamental tension between three factors:</p>
-
-<ol>
-<li>Time (how quickly the project is done)</li>
-<li>Cost (how much it costs to complete the project)</li>
-<li>Scope (how many features are built, and how well)</li>
-</ol>
-
-
-<p>Any time you make greater demands in one aspect, at least one of the others will
-have to give.  If you reduce the time for the project, you&rsquo;ll need to pay more
-or (more realistically) cut scope.  Want to save money?  Cut scope, or hire
-developers who will do it more slowly.  To increase the scope, pay more, or
-better, developers, to work on it for the same amount of time, or increase the
-length of time allotted for the project.</p>
-
-<p>Let&rsquo;s see how the Triple Constraint applies to the problems you&rsquo;ve selected:</p>
-
-<p id="constraints-interpretation"></p>
-
-
-<p>So it looks like <span id="biggest-problems"></span>.  With that in mind, let&rsquo;s
-think about a more active approach to controlling and choosing our constraints.</p>
-
-<h3>Constraints: A Choice of Which, Not Whether</h3>
-
-<p>The point of the Triple Constraint is to emphasize that constraints will exist
-on every project, and we are responsible for managing them realistically.  There
-is great temptation to assume that with extra effort we can cheat the system and
-push for a better outcome on all 3 constraints.  That&rsquo;s just not possible.</p>
-
-<p>However, by acknowledging and embracing our constraints, we can maximize the
-outcome.  We cannot build every feature, on time, and on budget.  But we can
-build the right set of features, given the right amount of time and an
-appropriate budget.</p>
-
-<p>Let&rsquo;s think about this in the context of the issues you selected.</p>
-
-<div id="constraints-suggestions"></div>
-
-
-<p>The main point here is that each of Cost, Scope, and Time constraints will get
-the best of you, unless you actively acknowledge the conflict, and make sure
-your efforts reflect the true business priorities.  Attempting to maximize all
-three is impossible and will usually lead to significant shortcomings in all
-three areas.</p>
-
-<h3>Adding More Constraints</h3>
-
-<p>This is the Tweetstorm (yes, my own) that originally got me thinking:</p>
-
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Your current constraints ultimately train you to operate effectively within precisely those constraints. Choose your constraints wisely.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030185106907136">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Take on too much work for the time allotted, you will learn to overwork and underdeliver, and you&#39;ll stop noticing that it&#39;s happening.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670030975620005890">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Always make time for testing, pairing, knowledge sharing, and learning. Eventually they will happen automatically without special effort.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031382144528385">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Took me &gt;1yr to get used to TDD. But now it comes free, without thinking about it, and the benefits are tangible.</p>&mdash; Ariel Caplan (@amcaplan) <a href="https://twitter.com/amcaplan/status/670031749641076737">November 27, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>Now that I&rsquo;ve thought things through more clearly, let&rsquo;s summarize using the
-terms above.  You already work within constraints of Cost, Scope, and Time.  If
-you ignore the competitive nature of those constraints, you will overwork
-yourself, fail to deliver the entire Scope, miss the deadline, or—even worse—all
-three.  This will become the <em>de facto</em> mode of operation, much to the
-consternation of yourself, your colleagues, and your managers.  Worse, you will
-take on the Cost of long-term technical debt because it allows you to expand
-Scope and minimize Time in the short term.</p>
-
-<p>The only solution is to embrace the fact that you just can&rsquo;t do everything, and
-take on constraints that will safeguard you from the poor decision-making that
-brings on long-term troubles.</p>
-
-<p>The four constraints I recommend budgeting for, as mentioned above, are:</p>
-
-<ol>
-<li><p><strong>Testing:</strong> Insist on meaningful test coverage.  There are advantages to
-writing your tests first, but at least make sure you end up with solidly tested
-code.</p>
-
-<ul>
-<li>You will know your code works, and it will be much easier to change or
-extend later without breaking everything.</li>
-<li>It&rsquo;s hard to know you&rsquo;ve accomplished the appropriate Scope without a
-reproducible test, and not testing increases the Cost of adding features
-later.</li>
-</ul>
-</li>
-<li><p><strong>Pairing:</strong> Don&rsquo;t let a sprint go by without finding an opportunity to pair
-on something, anything.</p>
-
-<ul>
-<li>Pairing is not always the best use of resources (you might say it&rsquo;s double
-the Cost), but often the synergy of two coders talking things out nets an
-overall gain in productivity.</li>
-<li>Pairing also provides a host of benefits for the long term, in terms of
-team relationships and knowledge sharing.  Which brings us to the next
-point&hellip;</li>
-</ul>
-</li>
-<li><p><strong>Knowledge Sharing:</strong> Make time in your workflow to share knowledge, both
-formally and informally.</p>
-
-<ul>
-<li>Meet weekly with your team and have someone present their recent work.
-Eventually everyone will take a (temporary or permanent) vacation, and
-someone else will need to fill their role.  Pay down the Cost of a weekly
-hour-long meeting, so your team isn&rsquo;t frozen when one person takes a
-much-needed break.</li>
-<li>Look for opportunities to pair junior and senior developers together.  Or
-if someone is unfamiliar with part of the codebase, assign them a ticket
-that requires them to learn it, and designate a knowledgeable pair. The
-stronger each member of your team becomes, the more quickly you can build
-new features in a stable fashion.</li>
-</ul>
-</li>
-<li><p><strong>Learning:</strong> I expect this to be controversial, but here goes.  Make time in
-your workday for something code-related that has nothing to do with your work.
-Try out a new language or framework.  Write a script to automate something at
-home.  Read an article from one of
-<a href="http://peterc.org/#ap3">Peter Cooper&rsquo;s newsletters</a> or watch a talk on
-<a href="http://confreaks.tv/events">Confreaks</a>.  Follow the Twitter account of a
-developer you respect and read what they post.  Broaden your horizons in code,
-and you&rsquo;ll find that some of your most brilliant ideas at work will come from
-your explorations.  You can&rsquo;t be inspired without inspiration.</p></li>
-</ol>
-
-
-<p>The crazy thing about these practices is that if you constrain yourself for long
-enough, they become second nature, and you don&rsquo;t notice the time they take up.
-Eventually, your budget will automatically include these activities.  Yet you
-will be able to crank out features at a quicker, more stable pace, precisely
-<em>because</em> you are taking the time to invest in yourself and your code.</p>
-
-<p>You will also notice a greater sense of team cohesiveness.  These practices
-encourage the team to work together, to learn together, and to help each other
-grow in capacity to produce excellent software.  These practices bring out the
-synergetic relationships that make team-built software qualitatively better than
-software produced by individuals.</p>
-
-<p>Sometimes, it will be difficult to get buy-in from the more business-minded
-stakeholders in your company.  For this reason, make sure to couch the
-conversation in terms of risk avoidance and long-term business objectives, which
-honestly should be your goal, too.</p>
-
-<h3>A Call to Action</h3>
-
-<p>Let&rsquo;s end with a challenge, shall we?  Commit to one—just one—of these four
-practices for the next two weeks.  Then let&rsquo;s hear some feedback about how you
-did, and what type of impact it had on yourself, your code, and your team.</p>
-
-<ul>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20insist%20on%20meaningful%20test%20coverage%20for%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Testing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20make%20time%20for%20pairing%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Pairing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20organize%20a%20regular%20knowledge%20sharing%20session%20starting%20in%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Knowledge Sharing</a></li>
-<li><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;ref_src=twsrc%5Etfw&amp;text=I%20will%20dedicate%20time%20to%20non-work-related%20programming%20learning%20during%20the%20next%202%20weeks.%20Make%20a%20pledge%3A&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Famcaplan.ninja%2Fblog%2F2016%2F01%2F04%2Fchoose-your-constraints%2F&amp;via=amcaplan">Commit to Learning</a></li>
-</ul>
-
-
-<script type="text/javascript">
-  (function(){
-    var inputs = document.getElementById('constraints-checklist').getElementsByTagName('input');
-
-    var selectedInputs = function() {
-      checkedInputs = [];
-
-      for (var i = 0; i < inputs.length; i++) {
-        input = inputs[i]
-        if (input.checked) { checkedInputs.push(input); }
-      }
-
-      return checkedInputs;
-    };
-
-    var noSelectionMade = '&lt;NO SELECTION MADE&gt;';
-
-    var inputText = function(input){ return input.nextElementSibling.textContent; }
-    var liIfy = function(text) { return "<li>" + text + "</li>"; };
-
-    var setResultsHTML = function(selected) {
-      if (selected.length === 0) { html = noSelectionMade; }
-      else {
-        html = selected.map(inputText).map(liIfy).join('');
-      }
-      document.getElementById('constraints-results').innerHTML = html;
-    };
-
-    var interpretations = {
-      "time": "Time is <strong>Time</strong>, easy enough.",
-      "money": "Money is one element of <strong>Cost</strong>.",
-      "legacy": "When you pay down technical debt on legacy code and projects, you encounter the <strong>Cost</strong> of a past project, except that you incur those costs now.",
-      "performance-requirements": "Performance requirements are an aspect of <strong>Scope</strong>.",
-      "legal": "Legal requirements are an aspect of <strong>Scope</strong>.",
-      "clients": "Client requirements are an aspect of <strong>Scope</strong>.",
-      "hardware": "Insufficient hardware resources reflect an upper bound on <strong>Cost</strong>.",
-      "competing-projects": "Assigning developers to too many simultaneous projects reflects unwillingness to accept the true <strong>Cost</strong> of each project.",
-      "skills": "When team members lack the skills to complete the task, the learning involved becomes part of the <strong>Cost</strong> of the project."
-    };
-    var interpretation = function(input) { return interpretations[input.name]; }
-
-    var setInterpretationHTML = function(selected) {
-      if (selected.length === 0) { html = ''; }
-      else {
-        html = '<ul>' +
-          selected.map(interpretation).map(liIfy).join('') +
-          '</ul>';
-      }
-      document.getElementById('constraints-interpretation').innerHTML = html;
-    }
-
-    var problems = {
-      "time": "Time",
-      "money": "Cost",
-      "legacy": "Cost",
-      "performance-requirements": "Scope",
-      "legal": "Scope",
-      "clients": "Scope",
-      "hardware": "Cost",
-      "competing-projects": "Cost",
-      "skills": "Cost"
-    };
-    var problemList = function(selected) {
-      var list = [];
-      selected.forEach(function(input) {
-        var problem = problems[input.name];
-        if (list.indexOf(problem) === -1) { list.push(problem); }
-      });
-      return list.sort();
-    };
-    var outputProblemList = function(list) {
-      switch(list.length) {
-        case 0:
-          return "your biggest problems are &lt;UNKNOWN - FILL IN PLEASE&gt;";
-        case 1:
-          return "your biggest problem is " + list[0];
-        case 2:
-          return "your biggest problems are " + list[0] + " and " + list[1];
-        case 3:
-          return "you are struggling on all 3 fronts: Cost, Scope, and Time"
-      }
-    };
-    var updateProblemList = function(inputs) {
-      document.getElementById('biggest-problems').innerHTML =
-        outputProblemList(problemList(inputs));
-    };
-
-    var suggestions = {
-      "time": "<strong>Time/Deadlines:</strong> Sometimes, your product's greatest feature is time - for example, it must capture the market before competitors arrive.  In other cases, time is less crucial than other factors.  So it's important to evaluate the significance of the deadline in your situation.  Often the right answer is multifaceted - for example, extending the deadline by a month along with cutting scope in certain ways.",
-      "money": "<strong>Money:</strong> This question will be fundamentally different depending on the scenario.  In a small startup launching its first product, you may not have the leeway to increase Cost.  This is why startups tend to build small, streamlined products that are sold on their simplicity; they cut Scope, because money is limited, and a long time-to-market will kill the company financially.  In a large company, though, the right answer may be to build the product with full scope, but extend the Time or accept increased Cost.",
-      "legacy": "<strong>Legacy Infrastructure:</strong> If you struggle with legacy code or even full applications, congratulations!  Your product has been around for a while, it's hopefully well-established, but it comes with the messiness of decisions which—as you can see using your 20/20 hindsight—have turned out for the worse.  The answer is usually to minimize Cost by paying down technical debt when possible, but accept that sometimes the value of Time will triumph.  Usually businesspeople err on the side of not paying down technical debt; your job as developer is to counter that trend, diplomatically of course.",
-      "performance-requirements": "<strong>Performance:</strong> Whether you're building for desktop, mobile, tablet, or the web, performance is going to be a make-or-break for your product.  And performance has a tangible Cost in terms of developer attention and effort.  The company needs to accept that performance will require massive attention, especially over time as more and more features are added.  The right answer is usually to cut feature Scope when performance becomes a problem, and not before.  It's also important to understand how valuable performance gains are in any situation, and make sure a proportional amount of developer resources are dedicated to performance improvements.  Too little attention and performance problems will be the death of your product; too much attention and your product's feature set will go nowhere.",
-      "legal": "<strong>Legal Requirements:</strong> These are generally non-negotiable.  Once we accept that, it's important to view fulfillment of legal requirements as a Scope achievement, and cut other Scope considerations as necessary.  Better 2 new features than 3 features plus a lawsuit.",
-      "clients": "<strong>Client Requirements:</strong> Keep in mind, your client is the one paying your bills.  However, clients often use that position to demand more features than are healthy for your product.  It's important to be honest with clients about the limitations of your team, and explain that you want your product to grow stably in the long term.  Pushing lots of features out the door quickly will limit your product's ability to grow, and that will hurt your clients as well later on.  Negotiate your clients down to a reasonable feature set given the Time and Cost constraints of your project—and make sure to deliver.",
-      "hardware": "<strong>Hardware Limitations:</strong> These cases generally fall into two categories.  One is a small company with severe financial constraints.  In that case, the answer is probably to wait on certain features until the company begins to gather more revenue.  Small companies have a tendency to try to scale too early; wait until the need arises.  (In other words, limit the Scope of your operations until the market demands more.)  Larger companies have the opposite problem; they know the scale is necessary, but may not have financial resources available now, or the process of getting appropriate hardware may take time.  The right answer is usually to shelve the project for now; there are probably many other projects deserving of attention that would provide value immediately.",
-      "competing-projects": "<strong>Competing Projects</strong>: Companies are often unaware of the Cost of context switching.  To minimize Cost, a developer should work on only one project at a time.  If multiple projects need attention, every effort should be made to limit Scope or extend Time in a way that allows each developer to give their undivided attention to one project, perhaps switching back and forth at intervals of one to two weeks.  Greater flexibility will pay off in increased productivity.",
-      "skills": "<strong>Team Members' Skills:</strong> Developers, contrary to popular belief, are not code-generation machines.  They are human beings who know some things and do not know other things.  Part of the Cost of a project is the need for developers to educate themselves about the necessary tools and the problem space.  This must be considered as a factor that will challenge Time and Scope."
-    };
-
-    var suggestionList = function(inputs) {
-      if (inputs.length === 0) { return [noSelectionMade]; }
-      return inputs.map(function(input) {
-        return '<li>' + suggestions[input.name] + '</li>';
-      });
-    };
-
-    var updateSuggestionList = function(inputs) {
-      document.getElementById('constraints-suggestions').innerHTML =
-        '<ul>' + suggestionList(inputs).join('') + '</ul>';
-    };
-
-    var uncheckIfFourth = function() {
-      if (selectedInputs().length > 3) { this.checked = false; }
-    };
-
-    var updateFields = function(){
-      selected = selectedInputs();
-      setResultsHTML(selected);
-      setInterpretationHTML(selected);
-      updateProblemList(selected);
-      updateSuggestionList(selected);
-    }
-
-    for (var i = 0; i < inputs.length; i++) {
-      input = inputs[i];
-      input.addEventListener('change', uncheckIfFourth, false);
-      input.addEventListener('change', updateFields, false);
-    }
-
-    document.addEventListener('DOMContentLoaded',function(){
-      updateFields();
-    });
-  })()
-</script>
-
 ]]></content>
   </entry>
   

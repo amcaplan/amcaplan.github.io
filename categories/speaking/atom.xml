@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: speaking | AMC: Aspiring Master of Code]]></title>
-  <link href="https://amcaplan.ninja/categories/speaking/atom.xml" rel="self"/>
-  <link href="https://amcaplan.ninja/"/>
-  <updated>2019-07-09T01:17:47+03:00</updated>
-  <id>https://amcaplan.ninja/</id>
+  <link href="http://amcaplan.ninja/categories/speaking/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2020-11-17T22:56:53+02:00</updated>
+  <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
     <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Baby's First Keynote]]></title>
-    <link href="https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote/"/>
+    <link href="http://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote/"/>
     <updated>2019-05-06T05:03:38+03:00</updated>
-    <id>https://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote</id>
+    <id>http://amcaplan.ninja/blog/speaking/2019/05/06/babys-first-keynote</id>
     <content type="html"><![CDATA[<p>I&rsquo;m on a plane, traveling back from RailsConf 2019 where I was one of the keynote
 speakers. My head is full of thoughts and reflections on my experiences before,
 during, and after the talk.</p>

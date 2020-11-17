@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: talks | AMC: Aspiring Master of Code]]></title>
-  <link href="https://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
-  <link href="https://amcaplan.ninja/"/>
-  <updated>2019-07-09T01:17:47+03:00</updated>
-  <id>https://amcaplan.ninja/</id>
+  <link href="http://amcaplan.ninja/categories/talks/atom.xml" rel="self"/>
+  <link href="http://amcaplan.ninja/"/>
+  <updated>2020-11-17T22:56:53+02:00</updated>
+  <id>http://amcaplan.ninja/</id>
   <author>
     <name><![CDATA[Ariel Caplan]]></name>
     <email><![CDATA[ariel.caplan@mail.yu.edu]]></email>
@@ -14,10 +14,37 @@
 
   
   <entry>
+    <title type="html"><![CDATA[The Humble Hash]]></title>
+    <link href="http://amcaplan.ninja/talks/2020/11/16/the-humble-hash/"/>
+    <updated>2020-11-16T21:00:00+02:00</updated>
+    <id>http://amcaplan.ninja/talks/2020/11/16/the-humble-hash</id>
+    <content type="html"><![CDATA[<p>This talk was given at RubyConf 2020. Video coming soon&hellip;</p>
+
+<p>Here are the slides:</p>
+
+<script async class="speakerdeck-embed" data-id="01beebb4b73b41e7bbb6ceec645ec9d4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+
+
+<br />
+
+
+<h4>Talk Description:</h4>
+
+<p>Hashes seem simple. Set a key to a corresponding value, retrieve the value by key. What else is there to know?</p>
+
+<p>A whole lot, it turns out! Ruby makes several surprising choices about how hashes work, which turn hashes into dynamic powerhouses of functionality.</p>
+
+<p>We&rsquo;ll dive into how hashes work, understand how they form the groundwork for some extremely useful standard library utilities, and learn patterns to leverage the unparalleled versatility of the humble hash to write concise, performant, beautiful code.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[The Stories We Tell Our Children]]></title>
-    <link href="https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children/"/>
+    <link href="http://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children/"/>
     <updated>2019-05-01T20:00:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children</id>
+    <id>http://amcaplan.ninja/talks/2019/05/01/the-stories-we-tell-our-children</id>
     <content type="html"><![CDATA[<p>This talk was given as a keynote at RailsConf 2019. Here&rsquo;s the video:</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XKqvtAxGQOs" frameborder="0" allowfullscreen></iframe>
@@ -49,9 +76,9 @@ the stories we tell the next generation, and which missing stories need to be to
   
   <entry>
     <title type="html"><![CDATA[Automating Empathy: Test Your Docs with Swagger and Apivore]]></title>
-    <link href="https://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
+    <link href="http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore/"/>
     <updated>2018-04-19T22:40:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
+    <id>http://amcaplan.ninja/talks/2018/04/19/automating-empathy-test-your-docs-with-swagger-and-apivore</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2018.  For a pared-down text version of the
 talk, see <a href="/blog/2016/12/27/automating-empathy-test-your-documentation-with-swagger-and-apivore/">this post</a>.
 For the real thing, here&rsquo;s the video:</p>
@@ -91,9 +118,9 @@ that will make your APIs better, your clients more satisfied, and you happier.</
   
   <entry>
     <title type="html"><![CDATA[What Comes After SOLID? Seeking Holistic Software Quality]]></title>
-    <link href="https://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
+    <link href="http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality/"/>
     <updated>2017-04-25T22:40:00+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
+    <id>http://amcaplan.ninja/talks/2017/04/25/what-comes-after-solid-seeking-holistic-software-quality</id>
     <content type="html"><![CDATA[<p>This talk was given at RailsConf 2017.  For a pared-down text version of the
 talk, see <a href="/blog/2017/05/17/the-3-keys-to-software-quality/">this post</a>.  For
 the real thing, here&rsquo;s the video:</p>
@@ -156,9 +183,9 @@ of a central repository.</li>
   
   <entry>
     <title type="html"><![CDATA[Building a Better OpenStruct - RubyConf 2016]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
+    <link href="http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016/"/>
     <updated>2016-11-10T21:01:52+02:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
+    <id>http://amcaplan.ninja/talks/2016/11/10/building-a-better-openstruct-rubyconf-2016</id>
     <content type="html"><![CDATA[<p>This talk was given at RubyConf 2016. It&rsquo;s an updated version of <a href="/talks/2016/09/16/building-a-better-openstruct/">the same talk from WindyCityRails 2016.</a></p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2IbJFCbBnQk" frameborder="0" allowfullscreen></iframe>
@@ -179,42 +206,6 @@ of a central repository.</li>
 <p>OpenStruct, part of Ruby&rsquo;s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
 
 <p>Luckily, Rubyists have recently improved OpenStruct performance and provided some alternatives. We&rsquo;ll study their approaches, learning to take advantage of the tools in our ecosystem while advancing the state our community.</p>
-
-<p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
-
-<h4>Link from the talk:</h4>
-
-<p><a href="http://jamesgolick.com/2013/4/14/mris-method-caches.html">http://jamesgolick.com/2013/4/14/mris-method-caches.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Building a Better OpenStruct - WindyCityRails 2016]]></title>
-    <link href="https://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct/"/>
-    <updated>2016-09-16T19:25:09+03:00</updated>
-    <id>https://amcaplan.ninja/talks/2016/09/16/building-a-better-openstruct</id>
-    <content type="html"><![CDATA[<p>This talk was given at WindyCityRails 2016.</p>
-
-<p>Here&rsquo;s the official video:</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Te4Q3Os5QUA" frameborder="0" allowfullscreen></iframe>
-
-
-<p>And the slides:</p>
-
-<script async class="speakerdeck-embed" data-id="a58b363d2b76458ea09bee059d5e34e5" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-
-
-<br/>
-
-
-<h4>Talk Description:</h4>
-
-<p>OpenStruct, part of Ruby’s standard library, is prized for its beautiful API. It provides dynamic data objects with automatically generated getters and setters. Unfortunately, OpenStruct also carries a hefty performance penalty.</p>
-
-<p>Recently, Rubyists have tried various approaches to speed up OpenStruct or provide alternatives. We will study these attempts, learning how to take advantage of the tools in our ecosystem while advancing the state of the Ruby community.</p>
 
 <p>Sometimes, we can have our cake and eat it too. But it takes creativity, hard work, and willingness to question why things are the way they are.</p>
 
